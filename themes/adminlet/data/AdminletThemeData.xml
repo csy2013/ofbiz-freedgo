@@ -1,0 +1,40 @@
+<entity-engine-xml>
+
+  <VisualTheme visualThemeId="ADMINLET" visualThemeSetId="BACKOFFICE" description="It's adminlet, it's adminlet time. This theme gets down"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_NAME" resourceValue="ADMINLET" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/css/bootstrap.min.css" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/css/font-awesome/css/font-awesome.min.css"
+                       sequenceId="02"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/css/ionicons/css/ionicons.min.css" sequenceId="03"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/dist/css/AdminLTE.min.css" sequenceId="04"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/dist/css/skins/_all-skins.min.css" sequenceId="05"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/css/main.css" sequenceId="06"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/adminlet/css/app.css" sequenceId="07"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/images/themes/coloradmin/plugins/parsley/src/parsley.css" sequenceId="08"/>
+
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HELPSTYLESHEET" resourceValue="/images/themes/adminlet/css/help.css" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_DOCBOOKSTYLESHEET" resourceValue="/images/themes/adminlet/docbook.css" sequenceId="01"/>
+
+
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_JAVASCRIPT" resourceValue="/images/themes/adminlet/js/bootstrap/js/bootstrap.js" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_JAVASCRIPT" resourceValue="/images/themes/adminlet/js/plugins/fastclick/fastclick.min.js"
+                       sequenceId="02"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_JAVASCRIPT" resourceValue="/images/themes/adminlet/js/plugins/parsley/dist/parsley.js" sequenceId="03"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_JAVASCRIPT" resourceValue="/images/themes/adminlet/dist/js/app.min.js" sequenceId="04"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_JAVASCRIPT" resourceValue="/images/bootstrap/main.js" sequenceId="05"/>
+
+
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_SHORTCUT_ICON" resourceValue="/images/app.png" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_IMAGE_URL" resourceValue="/images/app_logo.gif" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_HDR_TMPLT_LOC" resourceValue="component://adminlet/includes/header.ftl" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_FTR_TMPLT_LOC" resourceValue="component://adminlet/includes/footer.ftl" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_NAV_OPEN_TMPLT" resourceValue="component://adminlet/includes/appbarOpen.ftl" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_NAV_CLOSE_TMPLT" resourceValue="component://adminlet/includes/appbarClose.ftl" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_MSG_TMPLT_LOC" resourceValue="component://common/webcommon/includes/messages.ftl" sequenceId="01"/>
+  <VisualThemeResource visualThemeId="ADMINLET" resourceTypeEnumId="VT_SCREENSHOT" resourceValue="/images/themes/adminlet/screenshot.png" sequenceId="01"/>
+
+
+  <!--add by changsy 2015-03-15 -->
+  <!--<WebAnalyticsType webAnalyticsTypeId="BAIDU_ANALYTICS" parentTypeId="WEB_ANALYTICS" hasTable="N" description="Baidu Analytics"/>-->
+
+</entity-engine-xml>

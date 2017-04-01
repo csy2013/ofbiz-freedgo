@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <form name="AppVersionList" list-name="listIt" target="" title="" type="list" paginate-target="AppVerCtrl"
+          odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2">
+        <actions>
+            <set field="entityName" value="AppChannel"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="requestParameters"/>
+                <field-map field-name="entityName" from-field="entityName"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+            </service>
+        </actions>
+        <field name="appId" sort-field="true">
+            <display/>
+        </field>
+        <field name="appName">
+            <display/>
+        </field>
+        <field name="versionId" sort-field="true">
+            <display/>
+        </field>
+        <field name="channelTag" sort-field="true">
+            <display-entity entity-name="Enumeration" key-field-name="enumId"  description="${description}"/>
+        </field>
+        <field name="appType" sort-field="true">
+            <display-entity entity-name="Enumeration" key-field-name="enumId"  description="${description}"/>
+        </field>
+        <field name="uploadDate" sort-field="true">
+            <display/>
+        </field>
+        <field name="comments" sort-field="true">
+            <display size="100"/>
+        </field>
+        <field name="download" title="${uiLabelMap.Download}">
+            <hyperlink target="/content/control/ViewSimpleContent" also-hidden="false" description="${uiLabelMap.Download}" target-type="inter-app">
+                <parameter param-name="contentId"/>
+            </hyperlink>
+        </field>
+
+        <field name="commonUpdate" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="editAppVer" also-hidden="false" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="appChannelId"/>
+            </hyperlink>
+        </field>
+
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteAppVer" description="${uiLabelMap.CommonDelete}" confirm-title="删除该版本" confirm-message="确定删除该版本?">
+                <parameter param-name="appChannelId"/>
+            </confirm-modal>
+
+        </field>
+    </form>
+
+    <form name="AddAppVer" type="upload"  target="createAppVer" title="" default-entity-name="AppChannel"
+          header-row-style="header-row" default-table-style="basic-table" >
+        <auto-fields-entity entity-name="AppChannel"/>
+        <field name="appChannelId"><hidden/></field>
+        <field name="channelTag">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="Enumeration" key-field-name="enumId" description="${description}">
+                    <entity-constraint name="enumTypeId" value="APP_CHANNEL_TYPE"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="appType">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="Enumeration" key-field-name="enumId" description="${description}">
+                    <entity-constraint name="enumTypeId" operator="equals" value="APP_TYPE"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="compatible">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+        <field name="available">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+        <field name="contentId"><hidden/></field>
+        <field name="uploadedFile">
+            <file />
+        </field>
+        <field name="commmonAdd" title="${uiLabelMap.CommonAdd}">
+            <submit/>
+        </field>
+    </form>
+
+    <form name="updateAppVer" type="upload"  target="updateAppVer" title="" default-entity-name="AppChannel"
+          header-row-style="header-row" default-table-style="basic-table" >
+        <auto-fields-entity entity-name="AppChannel" map-name="appChannel"/>
+        <field name="appChannelId"><hidden/></field>
+        <field name="channelTag">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="Enumeration" key-field-name="enumId" description="${description}">
+                    <entity-constraint name="enumTypeId" value="APP_CHANNEL_TYPE"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="appType">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="Enumeration" key-field-name="enumId" description="${description}">
+                    <entity-constraint name="enumTypeId" operator="equals" value="APP_TYPE"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="compatible">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+        <field name="available">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+
+        <field name="contentId"><hidden/></field>
+        <field name="uploadedFile">
+            <file />
+        </field>
+        <field name="commmonAdd" title="${uiLabelMap.CommonAdd}">
+            <submit/>
+        </field>
+    </form>
+</forms>

@@ -1,0 +1,199 @@
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+    <form name="FindBrand" type="inputgroup" target="FindBrand" title="" default-entity-name="Brand"
+          header-row-style="header-row" default-table-style="basic-table">
+        <field name="brandName" title="${uiLabelMap.BrandName}">
+            <text-find/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+        <field name="ajaxUpdateEvent">
+            <hidden value="Y"/>
+        </field>
+        <on-event-update-area event-type="submit" area-id="search-results" area-target="FindBrand" target-type="ajax">
+            <parameter param-name="ajaxUpdateEvent" value="Y"/>
+        </on-event-update-area>
+    </form>
+
+    <form name="ListBrand" list-name="listIt" target="" title="" type="list" paginate-target="ListBrands"
+          odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2" view-size="20">
+        <actions>
+            <set field="entityName" value="VBrandAndContent"/>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="+brandId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" from-field="entityName"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="noConditionFind" value="Y"/>
+            </service>
+
+        </actions>
+        <row-actions>
+             <entity-one entity-name="Content" value-field="content"/>
+              <set field="contentUrl" value="${groovy: return org.ofbiz.content.data.OfbizUrlContentWrapper.getOfbizUrlContentAsText(content, locale, dispatcher)}"/>
+        </row-actions>
+
+        <field name="brandId" sort-field="true" title="${uiLabelMap.BrandId}">
+            <hyperlink target="EditBrand?brandId=${brandId}" description="${brandId}"></hyperlink>
+        </field>
+        <field name="brandName" title="${uiLabelMap.BrandName}" sort-field="true">
+            <display/>
+        </field>
+        <field name="brandLogo" title="${uiLabelMap.BrandLogo}" sort-field="true">
+            <hyperlink target="EditBrand" image-location="${contentUrl}" target-type="inter-app" img-style="cssImgSmall"
+                       image-title="${brandDesc}">
+                <parameter param-name="brandId"/>
+            </hyperlink>
+        </field>
+
+        <field name="brandDesc" title="${uiLabelMap.BrandDesc}" ><display size="200"/></field>
+        <field name="commonUpdate"  title="${uiLabelMap.CommonUpdate}">
+            <modal-page modal-url="EditBrand" description="${uiLabelMap.CommonUpdate}" confirm-title="${uiLabelMap.CommonUpdate}" confirm-message="${uiLabelMap.CommonUpdate}" modal-style="modal-lg">
+                <parameter param-name="brandId"/>
+            </modal-page>
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="DeleteBrand" description="${uiLabelMap.CommonDelete}" confirm-title="品牌删除" confirm-message="你确定删除该品牌吗?">
+                <parameter param-name="brandId"/>
+            </confirm-modal>
+        </field>
+
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListBrand"/>
+        <!--<field name="useQuickAdd" title="${uiLabelMap.ProductUseQuickAdd}" sort-field="true"><display/></field>-->
+    </form>
+    <form name="EditBrand" type="upload" target="updateBrand" title="" default-map-name="brand" header-row-style="header-row" default-table-style="basic-table" default-entity-name="Brand">
+
+        <alt-target use-when="brand==null" target="createBrand"/>
+
+        <!--<auto-fields-service service-name="updateBrand" map-name=""/>-->
+
+        <field use-when="brand!=null" name="brandId" title="${uiLabelMap.brandId}" tooltip="${uiLabelMap.BrandNotModificationRecreatingBrand}.">
+            <hidden/>
+        </field>
+        <!--<field use-when="prodCatalog==null&amp;&amp;prodCatalogId!=null" name="prodCatalogId" title="${uiLabelMap.ProductCatalogId}" tooltip="${uiLabelMap.ProductCouldNotFindProductCatalogWithId} [${prodCatalogId}]"><text size="20" maxlength="20"/></field>-->
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="brand==null" name="brandId" title="${uiLabelMap.BrandId}，不填默认">
+            <text size="20" maxlength="20"/>
+        </field>
+
+        <field name="brandName" title="${uiLabelMap.BrandName}">
+            <text size="30" maxlength="60"/>
+        </field>
+        <field name="brandDesc" title="${uiLabelMap.BrandDesc}">
+            <textarea cols="60" rows="3"/>
+        </field>
+
+        <field name="longDescription" title="${uiLabelMap.LongDescription}">
+            <textarea cols="60" rows="3" visual-editor-enable="true"  />
+        </field>
+
+        <field name="longWapDescription" title="${uiLabelMap.LongWapDescription}">
+            <textarea cols="60" rows="3" visual-editor-enable="true"/>
+        </field>
+
+        <field use-when="brand!=null" name="brandLogoImage" title="${uiLabelMap.BrandLogoImage}">
+            <image value="${brandContentUrl}" />
+        </field>
+        <field name="uploadedFile" title="${uiLabelMap.BrandLogo}">
+            <file size="25"/>
+        </field>
+        <field use-when="brand!=null" name="contentId">
+            <hidden value="${brandContent.contentId}"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button" />
+        </field>
+    </form>
+
+
+    <form name="brandProductList" list-name="listIt" target="" title="" type="list" paginate-target="brandProductList"
+          odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2" view-size="20">
+        <actions>
+            <set field="entityName" value="VBrandProductAppl"/>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="+productId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" from-field="entityName"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="noConditionFind" value="Y"/>
+            </service>
+        </actions>
+
+        <field name="brandName" title="${uiLabelMap.BrandName}" sort-field="true">
+            <display />
+        </field>
+        <field name="productId" title="${uiLabelMap.ProductProductId}" sort-field="true">
+            <display/>
+        </field>
+        <field name="productName" title="${uiLabelMap.ProductName}" ><display size="200"/></field>
+
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteBrandProduct" description="${uiLabelMap.CommonDelete}" confirm-title="品牌对应商品删除" confirm-message="你确定删除该品牌对应商品吗?">
+                <parameter param-name="brandId"/>
+                <parameter param-name="productId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="brandProductList"/>
+    </form>
+
+    <form name="addBrandProduct" type="single" target="createBrandProduct" title="" default-map-name="brand" header-row-style="header-row" default-table-style="basic-table" default-entity-name="Brand">
+        <field name="brandId">
+            <hidden/>
+        </field>
+        <field name="productId" title="${uiLabelMap.ProductProductId}" required-field="true">
+            <lookup target-form-name="LookupProduct" />
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="brandCategoryList" list-name="listIt" target="" title="" type="list" paginate-target="brandCategoryList"
+          odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2" view-size="20">
+        <actions>
+            <set field="entityName" value="VBrandCategoryAppl"/>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="+categoryId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" from-field="entityName"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="noConditionFind" value="Y"/>
+            </service>
+        </actions>
+
+        <field name="brandName" title="${uiLabelMap.BrandName}" sort-field="true">
+            <display />
+        </field>
+        <field name="categoryId" title="${uiLabelMap.ProductCategoryId}" sort-field="true">
+            <display/>
+        </field>
+        <field name="categoryName" title="${uiLabelMap.ProductProductCategoryName}" ><display size="200"/></field>
+
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteBrandCategory" description="${uiLabelMap.CommonDelete}" confirm-title="品牌对应商品删除" confirm-message="你确定删除该品牌对应商品吗?">
+                <parameter param-name="brandId"/>
+                <parameter param-name="categoryId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="brandCategoryList"/>
+    </form>
+
+    <form name="addBrandCategory" type="single" target="createBrandCategory" validate="true" title="" default-map-name="brand" header-row-style="header-row" default-table-style="basic-table" default-entity-name="Brand">
+        <field name="brandId">
+            <hidden/>
+        </field>
+        <field name="categoryId" title="${uiLabelMap.ProductCategoryId}" required-field="true">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+</forms>

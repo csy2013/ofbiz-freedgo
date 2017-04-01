@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+
+  <EnumerationType description="App Type" enumTypeId="APP_TYPE" hasTable="N" parentTypeId=""/>
+  <Enumeration description="android" enumCode="android" enumId="android" sequenceId="01" enumTypeId="APP_TYPE"/>
+  <Enumeration description="IOS" enumCode="ios" enumId="ios" sequenceId="02" enumTypeId="APP_TYPE"/>
+
+  <EnumerationType description="App Version Channel Type" enumTypeId="APP_CHANNEL_TYPE" hasTable="N" parentTypeId=""/>
+  <Enumeration description="test" enumCode="test" enumId="test" sequenceId="01" enumTypeId="APP_CHANNEL_TYPE"/>
+  <Enumeration description="production" enumCode="production" enumId="production" sequenceId="02" enumTypeId="APP_CHANNEL_TYPE"/>
+
+  <!-- <AppInfo appId="Yabiz_ShopApp" appName="电商App" comment="APP"/>
+   <AppChannel appId="Yabiz_ShopApp" versionId="1.0" channelTag="PRODUCT" appType="ANDROID"/>-->
+
+</entity-engine-xml>

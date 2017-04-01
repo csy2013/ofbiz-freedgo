@@ -1,0 +1,15 @@
+package com.subdigit.tla.data.services.json;
+
+import org.bson.types.ObjectId;
+import flexjson.transformer.AbstractTransformer;
+
+
+public class ObjectIdTransformer extends AbstractTransformer
+{
+	@Override
+	public void transform(Object object)
+	{
+		ObjectId id = (ObjectId) object;
+		getContext().writeQuoted(id.toString());
+	}
+}

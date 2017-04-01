@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile product Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <!--common service -->
+    <service name="DaoJia_ProductSearch" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="DaoJia_ProductSearch">
+        <attribute name="functionId" type="String" mode="IN">
+            <description>productsearch/search</description>
+        </attribute>
+        <attribute name="body" type="String" mode="IN">
+            <description>{'key':'','catId':'10022','storeId':'10000','sortType':1,'page':1,'pageSize':10,'cartUuid':'','promotLable':'','timeTag':1472829854480}</description>
+        </attribute>
+        <attribute name="appVersion" type="String" mode="IN">
+            <description>3.2.0</description>
+        </attribute>
+        <attribute name="appName" type="String" mode="IN">
+            <description>paidaojia</description>
+        </attribute>
+        <attribute name="platCode" type="String" mode="IN">
+            <description>H5</description>
+        </attribute>
+        <attribute name="rand" type="String" mode="IN">
+            <description>1472829868939</description>
+        </attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_productSummary" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="daoJia_productSummary">
+        <attribute name="productIds" type="java.util.Set" mode="IN"/>
+        <attribute name="webSiteId" type="String" mode="IN"/>
+        <attribute name="prodCatalogId" type="String" mode="IN"/>
+        <attribute name="productStoreId" type="String" mode="IN"/>
+
+        <attribute name="resultData" type="java.util.List" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_productDetail" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="daoJia_productDetail">
+        <attribute name="functionId"  type="String" mode="IN"><description>product/detailV2_2</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'ref':'storeHome/storeId:10055645/orgCode:74597/LID:10','skuId':'2001858205','storeId':'10055645','orgCode':'74597','buyNum':1}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.3.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1472981484533</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_productComment" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="daoJia_productComment">
+        <attribute name="productId"  type="String" mode="IN"/>
+        <attribute name="productStoreId"  type="String" mode="IN"/>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_GetTwoDimensionsRecommendSkusNew" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="DaoJia_GetTwoDimensionsRecommendSkusNew">
+        <attribute name="functionId"  type="String" mode="IN"><description>productsearch/getTwoDimensionsRecommendSkusNew</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'storeId':'10000','skuId':'10002'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473047661786</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_CheckBeforeToProductDetail" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductService" invoke="DaoJia_CheckBeforeToProductDetail">
+        <attribute name="functionId"  type="String" mode="IN"><description>productsearch/getTwoDimensionsRecommendSkusNew</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'storeId':'10000','skuId':'10002'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473047661786</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+</services>

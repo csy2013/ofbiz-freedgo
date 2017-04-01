@@ -1,0 +1,7 @@
+{
+  "id": "webpay.sign",
+  "code": "0",
+  "msg": "成功",
+  "result": "./index.html?payToken=aCKaBirKNwFxopaxzWUn9SkKq9apqWMD+Z5FLK98WmQS/dzbHGSwRH+YY2lDkmPtATaiE0vx3g4b2rWVV/2gOlmR15OzELw2l4LFD8jZAYMxtWKV7cxmHKzATrlq8XHQgCBX8ANpwMYNOQ9V9kCycG64/8yc6vqG/rsUpTeDaWI=&from=daojia#newPay",
+  "success": true
+}

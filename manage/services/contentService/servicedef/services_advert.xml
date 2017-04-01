@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>Content Component Services</description>
+    <vendor>OFBiz</vendor>
+    <!-- Advert Services -->
+    <service name="createAdvert" default-entity-name="Advert" auth="true" engine="simple"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="createAdvert">
+        <description>Create a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
+        <auto-attributes include="pk" mode="OUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="updateAdvert" default-entity-name="Advert" auth="true" engine="simple"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="updateAdvert">
+        <description>Update a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="deleteAdvert" default-entity-name="Advert" auth="true" engine="simple"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="deleteAdvert">
+        <description>Update a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="uploadSiteSlide" engine="simple" auth="true"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="uploadSiteSlide">
+        <description>Create a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
+        <implements service="uploadFileInterface" optional="false"/>
+        <attribute name="sequenceNum" type="Long" mode="IN"/>
+        <attribute name="webSiteId" type="String" mode="IN"/>
+        <attribute name="relationUrl" type="String" mode="IN" optional="true"/>
+        <attribute name="groupName" type="String" mode="IN" optional="true"/>
+        <attribute name="groupNum" type="Long" mode="IN" optional="true"/>
+        <attribute name="subGroupNum" type="Long" mode="IN" optional="true"/>
+        <attribute name="advertTypeId" type="String" mode="IN"/>
+        <attribute name="advertContentName" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="relationId" type="String" mode="IN" optional="true"/>
+
+        <attribute name="relationTypeId" type="String" mode="IN" optional="true"/>
+        <attribute name="advertContentId" type="String" mode="OUT"/>
+    </service>
+
+    <service name="uploadSiteIcon" engine="simple" auth="true"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="uploadSiteIcon">
+        <description>Create a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
+        <implements service="uploadFileInterface" optional="false"/>
+        <attribute name="webSiteId" type="String" mode="IN"/>
+        <attribute name="advertContentId" type="String" mode="OUT"/>
+    </service>
+
+    <service name="deleteAdvertContent" engine="simple" auth="true" default-entity-name="AdvertContent"
+             location="component://contentService/script/org/ofbiz/content/advert/AdvertServices.xml"
+             invoke="deleteAdvertContent">
+        <description>Create a Advert</description>
+        <permission-service service-name="contentManagerPermission" main-action="DELETE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+</services>

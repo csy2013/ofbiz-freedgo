@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+  <ArticleType articleTypeId="news" hasTable="N" description="站点新闻" parentTypeId=""/>
+  <ArticleType articleTypeId="services" hasTable="N" description="联系我们" parentTypeId=""/>
+  <ArticleType articleTypeId="buyArticle" hasTable="N" description="购物指南" parentTypeId=""/>
+  <ArticleType articleTypeId="shipArticle" hasTable="N" description="配送方式" parentTypeId=""/>
+  <ArticleType articleTypeId="payArticle" hasTable="N" description="支付方式" parentTypeId=""/>
+  <ArticleType articleTypeId="saleArticle" hasTable="N" description="售后服务" parentTypeId=""/>
+</entity-engine-xml>

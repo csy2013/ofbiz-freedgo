@@ -1,0 +1,262 @@
+ {
+    "orderId": 608130900053842,
+    "pin": "JD_284ubc3b41a4",
+    "storeId": 10055645,
+    "storeName": "永辉超市-滨江新城店",
+    "orderState": 33060,
+    "rePurchaseSwitch": 1,
+    "deleteSwitch": 1,
+    "commentStatus": 2,
+    "isWaimaiOrder": 0,
+    "productTotalNumStr": "共10件",
+    "paymentType": 4,
+    "showPay": 0,
+    "orgCode": "74597",
+    "deliveryTime": "2016-08-13 11:49:00",
+    "dateSubmit": "2016-08-13 09:49:00",
+    "dateSubmitStr": "08-13 09:49",
+    "productTotalPrice": "¥22.20",
+    "orderListShowTrack": 0,
+    "orderStateMap": {
+      "stateId": 90,
+      "stateTitle": "订单已完成",
+      "stateDesc": "感谢您使用阿凡提到家",
+      "stateTime": "08-13 10:24",
+      "stateIcon": "4"
+    },
+    "mainOrderStateMap": {
+      "orderState": "3",
+      "orderStateName": "已完成",
+      "orderColor": "#333333"
+    },
+    "realPay": "¥22.20",
+    "buyerLng": 118.72889,
+    "buyerLat": 32.13012,
+    "isSowMap": 0,
+    "deliveryType": "0",
+    "deliveryTypeDesc": "达达专送",
+    "isGroup": 0,
+    "servicePhoneType": 2,
+    "afterSaleSign": 0,
+    "imSwitch": "1",
+    "servicePhone": "18914460003",
+    "deliveryManMobileNew": "13952038890",
+    "cancelSwitchNew": 0,
+    "shouldPay": "¥22.20",
+    "freightRule": "本单运费共计2元，包括<br/>·基础运费 2元<br/>",
+    "afsSwitch": 0,
+    "deliveryInfoList": [
+      {
+        "title": "配送信息",
+        "valueFlag": 0
+      },
+      {
+        "title": "送达时间：",
+        "value": "2016-08-13 11:49",
+        "valueFlag": 0
+      },
+      {
+        "title": "收货地址：",
+        "value": "常胜永 137****8361<br/>南京市浦口区旭日华庭比华利5栋1单元402",
+        "valueFlag": 0
+      },
+      {
+        "title": "配送方式：",
+        "value": "达达专送",
+        "valueFlag": 1
+      },
+      {
+        "title": "配送员  ：",
+        "value": "裴泽强 13952038890",
+        "valueFlag": 0
+      }
+    ],
+    "orderInfoList": [
+      {
+        "title": "订单信息",
+        "valueFlag": 0
+      },
+      {
+        "title": "订单号码：",
+        "value": 608130900053842,
+        "valueFlag": 0
+      },
+      {
+        "title": "订单时间：",
+        "value": "2016-08-13 09:49:00",
+        "valueFlag": 0
+      },
+      {
+        "title": "支付方式：",
+        "value": "在线支付",
+        "valueFlag": 0
+      },
+      {
+        "title": "订单备注：",
+        "value": "所购商品如遇缺货，您需要：其它商品继续配送（缺货商品退款）",
+        "valueFlag": 0
+      }
+    ],
+    "priceInfoList": [
+      {
+        "title": "商品金额",
+        "value": "¥20.20",
+        "valueFlag": 0
+      },
+      {
+        "title": "运费金额",
+        "titleTip": "本单运费共计2元，包括<br/>·基础运费 2元<br/>",
+        "value": "¥2.00",
+        "valueFlag": 0
+      },
+      {
+        "value": "应付：¥22.20",
+        "color": "#ff5757",
+        "valueFlag": 0
+      }
+    ],
+    "orderCancelReasons": [
+      {
+        "text": "商家缺货",
+        "code": "40"
+      },
+      {
+        "text": "在线支付遇到问题",
+        "code": "10"
+      },
+      {
+        "text": "忘记使用优惠券/码",
+        "code": "20"
+      },
+      {
+        "text": "买错商品/暂不想购买",
+        "code": "30"
+      },
+      {
+        "text": "无人配送",
+        "code": "50"
+      },
+      {
+        "text": "点错了，不取消订单",
+        "code": "99"
+      }
+    ],
+    "orderProductList": [
+      {
+        "sku": 2001857878,
+        "price": 150,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t2827/130/195812239/223883/294fbb28/5706b8a9N151cb9ff.jpg",
+        "shopId": "10055645",
+        "num": 1,
+        "name": "黄瓜约250±30g/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001862437,
+        "price": 160,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t1906/106/2231847033/505957/74b3df9e/56f78592N78c945ee.jpg",
+        "shopId": "10055645",
+        "num": 2,
+        "name": "怡宝纯净水555ml/瓶",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001857876,
+        "price": 100,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t2065/162/2926454761/79783/b40bfdf4/56f4d425N456302fe.jpg",
+        "shopId": "10055645",
+        "num": 3,
+        "name": "冬瓜450±50g/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001858203,
+        "price": 180,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t1996/153/2858166976/105030/34589452/56f4d561N75e653b9.jpg",
+        "shopId": "10055645",
+        "num": 1,
+        "name": "韭菜约250g/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001857785,
+        "price": 290,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t2053/296/2441453055/288261/2bce54b6/5706b980Nbed08ecc.jpg",
+        "shopId": "10055645",
+        "num": 1,
+        "name": "苦瓜约450±50g/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001858118,
+        "price": 190,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t2203/229/2514417151/200436/382a385b/5707ddc5N79b0772a.jpg",
+        "shopId": "10055645",
+        "num": 1,
+        "name": "胡萝卜约450±50g/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      },
+      {
+        "sku": 2001858155,
+        "price": 590,
+        "discountPrice": 0,
+        "imgPath": "https://img10.360buyimg.com/n7/jfs/t2701/152/180155831/166004/bfa66b2/5706abddNa2de327e.jpg",
+        "shopId": "10055645",
+        "num": 1,
+        "name": "丰水梨约1±0.1kg/份",
+        "orderId": 608130900053842,
+        "skuCommentStatus": 0,
+        "productCategory": 0,
+        "promotionType": 1
+      }
+    ],
+    "orderShowTitles": {
+      "shouldPayTitle": "应付 ",
+      "realPayTitle": "实付："
+    },
+    "contactList": [
+      {
+        "phoneNum": "13952038890",
+        "code": "10",
+        "text": "联系配送员"
+      },
+      {
+        "phoneNum": "18914460003",
+        "code": "20",
+        "text": "联系商家"
+      },
+      {
+        "phoneNum": "4000020020",
+        "code": "100",
+        "text": "在线客服（售后，交易纠纷）"
+      }
+    ],
+    "receiveConfirm": 0,
+    "urgeOrder": {
+      "show": 0
+    }
+  }

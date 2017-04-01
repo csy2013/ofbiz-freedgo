@@ -1,0 +1,33 @@
+{
+  files: [
+    {
+      url: "http://url.to/file/or/page",
+      thumbnail_url: "http://url.to/thumnail.jpg ",
+      name: "thumb2.jpg",
+      type: "image/jpeg",
+      size: 46353,
+      delete_url: "http://url.to/delete /file/",
+      delete_type: "DELETE"
+    }
+  ]
+}
+
+
+
+{
+  "productId": "10070",
+  "files": [
+    {
+      "name": "original.png",
+      "type": "png",
+      "delete_url": "http://localhost:8080",
+      "delete_type": "DELETE",
+      "size": 364777,
+      "url": "/images/products/10070/additional1/original.png",
+      "small_url": "/images/products/10070/additional1/small.png",
+      "medium_url": "/images/products/10070/additional1/medium.png",
+      "large_url": "/images/products/10070/additional1/large.png",
+      "detail_url": "/images/products/10070/additional1/detail.png"
+    }
+  ]
+}

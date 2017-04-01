@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+    <screen name="activity-main-decorator">
+        <section>
+            <actions>
+                <!-- base/top/specific map first, then more common map added for shared labels -->
+                <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonEntityLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.ProductCatalogCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.ProductCompanySubtitle" global="true"/>
+                <!-- layoutSettings.headerImageUrl can be used to specify an application specific logo; if not set,
+                     then the global layoutSettings.commonHeaderImageUrl (specified in GlobalDecorator) will be used. -->
+                <!--<set field="layoutSettings.headerImageUrl" value="/images/ofbiz_logo.gif" global="true"/>-->
+                <!-- <set field="layoutSettings.headerMiddleBackgroundUrl" value="" global="true"/> -->
+                <!-- <set field="layoutSettings.headerRightBackgroundUrl" value="" global="true"/> -->
+                <set field="activeApp" value="catalogmgr" global="true"/>
+                <set field="applicationMenuName" value="CatalogAppBar" global="true"/>
+                <set field="applicationMenuLocation" value="component://product/widget/catalog/CatalogMenus.xml" global="true"/>
+                <set field="applicationTitle" value="${uiLabelMap.ProductCatalogManagerApplication}" global="true"/>
+
+            </actions>
+            <widgets>
+                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="groupOrderList">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/GroupOrderList.groovy"/>
+                <service service-name="findActivities"/>
+                <set field="titleProperty" value="团购查询"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.groupOrder}"></label>
+                                <label style="sub-title" text="${uiLabelMap.groupOrderList}（共${groupListSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.groupOrder}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.groupOrderList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <!--&lt;!&ndash; do check for PARTYMGR, _VIEW permission &ndash;&gt;-->
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <!--<decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <container style="button-bar">
+                                            <link style="button" text="新增团购" target="addGroupOrder" >
+
+                                            </link>
+                                           &lt;!&ndash; <modal-page button-type="button" modal-url="addGroupOrder" id="addGroupOrder" confirm-message="新增团购" confirm-title="团购操作" target-type="inter-app"
+                                                        description="创建团购">
+                                                <parameter param-name="activityId" from-field="100022"/>
+                                            </modal-page>&ndash;&gt;
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="findGroupOrderListCond" location="component://product/widget/catalog/activity/ProductActivityForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <include-form name="listGroupOrder" location="component://product/widget/catalog/activity/ProductActivityForms.xml"/>
+                                    </decorator-section>
+                                </decorator-screen>-->
+                                <platform-specific>
+                                    <html><html-template location="component://product/webapp/catalog/activity/groupOrderList.ftl"></html-template></html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="addGroupOrder">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/AddGroupOrder.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.groupOrder}"></label>
+                                <label style="sub-title" text="${uiLabelMap.addGroupOrder}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.groupOrder}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.addGroupOrder}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PRODPROMO_GROUPORDER" action="_ADD"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific>
+                                    <html>
+                                        <html-template location="component://product/webapp/catalog/activity/addGroupOrder.ftl"/>
+                                    </html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="需要新增团购的权限"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+
+    <screen name="editGroupOrder">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/EditGroupOrder.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.groupOrder}"></label>
+                                <label style="sub-title" text="${uiLabelMap.editGroupOrder}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.groupOrder}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.editGroupOrder}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PRODPROMO_GROUPORDER" action="_UPDATE"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific>
+                                    <html>
+                                        <html-template location="component://product/webapp/catalog/activity/editGroupOrder.ftl"/>
+                                    </html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="需要修改团购的权限"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!--秒杀begin-->
+    <screen name="secKillList">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/SecKillList.groovy"/>
+                <service service-name="findActivities"/>
+                <set field="titleProperty" value="秒杀查询"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.secKill}"></label>
+                                <label style="sub-title" text="${uiLabelMap.secKillList}（共${groupListSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.secKill}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.secKillList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+
+                    <decorator-section name="body">
+                        <!--<section>
+                            &lt;!&ndash; do check for PARTYMGR, _VIEW permission &ndash;&gt;
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="search-options">
+                                        <include-form  name="findSecKillListCond" location="component://product/widget/catalog/activity/ProductActivityForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <include-form name="listSecKill" location="component://product/widget/catalog/activity/ProductActivityForms.xml"/>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>-->
+
+
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PRODPROMO_SECKILL" action="_VIEW"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific>
+                                    <html>
+                                        <html-template location="component://product/webapp/catalog/activity/secKillList.ftl"/>
+                                    </html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="需要查看秒杀的权限"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="addSecKill">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/AddSecKill.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.secKill}"></label>
+                                <label style="sub-title" text="${uiLabelMap.addSecKill}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.secKill}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.addSecKill}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PRODPROMO_SECKILL" action="_ADD"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific>
+                                    <html>
+                                        <html-template location="component://product/webapp/catalog/activity/addSecKill.ftl"/>
+                                    </html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="需要新增秒杀的权限"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+
+    <screen name="editSecKill">
+        <section>
+            <actions>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/activity/EditSecKill.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="activity-main-decorator">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.secKill}"></label>
+                                <label style="sub-title" text="${uiLabelMap.editSecKill}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.ProdPromoManage}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.secKill}" style="breadcrumb"/>
+                                <link target="prodActivityList" text="${uiLabelMap.editSecKill}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PRODPROMO_SECKILL" action="_UPDATE"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific>
+                                    <html>
+                                        <html-template location="component://product/webapp/catalog/activity/editSecKill.ftl"/>
+                                    </html>
+                                </platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="需要修改秒杀的权限"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!--秒杀end-->
+    <screen name="LookupProduct">
+        <section>
+            <condition>
+                <if-service-permission service-name="catalogPermissionCheck" main-action="VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="title" value="${uiLabelMap.PageTitleLookupProduct}"/>
+                <set field="queryString" from-field="result.queryString"/>
+                <set field="entityName" value="Product"/>
+                <set field="searchFields" value="[productId, internalName, brandName]"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="LookupDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="search-options">
+                        <include-form name="lookupProduct" location="component://product/widget/catalog/prodPromo/FieldLookupForms.xml"/>
+                    </decorator-section>
+                    <decorator-section name="search-results">
+                        <include-form name="listLookupProduct" location="component://product/widget/catalog/prodPromo/FieldLookupForms.xml"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+
+</screens>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+    <simple-method method-name="createProductStoreContactMech" short-description="Create a ProductStoreContactMech">
+        <check-permission permission="FACILITY" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreCreatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <make-value entity-name="ProductStoreContactMech" value-field="newValue"/>
+        <make-value entity-name="ProductStoreContactMech" value-field="newProductStoreContactMech"/>
+        <log level="info" message="contactMechId is ${parameters.contactMechId}"/>
+        <if-empty field="parameters.contactMechId">
+
+            <set-service-fields service-name="createContactMech" map="parameters" to-map="createContactMechMap"/>
+            <set field="createContactMechMap.contactMechTypeId" from-field="parameters.contactMechTypeId"/>
+            <call-service service-name="createContactMech" in-map-name="createContactMechMap">
+                <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyCreated"/>
+                <result-to-field result-name="contactMechId" field="newValue.contactMechId"/>
+            </call-service>
+            <log level="info" message="ContactMech created"/>
+            <else>
+                <set field="newValue.contactMechId" from-field="parameters.contactMechId"/>
+            </else>
+        </if-empty>
+        <log level="info" message="Creating a ProductStoreContactMech with id: ${parameters.contactMechId}"/>
+        <set field="newValue.productStoreId" from-field="parameters.productStoreId"/>
+        <field-to-result field="newValue.contactMechId" result-name="contactMechId"/>
+        <field-to-request field="newValue.contactMechId" request-name="contactMechId"/>
+        <set-nonpk-fields map="parameters" value-field="newValue"/>
+        <now-timestamp field="newValue.fromDate"/>
+
+        <create-value value-field="newValue"/>
+        
+        <!-- now create the ProductStoreContactMechPurpose record -->
+        <if-not-empty field="parameters.contactMechPurposeTypeId">        
+            <make-value value-field="productStoreContactMechPurpose" entity-name="ProductStoreContactMechPurpose"/>
+            <set-pk-fields map="newValue" value-field="productStoreContactMechPurpose"/>
+            <set field="productStoreContactMechPurpose.contactMechPurposeTypeId" from-field="parameters.contactMechPurposeTypeId"/>
+            <create-value value-field="productStoreContactMechPurpose"/>
+        </if-not-empty>
+    </simple-method>
+
+    <simple-method method-name="updateProductStoreContactMech" short-description="Update a ProductStoreContactMech">
+        <check-permission permission="FACILITY" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductStoreContactMech" value-field="newProductStoreContactMech"/>
+
+        <!-- Find old value -->
+
+        <entity-and entity-name="ProductStoreContactMech" list="productStoreContactMechs" filter-by-date="true">
+            <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
+            <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
+        </entity-and>
+        <first-from-list entry="productStoreContactMech" list="productStoreContactMechs"/>
+        <if-empty field="productStoreContactMech">
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyCannotUpdateContactBecauseNotWithSpecifiedParty"/>
+            </add-error>
+        </if-empty>
+        <check-errors/>
+
+        <log message="parameters: ${parameters}" level="info"/>
+        <clone-value value-field="productStoreContactMech" new-value-field="newProductStoreContactMech"/>
+        <log message="parameters: ${parameters}" level="info"/>
+        <!-- If we already have a new contactMechId don't update ContactMech -->
+        <if-empty field="parameters.newContactMechId">
+            <set-service-fields service-name="updateContactMech" map="parameters" to-map="updateContactMechMap"/>
+            <set field="updateContactMechMap.contactMechTypeId" from-field="parameters.contactMechTypeId"/>
+            <call-service service-name="updateContactMech" in-map-name="updateContactMechMap">
+                <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyUpdated"/>
+                <result-to-field result-name="contactMechId" field="newProductStoreContactMech.contactMechId"/>
+            </call-service>
+            <else>
+                <set field="newProductStoreContactMech.contactMechId" from-field="parameters.newContactMechId"/>
+                <log level="info" message="Using supplied new contact mech id: ${newProductStoreContactMech.contactMechId}"/>
+            </else>
+        </if-empty>
+
+        <set-nonpk-fields value-field="newProductStoreContactMech" map="parameters" set-if-null="false"/>
+
+        <now-timestamp field="newProductStoreContactMech.fromDate"/>
+        <now-timestamp field="productStoreContactMech.thruDate"/>
+
+        <store-value value-field="productStoreContactMech"/>
+        <create-value value-field="newProductStoreContactMech"/>
+
+        <if-compare-field to-field="newProductStoreContactMech.contactMechId" field="parameters.contactMechId" operator="not-equals">
+            <get-related value-field="productStoreContactMech" relation-name="ProductStoreContactMechPurpose" list="productStoreContactMechPurposes"/>
+            <iterate entry="productStoreContactMechPurposeOld" list="productStoreContactMechPurposes">
+                <clone-value value-field="productStoreContactMechPurposeOld" new-value-field="productStoreContactMechPurpose"/>
+
+                <now-timestamp field="productStoreContactMechPurposeOld.thruDate"/>
+                <store-value value-field="productStoreContactMechPurposeOld"/>
+
+                <set field="productStoreContactMechPurpose.contactMechId" from-field="newProductStoreContactMech.contactMechId"/>
+                <set field="purposeMap.productStoreId" from-field="productStoreContactMechPurpose.productStoreId"/>
+                <set field="purposeMap.contactMechPurposeTypeId" from-field="productStoreContactMechPurpose.contactMechPurposeTypeId"/>
+                <set field="purposeMap.contactMechId" from-field="productStoreContactMechPurpose.contactMechId"/>
+                <find-by-and entity-name="ProductStoreContactMechPurpose" list="purposeResult" map="purposeMap"/>
+
+                <if-empty field="purposeResult">
+
+                    <create-value value-field="productStoreContactMechPurpose"/>
+                </if-empty>
+            </iterate>
+        </if-compare-field>
+
+        <log level="info" message="Setting id to result: ${newProductStoreContactMech.contactMechId}"/>
+        <field-to-result field="newProductStoreContactMech.contactMechId" result-name="contactMechId"/>
+        <field-to-request field="newProductStoreContactMech.contactMechId" request-name="contactMechId"/>
+    </simple-method>
+
+    <simple-method method-name="deleteProductStoreContactMech" short-description="Delete a ProductStoreContactMech">
+        <make-value entity-name="ProductStoreContactMech" value-field="newProductStoreContactMech"/>
+        <check-permission permission="FACILITY" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreDeletePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductStoreContactMech" value-field="productStoreContactMechMap"/>
+        <set-pk-fields value-field="productStoreContactMechMap" map="parameters"/>
+        <find-by-and entity-name="ProductStoreContactMech" list="productStoreContactMechs" map="productStoreContactMechMap"/>
+        <filter-list-by-date list="productStoreContactMechs" to-list="validProductStoreContactMechs"/>
+
+        <first-from-list entry="productStoreContactMech" list="validProductStoreContactMechs"/>
+        <if-empty field="productStoreContactMech">
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyContactMechNotFoundCannotDelete"/>
+            </add-error>
+            <return/>
+        </if-empty>
+        <now-timestamp field="productStoreContactMech.thruDate"/>
+        <store-value value-field="productStoreContactMech"/>
+
+    </simple-method>
+
+    <simple-method method-name="createProductStorePostalAddress" short-description="Create a PostalAddress for productStore">
+        <check-permission permission="FACILITY" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreCreatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set-service-fields service-name="createPostalAddress" map="parameters" to-map="createPostalAddressMap"/>
+        <call-service in-map-name="createPostalAddressMap" service-name="createPostalAddress">
+            <default-message resource="PartyUiLabels" property="PartyPostalAddressSuccessfullyCreated"/>
+            <result-to-field result-name="contactMechId" field="newProductStoreContactMech.contactMechId"/>
+        </call-service>
+
+        <check-errors/>
+
+        <set field="createProductStoreContactMechMap.contactMechId" from-field="newProductStoreContactMech.contactMechId"/>
+        <set-service-fields service-name="createProductStoreContactMech" map="parameters" to-map="createProductStoreContactMechMap"/>
+
+        <call-service service-name="createProductStoreContactMech" in-map-name="createProductStoreContactMechMap" break-on-error="true">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyCreated"/>
+        </call-service>
+        <field-to-request field="newProductStoreContactMech.contactMechId" request-name="contactMechId"/>
+        <field-to-result field="newProductStoreContactMech.contactMechId" result-name="contactMechId"/>
+    </simple-method>
+
+    <simple-method method-name="updateProductStorePostalAddress" short-description="Update a PostalAddress for productStore">
+        <make-value entity-name="ProductStoreContactMech" value-field="newProductStoreContactMech"/>
+        <check-permission permission="FACILITY" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set-service-fields service-name="updatePostalAddress" map="parameters" to-map="updatePostalAddressMap"/>
+        <call-service in-map-name="updatePostalAddressMap" service-name="updatePostalAddress">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyUpdated"/>
+            <result-to-field result-name="contactMechId" field="newProductStoreContactMech.contactMechId"/>
+        </call-service>
+
+        <set-service-fields service-name="updateProductStoreContactMech" map="parameters" to-map="updateProductStoreContactMechMap"/>
+        <set field="updateProductStoreContactMechMap.newContactMechId" from-field="newProductStoreContactMech.contactMechId"/>
+
+        <set field="updateProductStoreContactMechMap.contactMechTypeId" value="POSTAL_ADDRESS"/>
+        <log level="info" message="Copied id to updateProductStoreContactMechMap: ${updateProductStoreContactMechMap.newContactMechId}"/>
+        <call-service service-name="updateProductStoreContactMech" in-map-name="updateProductStoreContactMechMap">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyUpdated"/>
+        </call-service>
+        <field-to-request field="newProductStoreContactMech.contactMechId" request-name="contactMechId"/>
+        <field-to-result field="newProductStoreContactMech.contactMechId" result-name="contactMechId"/>
+    </simple-method>
+
+    <simple-method method-name="createProductStoreTelecomNumber" short-description="Create a TelecomNumber for productStore">
+        <check-permission permission="FACILITY" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreCreatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <log level="info" message="Creating telecom number"/>
+        <set-service-fields service-name="createTelecomNumber" map="parameters" to-map="createTelecomNumberMap"/>
+        <call-service in-map-name="createTelecomNumberMap" service-name="createTelecomNumber">
+            <default-message resource="PartyUiLabels" property="PartyTelecomNumberSuccessfullyCreated"/>
+            <result-to-field result-name="contactMechId" field="newProductStoreContactMech.contactMechId"/>
+        </call-service>
+
+        <set-service-fields service-name="createProductStoreContactMech" map="parameters" to-map="createProductStoreContactMechMap"/>
+        <set field="createProductStoreContactMechMap.contactMechId" from-field="newProductStoreContactMech.contactMechId"/>
+        <log level="info" message="Copied id to createProductStoreContactMechMap: ${createProductStoreContactMechMap.contactMechId}"/>
+
+        <call-service service-name="createProductStoreContactMech" in-map-name="createProductStoreContactMechMap" break-on-error="true">
+            <default-message resource="PartyUiLabels" property="PartyTelecomNumberSuccessfullyCreated"/>
+        </call-service>
+        <field-to-request field="newProductStoreContactMech.contactMechId" request-name="contactMechId"/>
+        <field-to-result field="newProductStoreContactMech.contactMechId" result-name="contactMechId"/>
+    </simple-method>
+
+    <simple-method method-name="updateProductStoreTelecomNumber" short-description="Update a TelecomNumber for productStore">
+        <make-value entity-name="ProductStoreContactMech" value-field="newProductStoreContactMech"/>
+        <check-permission permission="FACILITY" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set-service-fields service-name="updateTelecomNumber" map="parameters" to-map="updateTelecomNumberMap"/>
+        <call-service service-name="updateTelecomNumber" in-map-name="updateTelecomNumberMap">
+            <default-message resource="PartyUiLabels" property="PartyTelecomNumberSuccessfullyUpdated"/>
+            <result-to-field result-name="contactMechId" field="newProductStoreContactMech.contactMechId"/>
+        </call-service>
+
+        <set-service-fields service-name="updateProductStoreContactMech" map="parameters" to-map="updateProductStoreContactMechMap"/>
+        <set field="updateProductStoreContactMechMap.newContactMechId" from-field="newProductStoreContactMech.contactMechId"/>
+
+        <set field="updateProductStoreContactMechMap.contactMechTypeId" value="TELECOM_NUMBER"/>
+        <log level="info" message="Copied id to updateProductStoreContactMechMap: ${updateProductStoreContactMechMap.newContactMechId}"/>
+
+        <call-service in-map-name="updateProductStoreContactMechMap" service-name="updateProductStoreContactMech">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyUpdated"/>
+        </call-service>
+        <log level="info" message="Setting result id: ${newProductStoreContactMech.contactMechId}"/>
+        <field-to-request field="newProductStoreContactMech.contactMechId" request-name="contactMechId"/>
+        <field-to-result field="newProductStoreContactMech.contactMechId" result-name="contactMechId"/>
+
+    </simple-method>
+
+    <simple-method method-name="createProductStoreEmailAddress" short-description="Create an email address for productStore">
+        <check-permission permission="FACILITY" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <if-validate-method field="parameters.emailAddress" method="isEmail">
+        <else>
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyEmailAddressNotFormattedCorrectly"/>
+            </add-error>
+        </else>
+        </if-validate-method>
+        <check-errors/>
+
+        <set-service-fields service-name="createProductStoreContactMech" map="parameters" to-map="createProductStoreContactMechMap"/>
+        <set field="createProductStoreContactMechMap.infoString" from-field="parameters.emailAddress"/>
+        <set field="createProductStoreContactMechMap.contactMechTypeId" value="EMAIL_ADDRESS"/>
+        <call-service service-name="createProductStoreContactMech" in-map-name="createProductStoreContactMechMap">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyCreated"/>
+            <result-to-result result-name="contactMechId"/>
+            <result-to-request result-name="contactMechId"/>
+        </call-service>
+    </simple-method>
+
+    <simple-method method-name="updateProductStoreEmailAddress" short-description="Update an email address for productStore">
+        <check-permission permission="FACILITY" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <if-validate-method field="parameters.emailAddress" method="isEmail">
+        <else>
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyEmailAddressNotFormattedCorrectly"/>
+            </add-error>
+        </else>
+        </if-validate-method>
+        <check-errors/>
+
+        <set-service-fields service-name="updateProductStoreContactMech" map="parameters" to-map="updateProductStoreContactMechMap"/>
+        <set field="updateProductStoreContactMechMap.infoString" from-field="parameters.emailAddress"/>
+        <set field="updateProductStoreContactMechMap.contactMechTypeId" value="EMAIL_ADDRESS"/>
+        <call-service service-name="updateProductStoreContactMech" in-map-name="updateProductStoreContactMechMap">
+            <default-message resource="PartyUiLabels" property="PartyContactMechanismSuccessfullyUpdated"/>
+            <result-to-result result-name="contactMechId"/>
+            <result-to-request result-name="contactMechId"/>
+        </call-service>
+    </simple-method>
+
+    <simple-method method-name="createProductStoreContactMechPurpose" short-description="Create a productStore/contact mech purpose">
+        <check-permission permission="FACILITY" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreCreatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="lookUpMap" entity-name="ProductStoreContactMechPurpose"/>
+        <set field="lookUpMap.productStoreId" from-field="parameters.productStoreId"/>
+        <set field="lookUpMap.contactMechId" from-field="parameters.contactMechId"/>
+        <set field="lookUpMap.contactMechPurposeTypeId" from-field="parameters.contactMechPurposeTypeId"/>
+        <find-by-and entity-name="ProductStoreContactMechPurpose" map="lookUpMap" list="purposeList"/>
+        <filter-list-by-date list="purposeList"/>
+
+        <if-not-empty field="purposeList">
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyCouldNotCreateNewPurpose"/>
+            </add-error>
+            <check-errors/>
+        </if-not-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <make-value value-field="newEntity" entity-name="ProductStoreContactMechPurpose"/>
+        <set field="newEntity.productStoreId" from-field="parameters.productStoreId"/>
+        <set field="newEntity.contactMechId" from-field="parameters.contactMechId"/>
+        <set field="newEntity.contactMechPurposeTypeId" from-field="parameters.contactMechPurposeTypeId"/>
+        <set field="newEntity.fromDate" from-field="nowTimestamp"/>
+
+        <create-value value-field="newEntity"/>
+
+        <field-to-result field="newEntity.fromDate" result-name="fromDate"/>
+    </simple-method>
+
+    <simple-method method-name="deleteProductStoreContactMechPurpose" short-description="Delete a productStore/contact mech purpose">
+        <check-permission permission="FACILITY" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductProductStoreDeletePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="lookUpMap" entity-name="ProductStoreContactMechPurpose"/>
+
+        <set-pk-fields map="parameters" value-field="lookUpMap"/>
+        <find-by-primary-key value-field="purposeEntity" entity-name="ProductStoreContactMechPurpose" map="lookUpMap"/>
+
+        <if-empty field="purposeEntity">
+            <add-error>
+                <fail-property resource="PartyUiLabels" property="PartyUnableToLocatePurpose"/>
+            </add-error>
+            <check-errors/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set field="purposeEntity.thruDate" from-field="nowTimestamp"/>
+
+        <store-value value-field="purposeEntity"/>
+    </simple-method>
+</simple-methods>

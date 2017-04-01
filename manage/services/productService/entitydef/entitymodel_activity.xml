@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+    <!-- ========================================================= -->
+    <!-- ======================== Defaults ======================= -->
+    <!-- ========================================================= -->
+    <title>Entity of activity Component</title>
+    <description>add by changsy at 2016.01.08</description>
+    <version>1.0</version>
+
+    <!-- ========================================================= -->
+    <!-- org.ofbiz.product.activity -->
+    <!-- ========================================================= -->
+    <entity entity-name="ProductActivity"
+            package-name="org.ofbiz.product.activity"
+            title="Product Promotion Entity">
+        <field name="activityId" type="id-ne"></field>
+        <field name="activityName" type="name"></field>
+        <field name="activityType" type="id"></field>
+        <field name="activityAuditStatus" type="id"></field>
+        <field name="activityCode" type="name"></field>
+        <field name="publishDate" type="date-time"></field>
+        <field name="endDate" type="date-time"></field>
+        <field name="activityStartDate" type="date-time"></field>
+        <field name="activityEndDate" type="date-time"></field>
+        <!--活动总数量-->
+        <field name="activityQuantity" type="numeric"></field>
+        <field name="scoreValue" type="numeric"></field>
+        <field name="productPrice" type="currency-precise"></field>
+        <field name="activityPayType" type="id"></field>
+        <field name="activityDesc" type="description"></field>
+        <!--单个ID限购数量-->
+        <field name="limitQuantity" type="numeric"></field>
+        <field name="hasGroup" type="indicator"></field>
+        <field name="leaveQuantity" type="numeric"></field>
+
+        <prim-key field="activityId"/>
+        <relation type="one" fk-name="PRODUCT_ACTYTPE_ENUM" title="activityType" rel-entity-name="Enumeration">
+            <key-map field-name="activityType" rel-field-name="enumId"/>
+        </relation>
+        <relation type="one" fk-name="ACTI_PAYTPE_ENUM" title="activityPayType" rel-entity-name="Enumeration">
+            <key-map field-name="activityPayType" rel-field-name="enumId"/>
+        </relation>
+
+    </entity>
+
+
+    <entity entity-name="ProductActivityGoods" package-name="org.ofbiz.product.activity">
+        <field name="activityId" type="id-ne"></field>
+        <field name="productId" type="id-ne"></field>
+        <field name="shipmentType" type="id"></field>
+        <field name="isAnyReturn" type="indicator"></field>
+        <field name="isSupportOverTimeReturn" type="indicator"></field>
+        <field name="isSupportScore" type="indicator"></field>
+        <field name="isSupportReturnScore" type="indicator"></field>
+        <field name="isShowIndex" type="indicator"></field>
+        <field name="virtualProductStartDate" type="date-time"></field>
+        <field name="virtualProductEndDate" type="date-time"></field>
+        <prim-key field="activityId"/>
+        <prim-key field="productId"/>
+        <relation type="one" rel-entity-name="ProductActivity">
+            <key-map field-name="activityId"/>
+        </relation>
+        <relation type="one" rel-entity-name="Product">
+            <key-map field-name="productId"/>
+        </relation>
+    </entity>
+
+    <entity entity-name="ProductGroupOrderRule" package-name="org.ofbiz.product.activity">
+        <field name="activityId" type="id-ne"></field>
+        <field name="seqId" type="id-ne"></field>
+        <field name="orderQuantity" type="numeric"></field>
+        <field name="orderPrice" type="currency-precise"></field>
+        <field name="productPromoId" type="id-ne"></field>
+        <prim-key field="activityId"/>
+        <prim-key field="seqId"/>
+
+    </entity>
+
+    <entity entity-name="ProductActivityPartyLevel" package-name="org.ofbiz.product.activity">
+        <field name="activityId" type="id-ne"></field>
+        <field name="levelId" type="id-ne"></field>
+        <field name="levelName" type="name"></field>
+        <prim-key field="activityId" />
+        <prim-key field="levelId"/>
+        <relation type="one" rel-entity-name="ProductActivity">
+            <key-map field-name="activityId"/>
+        </relation>
+        <relation type="one" rel-entity-name="PartyLevelType">
+            <key-map field-name="levelId"/>
+        </relation>
+    </entity>
+
+    <entity entity-name="ProductActivityArea" package-name="org.ofbiz.product.activity">
+        <field name="activityId" type="id-ne"></field>
+        <field name="communityId" type="id-ne"></field>
+        <field name="communityName" type="name"></field>
+        <prim-key field="activityId" />
+        <prim-key field="communityId"/>
+        <relation type="one" rel-entity-name="ProductActivity">
+            <key-map field-name="activityId"/>
+        </relation>
+        <relation type="one" rel-entity-name="Community">
+            <key-map field-name="communityId"/>
+        </relation>
+    </entity>
+
+
+</entitymodel>

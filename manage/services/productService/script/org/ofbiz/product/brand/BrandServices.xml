@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+
+    <!-- ================================================================ -->
+    <!-- Brand Services -->
+    <!-- ================================================================ -->
+
+    <simple-method method-name="createBrand" short-description="Create an Brand">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <alt-permission permission="CATALOG_ROLE" action="_CREATE"/>
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <now-timestamp field="nowTimestamp"/>
+        <make-value value-field="newEntity" entity-name="Brand"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+
+        <if-empty field="parameters.brandId">
+            <sequenced-id sequence-name="Brand" field="brandId" />
+            <set from-field="brandId" field="newEntity.brandId"/>
+            <else>
+                <set field="newEntity.brandId" from-field="parameters.brandId"/>
+                <check-id field="newEntity.brandId"/>
+                <check-errors/>
+            </else>
+        </if-empty>
+
+
+        <create-value value-field="newEntity"  />
+
+        <set-service-fields service-name="updateLogoForBrand" map="parameters" to-map="addLogoForBrandMap"/>
+        <set field="addLogoForBrandMap.brandId" from-field="brandId"/>
+        <set field="addLogoForBrandMap.uploadedFile" from-field="parameters.uploadedFile"/>
+        <set field="addLogoForBrandMap.brandContentTypeId" value="ORIGINAL"/>
+        <set field="addLogoForBrandMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+        <set field="addLogoForBrandMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+        <call-service service-name="updateLogoForBrand" in-map-name="addLogoForBrandMap">
+
+        </call-service>
+        <clear-field field="addLogoForBrandMap"/>
+    </simple-method>
+
+    <simple-method method-name="updateBrand" short-description="Update an Brand">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <alt-permission permission="CATALOG_ROLE" action="_UPDATE"/>
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <entity-one entity-name="Brand" value-field="lookedUpValue"/>
+        <!-- save this value before overwriting it so we can compare it later -->
+        <!-- <field-to-field field-name="primaryParentCategoryId" map-name="lookedUpValue" to-map-name="saveIdMap"/> -->
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <log level="info" message="brandId =====================${lookedUpValue}"/>
+        <store-value value-field="lookedUpValue"/>
+
+        <set-service-fields service-name="updateLogoForBrand" map="parameters" to-map="addLogoForBrandMap"/>
+        <set field="addLogoForBrandMap.brandId" from-field="newEntity.brandId"/>
+        <set field="addLogoForBrandMap.uploadedFile" from-field="parameters.uploadedFile"/>
+        <set field="addLogoForBrandMap.brandContentTypeId" value="ORIGINAL"/>
+        <set field="addLogoForBrandMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+        <set field="addLogoForBrandMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+
+        <call-service service-name="updateLogoForBrand" in-map-name="addLogoForBrandMap">
+
+        </call-service>
+        <clear-field field="addLogoForBrandMap"/>
+    </simple-method>
+
+
+
+    <simple-method method-name="createBrandContent" short-description="Create Content For Brand">
+        <make-value value-field="newEntity" entity-name="BrandContent"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+
+        <if-empty field="newEntity.fromDate">
+            <now-timestamp field="nowTimestamp"/>
+            <set field="newEntity.fromDate" from-field="nowTimestamp"/>
+        </if-empty>
+
+        <create-value value-field="newEntity"/>
+
+
+
+        <field-to-result field="newEntity.contentId" result-name="contentId"/>
+        <field-to-result field="newEntity.brandId" result-name="brandId"/>
+        <field-to-result field="newEntity.brandContentTypeId" result-name="brandContentTypeId"/>
+
+
+    </simple-method>
+
+</simple-methods>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+    <WebSiteType siteTypeId="daojia" hasTable="N" description="o2o daojia service"/>
+    <WebSite webSiteId="daojia" siteName="到家服务" visualThemeSetId="ECOMMERCE" siteType="daojia"/>
+
+    <!-- cost of goods sold methods for accounting preferences -->
+    <EnumerationType description="店铺类型" enumTypeId="STORE_TYPE" hasTable="N" parentTypeId=""/>
+    <Enumeration description="综合超市" enumCode="CHAIN_MARKET" enumId="CHAIN_MARKET" sequenceId="01" enumTypeId="STORE_TYPE"/>
+    <Enumeration description="零食小吃" enumCode="SMALL_FOOD" enumId="SMALL_FOOD" sequenceId="02" enumTypeId="STORE_TYPE"/>
+    <Enumeration description="蔬菜店" enumCode="VEGETABLE_SHOP" enumId="VEGETABLE_SHOP" sequenceId="03" enumTypeId="STORE_TYPE"/>
+    <Enumeration description="水果店" enumCode="FRUIT" enumId="FRUIT" sequenceId="04" enumTypeId="STORE_TYPE"/>
+    <Enumeration description="餐饮店" enumCode="RESTAURANT" enumId="RESTAURANT" sequenceId="05" enumTypeId="STORE_TYPE"/>
+    <Enumeration description="综合菜场" enumCode="VEGETABLE_MARKET" enumId="VEGETABLE_MARKET" sequenceId="06" enumTypeId="STORE_TYPE"/>
+
+    <EnumerationType description="活动广告类型" enumTypeId="ADVERT_RELATE_TYPE" hasTable="N" parentTypeId=""/>
+    <Enumeration description="活动" enumCode="ADVERT_ACTIVITY" enumId="ADVERT_ACTIVITY" sequenceId="01" enumTypeId="ADVERT_RELATE_TYPE"/>
+    <Enumeration description="频道" enumCode="ADVERT_CHANNEL" enumId="ADVERT_CHANNEL" sequenceId="02" enumTypeId="ADVERT_RELATE_TYPE"/>
+    <Enumeration description="专题" enumCode="ADVERT_SPEC" enumId="ADVERT_SPEC" sequenceId="03" enumTypeId="ADVERT_RELATE_TYPE"/>
+
+    <EnumerationType description="店铺评价类型" enumTypeId="PRO_REVIEW_TYPE" hasTable="N" parentTypeId=""/>
+    <Enumeration description="送货速度" enumCode="PRO_SHIP_SPEED" enumId="PRO_SHIP_SPEED" sequenceId="01" enumTypeId="PRO_REVIEW_TYPE"/>
+    <Enumeration description="配送服务" enumCode="PRO_SHIP_SERVICE" enumId="PRO_SHIP_SERVICE" sequenceId="02" enumTypeId="PRO_REVIEW_TYPE"/>
+
+    <ProductStoreContentType productStoreContentTypeId="LOGO" hasTable="N" description="店铺LOGO" parentTypeId="N"/>
+    <AdvertType advertTypeId="siteIcon" parentTypeId="" hasTable="N" description="首页ICON"/>
+    <AdvertType advertTypeId="ball" parentTypeId="" hasTable="N" description="魔方"/>
+    <AdvertType advertTypeId="banner" parentTypeId="" hasTable="N" description="轮播图"/>
+    <AdvertType advertTypeId="floorBanner" parentTypeId="" hasTable="N" description="广告图片"/>
+    <AdvertType advertTypeId="act1" parentTypeId="" hasTable="N" description="活动栏目-单图"/>
+    <AdvertType advertTypeId="act2" parentTypeId="" hasTable="N" description="活动栏目-二张图片"/>
+    <AdvertType advertTypeId="act3" parentTypeId="" hasTable="N" description="活动栏目-三张图片"/>
+    <AdvertType advertTypeId="act" parentTypeId="" hasTable="N" description="活动栏目"/>
+    <AdvertType advertTypeId="product2" parentTypeId="" hasTable="N" description="列表样式-2"/>
+    <AdvertType advertTypeId="product3" parentTypeId="" hasTable="N" description="列表样式-3"/>
+    <AdvertType advertTypeId="product5" parentTypeId="" hasTable="N" description="列表样式-5"/>
+    <AdvertType advertTypeId="product6" parentTypeId="" hasTable="N" description="列表样式-6"/>
+    <AdvertType advertTypeId="product7" parentTypeId="" hasTable="N" description="列表样式-7"/>
+</entity-engine-xml>

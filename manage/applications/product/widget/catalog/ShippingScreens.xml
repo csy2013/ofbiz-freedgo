@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <!-- QuantityBreak screens -->
+    <screen name="ListQuantityBreaks">
+       <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleListQuantityBreaks"/>
+                <set field="headerItem" value="shipping"/>
+                <set field="tabButtonItem" value="ListQuantityBreaks"/>
+
+                <entity-condition entity-name="QuantityBreak" list="quantityBreaks">
+                    <order-by field-name="quantityBreakId"/>
+                </entity-condition>
+                <entity-one entity-name="QuantityBreak" value-field="quantityBreak" auto-field-map="true"/>
+                <set field="middleCrumbLink" value="ListShipmentMethodTypes"/>
+                <set field="middleCrumbName" value="货运方式管理"/>
+                <set field="currentCrumbName" value="数量阶梯"/>
+                <set field="subContentTitle" value="数量阶梯"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonShippingDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListQuantityBreaks}">
+                            <modal-page modal-url="EditQuantityBreak" description="新增数量阶梯" id="EditQuantityBreak" name="EditQuantityBreak" confirm-title="新增数量阶梯"/>
+                            <horizontal-separator/>
+                            <include-form name="ListQuantityBreaks" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditQuantityBreaks}">
+                            <include-form name="EditQuantityBreak" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+       </section>
+    </screen>
+    <screen name="EditQuantityBreak">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="QuantityBreak" value-field="quantityBreak" auto-field-map="true"/>
+            </actions>
+            <widgets><include-form name="EditQuantityBreak" location="component://product/widget/catalog/ShippingForms.xml"/></widgets>
+        </section>
+    </screen>
+
+    <screen name="ListShipmentMethods">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleListShipmentMethods"/>
+                <set field="headerItem" value="shipping"/>
+                <entity-condition entity-name="ShipmentMethodType" list="shipmentMethodTypes">
+                    <condition-expr field-name="shipmentMethodTypeId" operator="not-in" value="AIR,EXPRESS,GROUND,NEXT_DAY"/>
+                    <order-by field-name="sequenceNum"/>
+                    <order-by field-name="description"/>
+                </entity-condition>
+                <entity-one entity-name="ShipmentMethodType" value-field="shipmentMethodType" auto-field-map="true"/>
+                <set field="middleCrumbLink" value="ListShipmentMethodTypes"/>
+                <set field="middleCrumbName" value="送货方式管理"/>
+                <set field="currentCrumbName" value="送货方式"/>
+                <set field="subContentTitle" value="送货方式"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonShippingDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListShipmentMethodTypes}">
+                            <modal-page modal-url="EditShipmentMethod" description="新增送货方式" id="EditShipmentMethod" name="EditShipmentMethod"/>
+                            <horizontal-separator/>
+                            <include-form name="ListShipmentMethods" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditShipmentMethodTypes}">
+                            <include-form name="EditShipmentMethodType" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="ListShipmentMethodTypes">
+       <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleListShipmentMethodTypes"/>
+                <set field="headerItem" value="shipping"/>
+                <set field="tabButtonItem" value="ListShipmentMethodTypes"/>
+
+                <entity-condition entity-name="ShipmentMethodType" list="shipmentMethodTypes">
+                    <condition-expr field-name="shipmentMethodTypeId" operator="not-in" value="AIR,EXPRESS,GROUND,NEXT_DAY"/>
+                    <order-by field-name="sequenceNum"/>
+                    <order-by field-name="description"/>
+                </entity-condition>
+                <entity-one entity-name="ShipmentMethodType" value-field="shipmentMethodType" auto-field-map="true"/>
+                <set field="middleCrumbLink" value="ListShipmentMethodTypes"/>
+                <set field="middleCrumbName" value="货运方式管理"/>
+                <set field="currentCrumbName" value="货运方式类型"/>
+                <set field="subContentTitle" value="货运方式类型"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonShippingDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListShipmentMethodTypes}">
+                            <modal-page modal-url="EditShipmentMethodType" description="新增运输方式类型" id="EditShipmentMethodType" name="EditShipmentMethodType"/>
+                            <horizontal-separator/>
+                            <include-form name="ListShipmentMethodTypes" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditShipmentMethodTypes}">
+                            <include-form name="EditShipmentMethodType" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+       </section>
+    </screen>
+    <screen name="EditShipmentMethodType">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ShipmentMethodType" value-field="shipmentMethodType" auto-field-map="true"/>
+            </actions>
+            <widgets><include-form name="EditShipmentMethodType" location="component://product/widget/catalog/ShippingForms.xml"/></widgets>
+        </section>
+    </screen>
+    <screen name="ListCarrierShipmentMethods">
+       <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleListCarrierShipmentMethods"/>
+                <set field="headerItem" value="shipping"/>
+                <set field="tabButtonItem" value="ListCarrierShipmentMethods"/>
+
+                <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods">
+                    <condition-expr field-name="shipmentMethodTypeId" operator="not-in" value="AIR,EXPRESS,GROUND,NEXT_DAY"/>
+                    <order-by field-name="sequenceNumber"/>
+                </entity-condition>
+                <!--<entity-one entity-name="CarrierShipmentMethod" value-field="carrierShipmentMethod" auto-field-map="true"/>-->
+                <set field="middleCrumbLink" value="ListShipmentMethodTypes"/>
+                <set field="middleCrumbName" value="货运方式管理"/>
+                <set field="currentCrumbName" value="承运人运输方法"/>
+                <set field="subContentTitle" value="承运人运输方法"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonShippingDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListCarrierShipmentMethods}">
+                            <modal-page modal-url="EditCarrierShipmentMethod" description="新增货运方式管理" id="EditCarrierShipmentMethod" name="EditCarrierShipmentMethod" confirm-title="新增货运方式管理"/>
+                            <horizontal-separator/>
+                            <include-form name="ListCarrierShipmentMethods" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditCarrierShipmentMethods}">
+                            <include-form name="EditCarrierShipmentMethod" location="component://product/widget/catalog/ShippingForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+       </section>
+    </screen>
+    <screen name="EditCarrierShipmentMethod">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="CarrierShipmentMethod" value-field="carrierShipmentMethod" auto-field-map="true"/>
+            </actions>
+            <widgets><include-form name="EditCarrierShipmentMethod" location="component://product/widget/catalog/ShippingForms.xml"/></widgets>
+        </section>
+    </screen>
+</screens>

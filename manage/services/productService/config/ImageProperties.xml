@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    # The uploaded image is scaled in each size tye , you can descrease or increase size types ;
+     size type name doesn't have to contain space
+    # Just one configured dimension on two is allowed to restrict just one image dimension, whatever its proportions 
+-->
+<imageSize>
+    <size name="small">
+        <dimension name="height" value="200"/>
+        <dimension name="width" value="200"/>
+    </size>
+    <size name="medium">
+        <dimension name="height" value="400"/>
+        <dimension name="width" value="400"/>
+    </size>
+    <size name="large">
+        <dimension name="height" value="800"/>
+        <dimension name="width" value="800"/>
+    </size>
+    <size name="detail">
+        <dimension name="height" value="600"/>
+        <dimension name="width" value="600"/>
+    </size>
+    <!--<size name="100x75">-->
+        <!--<dimension name="height" value="75"/>-->
+        <!--<dimension name="width" value="100"/>-->
+    <!--</size>-->
+    <!--<size name="150x112">-->
+        <!--<dimension name="height" value="112"/>-->
+        <!--<dimension name="width" value="150"/>-->
+    <!--</size>-->
+   <!-- <size name="320x240">
+        <dimension name="height" value="240"/>
+        <dimension name="width" value="320"/>
+    </size>
+     <size name="640x480">
+        <dimension name="height" value="480"/>
+        <dimension name="width" value="640"/>
+    </size>
+    <size name="800x600">
+        <dimension name="height" value="600"/>
+        <dimension name="width" value="800"/>
+    </size>
+    <size name="1024x768">
+        <dimension name="height" value="768"/>
+        <dimension name="width" value="1024"/>
+    </size>-->
+    <!--<size name="1280x1024">-->
+        <!--<dimension name="height" value="1024"/>-->
+        <!--<dimension name="width" value="1280"/>-->
+    <!--</size>-->
+     <!--<size name="1600x1200">-->
+        <!--<dimension name="height" value="1200"/>-->
+        <!--<dimension name="width" value="1600"/>-->
+    <!--</size>-->
+    <size name="thumbnail">
+        <dimension name="height" value="220"/>
+        <dimension name="width" value="220"/>
+    </size>
+</imageSize>

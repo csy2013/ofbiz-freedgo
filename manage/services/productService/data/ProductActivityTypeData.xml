@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+
+    <EnumerationType description="活动配送方式" enumTypeId="ACTY_SHIPMENT_TYPE" hasTable="N" parentTypeId=""/>
+    <Enumeration description="自提" enumCode="OWN" enumId="SHIPMENT_OWN" sequenceId="01" enumTypeId="ACTY_SHIPMENT_TYPE"/>
+    <Enumeration description="配送" enumCode="SHIPMENT" enumId="SHIPMENT_SHIPMENT" sequenceId="02" enumTypeId="ACTY_SHIPMENT_TYPE"/>
+
+
+    <EnumerationType description="活动审批状态" enumTypeId="ACTY_AUDIT_STUATS" hasTable="N" parentTypeId=""/>
+    <Enumeration description="待审批" enumCode="INIT" enumId="ACTY_AUDIT_INIT" sequenceId="01" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="审批通过" enumCode="PASS" enumId="ACTY_AUDIT_PASS" sequenceId="02" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="审批不通过" enumCode="NOPASS" enumId="ACTY_AUDIT_NOPASS" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="待发布" enumCode="PUBLISHING" enumId="ACTY_AUDIT_PUBING" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="未开始" enumCode="UNBEGIN" enumId="ACTY_AUDIT_UNBEGIN" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="进行中" enumCode="DOING" enumId="ACTY_AUDIT_DOING" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="已结束" enumCode="END" enumId="ACTY_AUDIT_END" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+    <Enumeration description="已下架" enumCode="OFF" enumId="ACTY_AUDIT_OFF" sequenceId="03" enumTypeId="ACTY_AUDIT_STUATS"/>
+
+    <EnumerationType description="活动类型" enumTypeId="ACTY_TYPE" hasTable="N" parentTypeId=""/>
+    <Enumeration description="团购" enumCode="GROUPORDER" enumId="GROUP_ORDER" sequenceId="01" enumTypeId="ACTY_TYPE"/>
+    <Enumeration description="秒杀" enumCode="SECKILL" enumId="SEC_KILL" sequenceId="02" enumTypeId="ACTY_TYPE"/>
+
+    <EnumerationType description="活动支付条件" enumTypeId="ACTY_PAY_TYPE" hasTable="N" parentTypeId=""/>。、
+    <Enumeration description="定金" enumCode="PARTPAY" enumId="PART_PAY" sequenceId="01" enumTypeId="ACTY_PAY_TYPE"/>
+    <Enumeration description="全款" enumCode="FULLPAY" enumId="FULL_PAY" sequenceId="02" enumTypeId="ACTY_PAY_TYPE"/>
+</entity-engine-xml>

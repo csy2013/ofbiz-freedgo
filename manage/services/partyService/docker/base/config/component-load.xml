@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/component-loader.xsd">
+    <!--是否可以不加载webapp-->
+    <load-components parent-directory="framework" component-use-webapps="false"/>
+    <load-components parent-directory="themes"/>
+
+    <load-component component-location="applications/order" component-name="order" component-use-webapps="false"/>
+    <load-component component-location="applications/product" component-name="product" component-use-webapps="false"/>
+    <load-component component-location="applications/marketing" component-name="marketing" component-use-webapps="false"/>
+    <load-component component-location="applications/party" component-name="party" />
+    <load-component component-location="applications/content" component-name="content" component-use-webapps="false"/>
+    <load-component component-location="applications/manufacturing" component-name="manufacturing" component-use-webapps="false"/>
+    <load-component component-location="applications/accounting" component-name="accounting" component-use-webapps="false"/>
+    <load-component component-location="applications/workeffort" component-name="workeffort" component-use-webapps="false"/>
+    <load-component component-location="applications/humanres" component-name="humanres" component-use-webapps="false"/>
+    <load-component component-location="applications/commonext" component-name="commonext" component-use-webapps="false"/>
+    <load-component component-location="applications/securityext" component-name="securityext" component-use-webapps="false"/>
+    <load-component component-location="specialpurpose/admin" component-name="admin" component-use-webapps="false"/>
+
+</component-loader>

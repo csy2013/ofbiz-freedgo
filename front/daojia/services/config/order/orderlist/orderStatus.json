@@ -1,0 +1,69 @@
+{
+  "ORDER_COMPLETED": {
+    "stateId": 90,
+    "stateTitle": "订单已完成",
+    "stateDesc": "感谢您使用京东到家",
+    "stateTime": "08-13 10:24",
+    "stateIcon": "4"
+  },
+  "ORDER_SENT": {
+    "stateId": 80,
+    "stateTitle": "配送员已取货",
+    "stateDesc": "开始为您配送，配送员：裴泽强",
+    "stateTime": "08-13 10:10",
+    "functionNumber": "13952038890",
+    "stateIcon": "3",
+    "phoneNumType": "2"
+  },
+  "ORDER_HOLD": {
+    "stateId": 40,
+    "stateTitle": "拣货完成",
+    "stateDesc": "商家已完成拣货，等待配送",
+    "stateTime": "08-13 10:01",
+    "stateIcon": "2"
+  },
+  "ORDER_APPROVED": {
+    "stateId": 38,
+    "stateTitle": "商家已接单",
+    "stateDesc": "开始为您拣货",
+    "stateTime": "08-13 09:49",
+    "functionNumber": "18914460003",
+    "stateIcon": "2",
+    "phoneNumType": "0"
+  },
+  "ORDER_PROCESSING": {
+    "stateId": 10,
+    "stateTitle": "已支付",
+    "stateDesc": "订单支付成功",
+    "stateTime": "08-13 09:49",
+    "stateIcon": "6"
+  },
+  "ORDER_CREATED": {
+    "stateId": 1,
+    "stateTitle": "订单提交成功",
+    "stateDesc": "订单号:608130900053842",
+    "stateTime": "08-13 09:49",
+    "stateIcon": "1"
+  },
+  "ORDER_PAY_DELAY": {
+    "stateId": 115,
+    "stateTitle": "超时未支付取消",
+    "stateDesc": "订单超时未支付，已自动取消",
+    "stateTime": "08-20 13:46",
+    "stateIcon": "4"
+  },
+  "ORDER_PAY_UNPAY": {
+    "stateId": 5,
+    "stateTitle": "待支付",
+    "stateDesc": "请在订单提交后尽快完成支付，超时订单将自动取消",
+    "stateTime": "08-20 13:29",
+    "stateIcon": "5"
+  },
+  "ORDER_CANCELLED": {
+    "stateId": 5,
+    "stateTitle": "订单取消",
+    "stateDesc": "订单取消",
+    "stateTime": "08-20 13:29",
+    "stateIcon": "5"
+  }
+}

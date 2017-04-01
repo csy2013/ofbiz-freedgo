@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ofbiz-component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 name="mobile-daojia"
+                 xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-component.xsd">
+    <!-- define resource loaders; most common is to use the component resource loader -->
+    <resource-loader name="main" type="component"/>
+    <classpath type="dir" location="docker"/>
+
+    <!-- web applications; will be mounted when using the embedded container -->
+    <webapp name="mobile-daojia"
+        title="mobileDaoJia"
+        server="default-server"
+        location="webapp/daojia"
+            app-bar-display="false"
+        mount-point="/mobile-daojia"/>
+</ofbiz-component>

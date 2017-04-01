@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile product Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+
+    <service name="DaoJia_StoreDetailV220" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_StoreDetailV220">
+        <description>获取秒杀信息</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>store/storeDetailV220</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'storeId':'10055645','activityId':'','promotionType':'9','skuId':'2001858205','longitude':118.72402,'latitude':32.12561}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1472692119059</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_StoreInfo" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_StoreInfo">
+        <attribute name="productStoreId" type="String" mode="IN"/>
+        <attribute name="contactMech" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="orgCode" type="String" mode="OUT" optional="true"/>
+        <attribute name="contactNumber" type="String" mode="OUT" optional="true"/>
+        <attribute name="productStore" type="GenericValue" mode="OUT"/>
+        <attribute name="facility" type="GenericValue" mode="OUT" optional="true"/>
+        <attribute name="catalog" type="GenericValue" mode="OUT" optional="true"/>
+        <attribute name="logo" type="String" mode="OUT" optional="true"/>
+        <attribute name="serviceTimes" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="DaoJia_StoreCouponBanner"  engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_StoreCouponBanner">
+        <attribute name="functionId"  type="String" mode="IN"><description>store.couponBanner</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'longitude':118.796877,'latitude':32.060255,'city':'南京市','couponBannerAppVersion':'2.2.0'}</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1476929199943</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>2.4.0</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+    <service name="DaoJia_StoreHotCoupon" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_StoreHotCoupon">
+        <attribute name="functionId"  type="String" mode="IN"><description>share.getHotConpon</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'cityId':'3201','fromSource':2}</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1476929199958</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>2.4.0</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+    <service name="DaoJia_GetStoreCoupon" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_GetStoreCoupon">
+        <attribute name="functionId"  type="String" mode="IN"><description>share.getHotConpon</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'cityId':'3201','fromSource':2}</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1476929199958</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>2.4.0</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+    <service name="DaoJia_StoreActList" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductStoreService" invoke="DaoJia_StoreActList">
+        <attribute name="functionId"  type="String" mode="IN"><description>store.storeActList</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'longitude':118.796877,'latitude':32.060255,'coordType':2}</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1476932523788</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>2.4.0</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+</services>

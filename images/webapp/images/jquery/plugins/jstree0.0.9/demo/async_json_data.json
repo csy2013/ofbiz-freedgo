@@ -1,0 +1,14 @@
+[
+    {
+        data: "A node",
+        children: [
+            {
+                data: "Only child"
+            }
+        ],
+        state: "open"
+    },
+    {
+        data: "Some other node"
+    }
+]

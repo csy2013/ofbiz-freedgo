@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+    <!-- Methods for Advert -->
+    <simple-method method-name="createAdvert" short-description="Create Advert">
+        <check-permission action="_CREATE" permission="CONTENTMGR">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityCreatePermission"/>
+        </check-permission>
+        <check-errors/>
+        <make-value entity-name="Advert" value-field="newEntity"/>
+        <sequenced-id sequence-name="Advert" field="newEntity.advertId"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <now-timestamp field="nowTimestamp"/>
+        <set field="newEntity.dateCreated" from-field="nowTimestamp"/>
+        <create-value value-field="newEntity"/>
+        <log level="info" message="newEntity==================${newEntity}"/>
+        <field-to-result result-name="advertId" field="newEntity.advertId"/>
+    </simple-method>
+    <simple-method method-name="updateAdvert" short-description="Update Advert">
+        <check-permission action="_UPDATE" permission="CONTENTMGR">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityUpdatePermission"/>
+        </check-permission>
+        <check-errors/>
+        <entity-one entity-name="Advert" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteAdvert" short-description="Delete Advert">
+        <check-permission action="_DELETE" permission="CONTENTMGR">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityDeletePermission"/>
+        </check-permission>
+        <check-errors/>
+        <entity-one entity-name="Advert" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <simple-method method-name="uploadSiteSlide" short-description="upload site slide">
+        <check-permission permission="CONTENTMGR" action="_CREATE">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityCreatePermission"/>
+        </check-permission>
+        <log level="info" message="find params ==================================${parameters.advertTypeId}"/>
+        <check-errors/>
+        <now-timestamp field="nowTimestamp"/>
+        <!--add advert-->
+        <entity-condition entity-name="Advert" list="adverts">
+            <condition-expr field-name="advertTypeId" operator="equals" from-field="parameters.advertTypeId"/>
+        </entity-condition>
+        <if-empty field="adverts">
+            <make-value entity-name="Advert" value-field="newEntity"/>
+            <sequenced-id sequence-name="Advert" field="advertId"/>
+            <set from-field="advertId" field="newEntity.advertId"/>
+            <set field="newEntity.advertTypeId" from-field="parameters.advertTypeId"/>
+            <set field="newEntity.advertName" from-field="uiLabelMap.SiteSlide"/>
+            <now-timestamp field="nowTimestamp"/>
+            <set field="newEntity.dateCreated" from-field="nowTimestamp"/>
+            <set field="newEntity.advertText" from-field="uiLabelMap.SiteSlide"/>
+            <set field="newEntity.comments" from-field="uiLabelMap.SiteSlide"/>
+            <set field="newEntity.webSiteId" from-field="parameters.webSiteId"/>
+            <log level="info" message="advert =============== ${newEntity}"/>
+            <create-value value-field="newEntity"/>
+        </if-empty>
+        <if-not-empty field="adverts">
+            <first-from-list entry="advert" list="adverts"/>
+            <set field="advertId" from-field="advert.advertId"/>
+        </if-not-empty>
+
+        <set-service-fields service-name="createContentFromUploadedFile" map="parameters" to-map="createContentMap"/>
+        <set field="createContentMap.uploadedFile" from-field="parameters.uploadedFile"/>
+        <set field="createContentMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+        <set field="createContentMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+        <call-service service-name="createContentFromUploadedFile" in-map-name="createContentMap">
+            <result-to-field result-name="contentId" field="contentId"/>
+        </call-service>
+        <clear-field field="addLogoForBrandMap"/>
+        <!--判断seq对应的轮播图是否已经存在,如果存在修改contentId,并删除原来的contentId-->
+        <entity-condition entity-name="AdvertContent" list="adContents">
+            <condition-list>
+                <condition-expr field-name="advertId" from-field="advertId"/>
+                <condition-expr field-name="sequenceNum" from-field="parameters.sequenceNum"/>
+            </condition-list>
+        </entity-condition>
+        <log level="info" message="adContents=====================${adContents}"/>
+        <if-empty field="adContents">
+            <make-value entity-name="AdvertContent" value-field="adContentEntity"/>
+            <sequenced-id sequence-name="AdvertContent" field="advertContentId"/>
+            <set from-field="advertContentId" field="adContentEntity.advertContentId"/>
+            <set field="adContentEntity.advertId" from-field="advertId"/>
+            <set field="adContentEntity.contentId" from-field="contentId"/>
+            <set field="adContentEntity.advertContentName" from-field="uiLabelMap.SiteSlide"/>
+            <set field="adContentEntity.description" from-field="uiLabelMap.SiteSlide"/>
+            <set field="adContentEntity.relationUrl" from-field="parameters.relationUrl"/>
+            <now-timestamp field="nowTimestamp"/>
+            <set field="adContentEntity.fromDate" from-field="nowTimestamp"/>
+            <set field="adContentEntity.sequenceNum" from-field="parameters.sequenceNum"/>
+            <set field="adContentEntity.groupNum" from-field="parameters.groupNum"/>
+            <set field="adContentEntity.subGroupNum" from-field="parameters.subGroupNum"/>
+            <set field="adContentEntity.groupName" from-field="parameters.groupName"/>
+            <set field="adContentEntity.advertContentName" from-field="parameters.advertContentName"/>
+            <set field="adContentEntity.description" from-field="parameters.description"/>
+            <set field="adContentEntity.relationId" from-field="parameters.relationId"/>
+            <set field="adContentEntity.relationTypeId" from-field="parameters.relationTypeId"/>
+            <set field="adContentEntity.defineType" value="A"/>
+            <create-value value-field="adContentEntity"/>
+            <field-to-result result-name="advertContentId" field="advertContentId"/>
+        </if-empty>
+        <if-not-empty field="adContents">
+            <first-from-list entry="adContent" list="adContents"/>
+            <set field="adContent.relationUrl" from-field="parameters.relationUrl"/>
+            <set field="adContentEntity.subGroupNum" from-field="parameters.subGroupNum"/>
+            <set field="adContentEntity.groupName" from-field="parameters.groupName"/>
+            <set field="adContentEntity.advertContentName" from-field="parameters.advertContentName"/>
+            <set field="adContentEntity.description" from-field="parameters.description"/>
+            <set field="adContentEntity.relationId" from-field="parameters.relationId"/>
+            <set field="adContentEntity.relationTypeId" from-field="parameters.relationTypeId"/>
+            <set field="adContentEntity.defineType" value="A"/>
+            <store-value value-field="adContent"/>
+            <set field="oldContentId" from-field="adContent.contentId"/>
+            <field-to-result result-name="advertContentId" field="adContent.advertContentId"/>
+            <set field="adContent.contentId" from-field="contentId"/>
+            <store-value value-field="adContent"/>
+            <set field="contentMap.contentId" from-field="oldContentId"/>
+            <call-service service-name="removeContentAndRelated" in-map-name="contentMap"/>
+        </if-not-empty>
+    </simple-method>
+    <simple-method method-name="uploadSiteIcon" short-description="upload site icon">
+
+        <check-permission permission="CONTENTMGR" action="_CREATE">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityCreatePermission"/>
+        </check-permission>
+        <check-errors/>
+
+        <now-timestamp field="nowTimestamp"/>
+
+        <!--add advert-->
+        <entity-condition entity-name="Advert" list="adverts">
+            <condition-expr field-name="advertTypeId" operator="equals" value="siteIcon"/>
+        </entity-condition>
+        <if-empty field="adverts">
+            <make-value entity-name="Advert" value-field="newEntity"/>
+            <sequenced-id sequence-name="Advert" field="advertId"/>
+            <set from-field="advertId" field="newEntity.advertId"/>
+            <set field="newEntity.advertTypeId" value="siteIcon"/>
+            <set field="newEntity.advertName" from-field="uiLabelMap.SiteIcon"/>
+            <now-timestamp field="nowTimestamp"/>
+            <set field="newEntity.dateCreated" from-field="nowTimestamp"/>
+            <set field="newEntity.advertText" from-field="uiLabelMap.SiteIcon"/>
+            <set field="newEntity.comments" from-field="uiLabelMap.SiteIcon"/>
+            <set field="newEntity.webSiteId" from-field="parameters.webSiteId"/>
+            <log level="info" message="advert =============== ${newEntity}"/>
+            <create-value value-field="newEntity"/>
+        </if-empty>
+        <if-not-empty field="adverts">
+            <first-from-list entry="advert" list="adverts"/>
+            <set field="advertId" from-field="advert.advertId"/>
+        </if-not-empty>
+
+        <set-service-fields service-name="createContentFromUploadedFile" map="parameters" to-map="createContentMap"/>
+        <set field="createContentMap.uploadedFile" from-field="parameters.uploadedFile"/>
+        <set field="createContentMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+        <set field="createContentMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+        <call-service service-name="createContentFromUploadedFile" in-map-name="createContentMap">
+            <result-to-field result-name="contentId" field="contentId"/>
+        </call-service>
+        <clear-field field="addLogoForBrandMap"/>
+        <!--判断seq对应的轮播图是否已经存在,如果存在修改contentId,并删除原来的contentId-->
+        <entity-condition entity-name="AdvertContent" list="adContents">
+            <condition-list>
+                <condition-expr field-name="advertId" from-field="advertId"/>
+                <condition-expr field-name="sequenceNum" from-field="parameters.sequenceNum"/>
+            </condition-list>
+        </entity-condition>
+        <log level="info" message="adContents=====================${adContents}"/>
+        <if-empty field="adContents">
+            <make-value entity-name="AdvertContent" value-field="adContentEntity"/>
+            <sequenced-id sequence-name="AdvertContent" field="advertContentId"/>
+            <set from-field="advertContentId" field="adContentEntity.advertContentId"/>
+            <set field="adContentEntity.advertId" from-field="advertId"/>
+            <set field="adContentEntity.contentId" from-field="contentId"/>
+            <set field="adContentEntity.advertContentName" from-field="uiLabelMap.SiteIcon"/>
+            <set field="adContentEntity.description" from-field="uiLabelMap.SiteIcon"/>
+            <now-timestamp field="nowTimestamp"/>
+            <set field="adContentEntity.fromDate" from-field="nowTimestamp"/>
+            <set field="adContentEntity.sequenceNum" from-field="parameters.sequenceNum"/>
+            <create-value value-field="adContentEntity"/>
+            <field-to-result result-name="advertContentId" field="advertContentId"/>
+        </if-empty>
+        <if-not-empty field="adContents">
+            <first-from-list entry="adContent" list="adContents"/>
+            <store-value value-field="adContent"/>
+            <set field="oldContentId" from-field="adContent.contentId"/>
+            <field-to-result result-name="advertContentId" field="adContent.advertContentId"/>
+            <set field="adContent.contentId" from-field="contentId"/>
+            <store-value value-field="adContent"/>
+            <set field="contentMap.contentId" from-field="oldContentId"/>
+            <call-service service-name="removeContentAndRelated" in-map-name="contentMap"/>
+        </if-not-empty>
+    </simple-method>
+    <simple-method method-name="deleteAdvertContent" short-description="delete site slide">
+        <check-permission action="_DELETE" permission="CONTENTMGR">
+            <fail-property resource="ContentUiLabels" property="ContentSecurityDeletePermission"/>
+        </check-permission>
+        <check-errors/>
+        <entity-one entity-name="AdvertContent" value-field="lookedUpValue"/>
+        <set field="contentId" from-field="lookedUpValue.contentId"/>
+        <remove-value value-field="lookedUpValue"/>
+        <log level="info" message="contentId=====================${contentId}"/>
+        <set field="contentMap.contentId" from-field="contentId"/>
+        <call-service service-name="removeContentAndRelated" in-map-name="contentMap"/>
+    </simple-method>
+</simple-methods>

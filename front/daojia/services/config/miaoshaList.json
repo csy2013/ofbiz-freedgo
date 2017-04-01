@@ -1,0 +1,35 @@
+[
+  {
+    "name": "丝瓜 约500g/份",
+    "price": "4.80",
+    "miaoShaPrice": "0.10",
+    "imageurl": "https://img30.360buyimg.com/n2/jfs/t775/15/13451299/36284/24e40727/547d6752Nc8646b18.jpg",
+    "storeId": "10060549",
+    "skuId": "2001697084",
+    "stateName": "立即抢购",
+    "miaoShaSate": 1,
+    "orgCode": "73709"
+  },
+  {
+    "name": "金针菇约250g/份",
+    "price": "2.50",
+    "miaoShaPrice": "1.70",
+    "imageurl": "https://img30.360buyimg.com/n2/jfs/t1081/94/116662165/315103/ec75e8cf/54ffdb66N0c4a7adf.jpg",
+    "storeId": "10060549",
+    "skuId": "2002161465",
+    "stateName": "立即抢购",
+    "miaoShaSate": 1,
+    "orgCode": "73709"
+  },
+  {
+    "name": "精品西红柿约480g/份",
+    "price": "2.90",
+    "miaoShaPrice": "1.70",
+    "imageurl": "https://img30.360buyimg.com/n2/jfs/t2170/180/538280165/184884/d52abf31/5616407eN84d9f3af.jpg",
+    "storeId": "10060549",
+    "skuId": "2001156806",
+    "stateName": "立即抢购",
+    "miaoShaSate": 1,
+    "orgCode": "73709"
+  }
+]

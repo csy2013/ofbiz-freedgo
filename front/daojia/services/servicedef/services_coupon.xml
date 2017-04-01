@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile account Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <service name="DaoJia_UpdateCouponRead" engine="java" location="com.yuaoq.yabiz.daojia.service.account.CouponService" invoke="DaoJia_UpdateCouponRead">
+        <attribute name="functionId"  type="String" mode="IN"><description>user/updatecouponread</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_CouponList" engine="java" location="com.yuaoq.yabiz.daojia.service.account.CouponService" invoke="DaoJia_CouponList">
+        <attribute name="functionId"  type="String" mode="IN"><description>user/updatecouponread</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_ExchangeCouponByCode" engine="java" location="com.yuaoq.yabiz.daojia.service.account.CouponService" invoke="DaoJia_ExchangeCouponByCode">
+        <attribute name="functionId"  type="String" mode="IN"><description>user/updatecouponread</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>body:{"exchangeCode":"dddd"}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+</services>

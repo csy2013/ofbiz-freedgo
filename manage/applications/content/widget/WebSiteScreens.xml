@@ -1,0 +1,1848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+    <screen name="FindWebSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindWebSite"/>
+                <set field="headerItem" value="websites"/>
+                <set field="labelTitleProperty" value="PageTitleFindWebSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://content/widget/CommonScreens.xml">
+                    <decorator-section name="pre-body">
+                        <column style="body-title">
+                            <label text="内容管理"></label>
+                            <label style="sub-title" text="网站管理"></label>
+                        </column>
+                        <column style="breadcrumb">
+                            <link target="main" text="内容管理" style="breadcrumb"/>
+                            <link target="main" text="网站管理" style="breadcrumb"/>
+                            <link target="main" text="网站列表" style="breadcrumb active"/>
+                        </column>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <!--<container style="button-bar">-->
+                        <!--<include-form name="addUploadFile" location="component://content/widget/website/WebSiteForms.xml"/>-->
+                        <!--</container>-->
+                        <section>
+                            <condition>
+                                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+                            </condition>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleListWebSite}">
+                                    <!--<container style="button-bar">
+                                      <link text="${uiLabelMap.ContentCreateNewWebSite}" target="EditWebSite" style="buttontext create"/>
+                                    </container>-->
+                                    <include-form name="ListWebSites" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.ContentViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditWebSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="EditWebSite"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSite"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="slidePic"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-condition entity-name="Advert" list="iconAdverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="siteIcon"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-and entity-name="AdvertContent" list="iconAdvertContents">
+                    <field-map field-name="advertId" from-field="iconAdverts[0].advertId"/>
+                </entity-and>
+
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleEditWebSite}">
+                                    <include-form name="EditWebSite" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.SiteIcon}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSiteIcon.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.SiteSlide}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSlidePic.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+
+    <screen name="EditDaoJiaSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="EditDaoJiaSite"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSite"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="Advert" list="iconAdverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="siteIcon"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="iconAdvertContents">
+                    <field-map field-name="advertId" from-field="iconAdverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteIcon}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSiteIcon.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+
+                                <screenlet title="${uiLabelMap.PageTitleEditWebSite}">
+                                    <include-form name="EditWebSite" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListSiteSlide">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListSiteSlide"/>
+                <set field="labelTitleProperty" value="PageTitleEditSlidePic"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="slidePic"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteSlide}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSlidePic.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <!--到家首页模板-->
+    <screen name="ListDaoJiaIndexTemplate">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="subContentTitle" value="首页模版"/>
+                <set field="middleCrumbLink" value="ListDaoJiaIndexTemplate"/>
+                <set field="currentCrumLink" value="ListDaoJiaIndexTemplate"/>
+                <set field="currentCrumbName" value="首页模版"/>
+                <set field="middleCrumbName" value="首页模版"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleDaoJiaIndexTemplate}">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddDaoJiaIndexTemplate" description="${uiLabelMap.CreateNewSiteTemplate}" name="AddDaoJiaIndexTemplate"
+                                                    id="AddDaoJiaIndexTemplate" confirm-title="${uiLabelMap.CreateNewSiteTemplate}">
+                                            <parameter param-name="webSiteId"/>
+                                        </modal-page>
+                                    </container>
+                                    <include-form name="ListDaoJiaIndexTemplate" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListDaoJiaIndexTemplateContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="siteIndexTemplateId" from-field="parameters.siteIndexTemplateId"/>
+                <set field="subContentTitle" value="到家首页模块内容"/>
+                <set field="middleCrumbLink" value="ListDaoJiaIndexTemplate?webSiteId=daojia"/>
+                <set field="currentCrumLink" value="ListDaoJiaIndexTemplateContent?siteIndexTemplateId=${siteIndexTemplateId}"/>
+                <set field="currentCrumbName" value="到家首页模块内容"/>
+                <set field="middleCrumbName" value="到家首页模板"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}" >
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="首页模板内容">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddBanner" description="轮播图" name="AddBanner" modal-style="modal-lg"
+                                                    id="AddBanner" confirm-title="新增轮播图">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="banner"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddBall" description="魔方" name="AddBall" modal-style="modal-lg"
+                                                    id="AddBall" confirm-title="新增魔方">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="ball"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddFloorBanner" description="广告图片" name="AddFloorBanner" modal-style="modal-lg"
+                                                    id="AddFloorBanner" confirm-title="新增广告图片">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="floorBanner"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddAct1" description="活动栏目-单图" name="AddAct1" modal-style="modal-lg"
+                                                    id="AddAct1" confirm-title="新增活动栏目-单图">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="act1"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddAct2" description="活动栏目-二张图片" name="AddAct2" modal-style="modal-lg"
+                                                    id="AddAct2" confirm-title="新增活动栏目-二张图片">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="act2"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddAct3" description="活动栏目-三张图片" name="AddAct3" modal-style="modal-lg"
+                                                    id="AddAct3" confirm-title="新增活动栏目-三张图片">
+                                            <parameter param-name="siteIndexTemplateId"/>
+                                            <parameter param-name="advertTypeId" value="act3"/>
+                                        </modal-page>
+
+                                    </container>
+                                    <include-form name="ListDaoJiaIndexTemplateContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditDaoJiaIndexTemplateContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <set field="siteIndexTemplateId" from-field="parameters.siteIndexTemplateId"/>
+                <set field="advertId" from-field="parameters.advertId"/>
+                <set field="advertTypeId" from-field="parameters.advertTypeId"/>
+                <entity-one entity-name="WebSiteIndexTemplateContent" value-field="templateContent">
+                    <field-map field-name="advertId"/>
+                    <field-map field-name="siteIndexTemplateId"/>
+                </entity-one>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="banner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="ball"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editBall.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="floorBanner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act1"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editAct1.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act2"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editAct2.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act3"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editAct3.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="product7"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editProduct7.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <entity-and entity-name="WebSiteIndexTemplateContent" list="templateContents">
+                    <field-map field-name="siteIndexTemplateId" from-field="parameters.siteIndexTemplateId"/>
+                    <field-map field-name="advertTypeId" from-field="parameters.advertTypeId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/EditBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddBall">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addBall.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddFloorBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddAct1">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addAct1.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddAct2">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addAct2.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddAct3">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addAct3.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+
+
+    <screen name="AddDaoJiaIndexTemplate">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+
+                        <include-form name="AddDaoJiaIndexTemplate" location="component://content/widget/website/WebSiteForms.xml"/>
+
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditDaoJiaIndexTemplate">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="WebSiteIndexTemplate"  value-field="template"   />
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <include-form name="EditDaoJiaIndexTemplate" location="component://content/widget/website/WebSiteForms.xml"/>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="ListBall">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditBall"/>
+                <set field="tabButtonItem" value="ListBall"/>
+                <set field="labelTitleProperty" value="PageTitleEditBall"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="ball"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteSlide}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertBall.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="ListFloorBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditFloorBanner"/>
+                <set field="tabButtonItem" value="ListFloorBanner"/>
+                <set field="labelTitleProperty" value="PageTitleEditFloorBanner"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="floorBanner"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteSlide}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertFloorBanner.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListActivityBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditActivityBanner"/>
+                <set field="tabButtonItem" value="ListActivityBanner"/>
+                <set field="labelTitleProperty" value="PageTitleEditActivityBanner"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="activityBanner"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteSlide}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertActivityBanner.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditAppSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="EditDaoJiaSite"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSite"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="slidePic"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-condition entity-name="Advert" list="iconAdverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="siteIcon"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-and entity-name="AdvertContent" list="iconAdvertContents">
+                    <field-map field-name="advertId" from-field="iconAdverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteIcon}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSiteIcon.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+
+                                <screenlet title="${uiLabelMap.PageTitleEditWebSite}">
+                                    <include-form name="EditWebSite" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditWeiXinSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="EditDaoJiaSite"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSite"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="slidePic"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-condition entity-name="Advert" list="iconAdverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="siteIcon"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-and entity-name="AdvertContent" list="iconAdvertContents">
+                    <field-map field-name="advertId" from-field="iconAdverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteIcon}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSiteIcon.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+
+                                <screenlet title="${uiLabelMap.PageTitleEditWebSite}">
+                                    <include-form name="EditWebSite" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditEShopSite">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="EditDaoJiaSite"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSite"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="Advert" list="adverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="slidePic"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-condition entity-name="Advert" list="iconAdverts">
+                    <condition-list>
+                        <condition-expr field-name="webSiteId" from-field="parameters.webSiteId"/>
+                        <condition-expr field-name="advertTypeId" value="siteIcon"/>
+                    </condition-list>
+                </entity-condition>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId" from-field="adverts[0].advertId"/>
+                </entity-and>
+                <entity-and entity-name="AdvertContent" list="iconAdvertContents">
+                    <field-map field-name="advertId" from-field="iconAdverts[0].advertId"/>
+                </entity-and>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.SiteIcon}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://content/webapp/content/advert/advertSiteIcon.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+
+                                <screenlet title="${uiLabelMap.PageTitleEditWebSite}">
+                                    <include-form name="EditWebSite" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSiteContent"/>
+                <set field="tabButtonItem" value="ListWebSiteContent"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSiteContent"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <entity-and entity-name="WebSiteContent" list="webSiteContent">
+                    <field-map field-name="webSiteId" from-field="webSiteId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleWebSiteContent}">
+                                    <include-form name="ListWebSiteContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.PageTitleCreateWebSiteContent}">
+                                    <include-form name="CreateWebSiteContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.PageTitleAutoCreateContentPublishPoints}">
+                                    <include-form name="AutoCreateWebsiteContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditWebSiteParties">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSiteParties"/>
+                <set field="tabButtonItem" value="EditWebSiteParties"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSiteParties"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map map-name="uiLabelMap" resource="PartyUiLabels"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <script location="component://content/webapp/content/WEB-INF/actions/website/EditWebSiteParties.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet id="AddWebSiteRolePanel" title="${uiLabelMap.PageTitleCreateWebSiteParties}" collapsible="true">
+                                    <include-form name="CreateWebSiteRole" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                                <include-form name="UpdateWebSiteRole" location="component://content/widget/website/WebSiteForms.xml"/>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMS">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSiteCMS"/>
+                <set field="tabButtonItem" value="WebSiteCMS"/>
+                <set field="labelTitleProperty" value="PageTitleEditWebSiteCMS"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+
+                <script location="component://content/webapp/content/WEB-INF/actions/website/WebSitePublishPoint.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <not>
+                                    <if-empty field="contentRoot"/>
+                                </not>
+                            </condition>
+                            <widgets>
+                                <container id="cmsnav" style="left">
+                                    <include-screen name="WebSiteCMSNav"/>
+                                </container>
+                                <container id="cmsmain" style="leftonly">
+                                    <include-screen name="WebSiteCMSContent"/>
+                                </container>
+                            </widgets>
+                            <fail-widgets>
+                                <container id="norender" style="tableheadtext">
+                                    <label text="${uiLabelMap.ContentCMSNotExist}"/>
+                                </container>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMSNav">
+        <section>
+            <actions>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+
+                <script location="component://content/webapp/content/WEB-INF/actions/website/WebSitePublishPoint.groovy"/>
+                <set field="language" from-field="userLogin.lastLocale" default-value="en"/>
+            </actions>
+            <widgets>
+                <screenlet title="${uiLabelMap.PageTitleWebSiteCMSNav}">
+                    <platform-specific>
+                        <html>
+                            <html-template location="component://content/webapp/content/website/WebSiteCMSNav.ftl"/>
+                        </html>
+                    </platform-specific>
+                </screenlet>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMSContent">
+        <section>
+            <actions>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="contentAssocTypeId" from-field="parameters.contentAssocTypeId"/>
+                <set field="dataResourceTypeId" from-field="parameters.dataResourceTypeId"/>
+                <set field="contentIdFrom" from-field="parameters.contentIdFrom"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="contentId" from-field="parameters.contentId"/>
+                <set field="mimeTypeId" value="text/html"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <entity-one entity-name="DataResource" value-field="dataResource">
+                    <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+                </entity-one>
+                <entity-one entity-name="ElectronicText" value-field="dataText">
+                    <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+                </entity-one>
+
+                <set field="parameters.fromDate" type="Timestamp" from-field="parameters.fromDate"/>
+                <entity-condition list="assocs" entity-name="ContentAssoc">
+                    <condition-list>
+                        <condition-expr field-name="contentId" from-field="parameters.contentIdFrom"/>
+                        <condition-expr field-name="contentIdTo" from-field="parameters.contentId"/>
+                        <condition-expr field-name="fromDate" from-field="parameters.fromDate" ignore-if-empty="true"/>
+                        <condition-expr field-name="contentAssocTypeId" from-field="parameters.contentAssocTypeId" ignore-if-empty="true"/>
+                    </condition-list>
+                    <order-by field-name="-fromDate"/>
+                </entity-condition>
+                <set field="assoc" value="${assocs[0]}"/>
+                <entity-and entity-name="ContentPurpose" list="currentPurposes">
+                    <field-map field-name="contentId" from-field="contentId"/>
+                </entity-and>
+                <entity-condition entity-name="ContentPurposeType" list="purposeTypes">
+                    <order-by field-name="description"/>
+                </entity-condition>
+                <entity-and entity-name="DataResource" list="templates">
+                    <field-map field-name="dataCategoryId" value="TEMPLATE"/>
+                    <order-by field-name="dataResourceName"/>
+                </entity-and>
+                <entity-and entity-name="StatusItem" list="statuses">
+                    <field-map field-name="statusTypeId" value="CONTENT_STATUS"/>
+                    <order-by field-name="sequenceId"/>
+                </entity-and>
+                <entity-condition entity-name="DataTemplateType" list="templateTypes"/>
+                <entity-and entity-name="Content" list="decorators">
+                    <field-map field-name="contentTypeId" value="DECORATOR"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <container id="cmscontent" style="no-clear">
+                    <screenlet title="${uiLabelMap.PageTitleWebSiteCMSContent}">
+                        <platform-specific>
+                            <html>
+                                <html-template location="component://content/webapp/content/website/WebSiteCMSContent.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </screenlet>
+                </container>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMSEditor">
+        <section>
+            <actions>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="contentId" from-field="parameters.contentId"/>
+                <set field="mimeTypeId" value="text/html"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <entity-one entity-name="DataResource" value-field="dataResource">
+                    <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+                </entity-one>
+                <entity-one entity-name="ElectronicText" value-field="dataText">
+                    <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+                </entity-one>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <html>
+                        <html-template location="component://content/webapp/content/website/WebSiteCMSEditor.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMSMetaInfo">
+        <section>
+            <actions>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="contentId" from-field="parameters.contentId"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <script location="component://content/webapp/content/WEB-INF/actions/website/WebSiteCMSMetaInfo.groovy"/>
+            </actions>
+            <widgets>
+                <container id="cmscontent" style="no-clear">
+                    <screenlet title="${uiLabelMap.PageTitleWebSiteCMSContent}">
+                        <platform-specific>
+                            <html>
+                                <html-template location="component://content/webapp/content/website/WebSiteCMSMeta.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </screenlet>
+                </container>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteCMSPathAlias">
+        <section>
+            <actions>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="contentId" from-field="parameters.contentId"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <entity-and entity-name="WebSitePathAlias" list="aliases">
+                    <field-map field-name="webSiteId" from-field="webSiteId"/>
+                    <field-map field-name="contentId" from-field="contentId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <container id="cmscontent" style="no-clear">
+                    <screenlet title="${uiLabelMap.PageTitleWebSiteCMSContent}">
+                        <platform-specific>
+                            <html>
+                                <html-template location="component://content/webapp/content/website/WebSiteCMSPathAlias.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </screenlet>
+                </container>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="WebSiteAliases">
+        <section>
+            <actions>
+                <set field="titleProperty" value="ContentPathAlias"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="tabButtonItem" value="PathAlias"/>
+                <set field="viewIndex" from-field="requestParameters.VIEW_INDEX" type="Integer"/>
+                <set field="viewSize" from-field="requestParameters.VIEW_SIZE" type="Integer" default-value="30"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                            <decorator-section name="search-options">
+                                <include-form name="FindWebSitePathAlias" location="component://content/widget/website/WebSiteForms.xml"/>
+                            </decorator-section>
+                            <decorator-section name="search-results">
+                                <include-form name="ListWebSitePathAlias" location="component://content/widget/website/WebSiteForms.xml"/>
+                            </decorator-section>
+                        </decorator-screen>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="WebSiteAliasesSearchResults">
+        <section>
+            <actions>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+            </actions>
+            <widgets>
+                <include-form name="ListWebSitePathAlias" location="component://content/widget/website/WebSiteForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="WebSiteSEO">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleWebSiteSEO"/>
+                <set field="tabButtonItem" value="WebSiteSEO"/>
+                <set field="labelTitleProperty" value="PageTitleWebSiteSEO"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleWebSiteSEO}">
+                                    <include-form name="CreateWebsiteSEO" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="WebSiteContactList">
+        <section>
+            <actions>
+                <set field="titleProperty" value="ContentWebSiteContactList"/>
+                <set field="tabButtonItem" value="WebSiteContactList"/>
+                <set field="labelTitleProperty" value="ContentWebSiteContactList"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <entity-and list="webSiteContactLists" entity-name="WebSiteContactList">
+                    <field-map field-name="webSiteId" from-field="webSiteId"/>
+                    <order-by field-name="-fromDate"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ContentWebSiteContactListCreate}">
+                            <include-form location="component://content/widget/website/WebSiteForms.xml" name="CreateWebSiteContactList"/>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.ContentWebSiteContactListView} of webSiteId[${webSiteId}]">
+                            <include-form location="component://content/widget/website/WebSiteForms.xml" name="ViewWebSiteContactList"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!--channel screen begin-->
+    <screen name="ListChannel">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListChannel"/>
+                <set field="labelTitleProperty" value="PageTitleChannel"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="subContentTitle" value="专题"/>
+                <set field="middleCrumbLink" value="ListChannel"/>
+                <set field="currentCrumLink" value="ListChannel"/>
+                <set field="currentCrumbName" value="专题"/>
+                <set field="middleCrumbName" value="专题"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleChannel}">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddChannel" description="${uiLabelMap.CreateNewChannel}" name="AddChannel"
+                                                    id="AddChannel" confirm-title="${uiLabelMap.CreateNewChannel}">
+                                            <parameter param-name="webSiteId"/>
+                                        </modal-page>
+                                    </container>
+                                    <include-form name="ListChannel" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddChannel">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListChannel"/>
+                <set field="labelTitleProperty" value="PageTitleChannel"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+
+                        <include-form name="AddChannel" location="component://content/widget/website/WebSiteForms.xml"/>
+
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditChannel">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListChannel"/>
+                <set field="labelTitleProperty" value="PageTitleChannel"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="SpecialPage"  value-field="template"/>
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <include-form name="EditChannel" location="component://content/widget/website/WebSiteForms.xml"/>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListChannelContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListChannelContent"/>
+                <set field="labelTitleProperty" value="PageTitleChannel"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <set field="subContentTitle" value="专题内容"/>
+                <set field="middleCrumbLink" value="ListChannel?webSiteId=daojia"/>
+                <set field="currentCrumLink" value="ListChannelContent?specialPageId=${specialPageId}"/>
+                <set field="currentCrumbName" value="专题内容"/>
+                <set field="middleCrumbName" value="专题"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}" >
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="专题页面列表">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddChannelBanner" description="轮播图" name="AddChannelBanner" modal-style="modal-lg"
+                                                    id="AddChannelBanner" confirm-title="新增轮播图">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="banner"/>
+                                        </modal-page>
+
+                                        <modal-page modal-url="AddChannelFloorBanner" description="广告图片" name="AddChannelFloorBanner" modal-style="modal-lg"
+                                                    id="AddChannelFloorBanner" confirm-title="新增广告图片">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="floorBanner"/>
+                                        </modal-page>
+
+                                        <modal-page modal-url="AddChannelAct" description="图片列表" name="AddChannelAct" modal-style="modal-lg"
+                                                    id="AddChannelAct" confirm-title="新增图片列表">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="act"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddChannelProduct7" description="店铺列表" name="AddChannelProduct7" modal-style="modal-lg"
+                                                    id="AddChannelProduct7" confirm-title="新增店铺列表">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="act"/>
+                                        </modal-page>
+
+                                    </container>
+                                    <include-form name="ListChannelContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditChannelContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListChannel"/>
+                <set field="labelTitleProperty" value="PageTitleChannel"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <set field="advertId" from-field="parameters.advertId"/>
+                <set field="advertTypeId" from-field="parameters.advertTypeId"/>
+                <entity-one entity-name="SpecialPageContent" value-field="templateContent">
+                    <field-map field-name="advertId"/>
+                    <field-map field-name="specialPageId"/>
+                </entity-one>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="banner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editChannelBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="floorBanner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editChannelFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editChannelAct.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="product7"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editChannelProduct7.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddChannelBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addChannelBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddChannelFloorBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addChannelFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddChannelAct">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addChannelAct.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddChannelProduct7">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addChannelProduct7.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <!--channel screen end-->
+
+    <!--activity screen begin-->
+    <screen name="ListActivity">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListActivity"/>
+                <set field="labelTitleProperty" value="PageTitleActivity"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="subContentTitle" value="活动列表"/>
+                <set field="middleCrumbLink" value="ListActivity?webSiteId=daojia"/>
+                <set field="currentCrumLink" value="ListActivity?webSiteId=daojia"/>
+                <set field="currentCrumbName" value="活动列表"/>
+                <set field="middleCrumbName" value="活动"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}">
+
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleActivity}">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddActivity" description="${uiLabelMap.CreateNewActivity}" name="AddActivity"
+                                                    id="AddActivity" confirm-title="${uiLabelMap.CreateNewActivity}">
+                                            <parameter param-name="webSiteId"/>
+                                        </modal-page>
+                                    </container>
+                                    <include-form name="ListActivity" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddActivity">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListActivity"/>
+                <set field="labelTitleProperty" value="PageTitleActivity"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+
+                        <include-form name="AddActivity" location="component://content/widget/website/WebSiteForms.xml"/>
+
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditActivity">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListActivity"/>
+                <set field="labelTitleProperty" value="PageTitleActivity"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="SpecialPage"  value-field="template"/>
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <include-form name="EditActivity" location="component://content/widget/website/WebSiteForms.xml"/>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListActivityContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListActivityContent"/>
+                <set field="labelTitleProperty" value="PageTitleActivity"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <set field="subContentTitle" value="活动内容"/>
+                <set field="middleCrumbLink" value="ListActivity?webSiteId=daojia"/>
+                <set field="currentCrumLink" value="ListActivityContent?specialPageId=${specialPageId}"/>
+                <set field="currentCrumbName" value="活动内容"/>
+                <set field="middleCrumbName" value="活动"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DaoJiaWebSiteDecorator" location="${parameters.mainDecoratorLocation}" >
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="活动页面列表">
+                                    <container style="button-bar">
+                                        <modal-page modal-url="AddActivityBanner" description="轮播图" name="AddActivityBanner" modal-style="modal-lg"
+                                                    id="AddActivityBanner" confirm-title="新增轮播图">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="banner"/>
+                                        </modal-page>
+
+                                        <modal-page modal-url="AddActivityFloorBanner" description="广告图片" name="AddActivityFloorBanner" modal-style="modal-lg"
+                                                    id="AddActivityFloorBanner" confirm-title="新增广告图片">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="floorBanner"/>
+                                        </modal-page>
+
+                                        <modal-page modal-url="AddActivityAct" description="列表" name="AddActivityAct" modal-style="modal-lg"
+                                                    id="AddActivityAct" confirm-title="新增图片列表">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="act"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddActivityProduct5" description="产品列表" name="AddActivityProduct5" modal-style="modal-lg"
+                                                    id="AddActivityProduct5" confirm-title="新增产品列表">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="product5"/>
+                                        </modal-page>
+                                        <modal-page modal-url="AddActivityAct1" description="一张图片" name="AddActivityAct1" modal-style="modal-lg"
+                                                    id="AddActivityAct1" confirm-title="新增产品列表">
+                                            <parameter param-name="specialPageId"/>
+                                            <parameter param-name="advertTypeId" value="product5"/>
+                                        </modal-page>
+
+                                    </container>
+                                    <include-form name="ListActivityContent" location="component://content/widget/website/WebSiteForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditActivityContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListActivity"/>
+                <set field="labelTitleProperty" value="PageTitleActivity"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <set field="advertId" from-field="parameters.advertId"/>
+                <set field="advertTypeId" from-field="parameters.advertTypeId"/>
+                <entity-one entity-name="SpecialPageContent" value-field="templateContent">
+                    <field-map field-name="advertId"/>
+                    <field-map field-name="specialPageId"/>
+                </entity-one>
+                <entity-and entity-name="AdvertContent" list="advertContents">
+                    <field-map field-name="advertId"/>
+                </entity-and>
+            </actions>
+            <widgets>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="banner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editActivityBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="floorBanner"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editActivityFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editActivityAct.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="product5"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editActivityProduct5.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <if-compare field="advertTypeId" operator="equals" value="act1"/>
+                    </condition>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/editActivityAct1.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddActivityBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addActivityBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddActivityFloorBanner">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addActivityFloorBanner.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddActivityAct">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addActivityAct.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddActivityProduct5">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addActivityProduct5.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddActivityAct1">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditWebSite"/>
+                <set field="tabButtonItem" value="ListDaoJiaIndexTemplate"/>
+                <set field="labelTitleProperty" value="PageTitleDaoJiaIndexTemplate"/>
+                <set field="specialPageId" from-field="parameters.specialPageId"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <section>
+                    <widgets>
+                        <platform-specific>
+                            <html><html-template location="component://content/webapp/content/advert/addActivityAct1.ftl"/></html>
+                        </platform-specific>
+                    </widgets>
+                </section>
+
+            </widgets>
+        </section>
+    </screen>
+    <!--activity screen end-->
+</screens>

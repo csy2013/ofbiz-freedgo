@@ -1,0 +1,10 @@
+{
+  "payType": 4,
+  "payTypeDefault": 4,
+  "paymentTextDTOList": [
+    {
+      "payType": 4,
+      "payText": "<font size='3' color='#555555' class='onlinePay_text'>在线支付</font>&nbsp;&nbsp;<font size='2' color='#999999' class='onlinePay_prompt'>(微信/阿凡提支付)</font>"
+    }
+  ]
+}

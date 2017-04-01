@@ -1,0 +1,1 @@
+ ./qrsboxcli init yiTaQvn6JrhJfvjfyM5kjZ1SdLUQrUp-pnoElahP U-lLYfsJi2mixpMBCxdEmG_xq8lqLIig50y2KpHq /home/yabiz/images/webapp yabiz

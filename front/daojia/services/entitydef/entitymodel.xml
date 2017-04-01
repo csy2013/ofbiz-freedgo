@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+    <!-- ========================================================= -->
+    <!-- ======================== Defaults ======================= -->
+    <!-- ========================================================= -->
+    <title>Entity of daojia Component</title>
+    <description>None</description>
+    <copyright></copyright>
+    <version></version>
+    <entity entity-name="DaoJiaLogging" package-name="com.yuaoq.yabiz.daojia.model">
+        <field name="logType" type="name"/>
+        <field name="json" type="very-long"/>
+        <field name="logId" type="id-ne"/>
+        <prim-key field="logId"/>
+    </entity>
+
+    <entity entity-name="DaoJiaFeedback" package-name="org.ofbiz.party.party" title="Feedback Entity">
+        <field name="feedbackId" type="id-ne"></field>
+        <field name="partyId" type="id"></field>
+        <field name="infoString" type="long-varchar"></field>
+        <prim-key field="feedbackId"/>
+    </entity>
+
+</entitymodel>

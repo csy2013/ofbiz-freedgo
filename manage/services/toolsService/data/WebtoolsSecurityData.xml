@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<entity-engine-xml>
+  <!-- Webtools security -->
+  <SecurityPermission name="WEBTOOLS_VIEW" parentPermissionId="-1" description="系统管理查看" permissionId="WEBTOOLS_VIEW"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="WEBTOOLS_VIEW"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="WEBTOOLS_VIEW"/>-->
+  <!--<SecurityGroupPermission groupId="VIEWADMIN" permissionId="WEBTOOLS_VIEW"/>-->
+
+  <!-- Server Stats security -->
+  <SecurityPermission name="SERVER_STATS_VIEW" parentPermissionId="WEBTOOLS_VIEW" description="服务状态" permissionId="SERVER_STATS_VIEW"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="SERVER_STATS_VIEW"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="SERVER_STATS_VIEW"/>-->
+  <!--<SecurityGroupPermission groupId="VIEWADMIN" permissionId="SERVER_STATS_VIEW"/>-->
+
+  <!-- Artifact Info security -->
+  <SecurityPermission name="ARTIFACT_INFO_VIEW" parentPermissionId="WEBTOOLS_VIEW" description="人工程序." permissionId="ARTIFACT_INFO_VIEW"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="ARTIFACT_INFO_VIEW"/>
+  <!-- <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ARTIFACT_INFO_VIEW"/>
+   <SecurityGroupPermission groupId="VIEWADMIN" permissionId="ARTIFACT_INFO_VIEW"/>-->
+
+  <!-- Labels Info security -->
+  <SecurityPermission name="LABEL_MANAGER_VIEW" parentPermissionId="WEBTOOLS_VIEW" description="标签管理" permissionId="LABEL_MANAGER_VIEW"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="LABEL_MANAGER_VIEW"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="LABEL_MANAGER_VIEW"/>
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="LABEL_MANAGER_VIEW"/>-->
+
+  <!-- Data File Maintenance security -->
+  <SecurityPermission name="DATAFILE_MAINT" parentPermissionId="WEBTOOLS_VIEW" description="Use the Data File Maintenance pages." permissionId="DATAFILE_MAINT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="DATAFILE_MAINT"/>
+  <!-- <SecurityGroupPermission groupId="FLEXADMIN" permissionId="DATAFILE_MAINT"/>-->
+
+  <!-- Service Maintenance security -->
+  <SecurityPermission name="SERVICE_MAINT" parentPermissionId="WEBTOOLS_VIEW" description="服务引擎" permissionId="SERVICE_MAINT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="SERVICE_MAINT"/>
+  <!-- <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SERVICE_MAINT"/>-->
+
+  <!-- Period Maintenance security -->
+  <SecurityPermission name="PERIOD_MAINT" parentPermissionId="WEBTOOLS_VIEW" description="配置" permissionId="PERIOD_MAINT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="PERIOD_MAINT"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="PERIOD_MAINT"/>
+  <SecurityGroupPermission groupId="BIZADMIN" permissionId="PERIOD_MAINT"/>-->
+
+  <!-- Enum & Status Maintenance security -->
+  <SecurityPermission name="ENUM_STATUS_MAINT" parentPermissionId="WEBTOOLS_VIEW" description="状态维护" permissionId="ENUM_STATUS_MAINT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="ENUM_STATUS_MAINT"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENUM_STATUS_MAINT"/>-->
+
+  <!-- Entity Maintenance security -->
+  <SecurityPermission name="ENTITY_MAINT" parentPermissionId="ENTITY_DATA_ADMIN" description="Use the Entity Maintenance pages." permissionId="ENTITY_MAINT"/>
+  <SecurityPermission name="ENTITY_DATA_VIEW" parentPermissionId="ENTITY_DATA_ADMIN" description="View with the Entity Data Maintenance pages." permissionId="ENTITY_DATA_VIEW"/>
+  <SecurityPermission name="ENTITY_DATA_CREATE" parentPermissionId="ENTITY_DATA_ADMIN" description="Create with the Entity Data Maintenance pages."
+                      permissionId="ENTITY_DATA_CREATE"/>
+  <SecurityPermission name="ENTITY_DATA_UPDATE" parentPermissionId="ENTITY_DATA_ADMIN" description="Update with the Entity Data Maintenance pages."
+                      permissionId="ENTITY_DATA_UPDATE"/>
+  <SecurityPermission name="ENTITY_DATA_DELETE" parentPermissionId="ENTITY_DATA_ADMIN" description="Delete with the Entity Data Maintenance pages."
+                      permissionId="ENTITY_DATA_DELETE"/>
+  <SecurityPermission name="ENTITY_DATA_ADMIN" parentPermissionId="WEBTOOLS_VIEW" description="ALL with the Entity Data Maintenance pages." permissionId="ENTITY_DATA_ADMIN"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="ENTITY_MAINT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="ENTITY_DATA_ADMIN"/>
+  <!-- <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENTITY_MAINT"/>
+   <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENTITY_DATA_CREATE"/>
+   <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENTITY_DATA_DELETE"/>
+   <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENTITY_DATA_UPDATE"/>
+   <SecurityGroupPermission groupId="FLEXADMIN" permissionId="ENTITY_DATA_VIEW"/>
+   <SecurityGroupPermission groupId="VIEWADMIN" permissionId="ENTITY_DATA_VIEW"/>-->
+
+  <!-- UtilCache security -->
+  <SecurityPermission name="UTIL_CACHE_VIEW" parentPermissionId="WEBTOOLS_VIEW" description="View a UtilCache instance." permissionId="UTIL_CACHE_VIEW"/>
+  <SecurityPermission name="UTIL_CACHE_EDIT" parentPermissionId="WEBTOOLS_VIEW" description="Edit a UtilCache instance." permissionId="UTIL_CACHE_EDIT"/>
+  <SecurityPermission name="UTIL_DEBUG_VIEW" parentPermissionId="WEBTOOLS_VIEW" description="View a UtilDebug instance." permissionId="UTIL_DEBUG_VIEW"/>
+  <SecurityPermission name="UTIL_DEBUG_EDIT" parentPermissionId="WEBTOOLS_VIEW" description="Edit a UtilDebug instance." permissionId="UTIL_DEBUG_EDIT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="UTIL_CACHE_EDIT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="UTIL_CACHE_VIEW"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="UTIL_DEBUG_EDIT"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="UTIL_DEBUG_VIEW"/>
+  <!--  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UTIL_CACHE_EDIT"/>
+ <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UTIL_CACHE_VIEW"/>
+ <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UTIL_DEBUG_EDIT"/>
+ <SecurityGroupPermission groupId="FLEXADMIN" permissionId="UTIL_DEBUG_VIEW"/>
+ <SecurityGroupPermission groupId="VIEWADMIN" permissionId="UTIL_CACHE_VIEW"/>
+ <SecurityGroupPermission groupId="VIEWADMIN" permissionId="UTIL_DEBUG_VIEW"/>-->
+</entity-engine-xml>

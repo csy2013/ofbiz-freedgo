@@ -1,0 +1,127 @@
+{
+  "code": "0",
+  "msg": "成功",
+  "result": [{
+    "title": "南京中医药大学(仙林校区)",
+    "address": "江苏省南京市栖霞区仙林大道138号",
+    "location": {
+      "lat": 32.10317,
+      "lng": 118.94482
+    },
+    "adcode": "320113",
+    "cityCode": 904,
+    "districtCode": 3378,
+    "city": "南京市",
+    "district": "栖霞区"
+  }, {
+    "title": "中保绿苑",
+    "address": "江苏省南京市鼓楼区漓江路48",
+    "location": {
+      "lat": 32.05467,
+      "lng": 118.73817
+    },
+    "adcode": "320106",
+    "cityCode": 904,
+    "districtCode": 3377,
+    "city": "南京市",
+    "district": "鼓楼区"
+  }, {
+    "title": "钟山晶典苑",
+    "address": "江苏省南京市栖霞区金马路19号",
+    "location": {
+      "lat": 32.06702,
+      "lng": 118.91109
+    },
+    "adcode": "320113",
+    "cityCode": 904,
+    "districtCode": 3378,
+    "city": "南京市",
+    "district": "栖霞区"
+  }, {
+    "title": "中航·樾府",
+    "address": "江苏省南京市江宁区秣陵街道静淮街128号",
+    "location": {
+      "lat": 31.93062,
+      "lng": 118.79894
+    },
+    "adcode": "320115",
+    "cityCode": 904,
+    "districtCode": 905,
+    "city": "南京市",
+    "district": "江宁区"
+  }, {
+    "title": "中国药科大学(江宁校区)",
+    "address": "江苏省南京市江宁区龙眠大道639号",
+    "location": {
+      "lat": 31.90052,
+      "lng": 118.91616
+    },
+    "adcode": "320115",
+    "cityCode": 904,
+    "districtCode": 905,
+    "city": "南京市",
+    "district": "江宁区"
+  }, {
+    "title": "中山东路小区",
+    "address": "江苏省南京市秦淮区长白街634号附近",
+    "location": {
+      "lat": 32.03917,
+      "lng": 118.80004
+    },
+    "adcode": "320104",
+    "cityCode": 904,
+    "districtCode": 3375,
+    "city": "南京市",
+    "district": "秦淮区"
+  }, {
+    "title": "中国南京徐庄软件园",
+    "address": "江苏省南京市玄武区玄武大道699号,宁镇公路",
+    "location": {
+      "lat": 32.0964,
+      "lng": 118.88324
+    },
+    "adcode": "320102",
+    "cityCode": 904,
+    "districtCode": 3373,
+    "city": "南京市",
+    "district": "玄武区"
+  }, {
+    "title": "中冶天城",
+    "address": "江苏省南京市江宁区秣陵街道殷富街375号",
+    "location": {
+      "lat": 31.9123,
+      "lng": 118.84389
+    },
+    "adcode": "320115",
+    "cityCode": 904,
+    "districtCode": 905,
+    "city": "南京市",
+    "district": "江宁区"
+  }, {
+    "title": "致和新村",
+    "address": "江苏省南京市秦淮区长白街83号附近",
+    "location": {
+      "lat": 32.02571,
+      "lng": 118.79247
+    },
+    "adcode": "320104",
+    "cityCode": 904,
+    "districtCode": 3375,
+    "city": "南京市",
+    "district": "秦淮区"
+  }, {
+    "title": "中央路262号住宅小区",
+    "address": "江苏省南京市玄武区中央路262号",
+    "location": {
+      "lat": 32.0803,
+      "lng": 118.7855
+    },
+    "adcode": "320102",
+    "cityCode": 904,
+    "districtCode": 3373,
+    "city": "南京市",
+    "district": "玄武区"
+  }
+  ],
+  "success": true
+}

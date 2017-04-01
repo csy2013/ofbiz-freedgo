@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+    <HotKeyWords keyword="扁豆" keywordTypeId="1" count="0" hotKeyWordsId="1"/>
+    <HotKeyWords keyword="肉松饼" keywordTypeId="1" count="0" hotKeyWordsId="2"/>
+    <HotKeyWords keyword="牛奶" keywordTypeId="1" count="0" hotKeyWordsId="3"/>
+    <HotKeyWords keyword="调味料" keywordTypeId="1" count="0" hotKeyWordsId="4"/>
+    <HotKeyWords keyword="韭菜" keywordTypeId="1" count="0" hotKeyWordsId="5"/>
+    <HotKeyWords keyword="酸奶" keywordTypeId="1" count="0" hotKeyWordsId="6"/>
+    <HotKeyWords keyword="苦菊" keywordTypeId="1" count="0" hotKeyWordsId="7"/>
+    <HotKeyWords keyword="苏打饼干" keywordTypeId="1" count="0" hotKeyWordsId="8"/>
+    <HotKeyWords keyword="上好佳" keywordTypeId="1" count="0" hotKeyWordsId="9"/>
+    <HotKeyWords keyword="四季豆" keywordTypeId="1" count="0" hotKeyWordsId="10"/>
+    <HotKeyWords keyword="巧克力" keywordTypeId="1" count="0" hotKeyWordsId="11"/>
+    <HotKeyWords keyword="椒盐" keywordTypeId="1" count="0" hotKeyWordsId="12"/>
+
+    <HotKeyWordsStore hotKeyWordsId="1" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="2" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="3" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="4" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="5" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="6" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="7" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="8" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="9" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="10" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="11" productStoreId="10000"/>
+    <HotKeyWordsStore hotKeyWordsId="12" productStoreId="10000"/>
+
+    <HotKeyWordsStore hotKeyWordsId="10" productStoreId="10001"/>
+    <HotKeyWordsStore hotKeyWordsId="11" productStoreId="10001"/>
+    <HotKeyWordsStore hotKeyWordsId="12" productStoreId="10001"/>
+</entity-engine-xml>

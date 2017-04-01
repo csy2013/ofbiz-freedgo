@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="userList">
+        <section>
+            <actions>
+                <service service-name="findUser" auto-field-map="parameters"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.systemMgr}"></label>
+                                <label style="sub-title" text="${uiLabelMap.SystemerManage}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="/" text="${uiLabelMap.systemMgr}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.RoleManage}" style="breadcrumb"/>
+                                <link target="userList" text="${uiLabelMap.SystemerManage}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                <decorator-section name="body">
+                    <platform-specific><html><html-template location="component://webtools/webapp/webtools/systemMgr/userList.ftl"/></html></platform-specific>
+                </decorator-section>
+                </decorator-screen>
+
+            </widgets>
+
+        </section>
+    </screen>
+</screens>

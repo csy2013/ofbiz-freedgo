@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="FindProductStore">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreList"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreList"/>
+                <set field="subContentTitle" value="查找店铺"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="查找店铺"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ProductProductStoreList}">
+                            <container style="button-bar button-style-2">
+                                <link target="EditProductStore" text="${uiLabelMap.ProductNewProductStore}" style="buttontext create" url-mode="plain"/>
+                            </container>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStore" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductStore">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStore"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStore"/>
+                <set field="labelTitleProperty" value="ProductStore"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <property-to-field field="defaultCurrencyUomId" resource="general" property="currency.uom.id.default" default="CNY"/>
+                <set field="subContentTitle" value="${uiLabelMap.ProductProductStore}:${productStore.storeName} "/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="新建店铺"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="">
+                            <include-form name="EditProductStore" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <!--ProductStore service Times-->
+    <screen name="EditProductStoreServiceTimes">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStore"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreServiceTimes"/>
+                <set field="labelTitleProperty" value="ProductStore"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <property-to-field field="defaultCurrencyUomId" resource="general" property="currency.uom.id.default" default="CNY"/>
+                <set field="subContentTitle" value="${uiLabelMap.ProductProductStore}:${productStore.storeName}:店铺服务时间"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺服务时间"/>
+                <set field="viewIndex" from-field="parameters.VIEW_INDEX" type="Integer"/>
+                <property-to-field resource="widget" property="widget.form.defaultViewSize" field="viewSizeDefaultValue"/>
+                <set field="viewSize" from-field="parameters.VIEW_SIZE" type="Integer" default-value="${viewSizeDefaultValue}"/>
+                <set field="requestParameters.productStoreId" from-field="parameters.productStoreId"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ProductProductStore}:${productStore.storeName} ">
+                            <modal-page modal-url="addProductStoreServiceTimes" description="${uiLabelMap.CommonAdd}服务时间" confirm-title="${uiLabelMap.CommonAdd}服务时间"
+                                            id="addProductStoreServiceTimes" name="addProductStoreServiceTimes">
+                                    <parameter param-name="productStoreId"/>
+                                </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStoreServiceTimes" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="addProductStoreServiceTimes">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="addProductStoreServiceTimes" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreContent">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStore"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreContent"/>
+                <set field="labelTitleProperty" value="ProductStore"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <set field="subContentTitle" value="${uiLabelMap.ProductProductStore}:${productStore.storeName}:LOGO"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺LOGO"/>
+
+                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.js" global="true"/>
+                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/dropzone/dist/dropzone.css" global="true"/>
+                <entity-condition entity-name="ProductStoreContent" list="storeContents">
+                    <condition-list>
+                        <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                        <condition-expr field-name="productStoreContentTypeId" value="LOGO"/>
+                    </condition-list>
+                </entity-condition>
+                <set field="storeContent" from-field="storeContents[0]"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.ProductStoreContent}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://product/webapp/catalog/store/productStoreContent.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+
+    <screen name="ViewContactMechs">
+        <section>
+            <actions>
+                <set field="tabButtonItem" value="ViewContactMechs"/>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/store/ViewContactMechs.groovy"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <set field="title" value="${uiLabelMap.PageTitleViewProductStoreContactMechanism}"/>
+                <set field="middleCrumbLink" value="main"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺联系方式"/>
+                <set field="subContentTitle" value="${uiLabelMap.ProductProductStore}:${productStore.storeName}-店铺联系方式"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${title}">
+                            <container style="button-bar button-style-1">
+                                <section>
+                                    <condition>
+                                        <not>
+                                            <if-empty field="productStoreId"/>
+                                        </not>
+                                    </condition>
+                                    <widgets>
+                                        <section>
+                                            <condition>
+                                                <if-service-permission service-name="productGenericPermission" main-action="CREATE"/>
+                                            </condition>
+                                            <widgets>
+                                                <modal-page modal-url="EditContactMech" description="新建邮政地址" id="EditContactMechForPostalAddress" name="EditContactMechForPostalAddress"
+                                                            confirm-title="新建邮政地址">
+                                                    <parameter param-name="productStoreId"/>
+                                                    <parameter param-name="preContactMechTypeId" value="POSTAL_ADDRESS"/>
+                                                    <parameter param-name="contactMechPurposeTypeId" value="GENERAL_LOCATION"/>
+                                                </modal-page>
+
+                                                <modal-page modal-url="EditContactMech" description="新建联系电话" id="EditContactMechForPhone" name="EditContactMechForPhone"
+                                                            confirm-title="新建联系电话">
+                                                    <parameter param-name="productStoreId"/>
+                                                    <parameter param-name="preContactMechTypeId" value="TELECOM_NUMBER"/>
+                                                    <parameter param-name="contactMechPurposeTypeId" value="PHONE_WORK"/>
+                                                </modal-page>
+                                                <link target="ViewContactMechs" text="显示旧信息" style="create">
+                                                     <parameter param-name="productStoreId"/>
+                                                     <parameter param-name="SHOW_OLD" value="true"/>
+                                                 </link>
+                                                <!--
+                                                 <link target="EditContactMech" text="新建联系电话" style="create">
+                                                     <parameter param-name="productStoreId"/>
+                                                     <parameter param-name="preContactMechTypeId" value="TELECOM_NUMBER"/>
+                                                     <parameter param-name="contactMechPurposeTypeId" value="PHONE_WORK"/>
+                                                 </link>-->
+                                            </widgets>
+                                        </section>
+                                    </widgets>
+                                </section>
+                            </container>
+                            <platform-specific>
+                                <html>
+                                    <html-template location="component://product/webapp/catalog/store/ViewContactMechs.ftl"/>
+                                </html>
+                            </platform-specific>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditContactMech">
+        <section>
+            <actions>
+                <set field="tabButtonItem" value="ViewContactMechs"/>
+                <script location="component://product/webapp/catalog/WEB-INF/actions/store/EditContactMech.groovy"/>
+
+                <!--<set field="dependentForm" value="editcontactmechform"/>
+                <set field="paramKey" value="countryGeoId"/>
+                <set field="mainId" value="countryGeoId"/>
+                <set field="dependentId" value="stateProvinceGeoId"/>
+                <set field="requestName" value="getAssociatedStateList"/>
+                <set field="responseName" value="stateList"/>
+                <set field="dependentKeyName" value="geoId"/>
+                <set field="descName" value="geoName"/>-->
+                <!--<set field="selectedDependentOption" from-field="mechMap.postalAddress.stateProvinceGeoId" default-value="_none_"/> -->
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <set field="title" value="${uiLabelMap.PageTitleNewProductStoreContactMech}"/>
+                <set field="middleCrumbLink" value="ViewContactMechs?productStoreId=${productStoreId}"/>
+                <set field="middleCrumbName" value="店铺联系方式"/>
+                <set field="currentCrumbName" value="联系方式维护"/>
+                <set field="subContentTitle" value="联系方式维护"/>
+
+
+                <set field="dependentForm" value="editcontactmechform"/>
+                <set field="requestName" value="getAssociatedStateList"/>
+                <set field="responseName" value="stateList"/>
+                <set field="dependentKeyName" value="geoId"/>
+                <set field="descName" value="geoName"/>
+
+
+                <set field="selectedDependentOption" from-field="provinceId" default-value="_none_"/>
+                <set field="selectedDependentOption1" from-field="city" default-value="_none_"/>
+                <set field="selectedDependentOption2" from-field="countyGeoId" default-value="_none_"/>
+
+                <!--根据国家选择省-->
+                <set field="paramKey" value="countryGeoId"/>
+                <set field="mainId" value="countryGeoId"/>
+                <set field="dependentId" value="stateProvinceGeoId"/>
+
+                <!--根据省选择市-->
+                <set field="paramKey1" value="countryGeoId"/>
+                <set field="mainId1" value="stateProvinceGeoId"/>
+                <set field="dependentId1" value="city"/>
+
+                <!--根据市选择区县-->
+                <set field="paramKey2" value="countryGeoId"/>
+                <set field="mainId2" value="city"/>
+                <set field="dependentId2" value="countyGeoId"/>
+
+
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <section>
+                    <condition>
+                        <not>
+                            <if-empty field="parameters.contactMechId"/>
+                        </not>
+                    </condition>
+                    <actions>
+                        <set field="title" value="${uiLabelMap.PageTitleEditProductStoreContactMech}"/>
+                    </actions>
+                    <widgets/>
+                </section>
+
+                <platform-specific>
+                    <html>
+                        <html-template location="component://common/webcommon/includes/setGeoDependentDropdownValuesJs.ftl"/>
+                        <html-template location="component://product/webapp/catalog/store/EditContactMech.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="FindProductStoreRoles">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductStoreRoles"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="FindProductStoreRoles"/>
+                <set field="labelTitleProperty" value="ProductProductStoreRoles"/>
+                <set field="parameters.fromDate" from-field="parameters.fromDate" type="Timestamp"/>
+                <entity-one entity-name="ProductStoreRole" value-field="productStoreRole" auto-field-map="true"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                            <decorator-section name="search-options">
+                                <include-form name="FindProductStoreRole" location="component://product/widget/catalog/StoreForms.xml"/>
+                            </decorator-section>
+                            <decorator-section name="search-results">
+                                <include-form name="ListProductStoreRole" location="component://product/widget/catalog/StoreForms.xml"/>
+                            </decorator-section>
+                        </decorator-screen>
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreRoles}">
+                            <include-form name="EditProductStoreRole" location="component://product/widget/catalog/StoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStorePromos">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStorePromos"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStorePromos"/>
+                <set field="labelTitleProperty" value="ProductPromotions"/>
+                <set field="userEntered" from-field="parameters.userEntered"/>
+                <set field="activeOnly" from-field="parameters.activeOnly" default-value="true"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <set field="subContentTitle" value="店铺促销"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺促销"/>
+
+                <entity-condition entity-name="ProductStorePromoAndAppl" list="productStorePromoAndAppls" filter-by-date="${activeOnly}">
+                    <condition-list combine="and">
+                        <condition-expr field-name="userEntered" from-field="userEntered" ignore-if-empty="true"/>
+                        <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    </condition-list>
+                    <order-by field-name="sequenceNum"/>
+                    <order-by field-name="productPromoId"/>
+                </entity-condition>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStorePromos}">
+
+                            <link target="EditProductStorePromos" text="查询有效促销" style="buttontext">
+                                <parameter param-name="productStoreId"/>
+                            </link>
+                            <!-- <link target="EditProductStorePromos" text="用户输入" style="buttontext">
+                                 <parameter param-name="productStoreId"/>
+                                 <parameter param-name="userEntered" value="Y"/>
+                             </link>
+                             <link target="EditProductStorePromos" text="不是用户输入" style="buttontext">
+                                 <parameter param-name="productStoreId"/>
+                                 <parameter param-name="userEntered" value="N"/>
+                             </link>-->
+
+
+                            <link target="EditProductStorePromos" text="查询全部促销" style="buttontext">
+                                <parameter param-name="productStoreId"/>
+                                <parameter param-name="activeOnly" value="N"/>
+                            </link>
+                            <!--<link target="EditProductStorePromos" text="${uiLabelMap.CommonUserEnteredOnly}" style="buttontext">
+                                <parameter param-name="productStoreId"/>
+                                <parameter param-name="activeOnly" value="N"/>
+                                <parameter param-name="userEntered" value="Y"/>
+                            </link>
+                            <link target="EditProductStorePromos" text="${uiLabelMap.ProductPromotionImported}" style="buttontext">
+                                <parameter param-name="productStoreId"/>
+                                <parameter param-name="activeOnly" value="N"/>
+                                <parameter param-name="userEntered" value="N"/>
+                            </link>-->
+                            <modal-page modal-url="CreateProductStorePromo" description="创建新的促销" confirm-title="促销创建" id="CreateProductStorePromo" name="CreateProductStorePromo">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+
+                            <horizontal-separator/>
+                            <include-form name="ListProductStorePromos" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="CreateProductStorePromo">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="CreateProductStorePromo" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreCatalogs">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreCatalogs"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreCatalogs"/>
+                <set field="labelTitleProperty" value="ProductCatalogs"/>
+                <set field="subContentTitle" value="店铺目录"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺目录"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+
+                <entity-condition entity-name="ProductStoreCatalog" list="productStoreCatalogs">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    <order-by field-name="sequenceNum"/>
+                    <order-by field-name="productStoreId"/>
+                </entity-condition>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreCatalogs}">
+                            <modal-page modal-url="AddProductStoreCatalog" description="创建新的产品目录" confirm-title="创建新的产品目录" id="AddProductStoreCatalog"
+                                        name="AddProductStoreCatalog">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="UpdateProductStoreCatalog" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddProductStoreCatalog">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="CreateProductStoreCatalog" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreWebSites">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreWebSites"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreWebSites"/>
+                <set field="labelTitleProperty" value="ProductProductStoreWebSites"/>
+                <set field="productStoreId" from-field="parameters.viewProductStoreId"/>
+                <set field="productStoreId" from-field="parameters.productStoreId" default-value="${productStoreId}"/>
+                <entity-condition entity-name="WebSite" list="storeWebSites">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    <order-by field-name="siteName"/>
+                </entity-condition>
+
+                <set field="subContentTitle" value="店铺对应网站"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺对应网站"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html>
+                                <html-template location="component://product/webapp/catalog/store/EditProductStoreWebSites.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddWebSiteForStore">
+        <section>
+            <actions>
+                <entity-condition entity-name="WebSite" list="webSites">
+                    <order-by field-name="siteName"/>
+                </entity-condition>
+                <set field="productStoreId" from-field="parameters.viewProductStoreId"/>
+                <set field="productStoreId" from-field="parameters.productStoreId" default-value="${productStoreId}"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <html>
+                        <html-template location="component://product/webapp/catalog/store/addWebSiteForStore.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreShipSetup">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreShipSetup"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreShipSetup"/>
+                <set field="labelTitleProperty" value="ProductProductStoreShipmentSettings"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <property-map resource="OrderEntityLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <entity-condition entity-name="ProductStoreShipmentMethView" list="storeShipMethods">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    <order-by field-name="sequenceNumber"/>
+                </entity-condition>
+                <entity-one entity-name="ProductStoreShipmentMeth" value-field="productStoreShipmentMeth" auto-field-map="true"/>
+                <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods">
+                    <order-by field-name="sequenceNumber"/>
+                </entity-condition>
+                <entity-condition entity-name="CustomMethod" list="shipmentCustomMethods">
+                    <condition-expr field-name="customMethodTypeId" value="SHIP_EST"/>
+                    <order-by field-name="description"/>
+                </entity-condition>
+                <set field="subContentTitle" value="店铺对应送货方式"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺对应送货方式"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.PageTitleAddProductStoreShipSetup}">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://product/webapp/catalog/store/EditProductStoreShipSetup.ftl"/>
+                                        </html>
+                                    </platform-specific>
+                                </screenlet>
+                            </widgets>
+
+                        </section>
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreShipSetup}">
+                            <include-form name="ListProductStoreShipmentMeths" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreShipmentMeth">
+        <section>
+            <actions>
+                <entity-one entity-name="ProductStoreShipmentMeth" value-field="productStoreShipmentMeth" auto-field-map="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap"/>
+                <entity-condition entity-name="CustomMethod" list="shipmentCustomMethods">
+                    <condition-expr field-name="customMethodTypeId" value="SHIP_EST"/>
+                    <order-by field-name="description"/>
+                </entity-condition>
+            </actions>
+            <widgets>
+                <include-form name="EditProductStoreShipmentMeth" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreShipmentCostEstimates">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreShipmentCostEstimates"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreShipmentCostEstimates"/>
+                <set field="labelTitleProperty" value="ProductProductStoreShipmentSettings"/>
+                <set field="subContentTitle" value="店铺对应送货方式"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="快递费预估"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <entity-condition entity-name="ShipmentCostEstimate" list="estimates">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    <order-by field-name="geoIdFrom"/>
+                    <order-by field-name="shipmentMethodTypeId"/>
+                    <order-by field-name="geoIdTo"/>
+                </entity-condition>
+                <entity-one entity-name="ShipmentCostEstimate" value-field="estimate" auto-field-map="true"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreShipmentCostEstimates}">
+                            <modal-page modal-url="addShipmentCostEstimate" description="${uiLabelMap.ProductNewShipmentEstimate}"
+                                        confirm-title="${uiLabelMap.ProductNewShipmentEstimate}" id="addShipmentCostEstimate" name="addShipmentCostEstimate">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListShipmentCostEstimates" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <!--<section>
+                            <condition>
+                                <if-empty field="estimate"/>
+                            </condition>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.ProductNewShipmentEstimate}">
+                                    <include-form name="AddShipmentCostEstimate" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                            <fail-widgets>
+                                <screenlet title="${uiLabelMap.ProductViewEstimates}">
+                                    <include-form name="ViewShipmentCostEstimate" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                                </screenlet>
+                            </fail-widgets>
+                        </section>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="editShipmentCostEstimate">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ShipmentCostEstimate" value-field="estimate" auto-field-map="true"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+            </actions>
+            <widgets>
+                <include-form name="EditShipmentCostEstimate" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="addShipmentCostEstimate">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ShipmentCostEstimate" value-field="estimate" auto-field-map="true"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+            </actions>
+            <widgets>
+                <include-form name="AddShipmentCostEstimate" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStorePaySetup">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStorePaySetup"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStorePaySetup"/>
+                <set field="labelTitleProperty" value="ProductProductStorePaymentSettings"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+                <set field="paymentMethodTypeId" from-field="parameters.paymentMethodTypeId"/>
+                <set field="paymentServiceTypeEnumId" from-field="parameters.paymentServiceTypeEnumId"/>
+                <entity-one entity-name="ProductStorePaymentSetting" value-field="productStorePaymentSetting" auto-field-map="true"/>
+
+                <script location="component://product/webapp/catalog/WEB-INF/actions/store/EditProductStorePaySetup.groovy"/>
+
+                <set field="subContentTitle" value="店铺对应支付设置"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺对应支付设置"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListProductStorePaySetup}">
+                            <modal-page modal-url="EditProductStorePaymentSetting" description="创建新的支付方式" confirm-title="创建新的支付方式" id="EditProductStorePaymentSetting"
+                                        name="EditProductStorePaymentSetting">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStorePaymentSettings" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditProductStorePaySetup}">
+                            <section>
+                                <condition>
+                                    <if-has-permission permission="CATALOG" action="_CREATE"/>
+                                </condition>
+                                <widgets>
+                                    <include-form name="EditProductStorePaymentSetting" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                                </widgets>
+                            </section>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStorePaymentSetting">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ProductStorePaymentSetting" value-field="productStorePaymentSetting" auto-field-map="true"/>
+            </actions>
+            <condition>
+                <if-has-permission permission="CATALOG" action="_CREATE"/>
+            </condition>
+            <widgets>
+                <include-form name="EditProductStorePaymentSetting" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreEmails">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreEmailSetup"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreEmails"/>
+                <set field="labelTitleProperty" value="ProductProductStoreEmailSettings"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+
+                <entity-condition entity-name="ProductStoreEmailSetting" list="productStoreEmailSettings">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                    <order-by field-name="emailType"/>
+                </entity-condition>
+                <set field="subContentTitle" value="店铺电子邮件设置"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺电子邮件设置"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreEmailSetup}">
+                            <modal-page modal-url="addProductStoreEmail" description="创建新的电子邮件" confirm-title="创建新的电子邮件" id="addProductStoreEmail" name="addProductStoreEmail">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="updateProductStoreEmail" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleAddProductStoreEmailSetup}">
+                            <include-form name="createProductStoreEmail" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="addProductStoreEmail">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <!--<property-map resource="UiLabels" map-name="uiLabelMap"/>-->
+            </actions>
+            <widgets>
+                <include-form name="createProductStoreEmail" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreSurveys">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreSurveys"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreSurveys"/>
+                <set field="labelTitleProperty" value="ProductStoreSurveySettings"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+
+                <script location="component://product/webapp/catalog/WEB-INF/actions/store/EditProductStoreSurveys.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html>
+                                <html-template location="component://product/webapp/catalog/store/EditProductStoreSurveys.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreKeywordOvrd">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreKeywordOvrd"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreKeywordOvrd"/>
+                <set field="labelTitleProperty" value="ProductStoreKeywordOverrides"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+
+                <entity-condition entity-name="ProductStoreKeywordOvrd" list="productStorekeywordOvrdList">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                </entity-condition>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleEditProductStoreKeywordOvrd}">
+                            <include-form name="UpdateproductStorekeywordOvrdForm" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.PageTitleAddProductStoreKeywordOvrd}">
+                            <include-form name="CreateproductStorekeywordOvrdForm" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ViewProductStoreSegments">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleViewProductStoreSegments"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="ViewProductStoreSegments"/>
+                <set field="labelTitleProperty" value="ProductSegments"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+
+                <entity-one entity-name="ProductStore" value-field="productStore">
+                    <field-map field-name="productStoreId"/>
+                </entity-one>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <container>
+                            <link target="/marketing/control/viewSegmentGroup" style="buttontext" url-mode="inter-app" text="${uiLabelMap.ProductNewSegment}">
+                                <parameter param-name="productStoreId" from-field="productStoreId"/>
+                            </link>
+                        </container>
+                        <screenlet title="${uiLabelMap.PageTitleViewProductStoreSegments}">
+                            <include-form name="ViewProductStoreSegments" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreFinAccountSettings">
+        <section>
+            <actions>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap"/>
+                <set field="titleProperty" value="PageTitleEditProductStoreFinAccountSettings"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreFinAccountSettings"/>
+                <set field="labelTitleProperty" value="ProductStoreFinAccountSettings"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
+
+                <entity-one entity-name="ProductStoreFinActSetting" value-field="finAccountSetting"/>
+                <entity-condition entity-name="ProductStoreFinActSetting" list="productStoreFinActSettings">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                </entity-condition>
+                <set field="subContentTitle" value="店铺金融账户设置"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺金融账户设置"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListProductStoreFinAccountSettings}">
+                            <modal-page modal-url="updateProductStoreFinAccountSettings" description="创建新的金融账户" confirm-title="创建新的金融账户" id="updateProductStoreFinAccountSettings"
+                                        name="updateProductStoreFinAccountSettings">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStoreFinAccountSettings" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditProductStoreFinAccountSettings}">
+                            <include-form name="EditProductStoreFinAccountSettings" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="updateProductStoreFinAccountSettings">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap"/>
+                <entity-one entity-name="ProductStoreFinActSetting" value-field="finAccountSetting"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductStoreFinAccountSettings" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreVendorPayments">
+        <section>
+            <actions>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap"/>
+                <set field="titleProperty" value="PageTitleEditProductStoreVendorPayments"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreVendorPayments"/>
+                <set field="labelTitleProperty" value="ProductStoreVendorPayments"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <entity-condition entity-name="ProductStoreVendorPayment" list="productStoreVendorPaymentList">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                </entity-condition>
+                <set field="subContentTitle" value="店铺经销商支付设置"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺经销商支付设置"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListProductStoreVendorPayments}">
+                            <modal-page modal-url="EditProductStoreVendorPayment" description="创建新的经销商支付" confirm-title="创建新的经销商支付" id="EditProductStoreVendorPayment"
+                                        name="EditProductStoreVendorPayment">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStoreVendorPayments" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreVendorPayment">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductStoreVendorPayment" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductStoreVendorShipments">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductStoreVendorShipments"/>
+                <set field="headerItem" value="store"/>
+                <set field="tabButtonItem" value="EditProductStoreVendorShipments"/>
+                <set field="labelTitleProperty" value="ProductStoreVendorShipments"/>
+
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+
+                <entity-condition entity-name="ProductStoreVendorShipment" list="productStoreVendorShipmentList">
+                    <condition-expr field-name="productStoreId" from-field="productStoreId"/>
+                </entity-condition>
+                <set field="subContentTitle" value="店铺经销商送货设置"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺经销商送货设置"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.PageTitleListProductStoreVendorShipments}">
+                            <modal-page modal-url="EditProductStoreVendorShipment" description="创建新的经销商送货" confirm-title="创建新的经销商送货" id="EditProductStoreVendorShipment"
+                                        name="EditProductStoreVendorShipment">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStoreVendorShipments" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>
+                        <!--<screenlet title="${uiLabelMap.PageTitleEditProductStoreVendorShipments}">
+                            <include-form name="EditProductStoreVendorShipment" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+                        </screenlet>-->
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditProductStoreVendorShipment">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductStoreVendorShipment" location="component://product/widget/catalog/ProductStoreForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <!--   Assoc with product -->
+    <screen name="ListProductStoreFacility">
+        <section>
+            <actions>
+                <set field="titleProperty" value="ProductStoreFacilityAssocList"/>
+                <set field="tabButtonItem" value="EditProductStoreFacilities"/>
+                <set field="productStoreId" from-field="parameters.productStoreId"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="portalPageId" value="ProductStoreFacility"/>
+
+                <set field="subContentTitle" value="店铺对应场所"/>
+                <set field="middleCrumbLink" value="FindProductStore"/>
+                <set field="middleCrumbName" value="店铺管理"/>
+                <set field="currentCrumbName" value="店铺对应场所"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+
+                        <screenlet title="${uiLabelMap.ProductStoreFacilityAssocList}">
+                            <modal-page modal-url="editProductStoreFacility" description="创建新的场所" confirm-title="创建新的场所" id="EditProductStoreFacility"
+                                        name="EditProductStoreFacility">
+                                <parameter param-name="productStoreId"/>
+                            </modal-page>
+                            <horizontal-separator/>
+                            <include-form name="ListProductStoreFacility" location="component://product/widget/catalog/StoreForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductStoreFacility">
+        <section>
+            <condition>
+                <if-has-permission permission="CATALOG" action="_ADMIN"/>
+            </condition>
+            <actions>
+                <entity-one entity-name="ProductStoreFacility" value-field="productStoreFacility"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+            </actions>
+            <widgets>
+                <include-form name="EditProductStoreFacility" location="component://product/widget/catalog/StoreForms.xml"/>
+            </widgets>
+            <fail-widgets>
+                <label style="h3">${uiLabelMap.ProductCatalogUpdatePermissionError}</label>
+            </fail-widgets>
+        </section>
+    </screen>
+
+</screens>

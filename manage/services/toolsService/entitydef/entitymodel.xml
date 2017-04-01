@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+  <title>Entity of an Open For Yabiz Project Component</title>
+  <description>App model</description>
+  <version>1.0</version>
+  <entity entity-name="AppChannel" package-name="org.ofbiz.app.model">
+
+    <field name="appChannelId" type="id-ne"/>
+    <field name="appId" type="id-ne"/>
+    <field name="appName" type="name"/>
+    <field name="versionId" type="id-ne"/>
+    <!--proudct ,test ,dev-->
+    <field name="channelTag" type="id-ne"/>
+    <!--android ,ios-->
+    <field name="appType" type="name"/>
+    <field name="comments" type="long-varchar"/>
+    <field name="downloadUrl" type="long-varchar"/>
+    <field name="compatible" type="very-short"/>
+    <field name="available" type="very-short"/>
+    <!--对应app uuid www 更新时 其他可以相同 snapshot不同-->
+    <field name="snapshot" type="long-varchar"/>
+    <field name="contentId" type="id-ne"/>
+    <prim-key field="appChannelId"/>
+  </entity>
+
+</entitymodel>

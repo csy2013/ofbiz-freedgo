@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+  <screen name="commonArticleDecorator">
+    <section>
+      <actions>
+        <set field="headerItem" value="Article"/>
+        <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
+      </actions>
+      <widgets>
+        <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+          <decorator-section name="pre-body">
+            <column-container>
+              <column style="body-title">
+                <label>${uiLabelMap.ContentArticle}</label>
+                <label style="sub-title" text="${uiLabelMap[subContentTitle]}"/>
+              </column>
+              <column style="breadcrumb">
+                <link target="main" text="${uiLabelMap.CommonFirst}" style="breadcrumb"/>
+                <link target="${middleCrumbLink}" text="${uiLabelMap[middleCrumbName]}" style="breadcrumb"/>
+                <link target="" text="${uiLabelMap[currentCrumbName]}" style="breadcrumb active"/>
+              </column>
+            </column-container>
+          </decorator-section>
+
+          <decorator-section name="body">
+            <section>
+              <condition>
+                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+              </condition>
+              <widgets>
+                <decorator-section-include name="body"/>
+              </widgets>
+              <fail-widgets>
+                <label style="h3">${uiLabelMap.ContentViewPermissionError}</label>
+              </fail-widgets>
+            </section>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+
+  <screen name="ArticleMain">
+    <section>
+      <actions>
+        <set field="headerItem" value="Article"/>
+        <set field="siteId" from-field="parameters.siteId" default-value="eshop"/>
+        <entity-condition entity-name="Article" list="articles" use-cache="true">
+          <condition-expr field-name="webSiteId" operator="equals" from-field="siteId"/>
+          <order-by field-name="dateCreated DESC"/>
+        </entity-condition>
+        <set field="subContentTitle" value="ContentArticleList"/>
+        <set field="middleCrumbName" value="ContentArticleList"/>
+        <set field="currentCrumbName" value="ContentArticleList"/>
+        <set field="middleCrumbLink" value="ArticleMain"/>
+      </actions>
+      <widgets>
+        <decorator-screen name="commonArticleDecorator">
+          <decorator-section name="body">
+            <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+              <decorator-section name="menu-bar">
+                <modal-page modal-url="EditArticle" description="${uiLabelMap.ContentArticleCreate}" id="EditArticle" name="EditArticle"
+                            confirm-title="${uiLabelMap.ContentArticleCreate}"/>
+
+              </decorator-section>
+              <decorator-section name="search-options">
+                <include-form name="FindArticles" location="component://content/widget/article/ArticleForms.xml"/>
+              </decorator-section>
+              <decorator-section name="search-results">
+                <include-form name="ListArticles" location="component://content/widget/article/ArticleForms.xml"/>
+              </decorator-section>
+            </decorator-screen>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+  <screen name="EditArticle">
+    <section>
+      <actions>
+        <set field="headerItem" value="article"/>
+        <property-map resource="ContentUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+        <set field="articleId" from-field="parameters.articleId"/>
+        <entity-one entity-name="Article" value-field="article" auto-field-map="true"/>
+      </actions>
+      <widgets>
+        <include-form name="EditArticle" location="component://content/widget/article/ArticleForms.xml"/>
+      </widgets>
+    </section>
+  </screen>
+
+  <screen name="ArticleContentMain">
+    <section>
+      <actions>
+        <set field="headerItem" value="ArticleContent"/>
+        <set field="subContentTitle" value="ContentArticleContent"/>
+        <set field="middleCrumbName" value="ContentArticleList"/>
+        <set field="currentCrumbName" value="ContentArticleContent"/>
+        <set field="middleCrumbLink" value="ArticleMain"/>
+      </actions>
+      <widgets>
+        <decorator-screen name="commonArticleDecorator">
+          <decorator-section name="body">
+            <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+              <decorator-section name="menu-bar">
+                <link target="CreateArticleContent" text="${uiLabelMap.ContentArticleContentCreate}" id="EditArticleContent" name="EditArticleContent">
+                  <parameter param-name="articleId" from-field="parameters.articleId"/>
+                </link>
+                <horizontal-separator/>
+              </decorator-section>
+              <decorator-section name="search-results">
+                <include-form name="ListArticleContents" location="component://content/widget/article/ArticleForms.xml"/>
+              </decorator-section>
+            </decorator-screen>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+  <screen name="CreateArticleContent">
+    <section>
+      <actions>
+        <set field="headerItem" value="ArticleContent"/>
+        <set field="subContentTitle" value="ContentArticleCreate"/>
+        <set field="middleCrumbName" value="ContentArticleList"/>
+        <set field="currentCrumbName" value="ContentArticleCreate"/>
+        <set field="middleCrumbLink" value="ArticleContentMain?articleId=${parameters.articleId}"/>
+        <set field="articleContentId" from-field="parameters.articleContentId"/>
+        <entity-one entity-name="ArticleContent" value-field="articleContent" auto-field-map="true"/>
+
+      </actions>
+      <widgets>
+        <decorator-screen name="commonArticleDecorator">
+          <decorator-section name="body">
+            <screenlet>
+            <include-form name="EditArticleContent" location="component://content/widget/article/ArticleForms.xml"/>
+            </screenlet>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+  <screen name="EditArticleContent">
+    <section>
+      <actions>
+        <set field="headerItem" value="ArticleContent"/>
+        <set field="subContentTitle" value="ContentArticleEdit"/>
+        <set field="middleCrumbName" value="ContentArticleList"/>
+        <set field="currentCrumbName" value="ContentArticleEdit"/>
+        <set field="middleCrumbLink" value="ArticleContentMain?articleId=${parameters.articleId}"/>
+        <set field="articleContentId" from-field="parameters.articleContentId"/>
+        <entity-one entity-name="ArticleContent" value-field="articleContent" auto-field-map="true"/>
+        <service service-name="getArticleEntry" result-map="articleEntry" auto-field-map="true">
+          <field-map field-name="contentId" from-field="articleContent.contentId"/>
+        </service>
+      </actions>
+      <widgets>
+        <decorator-screen name="commonArticleDecorator">
+          <decorator-section name="body">
+            <screenlet>
+              <include-form name="EditArticleContent" location="component://content/widget/article/ArticleForms.xml"/>
+            </screenlet>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+  <screen name="ArticleContentView">
+    <section>
+      <actions>
+        <set field="headerItem" value="Article"/>
+        <entity-condition entity-name="Article" list="articles" use-cache="true">
+          <condition-list combine="and">
+            <condition-expr field-name="articleId" operator="equals" value="parameters.siteId"/>
+          </condition-list>
+          <order-by field-name="caFromDate DESC"/>
+        </entity-condition>
+        <set field="subContentTitle" value="ContentArticleList"/>
+        <set field="middleCrumbName" value="ContentArticleList"/>
+        <set field="currentCrumbName" value="ContentArticleList"/>
+        <set field="middleCrumbLink" value="articleMain"/>
+      </actions>
+      <widgets>
+        <decorator-screen name="commonArticleDecorator">
+          <decorator-section name="body">
+            <include-menu name="artContentMenu" location="component://content/widget/content/ContentMenus.xml"/>
+            <include-form name="EditArticleContent" location="component://content/widget/article/ArticleForms.xml"/>
+          </decorator-section>
+        </decorator-screen>
+      </widgets>
+    </section>
+  </screen>
+</screens>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<entity-engine-xml>
+    <!-- Content Manager security -->
+    <SecurityPermission name="CONTENTMGR_ADMIN" parentPermissionId="-1" description="内容管理" permissionId="CONTENTMGR_ADMIN"/>
+    <SecurityPermission name="CONTENTMGR_VIEW" parentPermissionId="CONTENTMGR_ADMIN" description="内容查看" permissionId="CONTENTMGR_VIEW"/>
+    <SecurityPermission name="CONTENTMGR_CREATE" parentPermissionId="CONTENTMGR_ADMIN" description="内容创建" permissionId="CONTENTMGR_CREATE"/>
+    <SecurityPermission name="CONTENTMGR_UPDATE" parentPermissionId="CONTENTMGR_ADMIN" description="内容修改" permissionId="CONTENTMGR_UPDATE"/>
+    <SecurityPermission name="CONTENTMGR_DELETE" parentPermissionId="CONTENTMGR_ADMIN" description="内容删除" permissionId="CONTENTMGR_DELETE"/>
+
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CONTENTMGR_ADMIN"/>
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="CONTENTMGR_CREATE"/>-->
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="CONTENTMGR_DELETE"/>-->
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="CONTENTMGR_UPDATE"/>-->
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="CONTENTMGR_VIEW"/>-->
+    <!--<SecurityGroupPermission groupId="VIEWADMIN" permissionId="CONTENTMGR_VIEW"/>-->
+    <!--<SecurityGroupPermission groupId="BIZADMIN" permissionId="CONTENTMGR_ADMIN"/>-->
+
+    <!-- Content ROLE security -->
+    <SecurityPermission name="CONTENTMGR_ROLE_VIEW" parentPermissionId="CONTENTMGR_ADMIN" description="有限内容查看" permissionId="CONTENTMGR_ROLE_VIEW"/>
+    <SecurityPermission name="CONTENTMGR_ROLE_CREATE" parentPermissionId="CONTENTMGR_ADMIN" description="有限内容创建" permissionId="CONTENTMGR_ROLE_CREATE"/>
+    <SecurityPermission name="CONTENTMGR_ROLE_UPDATE" parentPermissionId="CONTENTMGR_ADMIN" description="有限内容修改" permissionId="CONTENTMGR_ROLE_UPDATE"/>
+    <SecurityPermission name="CONTENTMGR_ROLE_DELETE" parentPermissionId="CONTENTMGR_ADMIN" description="有限内容删除" permissionId="CONTENTMGR_ROLE_DELETE"/>
+<!--    <SecurityGroup groupId="CONTENT_USER" description="Content user group; all limited content permissions."/>
+    <SecurityGroupPermission groupId="CONTENT_USER" permissionId="CONTENTMGR_ROLE_VIEW"/>
+    <SecurityGroupPermission groupId="CONTENT_USER" permissionId="CONTENTMGR_ROLE_CREATE"/>
+    <SecurityGroupPermission groupId="CONTENT_USER" permissionId="CONTENTMGR_ROLE_UPDATE"/>
+    <SecurityGroupPermission groupId="CONTENT_USER" permissionId="CONTENTMGR_ROLE_DELETE"/>-->
+
+    <!-- Control Applet security -->
+    <SecurityPermission name="SEND_CONTROL_APPLET" parentPermissionId="CONTENTMGR_ADMIN" description="发送内容" permissionId="SEND_CONTROL_APPLET"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="SEND_CONTROL_APPLET"/>
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="SEND_CONTROL_APPLET"/>-->
+</entity-engine-xml>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile category Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <service name="DaoJia_SubmitOrder" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_SubmitOrder">
+        <description>提交订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/submitOrder24</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'produceStationNo':10000,'deliveryStationNo':10000,'stationName':'永辉超市-滨江新城店','buyerCity':904,'buyerCityName':'南京市','countryId':3373,'countryName':'玄武区','poi':'中央路262号住宅小区','addressId':10170,'buyerFullName':'常胜永','buyerFullAddress':'中山东路小区旭日华庭','buyerMobile':'134*****999','generalAddress':0,'longit':118.7855,'dimen':32.0803,'coordType':2,'buyerProvince':0,'unique':'f4d5fb99-f51f-4268-a273-5194f98c7bab','signatureKey':'047E9088EEACD2B4D10ABDE3F7940B38','orderPayType':4,'orgCode':'CN-110101','orderPlatform':'H5','terminalType':2,'clientVersion':'2.1','jdBeansCount':0,'sendTime':'2016-08-20+13:57:00','deliveryTime':'2016-08-20+13:57:00','onTime':0,'discountCode':'','coupon':'','orderInvoiceOpenMark':2,'stockOutOption':'所购商品如遇缺货，您需要：其它商品继续配送（缺货商品退款）','orderBuyerRemark':'','deliveryType':0,'fromSource':2,'source':2}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="resultData" type="java.util.List" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_OrderList" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderList">
+        <description>提交订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/list</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'startIndex':0,'dataSize':10}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474294068109</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_OrderInfo" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderInfo">
+        <description>提交订单</description>
+        <attribute name="orderId"  type="String" mode="IN"><description>orderId</description></attribute>
+        <attribute name="queryType" type="java.util.Map" mode="IN">
+            <description>
+                showOrderStatusList,showOrderHeader,showOrderItems,showOrderReviews,showCurrentOrderStatus,showOrderPaymentPreference (Y,N)
+            </description>
+        </attribute>
+        <attribute name="orderStatusList" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="orderHeader" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+        <attribute name="orderItems" type="List" mode="OUT" optional="true"/>
+        <attribute name="orderReviews" type="List" mode="OUT" optional="true"/>
+        <attribute name="currentOrderStatus" type="Map" mode="OUT" optional="true"/>
+        <attribute name="orderPaymentPreference" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+     </service>
+    <service name="DaoJia_OrderIsExistsComment" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderIsExistsComment">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/isExistsComment</description></attribute>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/list</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'startIndex':0,'dataSize':10}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474294068109</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_CheckBeforeToStoreDetail" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_CheckBeforeToStoreDetail">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>check/checkBeforeToStoreDetail</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'storeId':'10000'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474508265634</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_OrderInfo1" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderInfo1">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/info</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'orderId':'10060'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474508413404</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_OrderProductInventory" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderProductInventory">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/productInventory</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'orderId':'WSOD10070'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474553929100</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_OrderState" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderState">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/productInventory</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'orderId':'WSOD10070'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474553929100</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_OrderStateMap" engine="java"  location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderStateMap">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/productInventory</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'orderId':'WSOD10070'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474553929100</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_RePurchaseSingleProduct" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_RePurchaseSingleProduct">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>rePurchase/singleProduct</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'cartUuid':'C6A0707D39D000018AC7DFA031FE1C8A','skuInfoList':[{'skuId':10002,'num':3},{'skuId':10009,'num':10}],'storeId':'10000'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474612226821</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_OrderProductComment" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderProductComment">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>rePurchase/singleProduct</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'cartUuid':'C6A0707D39D000018AC7DFA031FE1C8A','skuInfoList':[{'skuId':10002,'num':3},{'skuId':10009,'num':10}],'storeId':'10000'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474612226821</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+    <service name="DaoJia_OrderSkuBatchComment" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_OrderSkuBatchComment">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/orderSkuBatchComment</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'orderId':'WSOD10070','deliveryScore':5,'serviceScore':5,'skus':[{'skuId':'10002','score':5,'comment':'sss'},{'skuId':'10009','score':4,'comment':'aaa'}]}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474641018241</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_WebPaySign" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_WebPaySign">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/orderSkuBatchComment</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>body:{"ref":"storeHome/skuId:10002/storeId:10000/orgCode:CN-110101/fromAnchor:true","tradeName":"红富士苹果约950±50g/份","merchantOrderNum":"WSOD10125","paySuccessUrl":"https://changsy.cn/daojia/www/index.html#orderopresult/result:success/payType:pay/orderId:WSOD10125","appId":1,"source":2,"paySource":3,"os":"OS04","osVersion":"","deviceType":"DT01","openId":""}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474641018241</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_CashierPageInfo" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_CashierPageInfo">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>order/orderSkuBatchComment</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>body:{"ref":"storeHome/skuId:10002/storeId:10000/orgCode:CN-110101/fromAnchor:true","tradeName":"红富士苹果约950±50g/份","merchantOrderNum":"WSOD10125","paySuccessUrl":"https://changsy.cn/daojia/www/index.html#orderopresult/result:success/payType:pay/orderId:WSOD10125","appId":1,"source":2,"paySource":3,"os":"OS04","osVersion":"","deviceType":"DT01","openId":""}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474641018241</description></attribute>
+        <attribute name="resultData" type="com.yuaoq.yabiz.daojia.model.json.order.CashierPageInfo" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_CashierAliPay" engine="java" location="com.yuaoq.yabiz.daojia.service.order.OrderService" invoke="DaoJia_CashierAliPay">
+        <description>订单</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>cashier/aliPay</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'token':'$SHA$rjCppnl20Jx55q$PPtONi476x_WkSL-PqiI3Ar3ars'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.3.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1474988183017</description></attribute>
+        <attribute name="resultData" type="java.util.Map" mode="OUT"/>
+    </service>
+</services>

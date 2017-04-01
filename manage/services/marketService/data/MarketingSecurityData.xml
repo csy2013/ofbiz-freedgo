@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+  <!-- Marketing Manager security -->
+  <SecurityPermission name="MARKETING_VIEW" parentPermissionId="MARKETING_ADMIN" description="市场查看" permissionId="MARKETING_VIEW"/>
+  <SecurityPermission name="MARKETING_CREATE" parentPermissionId="MARKETING_ADMIN" description="市场创建" permissionId="MARKETING_CREATE"/>
+  <SecurityPermission name="MARKETING_UPDATE" parentPermissionId="MARKETING_ADMIN" description="市场修改" permissionId="MARKETING_UPDATE"/>
+  <SecurityPermission name="MARKETING_DELETE" parentPermissionId="MARKETING_ADMIN" description="市场删除" permissionId="MARKETING_DELETE"/>
+  <SecurityPermission name="MARKETING_ADMIN" parentPermissionId="-1" description="市场管理" permissionId="MARKETING_ADMIN"/>
+  <SecurityPermission name="MARKETING_ROLE_VIEW" parentPermissionId="MARKETING_ADMIN" description="有限市场查看" permissionId="MARKETING_ROLE_VIEW"/>
+  <SecurityPermission name="MARKETING_ROLE_UPDATE" parentPermissionId="MARKETING_ADMIN" description="有限市场修改" permissionId="MARKETING_ROLE_UPDATE"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="MARKETING_ADMIN"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="MARKETING_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MARKETING_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MARKETING_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MARKETING_VIEW"/>
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="MARKETING_VIEW"/>
+  <SecurityGroupPermission groupId="BIZADMIN" permissionId="MARKETING_ADMIN"/>-->
+
+  <!-- SFA security -->
+  <SecurityPermission name="SFA_VIEW" parentPermissionId="SFA_ADMIN" description="销售查看" permissionId="SFA_VIEW"/>
+  <SecurityPermission name="SFA_CREATE" parentPermissionId="SFA_ADMIN" description="销售创建" permissionId="SFA_CREATE"/>
+  <SecurityPermission name="SFA_UPDATE" parentPermissionId="SFA_ADMIN" description="销售修改" permissionId="SFA_UPDATE"/>
+  <SecurityPermission name="SFA_DELETE" parentPermissionId="SFA_ADMIN" description="销售删除" permissionId="SFA_DELETE"/>
+  <SecurityPermission name="SFA_ADMIN" parentPermissionId="-1" description="销售管理" permissionId="SFA_ADMIN"/>
+  <SecurityPermission name="SFA_ROLE_VIEW" parentPermissionId="SFA_ADMIN" description="有限销售查看" permissionId="SFA_ROLE_VIEW"/>
+  <SecurityPermission name="SFA_ROLE_UPDATE" parentPermissionId="SFA_ADMIN" description="有限销售修改" permissionId="SFA_ROLE_UPDATE"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="SFA_ADMIN"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="SFA_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SFA_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SFA_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SFA_VIEW"/>
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="SFA_VIEW"/>
+  <SecurityGroupPermission groupId="BIZADMIN" permissionId="SFA_ADMIN"/>
+  -->
+
+</entity-engine-xml>

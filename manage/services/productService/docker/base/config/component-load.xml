@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/component-loader.xsd">
+    <!--是否可以不加载webapp-->
+    <load-component component-location="framework/base"/>
+    <load-component component-location="framework/sql"/>
+    <load-component component-location="framework/entity"/>
+    <!--<load-component component-location="framework/catalina"/>-->
+    <load-component component-location="framework/security"/>
+    <load-component component-location="framework/datafile"/>
+    <load-component component-location="framework/minilang"/>
+    <load-component component-location="framework/webapp"/>
+    <load-component component-location="framework/geronimo"/>
+    <load-component component-location="framework/widget"/>
+    <load-component component-location="framework/common"/>
+    <load-component component-location="framework/service"/>
+    <load-component component-location="framework/entityext"/>
+    <load-component component-location="framework/dubbo"/>
+
+    <load-component component-location="applications/order" component-name="orde" component-use-webapps="false" />
+    <load-component component-location="applications/marketing" component-name="marketing" component-use-webapps="false"/>
+    <load-component component-location="applications/party" component-name="party" component-use-webapps="false"/>
+    <load-component component-location="applications/content" component-name="content" component-use-webapps="false"/>
+    <load-component component-location="applications/manufacturing" component-name="manufacturing" component-use-webapps="false"/>
+    <load-component component-location="applications/accounting" component-name="accounting" component-use-webapps="false"/>
+    <load-component component-location="applications/workeffort" component-name="workeffort" component-use-webapps="false"/>
+    <load-component component-location="applications/humanres" component-name="humanres" component-use-webapps="false"/>
+    <load-component component-location="applications/commonext" component-name="commonext" component-use-webapps="false"/>
+    <load-component component-location="applications/securityext" component-name="securityext" component-use-webapps="false"/>
+
+    <load-component component-location="servicesProvider/productService" component-name="productService" />
+
+</component-loader>

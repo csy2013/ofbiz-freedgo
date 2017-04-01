@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+  <form name="FindAdvert" default-map-name="advert" target="FindAdvert" title="" type="inputgroup" header-row-style="header-row" default-table-style="basic-table">
+    <field name="advertTypeId">
+      <drop-down allow-empty="true" text-size="20">
+        <entity-options entity-name="AdvertType" description="${description}" key-field-name="advertTypeId">
+          <entity-order-by field-name="advertTypeId"/>
+        </entity-options>
+      </drop-down>
+    </field>
+    <field name="advertName">
+      <text-find/>
+    </field>
+    <field name="noConditionFind">
+      <hidden value="Y"/>
+    </field>
+    <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+  <form name="ListAdvert" target="" title="" list-name="listIt" type="list" paginate-target="FindAdvert" odd-row-style="alternate-row" header-row-style="header-row-2"
+        default-table-style="basic-table hover-bar">
+    <actions>
+      <service result-map-list="listIt" result-map="result" service-name="performFind">
+        <field-map field-name="inputFields" from-field="parameters"/>
+        <field-map field-name="entityName" value="Advert"/>
+        <field-map field-name="orderBy" from-field="parameters.sortField"/>
+        <field-map field-name="viewIndex" from-field="viewIndex"/>
+        <field-map field-name="viewSize" from-field="viewSize"/>
+      </service>
+    </actions>
+    <auto-fields-entity entity-name="Advert" default-field-type="display"/>
+    <field name="advertId" widget-style="buttontext" sort-field="true">
+      <hyperlink description="${advertId}" target="EditAdvert" also-hidden="false">
+        <parameter param-name="advertId"/>
+      </hyperlink>
+    </field>
+    <field name="dateCreated">
+      <display type="date-time"/>
+    </field>
+    <field name="advertTypeId">
+      <display-entity entity-name="AdvertType" description="${description}">
+
+      </display-entity>
+    </field>
+    <field name="comments">
+      <hidden/>
+    </field>
+    <field name="CommonUpdate" title="${uiLabelMap.CommonUpdate}">
+      <modal-page modal-url="EditAdvert" confirm-title="${uiLabelMap.CommonUpdate}" description="${uiLabelMap.CommonUpdate}">
+        <parameter param-name="advertId"/>
+      </modal-page>
+    </field>
+    <field name="CommonDelete" title="${uiLabelMap.CommonDelete}">
+      <confirm-modal confirm-url="DeleteAdvert" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该记录?" confirm-title="${uiLabelMap.CommonDelete}">
+        <parameter param-name="advertId"/>
+      </confirm-modal>
+    </field>
+    <field name="CommonAdvertContent" title="${uiLabelMap.ContentAdvertContent}">
+      <hyperlink target="EditAdvertContent" description="${uiLabelMap.ContentAdvertContent}" link-type="anchor">
+        <parameter param-name="advertId"/>
+      </hyperlink>
+    </field>
+    <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListFindAdvertSearchResults"/>
+  </form>
+
+  <form name="EditAdvert" type="single" target="updateAdvert1" title="" default-map-name="advert" header-row-style="header-row" default-table-style="basic-table">
+    <alt-target use-when="advert==null" target="createAdvert"/>
+    <!--<auto-fields-service service-name="updateAdvert"/>-->
+    <field use-when="advert!=null" name="advertId" tooltip="${uiLabelMap.CommonNotModifRecreat}" widget-style="tabletext">
+      <display/>
+    </field>
+    <field use-when="advert==null&amp;&amp;advertId!=null" name="advertId" tooltip="${uiLabelMap.CommonCannotBeFound}: [${advertId}]" widget-style="tabletext">
+      <display description="" also-hidden="false"/>
+    </field>
+    <field use-when="advert==null&amp;&amp;advertId==null" name="advertId">
+      <ignored/>
+    </field>
+
+    <field name="advertName">
+      <text/>
+    </field>
+    <field name="advertTypeId">
+      <drop-down no-current-selected-key="N" allow-empty="false">
+        <entity-options entity-name="AdvertType" description="${description}"/>
+      </drop-down>
+    </field>
+    <field name="advertText">
+      <textarea/>
+    </field>
+    <field name="comments">
+      <hidden/>
+    </field>
+    <!--<field name="dateCreated"><hidden/></field>-->
+
+    <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+  <form name="ListAdvertContent" target="" title="" list-name="listIt" type="list" paginate-target="FindAdvertContent" odd-row-style="alternate-row" header-row-style="header-row-2"
+        default-table-style="basic-table hover-bar">
+    <actions>
+      <service result-map-list="listIt" result-map="result" service-name="performFind">
+        <field-map field-name="inputFields" from-field="parameters"/>
+        <field-map field-name="entityName" value="AdvertContent"/>
+        <field-map field-name="orderBy" from-field="parameters.sortField"/>
+        <field-map field-name="viewIndex" from-field="viewIndex"/>
+        <field-map field-name="viewSize" from-field="viewSize"/>
+      </service>
+    </actions>
+    <auto-fields-entity entity-name="AdvertContent" default-field-type="display"/>
+    <field name="advertContentName"><display/></field>
+    <field name="advertContentId">
+      <hidden/>
+    </field>
+    <field name="advertId">
+      <hidden/>
+    </field>
+    <field name="assocContentId">
+      <hidden/>
+    </field>
+    <field name="contentId">
+      <hidden/>
+    </field>
+    <field name="sequenceNum">
+      <text/>
+    </field>
+    <field name="CommonUpdate" title="${uiLabelMap.CommonUpdate}">
+      <modal-page modal-url="EditAdvert" confirm-title="${uiLabelMap.CommonUpdate}" description="${uiLabelMap.CommonUpdate}">
+        <parameter param-name="advertId"/>
+      </modal-page>
+    </field>
+    <field name="CommonDelete" title="${uiLabelMap.CommonDelete}">
+      <confirm-modal confirm-url="DeleteAdvert" description="${uiLabelMap.CommonDelete}">
+        <parameter param-name="advertId"/>
+      </confirm-modal>
+    </field>
+    <on-event-update-area event-type="paginate" area-id="search-results" area-target="FindAdvertContent"/>
+  </form>
+</forms>

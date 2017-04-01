@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+  <!-- ========================================================= -->
+  <!-- ======================== Defaults ======================= -->
+  <!-- ========================================================= -->
+  <title>会员相关</title>
+  <description>add by changsy at 2016.01.08</description>
+  <version>1.0</version>
+  <!--会员等级-->
+  <entity entity-name="PartyLevel" package-name="org.ofbiz.party.level">
+    <field name="partyId" type="id-ne"></field>
+    <field name="levelId" type="id-ne"></field>
+    <field name="levelName" type="name"></field>
+    <field name="startDate" type="date-time"></field>
+    <prim-key field="partyId"></prim-key>
+    <prim-key field="levelId"></prim-key>
+    <relation type="one" rel-entity-name="PartyLevelType">
+      <key-map field-name="levelId"/>
+    </relation>
+    <relation type="many" rel-entity-name="PartyLevelHis">
+      <key-map field-name="partyId"/>
+    </relation>
+  </entity>
+  <!--会员等级历史-->
+  <entity entity-name="PartyLevelHis" package-name="org.ofbiz.party.level">
+    <field name="partyId" type="id-ne"></field>
+    <field name="levelId" type="id-ne"></field>
+    <field name="levelName" type="name"></field>
+    <field name="startDate" type="date-time"></field>
+    <field name="endDate" type="date-time"></field>
+    <prim-key field="partyId"></prim-key>
+    <prim-key field="levelId"></prim-key>
+    <prim-key field="startDate"></prim-key>
+  </entity>
+  <!--会员等级类型-->
+  <entity entity-name="PartyLevelType" package-name="org.ofbiz.party.level">
+    <field name="levelId" type="id-ne"></field>
+    <field name="levelName" type="name"></field>
+    <field name="levelCode" type="name"></field>
+    <prim-key field="levelId"></prim-key>
+  </entity>
+  <!--社区-->
+  <entity entity-name="Community" package-name="org.ofbiz.party.community">
+    <field name="communityId" type="id-ne"></field>
+    <field name="code" type="name"></field>
+    <field name="name" type="name"></field>
+    <field name="parentGeoId" type="id-ne"></field>
+    <prim-key field="communityId"></prim-key>
+    <relation type="one" rel-entity-name="Geo">
+      <key-map field-name="parentGeoId" rel-field-name="geoId"/>
+    </relation>
+  </entity>
+  <!--积分-->
+  <entity entity-name="PartyScore" package-name="org.ofbiz.party.score">
+    <field name="partyId" type="id-ne"></field>
+    <field name="scoreValue" type="numeric"></field>
+    <prim-key field="partyId"></prim-key>
+    <relation type="one" rel-entity-name="Party">
+      <key-map field-name="partyId"/>
+    </relation>
+  </entity>
+</entitymodel>

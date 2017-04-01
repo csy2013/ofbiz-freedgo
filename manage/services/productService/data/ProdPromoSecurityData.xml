@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+
+    <!--营销管理-->
+    <SecurityPermission description="营销管理" name="营销管理" permissionId="PRODPROMO_VIEW" parentPermissionId="-1"/>
+
+
+    <!--团购管理-->
+    <SecurityPermission description="团购" name="团购" permissionId="PRODPROMO_GROUPORDER_VIEW" parentPermissionId="PRODPROMO_VIEW"/>
+
+    <SecurityPermission description="团购列表" name="团购列表" permissionId="PRODPROMO_GROUPORDER_LIST" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <SecurityPermission description="新增团购" name="新增团购" permissionId="PRODPROMO_GROUPORDER_ADD" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <SecurityPermission description="修改团购" name="修改团购" permissionId="PRODPROMO_GROUPORDER_UPDATE" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <SecurityPermission description="删除团购" name="删除团购" permissionId="PRODPROMO_GROUPORDER_DELETE" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <SecurityPermission description="审批团购" name="审批团购" permissionId="PRODPROMO_GROUPORDER_AUDIT" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <SecurityPermission description="团购详细" name="团购详细" permissionId="PRODPROMO_GROUPORDER_DETAIL" parentPermissionId="PRODPROMO_GROUPORDER_VIEW"/>
+    <!-- 秒杀 -->
+    <SecurityPermission description="秒杀" name="秒杀" permissionId="PRODPROMO_SECKILL_VIEW" parentPermissionId="PRODPROMO_VIEW"/>
+
+    <SecurityPermission description="秒杀列表" name="秒杀列表" permissionId="PRODPROMO_SECKILL_LIST" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+    <SecurityPermission description="新增秒杀" name="新增秒杀" permissionId="PRODPROMO_SECKILL_ADD" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+    <SecurityPermission description="修改秒杀" name="修改秒杀" permissionId="PRODPROMO_SECKILL_UPDATE" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+    <SecurityPermission description="删除秒杀" name="删除秒杀" permissionId="PRODPROMO_SECKILL_DELETE" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+    <SecurityPermission description="审批秒杀" name="审批秒杀" permissionId="PRODPROMO_SECKILL_AUDIT" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+    <SecurityPermission description="秒杀详细" name="秒杀详细" permissionId="PRODPROMO_SECKILL_DETAIL" parentPermissionId="PRODPROMO_SECKILL_VIEW"/>
+
+    <!--<SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_ADMIN"/>-->
+
+
+
+</entity-engine-xml>

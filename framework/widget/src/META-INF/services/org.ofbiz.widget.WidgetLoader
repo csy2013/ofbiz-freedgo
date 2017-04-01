@@ -1,0 +1,4 @@
+org.ofbiz.amaze.widget.AmazeWidgetLoaderImpl
+org.ofbiz.boots.widget.BootsWidgetLoaderImpl
+org.ofbiz.coloradmin.widget.ColoradminWidgetLoaderImpl
+org.ofbiz.adminlet.widget.AdminletWidgetLoaderImpl

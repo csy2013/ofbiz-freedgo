@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+  <description>System Manage Component Services</description>
+  <vendor>ICO</vendor>
+  <version>1.0</version>
+  <service name="findManager" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" invoke="findManager" auth="true">
+    <attribute name="VIEW_INDEX" type="String" mode="IN" optional="true"/>
+    <attribute name="VIEW_SIZE" type="String" mode="IN" optional="true"/>
+    <attribute name="userLoginId" type="String" mode="INOUT" optional="true"/>
+    <attribute name="userName" type="String" mode="INOUT" optional="true"/>
+    <attribute name="lookupFlag" type="String" mode="IN" optional="true"/>
+    <attribute name="hideFields" type="String" mode="IN" optional="true"/>
+    <attribute name="ORDER_FILED" type="String" mode="IN" optional="true"/>
+    <attribute name="ORDER_BY" type="String" mode="IN" optional="true"/>
+
+    <attribute name="viewIndex" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="viewSize" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="highIndex" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="lowIndex" type="Integer" mode="OUT" optional="false"/>
+
+    <attribute name="userList" type="java.util.List" mode="OUT"/>
+    <attribute name="userListSize" type="Integer" mode="OUT"/>
+    <attribute name="paramList" type="String" mode="OUT"/>
+    <attribute name="orderFiled" type="String" mode="OUT" optional="true"/>
+    <attribute name="orderBy" type="String" mode="OUT" optional="true"/>
+    <!--<attribute name="userLoginId" type="String" mode="OUT" optional="true"/>-->
+    <!--<attribute name="userName" type="String" mode="OUT" optional="true"/>-->
+  </service>
+
+
+  <service name="findSecurityGroup" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="queryAllSecurityGroup" auth="true">
+    <attribute name="securityGroups" type="java.util.List" mode="OUT"/>
+  </service>
+
+  <service name="addManager" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" invoke="addManager" auth="false">
+    <attribute name="userName" type="String" mode="IN"/>
+    <attribute name="password" type="String" mode="IN"/>
+    <attribute name="rePassword" type="String" mode="IN"/>
+    <attribute name="name" type="String" mode="IN" optional="true"/>
+    <attribute name="mobile" type="String" mode="IN" optional="true"/>
+    <attribute name="groupId" type="String" mode="IN" optional="true"/>
+    <attribute name="enabled" type="String" mode="IN" optional="true"/>
+    <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_size" type="String" mode="IN" optional="true"/>
+    <attribute name="partyId" type="String" mode="OUT"/>
+  </service>
+
+  <service name="updateManager" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" invoke="modifyManager" auth="false">
+    <attribute name="partyId" type="String" mode="IN"/>
+    <attribute name="userName" type="String" mode="IN"/>
+    <attribute name="userLoginId" type="String" mode="IN"/>
+    <attribute name="password" type="String" mode="IN" optional="true"/>
+    <attribute name="rePassword" type="String" mode="IN" optional="true"/>
+    <attribute name="name" type="String" mode="IN" optional="true"/>
+    <attribute name="mobile" type="String" mode="IN" optional="true"/>
+    <attribute name="groupId" type="String" mode="IN" optional="true"/>
+    <attribute name="enabled" type="String" mode="IN" optional="true"/>
+    <attribute name="oldGroupId" type="String" mode="IN" optional="true"/>
+    <attribute name="oldMobile" type="String" mode="IN" optional="true"/>
+    <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+    <attribute name="contactMechId" type="String" mode="IN" optional="true"/>
+    <attribute name="_uploadedFile_size" type="String" mode="IN" optional="true"/>
+  </service>
+
+  <service name="managerDetail" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" invoke="managerDetail" auth="true">
+    <attribute name="partyId" type="String" mode="IN"/>
+    <attribute name="userName" type="String" mode="IN" optional="true"/>
+    <attribute name="mobile" type="String" mode="IN" optional="true"/>
+    <attribute name="groupId" type="String" mode="IN" optional="true"/>
+    <attribute name="enabled" type="String" mode="IN" optional="true"/>
+  </service>
+
+
+  <service name="createEmployee" engine="simple"
+           location="component://partyService/script/org/ofbiz/party/user/UserEvents.xml" invoke="createEmployee" auth="false">
+    <description>Create a Employ</description>
+    <attribute name="PASSWORD" type="String" mode="IN"/>
+    <attribute name="CONFIRM_PASSWORD" type="String" mode="IN"/>
+    <attribute name="USERNAME" type="String" mode="IN"/>
+    <attribute name="USER_MOBILE_CONTACT" type="String" mode="IN"/>
+    <attribute name="NAME" type="String" mode="IN"/>
+    <attribute name="USE_ADDRESS" type="String" mode="IN" default-value="false" optional="true"/>
+    <attribute name="ENABLED" type="String" mode="IN" optional="false" default-value="Y"/>
+    <attribute name="partyId" type="String" mode="OUT"/>
+  </service>
+
+
+  <service name="createUserLogo" engine="simple"
+           location="component://partyService/script/org/ofbiz/party/user/UserEvents.xml" invoke="updatePartyContent" auth="false">
+    <description>create user logo</description>
+    <attribute name="partyId" type="String" mode="IN"/>
+    <attribute name="dataCategoryId" type="String" mode="IN"/>
+    <attribute name="contentTypeId" type="String" mode="IN"/>
+    <attribute name="statusId" type="String" mode="IN" default-value="CTNT_PUBLISHED"/>
+    <attribute name="roleTypeId" type="String" mode="IN" default-value="OWNER"/>
+    <attribute name="partyContentTypeId" type="String" mode="IN" default-value="LGOIMGURL"/>
+    <attribute name="mimeTypeId" type="String" mode="IN" default-value="image/gif"/>
+    <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="false"/>
+    <attribute name="request" mode="IN" type="javax.servlet.http.HttpServletRequest"/>
+  </service>
+
+  <service name="checkManagerExist" engine="simple"
+           location="component://toolsService/script/com/yuaoq/yabiz/system/SystemEvents.xml" invoke="findManager" auth="false">
+    <attribute name="userLoginId" type="String" mode="IN"/>
+    <attribute name="oldLoginId" type="String" mode="IN" optional="true"/>
+    <attribute name="userLogin" mode="OUT" type="org.ofbiz.entity.GenericValue"/>
+  </service>
+
+  <service name="queryManager" require-new-transaction="false"
+           engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" invoke="findManagerDetail" auth="false">
+    <attribute name="userLoginId" type="String" mode="IN"/>
+    <attribute name="person" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+    <attribute name="userLoginAndSecurityGroup" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    <attribute name="userMobileContact" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    <attribute name="userLogin" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+    <attribute name="partyContent" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+  </service>
+
+  <!--角色服务-->
+  <service name="removeSecurityGroupByUserLogin" engine="java" invoke="removeSecurityGroupByUserLogin"
+           location="com.yuaoq.yabiz.service.local.systemMgr.ManagerServices" auth="false">
+    <description>Remove a UserLogin from a SecurityGroup</description>
+    <permission-service service-name="securityPermissionCheck" main-action="DELETE"/>
+    <attribute name="userLoginId" type="String" mode="IN" optional="false"/>
+
+  </service>
+
+
+  <service name="findRoles" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="findRoles" auth="true">
+    <attribute name="VIEW_INDEX" type="String" mode="IN" optional="true"/>
+    <attribute name="VIEW_SIZE" type="String" mode="IN" optional="true"/>
+    <attribute name="name" type="String" mode="INOUT" optional="true"/>
+    <attribute name="groupId" type="String" mode="INOUT" optional="true"/>
+    <attribute name="description" type="String" mode="INOUT" optional="true"/>
+    <attribute name="lookupFlag" type="String" mode="IN" optional="true"/>
+    <attribute name="hideFields" type="String" mode="IN" optional="true"/>
+    <attribute name="ORDER_FILED" type="String" mode="IN" optional="true"/>
+    <attribute name="ORDER_BY" type="String" mode="IN" optional="true"/>
+
+    <attribute name="viewIndex" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="viewSize" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="highIndex" type="Integer" mode="OUT" optional="false"/>
+    <attribute name="lowIndex" type="Integer" mode="OUT" optional="false"/>
+
+    <attribute name="roleList" type="java.util.List" mode="OUT"/>
+    <attribute name="roleListSize" type="Integer" mode="OUT"/>
+    <attribute name="paramList" type="String" mode="OUT"/>
+    <attribute name="orderFiled" type="String" mode="OUT" optional="true"/>
+    <attribute name="orderBy" type="String" mode="OUT" optional="true"/>
+  </service>
+
+  <service name="findPermissionTree" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="findPermissionTree" auth="true">
+    <attribute name="permissionTree" type="java.util.List" mode="OUT"/>
+  </service>
+  <service name="checkSecurityGroupExist" engine="simple"
+           location="component://toolsService/script/com/yuaoq/yabiz/system/SystemEvents.xml" invoke="findSecurityGroupExist" auth="false">
+    <attribute name="groupId" type="String" mode="IN"/>
+    <attribute name="group" mode="OUT" type="org.ofbiz.entity.GenericValue"/>
+  </service>
+  <service name="addRole" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="addRole" auth="false">
+    <attribute name="permissionIds" type="String" mode="IN"/>
+    <attribute name="name" type="String" mode="IN"/>
+    <attribute name="description" type="String" mode="IN"/>
+    <attribute name="groupId" type="String" mode="IN"/>
+  </service>
+
+  <service name="updateRole" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="updateRole" auth="false">
+    <attribute name="permissionIds" type="String" mode="IN"/>
+    <attribute name="name" type="String" mode="IN"/>
+    <attribute name="description" type="String" mode="IN"/>
+    <attribute name="groupId" type="String" mode="IN"/>
+  </service>
+  <service name="deleteRole" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="deleteRole" auth="false">
+    <attribute name="groupId" type="String" mode="IN"/>
+  </service>
+
+  <service name="deleteRoles" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="deleteRoles" auth="false">
+    <attribute name="groupIds" type="String" mode="IN"/>
+  </service>
+  <service name="queryRoleDetail" engine="java" location="com.yuaoq.yabiz.service.local.systemMgr.RoleServices" invoke="queryRoleDetail" auth="true">
+    <attribute name="groupId" type="String" mode="IN"/>
+    <attribute name="securityGroup" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+    <attribute name="securityGroupPermissions" type="java.util.List" mode="OUT" optional="true"/>
+  </service>
+</services>

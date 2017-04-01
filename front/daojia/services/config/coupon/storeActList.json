@@ -1,0 +1,91 @@
+[{
+    "orgCode": 74959,
+    "storeId": "10000",
+    "storeName": "百果园-旭日爱上城店",
+    "logo": "https://img30.360buyimg.com/vendersettle/jfs/t2734/120/532702494/4785/61601e90/57186ba7Nf9f6b6f1.jpg",
+    "tags": [
+      {
+        "name": "满减",
+        "iconText": "满减",
+        "type": 6,
+        "belongIndustry": 1,
+        "words": "全场满35减6",
+        "activityRange": 1,
+        "colorCode": "5FBC65"
+      }
+    ]
+  },
+  {
+    "orgCode": 73926,
+    "storeId": "10000",
+    "storeName": "小香港-丽岛路店",
+    "logo": "https://img30.360buyimg.com/vendersettle/jfs/t2431/156/1469047781/8133/82a1927d/56aadc47Nb16b9736.jpg",
+    "tags": [
+      {
+        "name": "满减",
+        "iconText": "满减",
+        "type": 6,
+        "belongIndustry": 1,
+        "words": "全场满25减6",
+        "activityRange": 0,
+        "colorCode": "5FBC65"
+      }
+    ]
+  },
+  {
+    "orgCode": 72883,
+    "storeId": "10000",
+    "storeName": "欣欣果蔬-华侨城菜场",
+    "logo": "https://img30.360buyimg.com/vendersettle/jfs/t1999/329/1184876964/27003/51ec872b/56811a0dNcd68fdd2.jpg",
+    "tags": [
+      {
+        "name": "满减",
+        "iconText": "满减",
+        "type": 6,
+        "belongIndustry": 1,
+        "words": "全场满30减8",
+        "activityRange": 1,
+        "colorCode": "5FBC65"
+      }
+    ]
+  },
+  {
+    "orgCode": 71909,
+    "storeId": "10000",
+    "storeName": "安易客蛋糕（南京全市）",
+    "logo": "https://img30.360buyimg.com/vendersettle/jfs/t2104/40/1467051914/4146/7ee3f08d/56ac3b9bNa7bf9dfa.jpg",
+    "tags": [
+      {
+        "name": "满减",
+        "iconText": "满减",
+        "type": 6,
+        "belongIndustry": 1,
+        "words": "安易客蛋糕满198减30",
+        "activityRange": 2,
+        "to": "storePromotion",
+        "params": {
+          "activityId": "11067",
+          "storeId": "10024845"
+        },
+        "colorCode": "5FBC65"
+      }
+    ]
+  },
+  {
+    "orgCode": 77458,
+    "storeId": "10000",
+    "storeName": "苏客中式餐饮-华侨城店",
+    "logo": "https://img30.360buyimg.com/vendersettle/jfs/t2626/169/3052367740/4284/d2e7154c/577e252dNe1bb8e57.jpg",
+    "tags": [
+      {
+        "name": "满减",
+        "iconText": "满减",
+        "type": 6,
+        "belongIndustry": 1,
+        "words": "全场满25减6",
+        "activityRange": 0,
+        "colorCode": "5FBC65"
+      }
+    ]
+  }
+  ]

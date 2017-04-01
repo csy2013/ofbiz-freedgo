@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+
+  <!--系统管理-->
+  <SecurityPermission description="系统管理" name="SYSTEMMGR_VIEW" permissionId="SYSTEMMGR_VIEW" parentPermissionId="-1"/>
+  <!--权限管理-->
+  <SecurityPermission description="权限管理" name="SYSTEMMGR_ROLE_VIEW" permissionId="SYSTEMMGR_ROLE_VIEW" parentPermissionId="SYSTEMMGR_VIEW"/>
+
+  <!-- 管理员权限 -->
+  <SecurityPermission description="系统人员管理" name="SYSTEMMGR_USER" permissionId="SYSTEMMGR_USER" parentPermissionId="SYSTEMMGR_ROLE_VIEW"/>
+  <SecurityPermission description="系统管理员查看" name="SYSTEMMGR_USER_VIEW" permissionId="SYSTEMMGR_USER_VIEW" parentPermissionId="SYSTEMMGR_USER"/>
+  <SecurityPermission description="系统管理员新增" name="SYSTEMMGR_USER_CREATE" permissionId="SYSTEMMGR_USER_CREATE" parentPermissionId="SYSTEMMGR_USER"/>
+  <SecurityPermission description="系统管理员修改" name="SYSTEMMGR_USER_UPDATE" permissionId="SYSTEMMGR_USER_UPDATE" parentPermissionId="SYSTEMMGR_USER"/>
+  <SecurityPermission description="系统管理员删除" name="SYSTEMMGR_USER_DELETE" permissionId="SYSTEMMGR_USER_DELETE" parentPermissionId="SYSTEMMGR_USER"/>
+  <SecurityPermission description="系统管理员详细" name="SYSTEMMGR_USER_DETAIL" permissionId="SYSTEMMGR_USER_DETAIL" parentPermissionId="SYSTEMMGR_USER"/>
+  <!--角色权限-->
+  <SecurityPermission description="角色管理" name="SYSTEMMGR_GROUP" permissionId="SYSTEMMGR_GROUP" parentPermissionId="SYSTEMMGR_ROLE_VIEW"/>
+  <SecurityPermission description="角色查看" name="SYSTEMMGR_GROUP_VIEW" permissionId="SYSTEMMGR_GROUP_VIEW" parentPermissionId="SYSTEMMGR_GROUP"/>
+  <SecurityPermission description="角色新增" name="SYSTEMMGR_GROUP_CREATE" permissionId="SYSTEMMGR_GROUP_CREATE" parentPermissionId="SYSTEMMGR_GROUP"/>
+  <SecurityPermission description="角色修改" name="SYSTEMMGR_GROUP_UPDATE" permissionId="SYSTEMMGR_GROUP_UPDATE" parentPermissionId="SYSTEMMGR_GROUP"/>
+  <SecurityPermission description="角色删除" name="SYSTEMMGR_GROUP_DELETE" permissionId="SYSTEMMGR_GROUP_DELETE" parentPermissionId="SYSTEMMGR_GROUP"/>
+  <SecurityPermission description="角色详细" name="SYSTEMMGR_GROUP_DETAIL" permissionId="SYSTEMMGR_GROUP_DETAIL" parentPermissionId="SYSTEMMGR_GROUP"/>
+
+  <!--权限加入角色-->
+  <SecurityGroup description="系统管理员" groupId="SYSTEMMGR" name="系统管理员"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_VIEW"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_ROLE_VIEW"/>
+
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER_VIEW"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER_CREATE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER_UPDATE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER_DELETE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_USER_DETAIL"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP_VIEW"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP_CREATE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP_UPDATE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP_DELETE"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="WEBTOOLS_VIEW"/>
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="OFBTOOLS_VIEW"/>
+
+
+  <SecurityGroupPermission groupId="SYSTEMMGR" permissionId="SYSTEMMGR_GROUP_DETAIL"/>
+  <UserLoginSecurityGroup userLoginId="admin" groupId="SYSTEMMGR" fromDate="2016-01-20 12:45:00"/>
+  <UserLoginSecurityGroup userLoginId="system" groupId="SYSTEMMGR" fromDate="2016-01-20 12:45:00"/>
+
+  <!--系统管理-->
+  <SecurityPermission description="APP管理" name="APP_MANAGE" permissionId="APP_MANAGE_VIEW" parentPermissionId="WEBTOOLS"/>
+  <!--权限管理-->
+  <SecurityPermission description="APP查看" name="APP_MANAGE_VIEW" permissionId="APP_MANAGE_VIEW" parentPermissionId="APP_MANAGE"/>
+  <SecurityPermission description="APP新增" name="APP_MANAGE_ADD" permissionId="APP_MANAGE_ADD" parentPermissionId="APP_MANAGE"/>
+  <SecurityPermission description="APP修改" name="APP_MANAGE_UPDATE" permissionId="APP_MANAGE_UPDATE" parentPermissionId="APP_MANAGE"/>
+  <SecurityPermission description="APP删除" name="APP_MANAGE_DELETE" permissionId="APP_MANAGE_DELETE" parentPermissionId="APP_MANAGE"/>
+
+</entity-engine-xml>

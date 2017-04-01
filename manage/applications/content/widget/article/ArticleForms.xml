@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+  <form name="FindArticles" type="inputgroup" target="ArticleMain" default-entity-name="Article">
+    <field name="webSiteId">
+      <drop-down allow-empty="true" text-size="20">
+        <entity-options entity-name="WebSite" description="${siteName}" key-field-name="webSiteId">
+
+        </entity-options>
+      </drop-down>
+
+    </field>
+    <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+
+  <form name="ListArticles" target="" title="" list-name="articles" type="list" paginate-target="" odd-row-style="alternate-row" header-row-style="header-row-2"
+        default-table-style="basic-table hover-bar">
+    <field name="articleId" widget-style="buttontext" sort-field="true">
+      <hyperlink description="${articleId}" target="EditArticle" also-hidden="false">
+        <parameter param-name="articleId"/>
+      </hyperlink>
+    </field>
+    <field name="articleName">
+      <display/>
+    </field>
+
+    <field name="articleTypeId">
+      <display-entity entity-name="ArticleType" description="${description}"/>
+
+    </field>
+    <field name="dateCreated">
+      <display type="date-time"/>
+    </field>
+    <field name="description">
+      <hidden/>
+    </field>
+
+    <field name="CommonUpdate" title="${uiLabelMap.CommonUpdate}">
+      <modal-page modal-url="EditArticle" confirm-title="${uiLabelMap.CommonUpdate}" description="${uiLabelMap.CommonUpdate}">
+        <parameter param-name="articleId"/>
+      </modal-page>
+    </field>
+    <field name="CommonDelete" title="${uiLabelMap.CommonDelete}">
+      <confirm-modal confirm-url="DeleteArticle" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该记录?" confirm-title="${uiLabelMap.CommonDelete}">
+        <parameter param-name="articleId"/>
+      </confirm-modal>
+    </field>
+    <field name="CommonArticleContent" title="${uiLabelMap.ContentArticleContent}">
+      <hyperlink target="ArticleContentMain" description="${uiLabelMap.ContentArticleContent}" link-type="anchor">
+        <parameter param-name="articleId"/>
+      </hyperlink>
+    </field>
+    <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListFindAdvertSearchResults"/>
+  </form>
+  <form name="EditArticle" default-entity-name="Article" type="upload" default-map-name="article" target="UpdateArticle" title="" validate="true">
+    <alt-target use-when="article ==null" target="CreateArticle"/>
+    <field use-when="article!=null" name="articleId" tooltip="${uiLabelMap.CommonNotModifRecreat}" widget-style="tabletext">
+      <display/>
+    </field>
+    <field use-when="article==null&amp;&amp;articleId!=null" name="articleId" tooltip="${uiLabelMap.CommonCannotBeFound}: [${articleId}]" widget-style="tabletext">
+      <display description="" also-hidden="false"/>
+    </field>
+    <field use-when="article==null&amp;&amp;articleId==null" name="articleId">
+      <ignored/>
+    </field>
+    <field name="articleName" required-field="true">
+      <text/>
+    </field>
+    <field name="webSiteId">
+      <drop-down allow-empty="true" text-size="20">
+        <entity-options entity-name="WebSite" description="${siteName}" key-field-name="webSiteId">
+        </entity-options>
+      </drop-down>
+    </field>
+    <field name="articleTypeId">
+      <drop-down no-current-selected-key="N" allow-empty="false">
+        <entity-options entity-name="ArticleType" description="${description}"/>
+      </drop-down>
+    </field>
+    <field name="description" required-field="true">
+      <textarea/>
+    </field>
+    <field name="contentId"><hidden/></field>
+    <field name="uploadedFile" title="${uiLabelMap.ContentImage}">
+      <file size="25"/>
+    </field>
+    <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+
+  <form name="ListArticleContents" target="" title="" default-entity-name="ArticleContent" list-name="listIt" type="list" paginate-target="" odd-row-style="alternate-row"
+        header-row-style="header-row-2"
+        default-table-style="basic-table hover-bar">
+    <actions>
+      <set field="parameters.sortField" from-field="parameters.sortField" default-value="+sequenceNum" />
+      <service service-name="performFind" result-map="result" result-map-list="listIt">
+        <field-map field-name="inputFields" from-field="parameters"/>
+        <field-map field-name="entityName" value="ArticleContent"/>
+        <field-map field-name="orderBy" from-field="parameters.sortField" />
+        <field-map field-name="viewIndex" from-field="viewIndex"/>
+        <field-map field-name="viewSize" from-field="viewSize"/>
+      </service>
+    </actions>
+    <auto-fields-entity entity-name="ArticleContent" default-field-type="display"/>
+    <field name="articleContentId" widget-style="buttontext" sort-field="true"/>
+    <field name="articleContentName">
+      <display/>
+    </field>
+    <field name="contentId">
+      <hidden/>
+    </field>
+    <field name="assocContentId">
+      <hidden/>
+    </field>
+    <field name="relationUrl">
+      <hidden/>
+    </field>
+    <field name="articleId">
+      <hidden/>
+    </field>
+    <field name="articleTitle">
+      <display/>
+    </field>
+    <field name="fromDate">
+      <display type="date-time"/>
+    </field>
+    <field name="thruDate">
+      <display type="date-time"/>
+    </field>
+    <field name="sequenceNum">
+      <text/>
+    </field>
+
+    <field name="CommonUpdate" title="${uiLabelMap.CommonUpdate}">
+      <hyperlink target="EditArticleContent" description="${uiLabelMap.CommonUpdate}">
+        <parameter param-name="articleContentId"/>
+        <parameter param-name="articleId"/>
+      </hyperlink>
+    </field>
+    <field name="CommonDelete" title="${uiLabelMap.CommonDelete}">
+      <confirm-modal confirm-url="DeleteArticleContent" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该记录?" confirm-title="${uiLabelMap.CommonDelete}">
+        <parameter param-name="articleContentId"/>
+      </confirm-modal>
+    </field>
+  </form>
+
+  <form name="EditArticleContent" default-entity-name="ArticleContent" validate="true" default-map-name="articleContent" type="upload" target="updateArticleContent" title="">
+
+    <alt-target use-when="articleContent ==null" target="saveArticleContent"/>
+    <auto-fields-entity entity-name="ArticleContent"/>
+    <field use-when="articleContent!=null" name="articleContentId" tooltip="${uiLabelMap.CommonNotModifRecreat}" widget-style="tabletext">
+      <display/>
+    </field>
+    <field use-when="articleContent==null&amp;&amp;articleContentId!=null" name="articleContentId" tooltip="${uiLabelMap.CommonCannotBeFound}: [${articleContentId}]" widget-style="tabletext">
+      <display description="" also-hidden="false"/>
+    </field>
+    <field use-when="articleContent==null&amp;&amp;articleContentId==null" name="articleContentId">
+      <ignored/>
+    </field>
+    <field name="articleId"><hidden/></field>
+    <field name="articleContentName" required-field="true">
+      <text/>
+    </field>
+    <field name="contentId"><hidden/></field>
+    <field name="assocContentId"><hidden/></field>
+    <field name="relationUrl"><hidden/></field>
+    <field name="articleTitle" required-field="true">
+      <text/>
+    </field>
+    <field name="sequenceNum" required-field="true">
+      <text/>
+    </field>
+    <field name="fromDate">
+      <date-time/>
+    </field>
+    <field name="thruDate">
+      <date-time/>
+    </field>
+    <field name="description">
+      <textarea/>
+    </field>
+    <field name="summaryData" title="${uiLabelMap.ContentSummary}" widget-style="inputBox">
+      <textarea cols="60" rows="4" default-value="${articleEntry.summaryData}"/>
+    </field>
+    <field name="articleData" title="${uiLabelMap.ContentBlogArticle}" widget-style="inputBox">
+      <textarea cols="100" rows="20" visual-editor-enable="true" default-value="${articleEntry.articleData}"/>
+    </field>
+    <field name="uploadedFile" title="${uiLabelMap.ContentImage}">
+      <file size="25"/>
+    </field>
+    <field name="templateDataResourceId" title="${uiLabelMap.ContentTemplate}" >
+      <drop-down no-current-selected-key="${articleEntry.templateDataResourceId}">
+        <option key="YABLOG_TPL_TOPLEFT" description="${uiLabelMap.ContentBlogTopLeft}" />
+        <option key="YABLOG_TPL_TOPCER" description="${uiLabelMap.ContentBlogTopCenter}"/>
+        <option key="YABLOG_TPL_TOPRHT" description="${uiLabelMap.ContentBlogTopRight}"/>
+      </drop-down>
+    </field>
+    <field name="statusId" title="${uiLabelMap.CommonStatus}">
+      <drop-down no-current-selected-key="${articleEntry.statusId}" >
+        <option key="CTNT_PUBLISHED" description="${uiLabelMap.ContentBlogPublish}"/>
+        <option key="CTNT_INITIAL_DRAFT" description="${uiLabelMap.ContentBlogPreview}"/>
+      </drop-down>
+    </field>
+    <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+
+  <form name="EditArticle" target="createBlogArticle" title="" type="upload" skip-end="true" default-map-name="blogEntry"
+        default-title-style="treeHeader" default-tooltip-style="tabletext" default-widget-style="inputBox">
+    <alt-target use-when="contentId!=void&amp;&amp;contentId!=null" target="updateBlogArticle"/>
+    <field name="blogContentId">
+      <hidden value="${parameters.blogContentId}"/>
+    </field>
+    <field name="contentId" title="${uiLabelMap.ContentBlogEntryId}" use-when="contentId!=void&amp;&amp;contentId!=null">
+      <display/>
+    </field>
+    <field name="contentName" title="${uiLabelMap.ContentArticleName}">
+      <text size="40"/>
+    </field>
+    <field name="description">
+      <textarea cols="60" rows="2"/>
+    </field>
+    <field name="summaryData" title="${uiLabelMap.ContentSummary}" widget-style="inputBox">
+      <textarea cols="60" rows="4"/>
+    </field>
+    <field name="articleData" title="${uiLabelMap.ContentBlogArticle}" widget-style="inputBox">
+      <textarea cols="100" rows="20" visual-editor-enable="true"/>
+    </field>
+    <field name="uploadedFile" title="${uiLabelMap.ContentImage}">
+      <file size="25"/>
+    </field>
+    <field name="templateDataResourceId" title="${uiLabelMap.ContentTemplate}">
+      <drop-down>
+        <option key="YABLOG_TPL_TOPLEFT" description="${uiLabelMap.ContentBlogTopLeft}"/>
+        <option key="YABLOG_TPL_TOPCER" description="${uiLabelMap.ContentBlogTopCenter}"/>
+        <option key="YABLOG_TPL_TOPRHT" description="${uiLabelMap.ContentBlogTopRight}"/>
+      </drop-down>
+    </field>
+    <field name="statusId" title="${uiLabelMap.CommonStatus}">
+      <drop-down no-current-selected-key="CTNT_INITIAL_DRAFT">
+        <option key="CTNT_PUBLISHED" description="${uiLabelMap.ContentBlogPublish}"/>
+        <option key="CTNT_INITIAL_DRAFT" description="${uiLabelMap.ContentBlogPreview}"/>
+      </drop-down>
+    </field>
+    <field name="submitButton" title="${uiLabelMap.CommonSubmit}" widget-style="smallSubmit">
+      <submit button-type="button"/>
+    </field>
+  </form>
+
+</forms>

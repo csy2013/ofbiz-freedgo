@@ -1,0 +1,134 @@
+/*reset*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, audio, canvas, details, figcaption,
+figure, footer, header, hgroup, mark, menu, meter, nav,
+output, progress, section, summary, time, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section, blockquote {
+    display: block;
+}
+
+ul, ol, ol li {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+ins {
+    text-decoration: underline;
+}
+del {
+    text-decoration: line-through;
+}
+mark {
+    background: none;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #000;
+    cursor:help;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*input[type="submit"], input[type="button"], button {
+padding: 0 !important;
+margin: 0 !important;
+}*/
+
+input, select, a img {
+    vertical-align: middle;
+}
+
+
+/* commen */
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+body{ font-size:14px; font-family:"微软雅黑","宋体", Arial, Helvetica, sans-serif; color:#7c7c7c;}
+a{ color:#333; text-decoration:none;}
+a:hover{color:#cb2229;}
+img{border:0; margin:0; padding:0}
+h2{font-weight:normal;}
+/* Clearfix */
+.clearfix:after, #content:after{ content:"\0020"; display:block; clear:both; height:0; font-size:0;}
+.clearfix{ zoom:1;}
+.clear{ clear:both;}
+/*float*/
+.fl{ float:left}
+.fr{ float:right}
+.fn{float:none;}
+/*text-align*/
+.tr{ text-align:right}
+.tl{ text-align:left}
+.tc{ text-align:center}
+/*font size*/
+.f12{font-size:12px;}
+.f14{font-size:14px;}
+.f16{font-size:16px;}
+.f18{font-size:18px;}
+.f24{font-size:24px;}
+.f40{font-size:40px}
+.f30{font-size: 30px;}
+/*font color*/
+.cred{color:#ff644a}
+.cblack{color:#626262}
+.cwhite{color:#fff;}
+.red {color: #B01330;}
+.c666{ color: #666666;}
+.ca80{color: #a80000}
+.cgreen{color:#59a606;}
+/*margin*/
+.mt5{margin-top:5px;}
+.mt70{margin-top:70px;}
+.mt30{margin-top:30px;}
+.mt15{margin-top:15px;}
+.mr10{margin-right:10px;}
+.mr15{margin-right:15px;}
+.mr50{margin-right:50px;}
+.mb10{margin-bottom: 10px;}
+/*padding*/
+.pt10{padding-top:10px;}
+.opacity40{filter:alpha(opacity=40); -moz-opacity:0.4; opacity: 0.4;}
+.rel {
+    position: relative;
+}
+
+.w1180 {
+    width: 1180px;
+}
+.w890{width: 890px;}
+.w930{width: 930px;}
+.bold{font-weight: bold;}

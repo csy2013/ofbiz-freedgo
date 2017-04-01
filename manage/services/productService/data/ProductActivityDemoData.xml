@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<entity-engine-xml>
+    <PartyLevelType levelCode="LV1" levelName="初级"/>
+    <PartyLevelType levelCode="LV2" levelName="初级1"/>
+    <PartyLevelType levelCode="LV3" levelName="初级2"/>
+    <PartyLevelType levelCode="LV4" levelName="中级"/>
+    <PartyLevelType levelCode="LV5" levelName="高级"/>
+
+    <Community code="11" name="宝丽华" parentGeoId="CN-3201"/>
+    <Community code="12" name="钟白新" parentGeoId="CN-3201"/>
+    <Community code="13" name="爱泡芙" parentGeoId="CN-3201"/>
+</entity-engine-xml>

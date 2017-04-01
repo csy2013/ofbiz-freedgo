@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+    <property key="groupOrder">
+        <value xml:lang="en">groupOrder</value>
+        <value xml:lang="zh">团购</value>
+    </property>
+    <property key="groupOrderList">
+        <value xml:lang="en">groupOrderList</value>
+        <value xml:lang="zh">团购列表</value>
+    </property>
+    <property key="ProdPromoManage">
+        <value xml:lang="en">ProdPromoManage</value>
+        <value xml:lang="zh">营销管理</value>
+    </property>
+    <property key="secKillList">
+        <value xml:lang="en">secKillList</value>
+        <value xml:lang="zh">秒杀列表</value>
+    </property>
+    <property key="secKill">
+        <value xml:lang="en">secKill</value>
+        <value xml:lang="zh">秒杀</value>
+    </property>
+
+    <property key="activityCode">
+        <value xml:lang="en">activityCode</value>
+        <value xml:lang="zh">活动编码</value>
+    </property>
+    <property key="activityName">
+        <value xml:lang="en">activityName</value>
+        <value xml:lang="zh">活动名称</value>
+    </property>
+    <property key="activityType">
+        <value xml:lang="en">activityType</value>
+        <value xml:lang="zh">活动类型</value>
+    </property>
+    <property key="addGroupOrder">
+        <value xml:lang="zh">新增团购</value>
+    </property>
+    <property key="editGroupOrder">
+        <value xml:lang="zh">修改团购</value>
+    </property>
+    <property key="hasGroup">
+        <value xml:lang="zh">是否已成团</value>
+    </property>
+    <property key="leaveQuantity">
+        <value xml:lang="zh">剩余数量</value>
+    </property>
+    <property key="activityStartDate">
+        <value xml:lang="en">activityStartDate</value>
+        <value xml:lang="zh">活动开始时间</value>
+    </property>
+    <property key="activityEndDate">
+        <value xml:lang="en">activityEndDate</value>
+        <value xml:lang="zh">活动结束时间</value>
+    </property>
+    <property key="activityAuditStatus">
+        <value xml:lang="en">activityStatus</value>
+        <value xml:lang="zh">活动状态</value>
+    </property>
+    <property key="activityType.description.GROUP_ORDER">
+        <value xml:lang="zh">团购</value>
+    </property>
+    <property key="productPromoApplEnumId">
+        <value xml:lang="zh">促销应用类型</value>
+    </property>
+
+    <property key="addSecKill">
+        <value xml:lang="zh">新增秒杀</value>
+    </property>
+    <property key="editSecKill">
+        <value xml:lang="zh">修改秒杀</value>
+    </property>
+    <property key="includeSubCategories">
+        <value xml:lang="zh">是否包含下级分类</value>
+    </property>
+    <property key="ProductPromoApplEnumId">
+        <value xml:lang="zh">促销应用类型</value>
+    </property>
+</resource>

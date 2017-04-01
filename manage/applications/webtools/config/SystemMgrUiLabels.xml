@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+    <property key="ExceptionPage">
+        <value xml:lang="en">ExceptionPage</value>
+        <value xml:lang="zh">异常页面</value>
+    </property>
+    <property key="GoodsFavore">
+        <value xml:lang="en">GoodsFavore</value>
+        <value xml:lang="zh">商品收藏</value>
+    </property>
+    <property key="InterfaceManage">
+        <value xml:lang="en">interfaceManage</value>
+        <value xml:lang="zh">接口管理</value>
+    </property>v
+    <property key="RoleManage">
+        <value xml:lang="en">RoleManage</value>
+        <value xml:lang="zh">权限管理</value>
+    </property>
+    <property key="PaymentInterface">
+        <value xml:lang="en">PaymentInterface</value>
+        <value xml:lang="zh">支付接口</value>
+    </property>
+    <property key="UserLongInterface">
+        <value xml:lang="en">UserLongInterface</value>
+        <value xml:lang="zh">登录接口</value>
+    </property>
+    <property key="SmsInterface">
+        <value xml:lang="en">SmsInterface</value>
+        <value xml:lang="zh">短信接口</value>
+    </property>
+    <property key="ShipmentInterface">
+        <value xml:lang="en">ShipmentInterface</value>
+        <value xml:lang="zh">物流接口</value>
+    </property>
+    <property key="SystemerManage">
+        <value xml:lang="en">SystemerManage</value>
+        <value xml:lang="zh">系统人员管理</value>
+    </property>
+    <property key="SystemerManage">
+        <value xml:lang="en">SystemerManage</value>
+        <value xml:lang="zh">系统人员管理</value>
+    </property>
+    <property key="userLoginName">
+        <value xml:lang="en">userName</value>
+        <value xml:lang="zh">用户名</value>
+    </property>
+    <property key="userName">
+        <value xml:lang="en">userName</value>
+        <value xml:lang="zh">姓名</value>
+    </property>
+    <property key="SystemMgrCompanyName">
+        <value xml:lang="zh">系统管理</value>
+    </property>
+    <property key="isEffect">
+        <value xml:lang="zh">是否启用</value>
+    </property>
+    <property key="lastLoginTime">
+        <value xml:lang="zh">最后登录时间</value>
+    </property>
+    <property key="systemMgrAction">
+        <value xml:lang="zh">操作</value>
+    </property>
+    <property key="UserNoPartiesFound">
+        <value xml:lang="zh">无显示记录。</value>
+    </property>
+    <property key="AddUserAction">
+        <value xml:lang="zh">添加管理员</value>
+    </property>
+    <property key="ModifyUserAction">
+        <value xml:lang="zh">修改管理员</value>
+    </property>
+    <property key="userUploadPhoto">
+        <value xml:lang="zh">头像</value>
+    </property>
+
+    <!--角色管理-->
+    <property key="roleMgr">
+        <value xml:lang="zh">角色管理</value>
+    </property>
+    <property key="userUploadPhoto">
+        <value xml:lang="zh">头像</value>
+    </property>
+    <property key="userUploadPhoto">
+        <value xml:lang="zh">头像</value>
+    </property>
+    <property key="addRoleAction">
+        <value xml:lang="zh">添加角色</value>
+    </property>
+    <property key="editRoleAction">
+        <value xml:lang="zh">修改角色</value>
+    </property>
+    <property key="roleName">
+        <value xml:lang="zh">角色名称</value>
+    </property>
+    <property key="roleId">
+        <value xml:lang="zh">角色标示</value>
+    </property>
+    <property key="roleDesc">
+        <value xml:lang="zh">角色描述</value>
+    </property>
+    <property key="permissionId">
+        <value xml:lang="zh">权限名称</value>
+    </property>
+    <property key="permissionDesc">
+        <value xml:lang="zh">权限描述</value>
+    </property>
+</resource>

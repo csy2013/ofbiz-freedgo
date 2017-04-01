@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>System Manage Component Services</description>
+    <vendor>ICO</vendor>
+    <version>1.0</version>
+
+
+
+    <service name="addGroupOrder" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService"
+             invoke="addGroupOrder" auth="true">
+        <attribute name="productStoreIds" type="String" mode="IN"/>
+        <attribute name="activityName" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="activityType" type="String" mode="IN"/>
+        <attribute name="activityAuditStatus" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="publishDate" type="Timestamp" mode="IN"/>
+        <attribute name="endDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityStartDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityEndDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityQuantity" type="Long" mode="IN"/>
+        <attribute name="scoreValue" type="Long" mode="IN"/>
+        <attribute name="productPrice" type="BigDecimal" mode="IN"/>
+        <attribute name="activeDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="limitQuantity" type="Long" mode="IN"/>
+        <attribute name="virtualProductStartDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="virtualProductEndDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="activityDesc" type="String" mode="IN"  optional="true"/>
+        <attribute name="activityPayType" type="String" mode="IN"/>
+        <attribute name="shipmentType" type="String" mode="IN"/>
+        <attribute name="isAnyReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportOverTimeReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportReturnScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isShowIndex" type="String" mode="IN" optional="true"/>
+        <attribute name="productGroupOrderRules" type="String" mode="IN"/>
+        <attribute name="productActivityPartyLevels" type="String" mode="IN"/>
+        <attribute name="productActivityAreas" type="String" mode="IN"/>
+        <attribute name="activityId" type="String" mode="OUT"/>
+    </service>
+
+
+    <service name="updateGroupOrder" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService"
+             invoke="updateGroupOrder" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+        <attribute name="productStoreIds" type="String" mode="IN"/>
+        <attribute name="activityName" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="activityType" type="String" mode="IN"/>
+        <attribute name="activityAuditStatus" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="publishDate" type="Timestamp" mode="IN"/>
+        <attribute name="endDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityStartDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityEndDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityQuantity" type="Long" mode="IN"/>
+        <attribute name="scoreValue" type="Long" mode="IN"/>
+        <attribute name="productPrice" type="BigDecimal" mode="IN"/>
+        <attribute name="activeDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="limitQuantity" type="Long" mode="IN"/>
+        <attribute name="virtualProductStartDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="virtualProductEndDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="activityDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="activityPayType" type="String" mode="IN"/>
+        <attribute name="shipmentType" type="String" mode="IN"/>
+        <attribute name="isAnyReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportOverTimeReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportReturnScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isShowIndex" type="String" mode="IN" optional="true"/>
+        <attribute name="productGroupOrderRules" type="String" mode="IN"/>
+        <attribute name="productActivityPartyLevels" type="String" mode="IN"/>
+        <attribute name="productActivityAreas" type="String" mode="IN"/>
+        <attribute name="activityId" type="String" mode="OUT"/>
+    </service>
+
+    <service name="getAvailableGroupOrderQuantity" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService"
+             invoke="getAvailableGroupOrderQuantity" use-transaction="true" >
+        <attribute name="activityId" type="String" mode="IN"></attribute>
+        <attribute name="productId" type="String" mode="IN"></attribute>
+        <attribute name="quantities" type="Integer" mode="OUT"/>
+    </service>
+
+
+    <service name="findActivities" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService" invoke="findActivities" auth="true">
+        <attribute name="lookupFlag" type="String" mode="IN" optional="true"/>
+        <attribute name="activityCode" type="String" mode="INOUT" optional="true"/>
+        <attribute name="activityName" type="String" mode="INOUT" optional="true"/>
+        <attribute name="activityStartDate" type="String" mode="INOUT" optional="true"/>
+        <attribute name="activityEndDate" type="String" mode="INOUT" optional="true"/>
+        <attribute name="activityAuditStatus" type="String" mode="INOUT" optional="true"/>
+        <attribute name="activityType" type="String" mode="INOUT" optional="true"/>
+
+        <attribute name="VIEW_INDEX" type="String" mode="IN" optional="true"/>
+        <attribute name="VIEW_SIZE" type="String" mode="IN" optional="true"/>
+        <attribute name="hideFields" type="String" mode="IN" optional="true"/>
+        <attribute name="ORDER_FILED" type="String" mode="IN" optional="true"/>
+        <attribute name="ORDER_BY" type="String" mode="IN" optional="true"/>
+
+        <attribute name="viewIndex" type="Integer" mode="OUT" optional="false"/>
+        <attribute name="viewSize" type="Integer" mode="OUT" optional="false"/>
+        <attribute name="highIndex" type="Integer" mode="OUT" optional="false"/>
+        <attribute name="lowIndex" type="Integer" mode="OUT" optional="false"/>
+
+        <attribute name="groupList" type="java.util.List" mode="OUT"/>
+        <attribute name="groupListSize" type="Integer" mode="OUT"/>
+        <attribute name="paramList" type="String" mode="OUT"/>
+        <attribute name="orderFiled" type="String" mode="OUT" optional="true"/>
+        <attribute name="orderBy" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="productActivityDetail" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService" invoke="productActivityDetail" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+        <attribute name="productStoreIds" type="java.util.List" mode="OUT"/>
+        <attribute name="activityType" type="String" mode="OUT"/>
+        <attribute name="d_productStoreName" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityTypeName" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityAuditStatusName" type="String" mode="OUT" optional="true"/>
+        <attribute name="activityAuditStatus" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityCode" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityName" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_publishDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_endDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityStartDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityEndDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_limitQuantity" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityQuantity" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_productName" type="String" mode="OUT" optional="true"/>
+        <attribute name="productId" type="String" mode="OUT" optional="true"/>
+        <attribute name="shipmentType" type="String" mode="OUT" optional="true"/>
+        <attribute name="activityPayType" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_shipmentTypeName" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_scoreValue" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityPayTypeName" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_productPrice" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_virtualProductStartDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_virtualProductEndDate" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_isAnyReturn" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_isSupportOverTimeReturn" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_isSupportScore" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_isSupportReturnScore" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_isShowIndex" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_activityDesc" type="String" mode="OUT" optional="true"/>
+        <attribute name="d_productGroupOrderRules" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="d_productActivityPartyLevels" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="d_productActivityAreas" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="deleteGroupOrder" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService" invoke="deleteGroupOrder" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+
+    </service>
+
+    <service name="auditGroupOrder" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService" invoke="auditGroupOrder" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+        <attribute name="pass" type="String" mode="IN"/>
+    </service>
+
+
+    <!--秒杀begin-->
+    <service name="addSecKill" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService"
+             invoke="addSecKill" auth="true">
+        <attribute name="productStoreIds" type="String" mode="IN"/>
+        <attribute name="activityName" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="activityType" type="String" mode="IN"/>
+        <attribute name="activityAuditStatus" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="publishDate" type="Timestamp" mode="IN"/>
+        <attribute name="endDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityStartDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityEndDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityQuantity" type="Long" mode="IN"/>
+        <attribute name="scoreValue" type="Long" mode="IN"/>
+        <attribute name="productPrice" type="BigDecimal" mode="IN"/>
+        <attribute name="activeDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="limitQuantity" type="Long" mode="IN"/>
+        <attribute name="virtualProductStartDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="virtualProductEndDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="activityDesc" type="String" mode="IN"  optional="true"/>
+        <attribute name="activityPayType" type="String" mode="IN"/>
+        <attribute name="shipmentType" type="String" mode="IN"/>
+        <attribute name="isAnyReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportOverTimeReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportReturnScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isShowIndex" type="String" mode="IN" optional="true"/>
+        <attribute name="productActivityPartyLevels" type="String" mode="IN"/>
+        <attribute name="productActivityAreas" type="String" mode="IN"/>
+        <attribute name="activityId" type="String" mode="OUT"/>
+    </service>
+
+
+    <service name="updateSecKill" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService"
+             invoke="updateSecKill" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+        <attribute name="productStoreIds" type="String" mode="IN"/>
+        <attribute name="activityName" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="activityType" type="String" mode="IN"/>
+        <attribute name="activityAuditStatus" type="String" mode="IN"/>
+        <attribute name="activityCode" type="String" mode="IN"/>
+        <attribute name="publishDate" type="Timestamp" mode="IN"/>
+        <attribute name="endDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityStartDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityEndDate" type="Timestamp" mode="IN"/>
+        <attribute name="activityQuantity" type="Long" mode="IN"/>
+        <attribute name="scoreValue" type="Long" mode="IN"/>
+        <attribute name="productPrice" type="BigDecimal" mode="IN"/>
+        <attribute name="activeDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="limitQuantity" type="Long" mode="IN"/>
+        <attribute name="virtualProductStartDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="virtualProductEndDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="activityDesc" type="String" mode="IN" optional="true"/>
+        <attribute name="activityPayType" type="String" mode="IN"/>
+        <attribute name="shipmentType" type="String" mode="IN"/>
+        <attribute name="isAnyReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportOverTimeReturn" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isSupportReturnScore" type="String" mode="IN" optional="true"/>
+        <attribute name="isShowIndex" type="String" mode="IN" optional="true"/>
+        <attribute name="productActivityPartyLevels" type="String" mode="IN"/>
+        <attribute name="productActivityAreas" type="String" mode="IN"/>
+        <attribute name="activityId" type="String" mode="OUT"/>
+    </service>
+
+
+    <service name="deleteSecKill" engine="java" location="com.yuaoq.yabiz.service.local.product.activity.ProductActivityService" invoke="deleteSecKill" auth="true">
+        <attribute name="activityId" type="String" mode="IN"/>
+
+    </service>
+
+    <!--秒杀end-->
+
+</services>

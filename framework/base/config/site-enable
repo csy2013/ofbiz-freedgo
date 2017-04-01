@@ -1,0 +1,167 @@
+# You may add here your
+# server {
+#       ...
+# }
+# statements for each of your virtual hosts to this file
+
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+#
+# Generally, you will want to move this file somewhere, and start with a clean
+# file but keep this around for reference. Or just disable in sites-enabled.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
+
+#server {
+#       listen 80 default_server;
+#       listen [::]:80 default_server ipv6only=on;
+#
+#       root /usr/share/nginx/html;
+#       index index.html index.htm;
+
+        # Make site accessible from http://localhost/
+#       server_name localhost;
+
+#       location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+#               try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+
+#       }
+#       location /verctl/ {
+#         proxy_redirect          off;
+#         proxy_set_header        Host $http_host;
+#         proxy_set_header        X-Real-IP $remote_addr;
+#         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+#         proxy_pass    http://127.0.0.1:88/verctl/;
+#       }
+
+#       location /ext-adminweb/ {
+#            proxy_pass    http://localhost:9080/ext-adminweb/;
+#           proxy_redirect default ;
+#     }
+#       location /cart/ {
+#         proxy_pass    http://localhost:8080/cart/;
+#         proxy_redirect default ;
+#       }
+
+
+
+server {
+           listen  80;
+           server_name  www.yuaoq.com;
+           charset utf-8;
+           location = / {
+               root   html;
+               index  index.html index.htm index.jsp;
+               proxy_pass        http://www.yuaoq.com:8080/yaSite;
+               proxy_set_header  X-Real-IP  $remote_addr;
+               client_max_body_size  100m;
+           }
+
+           location / {
+              root   html;
+              index  index.html index.htm index.jsp;
+              proxy_pass        http://www.yuaoq.com:8080;
+              proxy_set_header  X-Real-IP  $remote_addr;
+              client_max_body_size  100m;
+           }
+
+           location ~ ^/(images)/ {
+                root /var/www/html;
+                expires 30d;
+           }
+           location ~ ^/(WEB-INF)/ {
+
+           }
+                deny all;
+           }
+           error_page   500 502 503 504  /50x.html;
+           location = /50x.html {
+               root   html;
+           }
+       }
+
+
+
+# another virtual host using mix of IP-, name-, and port-based configuration
+#
+#server {
+#       listen 8000;
+#       listen somename:8080;
+#       server_name somename alias another.alias;
+#       root html;
+#       index index.html index.htm;
+#
+#       location / {
+#               try_files $uri $uri/ =404;
+#       }
+#}
+
+
+# HTTPS server
+#
+#server {
+#       listen 443;
+#       server_name localhost;
+#
+#       root html;
+#       index index.html index.htm;
+#
+#       ssl on;
+#       ssl_certificate cert.pem;
+#       ssl_certificate_key cert.key;
+#
+#       ssl_session_timeout 5m;
+#
+#       ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+#       ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+#       ssl_prefer_server_ciphers on;
+#
+#       location / {
+#               try_files $uri $uri/ =404;
+#       }
+#}
+
+
+server {
+         listen 443 ssl;
+         charset utf-8;
+         ssl_certificate /myca/cacert.pem;
+         ssl_certificate_key /myca/private/cakey.pem;
+         ssl_protocols        SSLv3 TLSv1;
+         ssl_ciphers HIGH:!aNULL:!MD5;
+
+         server_name yuaoq.com www.yuaoq.com;
+         server_name_in_redirect off;
+         error_page 502  /errors/502.html;
+         error_page 497 https://$host$uri?$args;
+
+         location / {
+               root   html;
+               index  index.html index.htm index.jsp;
+               proxy_pass        https://www.yuaoq.com:8443;
+               proxy_set_header  X-Real-IP  $remote_addr;
+               client_max_body_size  100m;
+         }
+
+         location ~ ^/(images)/ {
+               root /var/www/html;
+               expires 30d;
+         }
+
+         location ~ ^/(WEB-INF)/ {
+              deny all;
+         }
+         error_page   500 502 503 504  /50x.html;
+             location = /50x.html {
+             root   html;
+        }
+}

@@ -1,0 +1,1222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+    <!--subtract promo-->
+    <simple-method method-name="createProductSubtractPromo" short-description="Create a ProductPromo">
+
+        <set field="promoMap.promoText" from-field="parameters.promoText"/>
+        <set field="promoMap.promoName" from-field="parameters.promoName"/>
+        <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+        <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+        <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+        <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+        <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+        <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+        <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+        <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+        <set field="promoMap.promoType" from-field="parameters.promoType"/>
+        <call-service service-name="createProductPromo" in-map-name="promoMap">
+            <result-to-field result-name="productPromoId" field="productPromoId"/>
+        </call-service>
+        <!--创建促销规则-->
+        <set field="promoRule.ruleName" value="满减:${productPromoId}"/>
+        <set field="promoRule.productPromoId" from-field="productPromoId"/>
+        <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+            <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+        </call-service>
+        <!--创建促销条件-->
+        <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+        <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+        <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+        <set field="promoCond.productPromoId" from-field="productPromoId"/>
+        <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+        <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+            <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+        </call-service>
+        <!--创建促销动作-->
+        <set field="promoAction.productPromoActionEnumId" value="PROMO_ORDER_AMOUNT"/>
+        <set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>
+        <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+        <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoAction.productPromoId" from-field="productPromoId"/>
+        <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+        <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+            <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+        </call-service>
+        <!--关联店铺-->
+        <entity-condition entity-name="ProductStore" list="stores">
+        </entity-condition>
+        <if-not-empty field="stores">
+            <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+            <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+            <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+            </call-service>
+        </if-not-empty>
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+    </simple-method>
+
+
+    <simple-method method-name="createProductSpecialPricePromo" short-description="Create a ProductPromo">
+
+        <set field="promoMap.promoText" from-field="parameters.promoText"/>
+        <set field="promoMap.promoName" from-field="parameters.promoName"/>
+        <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+        <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+        <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+        <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+        <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+        <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+        <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+        <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+        <set field="promoMap.promoType" from-field="parameters.promoType"/>
+        <call-service service-name="createProductPromo" in-map-name="promoMap">
+            <result-to-field result-name="productPromoId" field="productPromoId"/>
+        </call-service>
+        <!--创建促销规则-->
+        <set field="promoRule.ruleName" value="直降:${productPromoId}"/>
+        <set field="promoRule.productPromoId" from-field="productPromoId"/>
+        <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+            <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+        </call-service>
+        <!--创建促销条件-->
+        <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+        <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+        <set field="promoCond.condValue" value="0.01"/>
+        <set field="promoCond.productPromoId" from-field="productPromoId"/>
+        <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+        <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+            <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+        </call-service>
+        <!--创建促销动作-->
+        <set field="promoAction.productPromoActionEnumId" value="PROMO_PROD_SPPRC"/>
+        <!--<set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>-->
+        <!--<set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>-->
+        <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoAction.productPromoId" from-field="productPromoId"/>
+        <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+        <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+            <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+        </call-service>
+
+        <!--创建对应产品-->
+        <set field="promoProduct.productPromoId" from-field="productPromoId"/>
+        <set field="promoProduct.productPromoRuleId" from-field="productPromoRuleId"/>
+        <set field="promoProduct.productPromoActionSeqId" from-field="productPromoActionSeqId"/>
+        <set field="promoProduct.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoProduct.productId" from-field="parameters.productId"/>
+        <set field="promoProduct.productPromoApplEnumId" value="PPPA_INCLUDE"/>
+        <call-service service-name="createProductPromoProduct" in-map-name="promoProduct"/>
+
+        <!--关联店铺-->
+        <entity-condition entity-name="ProductStore" list="stores">
+        </entity-condition>
+        <if-not-empty field="stores">
+            <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+            <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+            <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+            </call-service>
+        </if-not-empty>
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+    </simple-method>
+
+    <simple-method method-name="createProductSecKillPromo" short-description="Create a ProductPromo">
+
+        <set field="promoMap.promoText" from-field="parameters.promoText"/>
+        <set field="promoMap.promoName" from-field="parameters.promoName"/>
+        <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+        <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+        <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+        <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+        <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+        <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+        <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+        <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+        <set field="promoMap.promoType" from-field="parameters.promoType"/>
+        <call-service service-name="createProductPromo" in-map-name="promoMap">
+            <result-to-field result-name="productPromoId" field="productPromoId"/>
+        </call-service>
+        <!--创建促销规则-->
+        <set field="promoRule.ruleName" value="秒杀:${productPromoId}"/>
+        <set field="promoRule.productPromoId" from-field="productPromoId"/>
+        <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+            <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+        </call-service>
+        <!--创建促销条件-->
+        <set field="promoCond.inputParamEnumId" value="SALE_TIME_BTW"/>
+        <set field="promoCond.operatorEnumId" value="PPC_EQ"/>
+        <set field="promoCond.condValue" from-field="parameters.fromDate"/>
+        <set field="promoCond.otherValue" from-field="parameters.thruDate"/>
+        <set field="promoCond.productPromoId" from-field="productPromoId"/>
+        <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+        <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+            <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+        </call-service>
+        <!--创建促销动作-->
+
+            <set field="promoAction.productPromoActionEnumId" value="PROMO_PROD_SPPRC"/>
+            <!--<set field="promoAction.amount" from-field="parameters.productAmount" type="BigDecimal"/>-->
+            <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+            <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoAction.productPromoId" from-field="productPromoId"/>
+            <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+            <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+                <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+            </call-service>
+
+        <!--创建对应产品-->
+        <if-not-empty field="parameters.productId">
+            <set field="promoProduct.productPromoId" from-field="productPromoId"/>
+            <set field="promoProduct.productPromoRuleId" from-field="productPromoRuleId"/>
+            <set field="promoProduct.productPromoActionSeqId" from-field="productPromoActionSeqId"/>
+            <set field="promoProduct.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoProduct.productId" from-field="parameters.productId"/>
+            <set field="promoProduct.productPromoApplEnumId" value="PPPA_INCLUDE"/>
+            <call-service service-name="createProductPromoProduct" in-map-name="promoProduct"/>
+        </if-not-empty>
+        <!--关联店铺-->
+        <entity-condition entity-name="ProductStore" list="stores">
+        </entity-condition>
+        <if-not-empty field="stores">
+            <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+            <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+            <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+            </call-service>
+        </if-not-empty>
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+    </simple-method>
+
+    <!--discount promo-->
+    <simple-method method-name="createProductDiscountPromo" short-description="Create a ProductPromo">
+        <set field="promoMap.promoText" from-field="parameters.promoText"/>
+        <set field="promoMap.promoName" from-field="parameters.promoName"/>
+        <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+        <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+        <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+        <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+        <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+        <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+        <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+        <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+        <set field="promoMap.promoType" from-field="parameters.promoType"/>
+        <call-service service-name="createProductPromo" in-map-name="promoMap">
+            <result-to-field result-name="productPromoId" field="productPromoId"/>
+        </call-service>
+        <!--创建促销规则-->
+        <set field="promoRule.ruleName" value="满折:${productPromoId}"/>
+        <set field="promoRule.productPromoId" from-field="productPromoId"/>
+        <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+            <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+        </call-service>
+        <!--创建促销条件-->
+        <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+        <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+        <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+        <set field="promoCond.productPromoId" from-field="productPromoId"/>
+        <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+        <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+            <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+        </call-service>
+        <!--创建促销动作-->
+        <set field="promoAction.productPromoActionEnumId" value="PROMO_ORDER_PERCENT"/>
+        <set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>
+        <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+        <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoAction.productPromoId" from-field="productPromoId"/>
+        <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+        <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+            <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+        </call-service>
+        <!--关联店铺-->
+        <entity-condition entity-name="ProductStore" list="stores">
+        </entity-condition>
+        <if-not-empty field="stores">
+            <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+            <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+            <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+            </call-service>
+        </if-not-empty>
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+    </simple-method>
+
+    <!--discount promo-->
+    <simple-method method-name="createProductGiftPromo" short-description="Create a ProductPromo">
+        <set field="promoMap.promoText" from-field="parameters.promoText"/>
+        <set field="promoMap.promoName" from-field="parameters.promoName"/>
+        <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+        <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+        <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+        <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+        <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+        <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+        <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+        <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+        <set field="promoMap.promoType" from-field="parameters.promoType"/>
+        <call-service service-name="createProductPromo" in-map-name="promoMap">
+            <result-to-field result-name="productPromoId" field="productPromoId"/>
+        </call-service>
+        <!--创建促销规则-->
+        <set field="promoRule.ruleName" value="满折:${productPromoId}"/>
+        <set field="promoRule.productPromoId" from-field="productPromoId"/>
+        <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+            <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+        </call-service>
+        <!--创建促销条件-->
+        <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+        <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+        <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+        <set field="promoCond.productPromoId" from-field="productPromoId"/>
+        <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+        <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+            <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+        </call-service>
+        <!--创建促销动作-->
+        <set field="promoAction.productPromoActionEnumId" value="PROMO_GWP"/>
+        <!--<set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>-->
+        <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+        <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoAction.productPromoId" from-field="productPromoId"/>
+        <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+        <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+            <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+        </call-service>
+        <!--创建对应产品-->
+        <set field="promoProduct.productPromoId" from-field="productPromoId"/>
+        <set field="promoProduct.productPromoRuleId" from-field="productPromoRuleId"/>
+        <set field="promoProduct.productPromoActionSeqId" from-field="productPromoActionSeqId"/>
+        <set field="promoProduct.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+        <set field="promoProduct.productId" from-field="parameters.productId"/>
+        <set field="promoProduct.productPromoApplEnumId" value="PPPA_INCLUDE"/>
+        <call-service service-name="createProductPromoProduct" in-map-name="promoProduct"/>
+        <!--关联店铺-->
+        <entity-condition entity-name="ProductStore" list="stores">
+        </entity-condition>
+        <if-not-empty field="stores">
+            <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+            <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+            <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+            </call-service>
+        </if-not-empty>
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+    </simple-method>
+    <!-- ProductPromo methods -->
+    <simple-method method-name="createProductPromo" short-description="Create a ProductPromo">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromo"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <sequenced-id sequence-name="ProductPromo" field="newEntity.productPromoId"/>
+        <field-to-result field="newEntity.productPromoId" result-name="productPromoId"/>
+
+        <if-empty field="newEntity.userEntered">
+            <set value="Y" set-if-empty="true" field="newEntity.userEntered"/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="newEntity.createdDate"/>
+        <set from-field="nowTimestamp" field="newEntity.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="newEntity.lastModifiedByUserLogin"/>
+        <set from-field="userLogin.userLoginId" field="newEntity.createdByUserLogin"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromo" short-description="Update a ProductPromo">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set from-field="parameters.productPromoId" field="lookupPKMap.productPromoId"/>
+        <find-by-primary-key entity-name="ProductPromo" map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+
+        <if-empty field="lookedUpValue.userEntered">
+            <set value="Y" set-if-empty="true" field="lookedUpValue.userEntered"/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="lookedUpValue.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="lookedUpValue.lastModifiedByUserLogin"/>
+
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <simple-method method-name="updateProductSubtractPromo" short-description="Update a ProductPromo">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set from-field="parameters.productPromoId" field="lookupPKMap.productPromoId"/>
+        <find-by-primary-key entity-name="ProductPromo" map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+
+        <if-empty field="lookedUpValue.userEntered">
+            <set value="Y" set-if-empty="true" field="lookedUpValue.userEntered"/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="lookedUpValue.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="lookedUpValue.lastModifiedByUserLogin"/>
+
+        <store-value value-field="lookedUpValue"/>
+        <!--满减cond-->
+        <set field="promoCondsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoCond" list="promoConds" map="promoCondsMap"/>
+        <if-not-empty field="promoConds">
+            <log level="info" message="condValue=${parameters.orderAmount}"/>
+            <set field="promoCond" from-field="promoConds[0]"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount" type="String"/>
+            <store-value value-field="promoCond"/>
+        </if-not-empty>
+        <!--满减Action-->
+        <set field="promoActionsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoAction" list="promoActions" map="promoActionsMap"/>
+        <if-not-empty field="promoActions">
+            <set field="promoAction" from-field="promoActions[0]"/>
+            <set field="promoAction.amount" from-field="parameters.subtractAmount"/>
+            <store-value value-field="promoAction"/>
+        </if-not-empty>
+    </simple-method>
+
+    <simple-method method-name="updateProductDiscountPromo" short-description="Update a ProductPromo">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set from-field="parameters.productPromoId" field="lookupPKMap.productPromoId"/>
+        <find-by-primary-key entity-name="ProductPromo" map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+
+        <if-empty field="lookedUpValue.userEntered">
+            <set value="Y" set-if-empty="true" field="lookedUpValue.userEntered"/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="lookedUpValue.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="lookedUpValue.lastModifiedByUserLogin"/>
+
+        <store-value value-field="lookedUpValue"/>
+        <!--满折cond-->
+        <set field="promoCondsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoCond" list="promoConds" map="promoCondsMap"/>
+        <if-not-empty field="promoConds">
+            <set field="promoCond" from-field="promoConds[0]"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount" type="String"/>
+            <store-value value-field="promoCond"/>
+        </if-not-empty>
+        <!--满折Action-->
+        <set field="promoActionsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoAction" list="promoActions" map="promoActionsMap"/>
+        <if-not-empty field="promoActions">
+            <set field="promoAction" from-field="promoActions[0]"/>
+            <set field="promoAction.amount" from-field="parameters.discountAmount"/>
+            <store-value value-field="promoAction"/>
+        </if-not-empty>
+    </simple-method>
+
+    <simple-method method-name="updateProductGiftPromo" short-description="Update a ProductPromo">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <set from-field="parameters.productPromoId" field="lookupPKMap.productPromoId"/>
+        <find-by-primary-key entity-name="ProductPromo" map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+
+        <if-empty field="lookedUpValue.userEntered">
+            <set value="Y" set-if-empty="true" field="lookedUpValue.userEntered"/>
+        </if-empty>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="lookedUpValue.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="lookedUpValue.lastModifiedByUserLogin"/>
+
+        <store-value value-field="lookedUpValue"/>
+        <!--满赠cond-->
+        <set field="promoCondsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoCond" list="promoConds" map="promoCondsMap"/>
+        <if-not-empty field="promoConds">
+            <set field="promoCond" from-field="promoConds[0]"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount" type="String"/>
+            <store-value value-field="promoCond"/>
+        </if-not-empty>
+        <!--满赠Product-->
+        <set field="promoProductsMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="ProductPromoProduct" list="promoProducts" map="promoProductsMap"/>
+        <if-not-empty field="promoProducts">
+            <set field="promoProduct" from-field="promoProducts[0]"/>
+            <clone-value value-field="promoProduct" new-value-field="newPromoProduct"/>
+            <remove-value value-field="promoProduct"/>
+            <set field="newPromoProduct.productId" from-field="parameters.productId"/>
+            <create-value value-field="newPromoProduct"/>
+        </if-not-empty>
+    </simple-method>
+
+
+    <simple-method method-name="deleteProductPromo" short-description="Update a ProductPromo">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <set field="promoMap.productPromoId" from-field="parameters.productPromoId"/>
+        <find-by-and entity-name="OrderAdjustment" list="orderAdjustments" map="promoMap"/>
+        <log level="info" message="====================${orderAdjustments}"/>
+        <if-not-empty field="orderAdjustments">
+            <add-error>
+                <fail-message message="已经存在订单使用促销,无法删除"/>
+            </add-error>
+
+        </if-not-empty>
+        <check-errors/>
+        <!--OrderAdjustment
+        QuoteAdjustment
+        ReturnAdjustment
+        AgreementPromoAppl
+        ProductPromoAction
+        ProductPromoCategory
+        ProductPromoCode
+        ProductPromoCond
+        ProductPromoProduct
+        ProductPromoRule
+        ProductPromoUse
+        ProductStorePromoAppl
+        ProductPromoContent
+        MarketingCampaignPromo-->
+        <!--<remove-by-and entity-name="OrderAdjustment" map="promoMap"/>-->
+        <remove-by-and entity-name="QuoteAdjustment" map="promoMap"/>
+        <remove-by-and entity-name="ReturnAdjustment" map="promoMap"/>
+        <remove-by-and entity-name="AgreementPromoAppl" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoAction" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoCategory" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoCode" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoCond" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoProduct" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoRule" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoUse" map="promoMap"/>
+        <remove-by-and entity-name="ProductStorePromoAppl" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromoContent" map="promoMap"/>
+        <remove-by-and entity-name="MarketingCampaignPromo" map="promoMap"/>
+        <remove-by-and entity-name="ProductPromo" map="promoMap"/>
+    </simple-method>
+
+    <!-- ProductPromoAction methods -->
+    <simple-method method-name="createProductPromoAction" short-description="Create an ProductPromoAction">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <make-value value-field="newEntity" entity-name="ProductPromoAction"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <make-next-seq-id value-field="newEntity" seq-field-name="productPromoActionSeqId" numeric-padding="2"/>
+        <field-to-result field="newEntity.productPromoActionSeqId" result-name="productPromoActionSeqId"/>
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromoAction" short-description="Update an ProductPromoAction">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoAction" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoAction" short-description="Delete an ProductPromoAction">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoAction" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoCategory methods -->
+    <simple-method method-name="createProductPromoCategory" short-description="Create an ProductPromoCategory">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <entity-one entity-name="ProductPromoCategory" value-field="oldEntity"/>
+        <log level="info" message="ProductPromoCategory ${oldEntity}"/>
+        <if-not-empty field="oldEntity">
+            <add-error>
+                <fail-message message="已经存在该产品分类"/>
+            </add-error>
+            <check-errors/>
+            <else>
+                <make-value value-field="newEntity" entity-name="ProductPromoCategory"/>
+                <set-nonpk-fields map="parameters" value-field="newEntity"/>
+                <set-pk-fields map="parameters" value-field="newEntity"/>
+                <create-value value-field="newEntity"/>
+            </else>
+        </if-not-empty>
+    </simple-method>
+
+    <simple-method method-name="updateProductPromoCategory" short-description="Update an ProductPromoCategory">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <make-value entity-name="ProductPromoCategory" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <simple-method method-name="deleteProductPromoCategory" short-description="Delete an ProductPromoCategory">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCategory" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoCode methods -->
+    <simple-method method-name="createProductPromoCode" short-description="Create an ProductPromoCode">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoCode"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <if-empty field="newEntity.productPromoCodeId">
+            <sequenced-id sequence-name="ProductPromoCode" field="newEntity.productPromoCodeId" stagger-max="100"/>
+        </if-empty>
+
+        <field-to-result field="newEntity.productPromoCodeId" result-name="productPromoCodeId"/>
+
+        <now-timestamp field="nowTimestamp"/>
+        <if-empty field="newEntity.fromDate">
+            <set field="newEntity.fromDate" from-field="nowTimestamp"/>
+        </if-empty>
+        <set from-field="nowTimestamp" field="newEntity.createdDate"/>
+        <set from-field="nowTimestamp" field="newEntity.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="newEntity.lastModifiedByUserLogin"/>
+        <set from-field="userLogin.userLoginId" field="newEntity.createdByUserLogin"/>
+        <set field="newEntity.promoCodeStatus" value="C"/>
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromoCode" short-description="Update an ProductPromoCode">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCode" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" entity-name="ProductPromoCode" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+
+        <now-timestamp field="nowTimestamp"/>
+        <set from-field="nowTimestamp" field="newEntity.lastModifiedDate"/>
+        <set from-field="userLogin.userLoginId" field="newEntity.lastModifiedByUserLogin"/>
+        <if-not-empty field="parameters.partyId">
+            <set field="newEntity.promoCodeStatus" value="G"/>
+        </if-not-empty>
+        <store-value value-field="lookedUpValue"/>
+
+        <!--add by changsy at 2016.1.23 增加促销代码对应的会员-->
+        <entity-condition entity-name="ProductPromoCodeParty" list="promoCodeParties">
+            <condition-expr field-name="productPromoCodeId" from-field="parameters.productPromoCodeId"/>
+        </entity-condition>
+        <remove-list list="promoCodeParties"/>
+
+        <make-value entity-name="ProductPromoCodeParty" value-field="partyPKMap"/>
+        <set-pk-fields map="parameters" value-field="partyPKMap"/>
+        <create-value value-field="partyPKMap"/>
+
+
+    </simple-method>
+    <simple-method method-name="deleteProductPromoCode" short-description="Delete an ProductPromoCode">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCode" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoCodeEmail methods -->
+    <simple-method method-name="createProductPromoCodeEmail" short-description="Create an ProductPromoCodeEmail">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoCodeEmail"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoCodeEmail" short-description="Delete an ProductPromoCodeEmail">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCodeEmail" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoCodeParty methods -->
+    <simple-method method-name="createProductPromoCodeParty" short-description="Create an ProductPromoCodeParty">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoCodeParty"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoCodeParty" short-description="Delete an ProductPromoCodeParty">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCodeParty" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoCond methods -->
+    <simple-method method-name="createProductPromoCond" short-description="Create an ProductPromoCond">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoCond"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <if-not-empty field="parameters.carrierShipmentMethod">
+            <set field="newEntity.otherValue" from-field="parameters.carrierShipmentMethod"/>
+        </if-not-empty>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <make-next-seq-id value-field="newEntity" seq-field-name="productPromoCondSeqId" numeric-padding="2"/>
+        <field-to-result field="newEntity.productPromoCondSeqId" result-name="productPromoCondSeqId"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromoCond" short-description="Update an ProductPromoCond">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCond" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="ProductPromoCond" map="lookupPKMap" value-field="lookedUpValue"/>
+        <log level="info" message="parameters=${parameters}"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <if-not-empty field="parameters.carrierShipmentMethod">
+            <set field="lookedUpValue.otherValue" from-field="parameters.carrierShipmentMethod"/>
+        </if-not-empty>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoCond" short-description="Delete an ProductPromoCond">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoCond" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="ProductPromoCond" map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoProduct methods -->
+    <simple-method method-name="createProductPromoProduct" short-description="Create an ProductPromoProduct">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoProduct"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromoProduct" short-description="Update an ProductPromoProduct">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoProduct" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoProduct" short-description="Delete an ProductPromoProduct">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoProduct" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromoRule methods -->
+    <simple-method method-name="createProductPromoRule" short-description="Create a ProductPromoRule">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductPromoRule"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <make-next-seq-id value-field="newEntity" seq-field-name="productPromoRuleId" numeric-padding="2"/>
+        <field-to-result field="newEntity.productPromoRuleId" result-name="productPromoRuleId"/>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductPromoRule" short-description="Update a ProductPromoRule">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoRule" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="ProductPromoRule" map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteProductPromoRule" short-description="Delete a ProductPromoRule">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductPromoRule" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="ProductPromoRule" map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <!-- ProductPromo to ProductStore methods -->
+    <simple-method method-name="createProductStorePromoAppl" short-description="Create ProductStorePromoAppl">
+        <check-permission permission="CATALOG" action="_CREATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogCreatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value value-field="newEntity" entity-name="ProductStorePromoAppl"/>
+        <set-pk-fields map="parameters" value-field="newEntity"/>
+        <set-nonpk-fields map="parameters" value-field="newEntity"/>
+
+        <if-empty field="newEntity.fromDate">
+            <now-timestamp field="nowTimestamp"/>
+            <set from-field="nowTimestamp" set-if-empty="true" field="newEntity.fromDate"/>
+        </if-empty>
+
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    <simple-method method-name="updateProductStorePromoAppl" short-description="Update ProductStorePromoAppl">
+        <check-permission permission="CATALOG" action="_UPDATE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogUpdatePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductStorePromoAppl" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+    <simple-method method-name="deleteProductStorePromoAppl" short-description="Delete ProductStorePromoAppl">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-permission permission="CATALOG_PRICE_MAINT">
+            <fail-property resource="ProductUiLabels" property="ProductPriceMaintPermissionError"/>
+        </check-permission>
+        <check-errors/>
+
+        <make-value entity-name="ProductStorePromoAppl" value-field="lookupPKMap"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+        <remove-value value-field="lookedUpValue"/>
+    </simple-method>
+    <!--优惠劵-->
+    <simple-method method-name="createCoupon" short-description="Create a ProductPromo">
+        <!--创建促销规则 满减劵、立减劵、折扣劵、满赠劵-->
+        <if-compare field="parameters.promoType" operator="equals" value="COUPON_TYPE_SUB">
+            <set field="promoMap.promoText" from-field="parameters.promoText"/>
+            <set field="promoMap.promoName" from-field="parameters.promoName"/>
+            <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+            <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+            <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+            <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+            <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+            <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+            <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+            <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+            <set field="promoMap.promoType" from-field="parameters.promoType"/>
+            <call-service service-name="createProductPromo" in-map-name="promoMap">
+                <result-to-field result-name="productPromoId" field="productPromoId"/>
+            </call-service>
+            <set field="promoRule.ruleName" value="满减:${productPromoId}"/>
+            <set field="promoRule.productPromoId" from-field="productPromoId"/>
+            <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+                <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+            </call-service>
+
+            <!--创建促销条件-->
+            <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+            <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+            <set field="promoCond.productPromoId" from-field="productPromoId"/>
+            <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+            <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+                <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+            </call-service>
+            <!--创建促销动作-->
+            <set field="promoAction.productPromoActionEnumId" value="PROMO_ORDER_AMOUNT"/>
+            <set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>
+            <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+            <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoAction.productPromoId" from-field="productPromoId"/>
+            <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+            <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+                <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+            </call-service>
+            <!--关联店铺-->
+            <entity-condition entity-name="ProductStore" list="stores">
+            </entity-condition>
+            <if-not-empty field="stores">
+                <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+                <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+                <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+                </call-service>
+            </if-not-empty>
+        </if-compare>
+        <if-compare field="parameters.promoType" operator="equals" value="COUPON_TYPE_SUB1">
+            <set field="promoMap.promoText" from-field="parameters.promoText"/>
+            <set field="promoMap.promoName" from-field="parameters.promoName"/>
+            <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+            <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+            <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+            <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+            <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+            <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+            <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+            <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+            <set field="promoMap.promoType" from-field="parameters.promoType"/>
+            <call-service service-name="createProductPromo" in-map-name="promoMap">
+                <result-to-field result-name="productPromoId" field="productPromoId"/>
+            </call-service>
+            <set field="promoRule.ruleName" value="立减:${productPromoId}"/>
+            <set field="promoRule.productPromoId" from-field="productPromoId"/>
+            <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+                <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+            </call-service>
+
+            <!--创建促销条件-->
+            <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+            <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+            <set field="promoCond.condValue" value="0"/>
+            <set field="promoCond.productPromoId" from-field="productPromoId"/>
+            <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+            <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+                <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+            </call-service>
+            <!--创建促销动作-->
+            <set field="promoAction.productPromoActionEnumId" value="PROMO_ORDER_AMOUNT"/>
+            <set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>
+            <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+            <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoAction.productPromoId" from-field="productPromoId"/>
+            <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+            <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+                <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+            </call-service>
+            <!--关联店铺-->
+            <entity-condition entity-name="ProductStore" list="stores">
+            </entity-condition>
+            <if-not-empty field="stores">
+                <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+                <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+                <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+                </call-service>
+            </if-not-empty>
+        </if-compare>
+        <if-compare field="parameters.promoType" operator="equals" value="COUPON_TYPE_DISC">
+            <set field="promoMap.promoText" from-field="parameters.promoText"/>
+            <set field="promoMap.promoName" from-field="parameters.promoName"/>
+            <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+            <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+            <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+            <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+            <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+            <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+            <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+            <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+            <set field="promoMap.promoType" from-field="parameters.promoType"/>
+            <call-service service-name="createProductPromo" in-map-name="promoMap">
+                <result-to-field result-name="productPromoId" field="productPromoId"/>
+            </call-service>
+            <!--创建促销规则-->
+            <set field="promoRule.ruleName" value="满折:${productPromoId}"/>
+            <set field="promoRule.productPromoId" from-field="productPromoId"/>
+            <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+                <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+            </call-service>
+            <!--创建促销条件-->
+            <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+            <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+            <set field="promoCond.productPromoId" from-field="productPromoId"/>
+            <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+            <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+                <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+            </call-service>
+            <!--创建促销动作-->
+            <set field="promoAction.productPromoActionEnumId" value="PROMO_ORDER_PERCENT"/>
+            <set field="promoAction.amount" from-field="parameters.discountAmount" type="BigDecimal"/>
+            <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+            <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoAction.productPromoId" from-field="productPromoId"/>
+            <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+            <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+                <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+            </call-service>
+            <!--关联店铺-->
+            <entity-condition entity-name="ProductStore" list="stores">
+            </entity-condition>
+            <if-not-empty field="stores">
+                <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+                <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+                <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+                </call-service>
+            </if-not-empty>
+        </if-compare>
+        <if-compare field="parameters.promoType" operator="equals" value="COUPON_TYPE_GIFT">
+            <set field="promoMap.promoText" from-field="parameters.promoText"/>
+            <set field="promoMap.promoName" from-field="parameters.promoName"/>
+            <set field="promoMap.userEntered" from-field="parameters.userEntered"/>
+            <set field="promoMap.showToCustomer" from-field="parameters.showToCustomer"/>
+            <set field="promoMap.requireCode" from-field="parameters.requireCode"/>
+            <set field="promoMap.useLimitPerOrder" from-field="parameters.useLimitPerOrder"/>
+            <set field="promoMap.useLimitPerCustomer" from-field="parameters.useLimitPerCustomer"/>
+            <set field="promoMap.useLimitPerPromotion" from-field="parameters.useLimitPerPromotion"/>
+            <set field="promoMap.billbackFactor" from-field="parameters.billbackFactor"/>
+            <set field="promoMap.overrideOrgPartyId" from-field="parameters.overrideOrgPartyId"/>
+            <set field="promoMap.promoType" from-field="parameters.promoType"/>
+            <call-service service-name="createProductPromo" in-map-name="promoMap">
+                <result-to-field result-name="productPromoId" field="productPromoId"/>
+            </call-service>
+            <!--创建促销规则-->
+            <set field="promoRule.ruleName" value="满折:${productPromoId}"/>
+            <set field="promoRule.productPromoId" from-field="productPromoId"/>
+            <call-service service-name="createProductPromoRule" in-map-name="promoRule">
+                <result-to-field result-name="productPromoRuleId" field="productPromoRuleId"/>
+            </call-service>
+            <!--创建促销条件-->
+            <set field="promoCond.inputParamEnumId" value="PPIP_ORDER_TOTAL"/>
+            <set field="promoCond.operatorEnumId" value="PPC_GTE"/>
+            <set field="promoCond.condValue" from-field="parameters.orderAmount"/>
+            <set field="promoCond.productPromoId" from-field="productPromoId"/>
+            <set field="promoCond.productPromoRuleId" from-field="productPromoRuleId"/>
+            <call-service service-name="createProductPromoCond" in-map-name="promoCond">
+                <result-to-field result-name="productPromoCondSeqId" field="productPromoCondSeqId"/>
+            </call-service>
+            <!--创建促销动作-->
+            <set field="promoAction.productPromoActionEnumId" value="PROMO_GWP"/>
+            <!--<set field="promoAction.amount" from-field="parameters.subtractAmount" type="BigDecimal"/>-->
+            <set field="promoAction.quantity" from-field="parameters.subtractQuantity" type="BigDecimal"/>
+            <set field="promoAction.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoAction.productPromoId" from-field="productPromoId"/>
+            <set field="promoAction.productPromoRuleId" from-field="productPromoRuleId"/>
+
+            <call-service service-name="createProductPromoAction" in-map-name="promoAction">
+                <result-to-field result-name="productPromoActionSeqId" field="productPromoActionSeqId"/>
+            </call-service>
+            <!--创建对应产品-->
+            <set field="promoProduct.productPromoId" from-field="productPromoId"/>
+            <set field="promoProduct.productPromoRuleId" from-field="productPromoRuleId"/>
+            <set field="promoProduct.productPromoActionSeqId" from-field="productPromoActionSeqId"/>
+            <set field="promoProduct.productPromoCondSeqId" from-field="productPromoCondSeqId"/>
+            <set field="promoProduct.productId" from-field="parameters.productId"/>
+            <set field="promoProduct.productPromoApplEnumId" value="PPPA_INCLUDE"/>
+            <call-service service-name="createProductPromoProduct" in-map-name="promoProduct"/>
+            <!--关联店铺-->
+            <entity-condition entity-name="ProductStore" list="stores">
+            </entity-condition>
+            <if-not-empty field="stores">
+                <set field="promoStoreApplMap.productPromoId" from-field="productPromoId"/>
+                <set field="promoStoreApplMap.productStoreId" from-field="stores[0].productStoreId"/>
+                <call-service service-name="createProductStorePromoAppl" in-map-name="promoStoreApplMap">
+                </call-service>
+            </if-not-empty>
+        </if-compare>
+        <if-compare field="parameters.promoType" operator="equals" value="COUPON_TYPE_SUB1">
+
+        </if-compare>
+
+        <field-to-result field="productPromoId" result-name="productPromoId"/>
+        <log level="info" message="productPromoId=${productPromoId}"/>
+        <set field="couponCodeSetMap.productPromoId" from-field="productPromoId"/>
+        <set field="couponCodeSetMap.useLimitPerCode" value="1" type="Long"/>
+        <set field="couponCodeSetMap.useLimitPerCustomer" value="1" type="Long"/>
+        <set field="couponCodeSetMap.quantity" from-field="parameters.couponCount"/>
+        <set field="couponCodeSetMap.codeLength" value="6" type="Integer"/>
+        <set field="couponCodeSetMap.promoCodeLayout" value="smart"/>
+        <set field="couponCodeSetMap.userEntered" value="Y"/>
+        <set field="couponCodeSetMap.requireEmailOrParty" value="N"/>
+        <call-service-asynch service-name="createProductPromoCodeSet" in-map-name="couponCodeSetMap"/>
+
+
+    </simple-method>
+
+
+</simple-methods>

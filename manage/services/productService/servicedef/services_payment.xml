@@ -1,0 +1,40 @@
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>Product Component Services</description>
+    <vendor>OFBiz</vendor>
+    <version>1.0</version>
+    <service name="deletePaymentGatewayConfig" default-entity-name="PaymentGatewayConfig" engine="simple"
+             location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="deletePaymentGatewayConfig" auth="true">
+        <description>Delete ProductStorePaymentSetting</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+    <service name="deletePaymentGatewayConfigType" default-entity-name="PaymentGatewayConfigType" engine="simple"
+             location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="deletePaymentGatewayConfigType" auth="true">
+        <description>Delete PaymentGatewayConfigType</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+
+    <service name="createPaymentGatewayConfigType" engine="simple" location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="createPaymentGatewayConfigType">
+        <description>Update Payment Gateway Config Type</description>
+        <auto-attributes entity-name="PaymentGatewayConfigType" include="pk" mode="IN" optional="false"/>
+        <auto-attributes entity-name="PaymentGatewayConfigType" include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="createPaymentGatewayConfig" engine="simple" location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="createPaymentGatewayConfig">
+        <description>Update Payment Gateway Config Type</description>
+        <auto-attributes entity-name="PaymentGatewayConfig" include="pk" mode="IN" optional="false"/>
+        <auto-attributes entity-name="PaymentGatewayConfig" include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="updatePaymentGatewayConfigAlipay" engine="simple" location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="updatePaymentGatewayConfigAlipay">
+        <description>Update Payment Gateway Config PayPal</description>
+        <auto-attributes entity-name="PaymentGatewayAlipay" include="pk" mode="IN" optional="false"/>
+        <auto-attributes entity-name="PaymentGatewayAlipay" include="nonpk" mode="IN" optional="true"/>
+    </service>
+
+    <service name="updatePaymentGatewayConfigWeixin" engine="simple" location="component://productService/script/org/ofbiz/product/payment/PaymentServices.xml" invoke="updatePaymentGatewayConfigWeixin">
+        <description>Update Payment Gateway Config PayPal</description>
+        <auto-attributes entity-name="PaymentGatewayWeixin" include="pk" mode="IN" optional="false"/>
+        <auto-attributes entity-name="PaymentGatewayWeixin" include="nonpk" mode="IN" optional="true"/>
+    </service>
+</services>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+  <description>Content Component Services</description>
+  <vendor>OFBiz</vendor>
+  <!-- Article Services -->
+  <service name="createArticle" default-entity-name="Article" auth="true" engine="simple"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml"
+           invoke="createArticle">
+    <description>Create a Article</description>
+    <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
+    <implements service="uploadFileInterface" optional="true"/>
+    <auto-attributes include="pk" mode="OUT" optional="false"/>
+    <auto-attributes include="nonpk" mode="IN" optional="true"/>
+  </service>
+  <service name="updateArticle" default-entity-name="Article" auth="true" engine="simple"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml"
+           invoke="updateArticle">
+    <description>Update a Article</description>
+    <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
+    <implements service="uploadFileInterface" optional="true"/>
+    <auto-attributes include="pk" mode="IN" optional="false"/>
+    <auto-attributes include="nonpk" mode="IN" optional="true"/>
+  </service>
+
+  <service name="deleteArticle" default-entity-name="Article" auth="true" engine="simple"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml"
+           invoke="deleteArticle">
+    <description>Update a Article</description>
+    <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
+    <auto-attributes include="pk" mode="IN" optional="false"/>
+    <auto-attributes include="nonpk" mode="IN" optional="true"/>
+  </service>
+
+  <service name="SaveArticleContent" engine="simple" auth="true"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml" invoke="createArticleContent">
+    <description>Creates content records for a blog entry</description>
+    <implements service="uploadFileInterface" optional="true"/>
+    <attribute name="articleTitle" type="String" mode="IN" optional="false"/>
+    <attribute name="articleContentName" type="String" mode="IN" optional="false"/>
+    <attribute name="description" type="String" mode="IN" optional="true"/>
+    <attribute name="articleId" type="String" mode="IN" optional="false"/>
+    <attribute name="sequenceNum" type="Long" mode="IN" optional="false"/>
+    <attribute name="fromDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+    <attribute name="thruDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+    <attribute name="statusId" type="String" mode="IN" optional="true"/>
+    <attribute name="templateDataResourceId" type="String" mode="IN" optional="true"/>
+    <attribute name="articleData" type="String" mode="IN" optional="true" allow-html="safe"/>
+    <attribute name="summaryData" type="String" mode="IN" optional="true" allow-html="safe"/>
+    <attribute name="articleContentId" type="String" mode="OUT" optional="true"/>
+  </service>
+
+
+  <service name="updateArticleContent" engine="simple" auth="true"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml" invoke="updateArticleContent">
+    <description>Creates content records for a blog entry</description>
+    <implements service="uploadFileInterface" optional="true"/>
+    <attribute name="contentId" type="String" mode="IN" optional="true"/>
+    <attribute name="articleTitle" type="String" mode="IN" optional="false"/>
+    <attribute name="articleContentName" type="String" mode="IN" optional="false"/>
+    <attribute name="description" type="String" mode="IN" optional="true"/>
+    <attribute name="articleId" type="String" mode="IN" optional="false"/>
+    <attribute name="sequenceNum" type="Long" mode="IN" optional="false"/>
+    <attribute name="fromDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+    <attribute name="thruDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+    <attribute name="statusId" type="String" mode="IN" optional="true"/>
+    <attribute name="templateDataResourceId" type="String" mode="IN" optional="true"/>
+    <attribute name="articleData" type="String" mode="IN" optional="true" allow-html="safe"/>
+    <attribute name="summaryData" type="String" mode="IN" optional="true" allow-html="safe"/>
+    <attribute name="articleContentId" type="String" mode="INOUT" optional="true"/>
+  </service>
+
+
+  <service name="deleteArticleContent" engine="simple" auth="true" default-entity-name="ArticleContent"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml"
+           invoke="deleteArticleContent">
+    <description>Create a Article</description>
+    <permission-service service-name="contentManagerPermission" main-action="DELETE"/>
+    <auto-attributes include="pk" mode="IN" optional="false"/>
+  </service>
+
+  <service name="getArticleEntry" engine="simple" auth="true"
+           location="component://contentService/script/org/ofbiz/content/article/ArticleServices.xml" invoke="getArticleEntry">
+    <description>Retrieves content records for a blog entry</description>
+    <!--<attribute name="blogContentId" type="String" mode="INOUT" optional="false"/>-->
+    <attribute name="contentId" type="String" mode="INOUT" optional="false"/><!-- also used for new entries, will return with no error with empty contentId -->
+    <attribute name="contentName" type="String" mode="OUT" optional="true"/>
+    <attribute name="statusId" type="String" mode="OUT" optional="true"/>
+    <attribute name="description" type="String" mode="OUT" optional="true"/>
+    <attribute name="templateDataResourceId" type="String" mode="OUT" optional="true"/>
+    <attribute name="summaryData" type="String" mode="OUT" optional="true"/>
+    <attribute name="articleData" type="String" mode="OUT" optional="true"/>
+    <attribute name="imageContentId" type="String" mode="OUT" optional="true"/>
+    <attribute name="articleContentId" type="String" mode="OUT" optional="true"/>
+    <attribute name="summaryContentId" type="String" mode="OUT" optional="true"/>
+  </service>
+</services>

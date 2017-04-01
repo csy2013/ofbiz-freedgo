@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <!-- Catalog Manager security -->
+    <SecurityPermission name="CATALOG_VIEW" parentPermissionId="CATALOG_ADMIN" description="商品查看" permissionId="CATALOG_VIEW"/>
+    <SecurityPermission name="CATALOG_CREATE" parentPermissionId="CATALOG_ADMIN" description="商品创建" permissionId="CATALOG_CREATE"/>
+    <SecurityPermission name="CATALOG_UPDATE" parentPermissionId="CATALOG_ADMIN" description="商品修改" permissionId="CATALOG_UPDATE"/>
+    <SecurityPermission name="CATALOG_DELETE" parentPermissionId="CATALOG_ADMIN" description="商品删除" permissionId="CATALOG_DELETE"/>
+    <SecurityPermission name="CATALOG_ADMIN" parentPermissionId="-1" description="商品管理" permissionId="CATALOG_ADMIN"/>
+    <SecurityPermission name="CATALOG_ROLE_CREATE" parentPermissionId="CATALOG_ADMIN" description="有限商品创建" permissionId="CATALOG_ROLE_CREATE"/>
+    <SecurityPermission name="CATALOG_ROLE_UPDATE" parentPermissionId="CATALOG_ADMIN" description="有限商品修改" permissionId="CATALOG_ROLE_UPDATE"/>
+    <SecurityPermission name="CATALOG_ROLE_DELETE" parentPermissionId="CATALOG_ADMIN" description="有限商品删除" permissionId="CATALOG_ROLE_DELETE"/>
+    <SecurityPermission name="CATALOG_PRICE_MAINT" parentPermissionId="CATALOG_ADMIN" description="商品价格维护" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityPermission name="CATALOG_VIEW_ALLOW" parentPermissionId="CATALOG_ADMIN" description="View Allow管理" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityPermission name="CATALOG_PURCHASE_ALLOW" parentPermissionId="CATALOG_ADMIN" description="Purchase Allow管理" permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+    <!--<SecurityGroup description="Limited Catalog Admin group, has limited catalog permissions." groupId="CATALOGADMIN_LTD"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_VIEW"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_CREATE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_UPDATE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="CATALOG_ROLE_DELETE"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN_LTD" permissionId="OFBTOOLS_VIEW"/>
+
+    <SecurityGroup description="Catalog Admin group, has all catalog permissions." groupId="CATALOGADMIN"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="CATALOG_ADMIN"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityGroupPermission groupId="CATALOGADMIN" permissionId="OFBTOOLS_VIEW"/>
+    &lt;!&ndash; NOTE DEJ20070810 where did this come from? has duplicate ID of that above: <SecurityGroup description="Catalog Admin View and Purchase Allow Products" groupId="CATALOGADMIN"/> &ndash;&gt;
+
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+    -->
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+    <!--
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_CREATE"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_DELETE"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_UPDATE"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PRICE_MAINT"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_VIEW_ALLOW"/>
+       <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CATALOG_PURCHASE_ALLOW"/>
+
+       <SecurityGroupPermission groupId="VIEWADMIN" permissionId="CATALOG_VIEW"/>
+       <SecurityGroupPermission groupId="BIZADMIN" permissionId="CATALOG_ADMIN"/>
+       <SecurityGroupPermission groupId="BIZADMIN" permissionId="CATALOG_PRICE_MAINT"/>-->
+
+    <!-- Shipping Rate security -->
+    <SecurityPermission name="SHIPRATE_VIEW" parentPermissionId="SHIPRATE_ADMIN" description="送货方式查看" permissionId="SHIPRATE_VIEW"/>
+    <SecurityPermission name="SHIPRATE_CREATE" parentPermissionId="SHIPRATE_ADMIN" description="送货方式创建" permissionId="SHIPRATE_CREATE"/>
+    <SecurityPermission name="SHIPRATE_DELETE" parentPermissionId="SHIPRATE_ADMIN" description="送货方式删除" permissionId="SHIPRATE_DELETE"/>
+    <SecurityPermission name="SHIPRATE_ADMIN" parentPermissionId="CATALOG_ADMIN" description="送货方式管理" permissionId="SHIPRATE_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="SHIPRATE_ADMIN"/>
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHIPRATE_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="SHIPRATE_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="SHIPRATE_ADMIN"/>-->
+
+    <!-- Facility Manager security -->
+    <SecurityPermission name="FACILITY_VIEW" parentPermissionId="FACILITY_ADMIN" description="仓存查看" permissionId="FACILITY_VIEW"/>
+    <SecurityPermission name="FACILITY_CREATE" parentPermissionId="FACILITY_ADMIN" description="仓存创建" permissionId="FACILITY_CREATE"/>
+    <SecurityPermission name="FACILITY_UPDATE" parentPermissionId="FACILITY_ADMIN" description="仓存修改" permissionId="FACILITY_UPDATE"/>
+    <SecurityPermission name="FACILITY_DELETE" parentPermissionId="FACILITY_ADMIN" description="仓存删除" permissionId="FACILITY_DELETE"/>
+    <SecurityPermission name="FACILITY_ADMIN" parentPermissionId="-1" description="仓存管理" permissionId="FACILITY_ADMIN"/>
+    <SecurityPermission name="FACILITY_ROLE_VIEW" parentPermissionId="FACILITY_ADMIN" description="有限仓存查看" permissionId="FACILITY_ROLE_VIEW"/>
+    <SecurityPermission name="FACILITY_ROLE_UPDATE" parentPermissionId="CATALOG_ADMIN" description="有限仓存修改" permissionId="FACILITY_ROLE_UPDATE"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="FACILITY_ADMIN"/>
+    <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="FACILITY_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="FACILITY_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="FACILITY_ADMIN"/>-->
+    
+    <!-- Image Management security -->
+    <!--<SecurityGroup description="Image Management Admin." groupId="IMAGEADMIN"/>-->
+    <SecurityPermission name="IMAGE_MANAGEMENT_ADMIN" parentPermissionId="CATALOG_ADMIN" description="图片管理" permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+   <!-- <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+    <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_APPROVE"/>
+    <SecurityGroupPermission groupId="IMAGEADMIN" permissionId="IMAGE_MANAGEMENT_UPLOAD"/>-->
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="IMAGE_MANAGEMENT_ADMIN"/>
+    
+    <!--<SecurityGroup description="Image Management Approve" groupId="IMAGEAPPROVE"/>-->
+    <SecurityPermission name="IMAGE_MANAGEMENT_APPROVE" parentPermissionId="IMAGE_MANAGEMENT_ADMIN" description="图片审批" permissionId="IMAGE_MANAGEMENT_APPROVE"/>
+    <!--<SecurityGroupPermission groupId="IMAGEAPPROVE" permissionId="IMAGE_MANAGEMENT_APPROVE"/>-->
+    
+    <!--<SecurityGroup description="Image Management Upload." groupId="IMAGEUPLOAD"/>-->
+    <SecurityPermission name="IMAGE_MANAGEMENT_UPLOAD" parentPermissionId="IMAGE_MANAGEMENT_ADMIN" description="图片上传" permissionId="IMAGE_MANAGEMENT_UPLOAD"/>
+    <!--<SecurityGroupPermission groupId="IMAGEUPLOAD" permissionId="IMAGE_MANAGEMENT_UPLOAD"/>-->
+    
+</entity-engine-xml>

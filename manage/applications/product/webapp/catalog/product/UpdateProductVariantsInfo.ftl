@@ -1,0 +1,1 @@
+<div class="alert alert-warning fade in m-b-15">操作说明：<br>1)复制虚拟产品的信息到各个变形产品中<br/></div>

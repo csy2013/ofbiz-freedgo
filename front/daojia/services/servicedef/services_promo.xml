@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile product Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <service name="DaoJia_ProductPromos" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductPromoService" invoke="DaoJia_ProductPromos">
+        <description>产品对应的促销活动</description>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="productStoreId" type="String" mode="IN" />
+        <attribute name="resultData" type="java.util.List" mode="OUT"/>
+    </service>
+    <service name="DaoJia_StorePromos" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductPromoService" invoke="DaoJia_StorePromos">
+        <description>产品对应的促销活动</description>
+        <attribute name="productStoreId" type="String" mode="IN"/>
+        <attribute name="resultData" type="java.util.List" mode="OUT"/>
+    </service>
+</services>

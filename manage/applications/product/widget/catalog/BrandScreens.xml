@@ -1,0 +1,309 @@
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+    <screen name="CommonBrandDecorator">
+        <section>
+            <actions>
+                <set field="headerItem" value="categories"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="品牌管理"></label>
+                                <label style="sub-title" text="${subContentTitle}"/>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.CommonFirst}" style="breadcrumb"/>
+                                <link target="${middleCrumbLink}" text="${middleCrumbName}" style="breadcrumb"/>
+                                <link target="" text="${currentCrumbName}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <or>
+                                    <if-has-permission permission="CATALOG" action="_ADMIN"/>
+                                    <if-has-permission permission="CATALOG" action="_CREATE"/>
+                                    <if-has-permission permission="CATALOG" action="_UPDATE"/>
+                                    <if-has-permission permission="CATALOG" action="_VIEW"/>
+                                </or>
+                            </condition>
+                            <actions>
+                                <set field="brandId" from-field="parameters.brandId"/>
+                                <entity-one entity-name="Brand" value-field="brand"/>
+                            </actions>
+                            <widgets>
+                                <section>
+                                    <condition>
+                                        <not>
+                                            <if-empty field="brand"/>
+                                        </not>
+                                    </condition>
+                                    <widgets>
+                                        <include-menu name="BrandTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                        <!--<include-menu name="CategorySubTabBar" location="component://product/widget/catalog/BrandMenus.xml"/>-->
+                                        <!--<container>
+                                            <label style="h1">${uiLabelMap[labelTitleProperty]} ${uiLabelMap.CommonFor}: ${productCategory.categoryName}
+                                                [${uiLabelMap.CommonId}:${productCategoryId}] ${${extraFunctionName}}
+                                            </label>
+                                        </container>-->
+                                    </widgets>
+                                    <fail-widgets>
+                                        <section>
+                                            <condition>
+                                                <if-compare operator="not-equals" value="EditBrand" field="tabButtonItem"/>
+                                            </condition>
+                                            <widgets>
+                                                <!--<include-menu name="CategorySubTabBar" location="component://product/widget/catalog/BrandMenus.xml"/>-->
+                                            </widgets>
+                                        </section>
+                                    </fail-widgets>
+                                </section>
+                                <decorator-section-include name="body"/>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.BrandViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FindBrand">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindCategory"/>
+                <set field="headerItem" value="brand"/>
+                <set field="tabButtonItem" value="FindBrand"/>
+                <set field="labelTitleProperty" value="Brand"/>
+                <set field="subContentTitle" value="查找品牌"/>
+                <set field="middleCrumbLink" value="FindBrand"/>
+                <set field="middleCrumbName" value="品牌管理"/>
+                <set field="currentCrumbName" value="查找品牌"/>
+                <set field="noConditionFind" value="Y"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonBrandDecorator">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="search-options">
+                                        <include-form name="FindBrand" location="component://product/widget/catalog/BrandForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="menu-bar">
+                                        <container style="button-bar">
+                                            <modal-page modal-url="AddBrand"  description="新增品牌" id="EditBrand" name="EditBrand" confirm-title="新增品牌" modal-style="modal-lg"/>
+                                            <!--<include-menu name="BrandSubTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>-->
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListBrand" location="component://product/widget/catalog/BrandForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListBrand">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindBrand"/>
+                <set field="headerItem" value="categories"/>
+                <set field="tabButtonItem" value="FindBrand"/>
+                <set field="labelTitleProperty" value="ProductBrand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+            </actions>
+            <widgets>
+                <include-form name="ListBrand" location="component://product/widget/catalog/BrandForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddBrand">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductCategories"/>
+                <set field="headerItem" value="categories"/>
+                <set field="tabButtonItem" value="EditBrand"/>
+                <set field="labelTitleProperty" value="ProductBrand"/>
+                <set field="productBrandId" from-field="parameters.productBrandId"/>
+                <set field="subContentTitle" value="品牌新增"/>
+                <set field="middleCrumbLink" value="FindBrand"/>
+                <set field="middleCrumbName" value="品牌管理"/>
+                <set field="currentCrumbName" value="品牌新增"/>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <!--<script location="component://product/webapp/catalog/WEB-INF/actions/category/EditBrand.groovy"/>-->
+            </actions>
+            <widgets>
+
+                <include-form name="EditBrand" location="component://product/widget/catalog/BrandForms.xml"/>
+
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditBrand">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductCategories"/>
+                <set field="headerItem" value="categories"/>
+                <set field="tabButtonItem" value="EditBrand"/>
+                <set field="labelTitleProperty" value="ProductBrand"/>
+                <set field="productBrandId" from-field="parameters.productBrandId"/>
+                <set field="subContentTitle" value="品牌修改"/>
+                <set field="middleCrumbLink" value="FindBrand"/>
+                <set field="middleCrumbName" value="品牌管理"/>
+                <set field="currentCrumbName" value="品牌修改"/>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <entity-condition entity-name="BrandContent" list="brandContents">
+                    <condition-list>
+                        <condition-expr field-name="brandId" from-field="parameters.brandId"/>
+                        <condition-expr field-name="brandContentTypeId" value="SMALL_IMAGE_URL"/>
+                    </condition-list>
+                </entity-condition>
+                <set field="brandContent" from-field="brandContents[0]"/>
+                <get-related-one value-field="brandContent" relation-name="Content" to-value-field="content"/>
+                <set field="brandContentUrl" value="${groovy: return org.ofbiz.content.data.OfbizUrlContentWrapper.getOfbizUrlContentAsText(content, locale, dispatcher)}"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <!--<script location="component://product/webapp/catalog/WEB-INF/actions/category/EditBrand.groovy"/>-->
+            </actions>
+            <widgets>
+                <include-form name="EditBrand" location="component://product/widget/catalog/BrandForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="brandProductList">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductCategories"/>
+                <set field="headerItem" value="brandProductList"/>
+                <set field="tabButtonItem" value="brandProductList"/>
+                <set field="labelTitleProperty" value="brandProductList"/>
+                <set field="subContentTitle" value="品牌对应商品"/>
+                <set field="middleCrumbLink" value="brandProductList"/>
+                <set field="middleCrumbName" value="品牌管理"/>
+                <set field="currentCrumbName" value="品牌对应商品"/>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <set field="noConditionFind" value="Y"/>
+                <set field="brandId" from-field="parameters.brandId"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonBrandDecorator">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet>
+                                    <modal-page modal-url="addBrandProduct" id="addBrandProduct" description="${uiLabelMap.AddBrandProduct}"
+                                                confirm-title="${uiLabelMap.AddBrandProduct}">
+                                        <parameter param-name="brandId"/>
+                                    </modal-page>
+                                    <horizontal-separator/>
+                                    <include-form name="brandProductList" location="component://product/widget/catalog/BrandForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="addBrandProduct">
+        <section>
+            <actions>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <!--<script location="component://product/webapp/catalog/WEB-INF/actions/category/EditBrand.groovy"/>-->
+            </actions>
+            <widgets>
+                <include-form name="addBrandProduct" location="component://product/widget/catalog/BrandForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="brandCategoryList">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductCategories"/>
+                <set field="headerItem" value="brandCategoryList"/>
+                <set field="tabButtonItem" value="brandCategoryList"/>
+                <set field="labelTitleProperty" value="brandCategoryList"/>
+                <set field="subContentTitle" value="品牌对应分类"/>
+                <set field="middleCrumbLink" value="brandCategoryList"/>
+                <set field="middleCrumbName" value="品牌管理"/>
+                <set field="currentCrumbName" value="品牌对应分类"/>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <set field="noConditionFind" value="Y"/>
+                <set field="brandId" from-field="parameters.brandId"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonBrandDecorator">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet>
+                                    <modal-page modal-url="addBrandCategory" id="addBrandCategory" description="${uiLabelMap.AddBrandCategory}"
+                                                confirm-title="${uiLabelMap.AddBrandCategory}">
+                                        <parameter param-name="brandId"/>
+                                    </modal-page>
+                                    <horizontal-separator/>
+                                    <include-form name="brandCategoryList" location="component://product/widget/catalog/BrandForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="addBrandCategory">
+        <section>
+            <actions>
+                <entity-one entity-name="Brand" value-field="brand"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+                <!--<script location="component://product/webapp/catalog/WEB-INF/actions/category/EditBrand.groovy"/>-->
+            </actions>
+            <widgets>
+                <include-form name="addBrandCategory" location="component://product/widget/catalog/BrandForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="LookupBrand">
+        <section>
+            <condition>
+                <if-service-permission service-name="catalogPermissionCheck" main-action="VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="title" value="${uiLabelMap.PageTitleLookupBrand}"/>
+                <set field="queryString" from-field="result.queryString"/>
+                <set field="entityName" value="Brand"/>
+                <set field="searchFields" value="[brandName, brandDesc]"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="LookupDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="search-options">
+                        <include-form name="lookupBrand" location="component://product/widget/catalog/FieldLookupForms.xml"/>
+                    </decorator-section>
+                    <decorator-section name="search-results">
+                        <include-form name="listLookupBrand" location="component://product/widget/catalog/FieldLookupForms.xml"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+</screens>

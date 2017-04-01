@@ -1,0 +1,17 @@
+{
+  "orderId": "WSOD10070",
+  "deliveryScore": 5,
+  "serviceScore": 5,
+  "skus": [
+    {
+      "skuId": "10002",
+      "score": 5,
+      "comment": "sss"
+    },
+    {
+      "skuId": "10009",
+      "score": 4,
+      "comment": "aaa"
+    }
+  ]
+}

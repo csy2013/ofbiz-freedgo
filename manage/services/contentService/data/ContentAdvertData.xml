@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <AdvertType advertTypeId="slidePic" hasTable="N" description="首页轮播图" parentTypeId=""/>
+    <AdvertType advertTypeId="siteIcon" hasTable="N" description="首页ICON" parentTypeId=""/>
+    <AdvertType advertTypeId="ball" hasTable="N" description="首页魔方" parentTypeId=""/>
+    <AdvertType advertTypeId="floorBanner" parentTypeId="" description="广告栏" hasTable="N"/>
+    <AdvertType advertTypeId="activityBanner" hasTable="N" description="首页活动栏" parentTypeId="N"/>
+</entity-engine-xml>

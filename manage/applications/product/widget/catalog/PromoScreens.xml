@@ -1,0 +1,1746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+    <screen name="CommonPromoDecorator">
+        <section>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${subTitle}"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link target="FindProductPromo" text="${uiLabelMap.ProductPromotion}" style="breadcrumb"/>
+                                <link target="" text="${currentMenu}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <!-- do check for CATALOG, _VIEW permission -->
+                            <condition>
+                                <if-has-permission permission="CATALOG" action="_VIEW"/>
+                            </condition>
+                            <widgets>
+                                <section>
+                                    <condition>
+                                        <not>
+                                            <if-empty field="productPromoId"/>
+                                        </not>
+                                    </condition>
+                                    <widgets>
+                                        <include-menu name="PromoTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                    </widgets>
+                                </section>
+                                <decorator-section-include name="body"/>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.ProductCatalogViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FindProductPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="noConditionFind" value="Y"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" style="breadcrumb"/>
+                                <link target="FindProductPromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductPromo" id="addGroupOrder" confirm-message="新增促销" confirm-title="团购新增"
+                                                        description="${uiLabelMap.CommonAdd}">
+
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="ProductPromosCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListProductPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddProductSubtractPromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="promoType" value="PROMO_SUBTRACT"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductSubtractPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddProductSpecialPricePromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="promoType" value="PROMO_SPE_PRICE"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductSpecialPricePromo" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddProductSecKillPromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="promoType" value="PROMO_SEC_KILL"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductSecKillPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddProductDiscountPromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="promoType" value="PROMO_DISCOUNT"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductDiscountPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="AddProductGiftPromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="promoType" value="PROMO_GIFT"/>
+            </actions>
+            <widgets>
+                <include-form name="EditProductGiftPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FindSubtractPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="noConditionFind" value="Y"/>
+                <set field="promoType" value="PROMO_SUBTRACT"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindSubtractPromo" style="breadcrumb"/>
+                                <link target="FindSubtractPromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="说明: 订单满足条件X的金额减去Y优惠"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductSubtractPromo" id="AddProductSubtractPromo" confirm-message="新增满减"
+                                                        confirm-title="新增满减"
+                                                        description="${uiLabelMap.CommonAdd}">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="SubtractPromosCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListSubtractPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="FindSpecialPricePromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="noConditionFind" value="Y"/>
+                <set field="promoType" value="PROMO_SPE_PRICE"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindSpecialPricePromo" style="breadcrumb"/>
+                                <link target="FindSpecialPricePromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="说明: 商品价格直降"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductSpecialPricePromo" id="AddProductSpecialPrice" confirm-message="新增直降"
+                                                        confirm-title="新增直降"
+                                                        description="${uiLabelMap.CommonAdd}">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="SpecialPriceCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListSpecialPricePromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="FindSecKillPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="noConditionFind" value="Y"/>
+                <set field="promoType" value="PROMO_SEC_KILL"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindSecKillPromo" style="breadcrumb"/>
+                                <link target="FindSecKillPromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="说明: 设置商品秒杀价"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductSecKillPromo" id="AddProductSecKill" confirm-message="新增秒杀" confirm-title="新增秒杀"
+                                                        description="${uiLabelMap.CommonAdd}" modal-style="modal-lg">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="SecKillCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListSecKillPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FindGiftPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="promoType" value="PROMO_GIFT"/>
+                <set field="noConditionFind" value="Y"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindGiftPromo" style="breadcrumb"/>
+                                <link target="FindGiftPromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="新增后到自定义促销中修改"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductGiftPromo" id="addProductGiftPromo" confirm-message="新增满赠" confirm-title="新增满赠"
+                                                        description="${uiLabelMap.CommonAdd}">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="GiftPromosCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListGiftPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FindDiscountPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="promoType" value="PROMO_DISCOUNT"/>
+                <set field="noConditionFind" value="Y"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="${uiLabelMap.ProductPromotion}"></label>
+                                <label style="sub-title" text="${uiLabelMap.ProductProductPromotionsList}（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindDiscountPromo" style="breadcrumb"/>
+                                <link target="FindDiscountPromo" text="${uiLabelMap.ProductProductPromotionsList}" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="新增后到自定义促销中修改"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductDiscountPromo" id="AddProductDiscountPromo" confirm-message="新增满折"
+                                                        confirm-title="新增满折"
+                                                        description="${uiLabelMap.CommonAdd}">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="DiscountPromosCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListDiscountPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!--优惠劵-->
+    <screen name="FindCoupon">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleFindProductCoupon"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="ProductPromo"/>
+                <set field="noConditionFind" value="Y"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <column-container>
+                            <column style="body-title">
+                                <label text="优惠劵"></label>
+                                <label style="sub-title" text="优惠劵列表（共${result.listSize}条）"></label>
+                            </column>
+                            <column style="breadcrumb">
+                                <link target="main" text="${uiLabelMap.Catalog}" style="breadcrumb"/>
+                                <link text="${uiLabelMap.ProductPromotion}" target="FindDiscountPromo" style="breadcrumb"/>
+                                <link target="FindDiscountPromo" text="优惠劵列表" style="breadcrumb active"/>
+                            </column>
+                        </column-container>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-service-permission service-name="partyBasePermissionCheck" main-action="VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <label style="danger" text="新增后到自定义促销中修改"/>
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddCouponPromo" id="AddCouponPromo" confirm-message="新增优惠劵" confirm-title="新增优惠劵"
+                                                        description="${uiLabelMap.CommonAdd}">
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-options">
+                                        <include-form name="CouponCond" location="component://product/widget/catalog/PromoForms.xml"/>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results">
+                                            <include-form name="ListCouponPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.PartyMgrViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AddCouponPromo">
+        <section>
+            <actions>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <include-form name="EditCoupon" location="component://product/widget/catalog/PromoForms.xml"/>
+                <platform-specific>
+                    <html>
+                        <html-template location="component://product/webapp/catalog/promo/coupon_js.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="ListProductPromos">
+        <section>
+            <condition>
+                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <include-form name="ListProductPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListSubtractPromos">
+        <section>
+            <condition>
+                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <include-form name="ListSubtractPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListGiftPromos">
+        <section>
+            <condition>
+                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <include-form name="ListGiftPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ListDiscountPromos">
+        <section>
+            <condition>
+                <if-has-permission permission="CONTENTMGR" action="_VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <include-form name="ListDiscountPromos" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="EditProductPromo"/>
+                <set field="labelTitleProperty" value="ProductPromotion"/>
+
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <set field="subTitle" value="(当前促销名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+                <set field="currentMenu" value="促销基本信息"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonPromoDecorator">
+                    <decorator-section name="body">
+
+                        <screenlet title="促销基本信息">
+                            <include-form name="EditProductPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductSubtractPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="EditProductPromo"/>
+                <set field="labelTitleProperty" value="ProductPromotion"/>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <entity-and entity-name="ProductPromoCond" list="productPromoConds">
+                    <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                </entity-and>
+                <set field="orderAmount" from-field="productPromoConds[0].condValue"/>
+
+                <entity-and entity-name="ProductPromoAction" list="productPromoActs">
+                    <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                </entity-and>
+                <set field="subtractAmount" from-field="productPromoActs[0].amount"/>
+
+                <set field="subTitle" value="(当前满减名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+                <set field="currentMenu" value="满减基本信息"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonPromoDecorator">
+                    <decorator-section name="body">
+                        <screenlet title="基本信息">
+                            <include-form name="EditProductSubtractPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="EditProductGiftPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="EditProductPromo"/>
+                <set field="labelTitleProperty" value="ProductPromotion"/>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <entity-and entity-name="ProductPromoCond" list="productPromoConds">
+                    <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                </entity-and>
+                <set field="orderAmount" from-field="productPromoConds[0].condValue"/>
+
+                <entity-and entity-name="ProductPromoProduct" list="productPromoPrds">
+                    <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                </entity-and>
+                <set field="productId" from-field="productPromoPrds[0].productId"/>
+
+                <set field="subTitle" value="(当前满赠名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+                <set field="currentMenu" value="满赠基本信息"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonPromoDecorator">
+                    <decorator-section name="body">
+                        <screenlet title="基本信息">
+                            <include-form name="EditProductGiftPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="EditCouponPromo">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditProductPromos"/>
+                <set field="headerItem" value="promos"/>
+                <set field="tabButtonItem" value="EditProductPromo"/>
+                <set field="labelTitleProperty" value="ProductPromotion"/>
+                <set field="productPromoId" from-field="parameters.productPromoId"/>
+
+                <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                <entity-and entity-name="ProductPromoCond" list="productPromoConds">
+                    <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                </entity-and>
+                <set field="orderAmount" from-field="productPromoConds[0].condValue"/>
+                <set field="subTitle" value="(当前优惠劵名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+                <set field="currentMenu" value="优惠劵信息"/>
+            </actions>
+            <widgets>
+            <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+
+            <screenlet title="基本信息">
+            <section>
+                <condition>
+                    <if-compare field="productPromo.promoType" operator="equals" value="COUPON_TYPE_SUB"/>
+                </condition>
+                <actions>
+                    <entity-and entity-name="ProductPromoAction" list="productPromoActs">
+                        <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                    </entity-and>
+                    <set field="subtractAmount" from-field="productPromoActs[0].amount"/>
+                </actions>
+                <widgets>
+                    <include-form name="EditProductSubtractPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                </widgets>
+            </section>
+                <section>
+                    <condition>
+                        <if-compare field="productPromo.promoType" operator="equals" value="COUPON_TYPE_SUB1"/>
+                    </condition>
+                    <actions>
+                        <entity-and entity-name="ProductPromoAction" list="productPromoActs">
+                            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                        </entity-and>
+                        <set field="subtractAmount" from-field="productPromoActs[0].amount"/>
+                    </actions>
+                    <widgets>
+                        <include-form name="EditProductSubtract1Promo" location="component://product/widget/catalog/PromoForms.xml"/>
+                    </widgets>
+                </section>
+            <section>
+                <condition>
+                    <if-compare field="productPromo.promoType" operator="equals" value="COUPON_TYPE_DISC"/>
+                </condition>
+                <actions>
+                    <entity-and entity-name="ProductPromoAction" list="productPromoActs">
+                        <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                    </entity-and>
+                    <set field="discountAmount" from-field="productPromoActs[0].amount"/>
+                </actions>
+                <widgets>
+                    <include-form name="EditProductDiscountPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                </widgets>
+            </section>
+            <section>
+                <condition>
+                    <if-compare field="productPromo.promoType" operator="equals" value="COUPON_TYPE_GIFT"/>
+                </condition>
+                <actions>
+
+                    <entity-and entity-name="ProductPromoProduct" list="productPromoPrds">
+                        <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+                    </entity-and>
+                    <set field="productId" from-field="productPromoPrds[0].productId"/>
+                </actions>
+                <widgets>
+                    <include-form name="EditProductGiftPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                </widgets>
+            </section>
+    </screenlet>
+</decorator-section>
+        </decorator-screen>
+        </widgets>
+        </section>
+        </screen>
+<screen name="EditProductDiscountPromo">
+<section>
+    <actions>
+        <set field="titleProperty" value="PageTitleEditProductPromos"/>
+        <set field="headerItem" value="promos"/>
+        <set field="tabButtonItem" value="EditProductPromo"/>
+        <set field="labelTitleProperty" value="ProductPromotion"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+        <entity-and entity-name="ProductPromoCond" list="productPromoConds">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+        </entity-and>
+        <set field="orderAmount" from-field="productPromoConds[0].condValue"/>
+
+        <entity-and entity-name="ProductPromoAction" list="productPromoActs">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+        </entity-and>
+        <set field="discountAmount" from-field="productPromoActs[0].amount"/>
+
+        <set field="subTitle" value="(当前满折名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+        <set field="currentMenu" value="满折基本信息"/>
+    </actions>
+    <widgets>
+        <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+                <screenlet title="基本信息">
+                    <include-form name="EditProductDiscountPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+                </screenlet>
+            </decorator-section>
+        </decorator-screen>
+    </widgets>
+</section>
+</screen>
+
+<screen name="AddProductPromo">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+    </actions>
+    <widgets>
+        <include-form name="EditProductPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+
+<screen name="AddProductPromoRule">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+    </actions>
+    <widgets>
+        <include-form name="AddProductPromoRule" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+
+<screen name="AddProductPromoCond">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+
+        <entity-condition entity-name="Enumeration" list="inputParamEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_IN_PARAM"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods" use-cache="true">
+            <order-by field-name="shipmentMethodTypeId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="condOperEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_COND"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+    </actions>
+    <widgets>
+        <platform-specific>
+            <html>
+                <html-template location="component://product/webapp/catalog/promo/addProductPromoCond.ftl"/>
+            </html>
+        </platform-specific>
+        <!--<include-form name="AddProductPromoRule" location="component://product/widget/catalog/PromoForms.xml"/>-->
+    </widgets>
+</section>
+</screen>
+
+
+<screen name="EditProductPromoCond">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <entity-one entity-name="ProductPromoAction" value-field="productPromoAction">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+            <field-map field-name="productPromoActionSeqId" from-field="parameters.productPromoActionSeqId"/>
+        </entity-one>
+
+        <entity-condition entity-name="Enumeration" list="inputParamEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_IN_PARAM"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods" use-cache="true">
+            <order-by field-name="shipmentMethodTypeId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="condOperEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_COND"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-one entity-name="ProductPromoCond" value-field="productPromoCond">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+            <field-map field-name="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+        </entity-one>
+    </actions>
+    <widgets>
+        <platform-specific>
+            <html>
+                <html-template location="component://product/webapp/catalog/promo/editProductPromoCond.ftl"/>
+            </html>
+        </platform-specific>
+        <!--<include-form name="EditProductPromoCond" location="component://product/widget/catalog/PromoForms.xml"/>-->
+    </widgets>
+</section>
+</screen>
+
+
+<screen name="AddProductPromoAction">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+        <set field="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+
+        <entity-condition entity-name="Enumeration" list="productPromoActionEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_ACTION"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+
+    </actions>
+    <widgets>
+        <platform-specific>
+            <html>
+                <html-template location="component://product/webapp/catalog/promo/addProductPromoAction.ftl"/>
+            </html>
+        </platform-specific>
+        <!--<include-form name="AddProductPromoRule" location="component://product/widget/catalog/PromoForms.xml"/>-->
+    </widgets>
+</section>
+</screen>
+
+
+<screen name="EditProductPromoAction">
+<section>
+    <actions>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+        <set field="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+
+        <entity-condition entity-name="Enumeration" list="productPromoActionEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_ACTION"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods" use-cache="true">
+            <order-by field-name="shipmentMethodTypeId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="condOperEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_COND"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-one entity-name="ProductPromoAction" value-field="productPromoAction">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productPromoActionSeqId" from-field="parameters.productPromoActionSeqId"/>
+            <field-map field-name="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+            <field-map field-name="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+        </entity-one>
+    </actions>
+    <widgets>
+        <platform-specific>
+            <html>
+                <html-template location="component://product/webapp/catalog/promo/EditProductPromoAction.ftl"/>
+            </html>
+        </platform-specific>
+        <!--<include-form name="EditProductPromoAction" location="component://product/widget/catalog/PromoForms.xml"/>-->
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductPromoAjax">
+<section>
+    <actions>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+    </actions>
+    <widgets>
+        <include-menu name="PromoTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+        <include-form name="EditProductPromo" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductPromoRules">
+<section>
+    <actions>
+        <set field="titleProperty" value="PageTitleEditProductPromoRules"/>
+        <set field="headerItem" value="promos"/>
+        <set field="tabButtonItem" value="EditProductPromoRules"/>
+        <set field="labelTitleProperty" value="ProductRules"/>
+
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+        <entity-condition entity-name="ProductPromoRule" list="productPromoRules">
+            <condition-expr field-name="productPromoId" from-field="productPromoId"/>
+            <order-by field-name="ruleName"/>
+        </entity-condition>
+        <!--
+        <entity-condition entity-name="Enumeration" list="inputParamEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_IN_PARAM"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="CarrierShipmentMethod" list="carrierShipmentMethods" use-cache="true">
+            <order-by field-name="shipmentMethodTypeId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="condOperEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_COND"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="productPromoActionEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_ACTION"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <entity-condition entity-name="Enumeration" list="productPromoApplEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+
+        <entity-condition entity-name="OrderAdjustmentType" list="orderAdjustmentTypes" use-cache="true">
+            <order-by field-name="description"/>
+        </entity-condition>
+        <entity-condition entity-name="ProductCategory" list="productCategories">
+            <condition-expr field-name="showInSelect" operator="not-equals" value="N"/>
+            <order-by field-name="description"/>
+        </entity-condition>-->
+        <set field="subTitle" value="(当前促销名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+        <set field="currentMenu" value="促销规则"/>
+    </actions>
+    <widgets>
+        <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+                <section>
+                    <actions>
+                        <set field="title" value="促销规则定义"/>
+                    </actions>
+                    <widgets>
+                        <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                            <decorator-section name="menu-bar">
+                                <container style="button-bar">
+                                    <modal-page button-type="button" modal-url="addProductPromoRule" id="addProductPromoRule" confirm-message="新增促销规则" confirm-title="促销操作"
+                                                target-type="inter-app"
+                                                description="新增促销规则">
+                                        <parameter param-name="productPromoId" from-field="productPromoId"/>
+                                    </modal-page>
+                                </container>
+                            </decorator-section>
+                            <decorator-section name="search-results">
+                                <container id="search-results-ppr">
+                                    <platform-specific>
+                                        <html>
+                                            <html-template location="component://product/webapp/catalog/promo/ProductPromoRulesList.ftl"/>
+                                        </html>
+
+                                    </platform-specific>
+                                    <!--<include-form name="ListProductPromoContent" location="component://product/widget/catalog/PromoForms.xml"/>-->
+                                </container>
+                            </decorator-section>
+                        </decorator-screen>
+                    </widgets>
+                </section>
+                <section>
+                    <condition>
+                        <not>
+                            <or>
+                                <if-compare field="productPromo.promoType" operator="equals" value="PROMO_SUBTRACT"/>
+                                <if-compare field="productPromo.promoType" operator="equals" value="PROMO_DISCOUNT"/>
+                                <!--<if-compare field="productPromo.promoType" operator="equals" value="PROMO_GIFT"/>-->
+                            </or>
+                        </not>
+                    </condition>
+                    <widgets>
+                        <section>
+                            <condition>
+                                <not>
+                                    <if-compare field="productPromo.promoType" operator="equals" value="PROMO_GIFT"/>
+                                </not>
+                            </condition>
+                            <actions>
+                                <set field="title" value="促销应用的产品分类"/>
+                                <!--<set field="parameters.productPromoRuleId" value="_NA_"/>-->
+                                <!--<set field="parameters.productPromoActionSeqId" value="_NA_"/>-->
+                                <!--<set field="parameters.productPromoCondSeqId" value="_NA_"/>-->
+                            </actions>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductPromoCategory" id="addProductPromoCategory" confirm-message="新增促销产品分类"
+                                                        confirm-title="新增促销产品分类"
+                                                        description="新增促销产品分类">
+                                                <parameter param-name="productPromoId" from-field="productPromoId"/>
+                                                <parameter param-name="productPromoRuleId" value="_NA_"/>
+                                                <parameter param-name="productPromoActionSeqId" value="_NA_"/>
+                                                <parameter param-name="productPromoCondSeqId" value="_NA_"/>
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results-ppc">
+                                            <include-form name="ListProductPromoCategories" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                        </section>
+
+                        <section>
+                            <actions>
+                                <set field="title" value="促销应用的产品列表"/>
+                            </actions>
+                            <widgets>
+                                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                                    <decorator-section name="menu-bar">
+                                        <container style="button-bar">
+                                            <modal-page button-type="button" modal-url="AddProductPromoProduct" id="addProductPromoProduct" confirm-message="新增促销产品"
+                                                        confirm-title="促销操作"
+                                                        target-type="inter-app"
+                                                        description="新增促销产品">
+                                                <parameter param-name="productPromoId" from-field="productPromoId"/>
+                                            </modal-page>
+                                        </container>
+                                    </decorator-section>
+                                    <decorator-section name="search-results">
+                                        <container id="search-results-ppp">
+                                            <include-form name="ListProductPromoProducts" location="component://product/widget/catalog/PromoForms.xml"/>
+                                        </container>
+                                    </decorator-section>
+                                </decorator-screen>
+                            </widgets>
+                        </section>
+                    </widgets>
+                </section>
+
+
+            </decorator-section>
+        </decorator-screen>
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductPromoStores">
+<section>
+    <actions>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+        <set field="titleProperty" value="PageTitleEditProductPromoStores"/>
+        <set field="headerItem" value="promos"/>
+        <set field="tabButtonItem" value="EditProductPromoStores"/>
+        <set field="labelTitleProperty" value="ProductStores"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="subTitle" value="(当前促销名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+        <set field="currentMenu" value="促销对应店铺"/>
+
+    </actions>
+    <widgets>
+        <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+                <section>
+                    <actions>
+                        <set field="title" value="促销应用的店铺列表"/>
+                    </actions>
+                    <widgets>
+                        <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                            <decorator-section name="menu-bar">
+                                <container style="button-bar">
+                                    <modal-page button-type="button" modal-url="AddProductStorePromoAppl" id="AddProductStorePromoAppl" confirm-message="新增促销对应店铺"
+                                                confirm-title="促销操作"
+                                                target-type="inter-app"
+                                                description="新增促销对应店铺">
+                                        <parameter param-name="productPromoId" from-field="productPromoId"/>
+                                    </modal-page>
+                                </container>
+                            </decorator-section>
+                            <decorator-section name="search-results">
+                                <container id="search-results">
+                                    <include-form name="ListProductPromoStores" location="component://product/widget/catalog/PromoForms.xml"/>
+                                </container>
+                            </decorator-section>
+                        </decorator-screen>
+                    </widgets>
+                </section>
+            </decorator-section>
+        </decorator-screen>
+    </widgets>
+</section>
+</screen>
+
+<screen name="EditProductPromoProduct">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap" global="true"/>
+
+        <!--<entity-condition entity-name="Enumeration" list="productPromoApplEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>-->
+    </actions>
+    <widgets>
+        <include-form name="ListProductPromoStores" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="AddProductPromoCategory">
+<section>
+    <actions>
+        <property-map resource="OrderUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonEntityLabels" map-name="uiLabelMap" global="true"/>
+
+        <!--<entity-condition entity-name="Enumeration" list="productPromoApplEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>-->
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+    </actions>
+    <widgets>
+        <include-form name="AddProductPromoCategory" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductPromoCategory">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap" global="true"/>
+        <entity-condition entity-name="Enumeration" list="productPromoApplEnums" use-cache="true">
+            <condition-expr field-name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+            <order-by field-name="sequenceId"/>
+        </entity-condition>
+        <property-map resource="CommonEntityLabels" map-name="uiLabelMap" global="true"/>
+        <entity-one entity-name="ProductPromoCategory" value-field="productPromoCategory" auto-field-map="true">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+            <field-map field-name="productPromoActionSeqId" from-field="parameters.productPromoActionSeqId"/>
+            <field-map field-name="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+            <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+            <field-map field-name="andGroupId" from-field="parameters.andGroupId"/>
+        </entity-one>
+    </actions>
+    <widgets>
+        <include-form name="EditProductPromoCategory" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="AddProductPromoProduct">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+    </actions>
+    <widgets>
+        <include-form name="AddProductPromoProduct" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductPromoProduct">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <entity-one entity-name="ProductPromoProduct" value-field="productPromoProduct" auto-field-map="true">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productPromoRuleId" from-field="parameters.productPromoRuleId"/>
+            <field-map field-name="productPromoActionSeqId" from-field="parameters.productPromoActionSeqId"/>
+            <field-map field-name="productPromoCondSeqId" from-field="parameters.productPromoCondSeqId"/>
+            <field-map field-name="productId" from-field="parameters.productId"/>
+        </entity-one>
+    </actions>
+    <widgets>
+        <include-form name="EditProductPromoProduct" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+<screen name="ListProductPromoCategories">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap" global="true"/>
+    </actions>
+    <widgets>
+        <include-form name="ListProductPromoCategories" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+
+<screen name="ListProductPromoProducts">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="ProdPromoUiLabels" map-name="uiLabelMap" global="true"/>
+    </actions>
+    <widgets>
+        <include-form name="ListProductPromoProducts" location="component://product/widget/catalog/PromoForms.xml"/>
+    </widgets>
+</section>
+</screen>
+
+
+<screen name="AddProductStorePromoAppl">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <script location="component://product/webapp/catalog/WEB-INF/actions/promo/AddProductStorePromoApp.groovy"/>
+    </actions>
+    <widgets>
+        <section>
+            <condition>
+                <not>
+                    <if-empty field="productStores"/>
+                </not>
+            </condition>
+            <widgets>
+                <include-form name="AddProductStorePromoAppl" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+            <fail-widgets>
+                <label text="该促销已经应用到全部店铺"></label>
+            </fail-widgets>
+        </section>
+    </widgets>
+</section>
+</screen>
+<screen name="EditProductStorePromoAppl">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+        <set field="parameters.fromDate" type="Timestamp" from-field="parameters.fromDate"/>
+        <!--<set field=""-->
+        <entity-one entity-name="ProductStorePromoAppl" value-field="productStorePromoAppl" auto-field-map="true">
+            <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+            <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
+            <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+        </entity-one>
+        <!-- <entity-and entity-name="ProductStorePromoAppl" list="productStorePromoAppls" >
+             <field-map field-name="productPromoId" from-field="parameters.productPromoId"/>
+             <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
+             <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+         </entity-and>-->
+        <!--<set field="productStorePromoAppl" from-field="productStorePromoAppls[0]" />-->
+    </actions>
+    <widgets>
+        <section>
+            <widgets>
+                <include-form name="EditProductStorePromoAppl" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+
+        </section>
+    </widgets>
+</section>
+</screen>
+        <!--<screen name="EditProductPromoStores">
+            <section>
+                <actions>
+                    <set field="titleProperty" value="PageTitleEditProductPromoStores"/>
+                    <set field="headerItem" value="promos"/>
+                    <set field="tabButtonItem" value="EditProductPromoStores"/>
+                    <set field="labelTitleProperty" value="ProductStores"/>
+
+                    <set field="productPromoId" from-field="parameters.productPromoId"/>
+                    <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+                    <entity-condition entity-name="ProductStorePromoAppl" list="productStorePromoAppls">
+                        <condition-expr field-name="productPromoId" from-field="productPromoId"/>
+                        <order-by field-name="sequenceNum"/>
+                        <order-by field-name="productPromoId"/>
+                    </entity-condition>
+
+                    <entity-condition entity-name="ProductStore" list="productStores">
+                        <order-by field-name="storeName"/>
+                    </entity-condition>
+                </actions>
+                <widgets>
+                    <decorator-screen name="CommonPromoDecorator">
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template location="component://product/webapp/catalog/promo/EditProductPromoStores.ftl"/>
+                                </html>
+                            </platform-specific>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>-->
+        <!-- <screen name="FindProductPromoCode">
+             <section>
+                 <actions>
+                     <set field="titleProperty" value="PageTitleFindProductPromotionCode"/>
+                     <set field="headerItem" value="promos"/>
+                     <set field="tabButtonItem" value="FindProductPromoCode"/>
+                     <set field="labelTitleProperty" value="ProductPromotionCode"/>
+
+                     <set field="productPromoId" from-field="parameters.productPromoId"/>
+                     <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+
+                     <set field="manualOnly" from-field="parameters.manualOnly" default-value="Y"/>
+                     <entity-condition entity-name="ProductPromoCode" list="productPromoCodes">
+                         <condition-list combine="and">
+                             <condition-expr field-name="productPromoId" from-field="productPromoId"/>
+                             <condition-expr field-name="userEntered" from-field="manualOnly"/>
+                         </condition-list>
+                         <order-by field-name="-createdDate"/>
+                     </entity-condition>
+                 </actions>
+                 <widgets>
+                     <decorator-screen name="CommonPromoDecorator">
+                         <decorator-section name="body">
+                             <container>
+                                 <link target="EditProductPromoCode" text="${uiLabelMap.ProductNewPromotionCode}" style="buttontext">
+                                     <parameter param-name="productPromoId"/>
+                                 </link>
+                             </container>
+                             <section>
+                                 <condition>
+                                     <if-compare field="manualOnly" operator="equals" value="Y"/>
+                                 </condition>
+                                 <widgets>
+                                     <container>
+                                         <link target="FindProductPromoCode" text="${uiLabelMap.ProductPromotionManualImported}" style="buttontext">
+                                             <parameter param-name="manualOnly" value="N"/>
+                                             <parameter param-name="productPromoId"/>
+                                         </link>
+                                     </container>
+                                 </widgets>
+                              <fail-widgets>
+                                     <container>
+                                         <link target="FindProductPromoCode" text="${uiLabelMap.ProductPromotionManual}" style="buttontext">
+                                             <parameter param-name="manualOnly" value="Y"/>
+                                             <parameter param-name="productPromoId"/>
+                                         </link>
+                                     </container>
+                                 </fail-widgets>
+                             </section>
+                             <screenlet title="${uiLabelMap.PageTitleFindProductPromotionCode}">
+                                 <include-form name="ListProductPromoCodes" location="component://product/widget/catalog/PromoForms.xml"/>
+                             </screenlet>
+                             <platform-specific>
+                                 <html>
+                                     <html-template location="component://product/webapp/catalog/promo/FindProductPromoCode.ftl"/>
+                                 </html>
+                             </platform-specific>
+                         </decorator-section>
+                     </decorator-screen>
+                 </widgets>
+             </section>
+         </screen>  -->
+
+<screen name="ListProductPromoCodes">
+
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+    </actions>
+    <widgets>
+        <container id="search-results">
+            <include-form name="ListProductPromoCodes" location="component://product/widget/catalog/PromoForms.xml"/>
+        </container>
+    </widgets>
+
+</section>
+</screen>
+
+<screen name="FindProductPromoCode">
+<section>
+    <actions>
+        <set field="titleProperty" value="促销劵"/>
+        <set field="headerItem" value="promos"/>
+        <set field="tabButtonItem" value="FindProductPromoCode"/>
+        <set field="labelTitleProperty" value="ProductPromotionCode"/>
+
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo" auto-field-map="true"/>
+
+        <!--<set field="manualOnly" from-field="parameters.manualOnly" default-value="Y"/>-->
+        <!--<entity-condition entity-name="ProductPromoCode" list="productPromoCodes">
+            <condition-list combine="and">
+                <condition-expr field-name="productPromoId" from-field="productPromoId"/>
+                <condition-expr field-name="userEntered" from-field="manualOnly"/>
+            </condition-list>
+            <order-by field-name="-createdDate"/>
+        </entity-condition>-->
+        <set field="subTitle" value="(当前促销名称为：${productPromo.promoName} ${${extraFunctionName}})"/>
+        <set field="currentMenu" value="促销劵"/>
+    </actions>
+    <widgets>
+        <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+                <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="search-options">
+                        <include-form name="ListProductPromoCodesOptions" location="component://product/widget/catalog/PromoForms.xml"/>
+                    </decorator-section>
+                    <decorator-section name="menu-bar">
+                        <container style="button-bar">
+                            <modal-page modal-url="AddProductPromoCode" id="addProductPromoCode" description="添加一个促销劵" confirm-title="创建促销对应的劵">
+                                <parameter param-name="productPromoId"/>
+                            </modal-page>
+                            <modal-page modal-url="BatchAddProductPromoCode" id="batchAddProductPromoCode" description="批量添加劵" confirm-title="批量添加劵">
+                                <parameter param-name="productPromoId"/>
+                            </modal-page>
+                            <modal-page modal-url="UploadProductPromoCodes" id="uploadProductPromoCodes" description="上传一组劵" confirm-title="上传一组劵">
+                                <parameter param-name="productPromoId"/>
+                            </modal-page>
+                        </container>
+                    </decorator-section>
+                    <decorator-section name="search-results">
+                        <container id="search-results">
+                            <include-form name="ListProductPromoCodes" location="component://product/widget/catalog/PromoForms.xml"/>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+                <!-- <section>
+                     <condition>
+                         <if-compare field="manualOnly" operator="equals" value="Y"/>
+                     </condition>
+                     <widgets>
+                         <container>
+                             <link target="FindProductPromoCode" text="${uiLabelMap.ProductPromotionManualImported}" style="buttontext">
+                                 <parameter param-name="manualOnly" value="N"/>
+                                 <parameter param-name="productPromoId"/>
+                             </link>
+                         </container>
+                     </widgets>
+                     <fail-widgets>
+                         <container>
+                             <link target="FindProductPromoCode" text="${uiLabelMap.ProductPromotionManual}" style="buttontext">
+                                 <parameter param-name="manualOnly" value="Y"/>
+                                 <parameter param-name="productPromoId"/>
+                             </link>
+                         </container>
+                     </fail-widgets>
+                 </section>
+                 <screenlet title="${uiLabelMap.PageTitleFindProductPromotionCode}">
+                     <include-form name="ListProductPromoCodes" location="component://product/widget/catalog/PromoForms.xml"/>
+                 </screenlet>-->
+                <!--<platform-specific>
+                    <html>
+                        <html-template location="component://product/webapp/catalog/promo/FindProductPromoCode.ftl"/>
+                    </html>
+                </platform-specific>-->
+            </decorator-section>
+        </decorator-screen>
+    </widgets>
+</section>
+</screen>
+<screen name="AddProductPromoCode">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+    </actions>
+    <widgets>
+        <section>
+            <widgets>
+                <include-form name="AddProductPromoCode" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </widgets>
+</section>
+</screen>
+<screen name="BatchAddProductPromoCode">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+    </actions>
+    <widgets>
+        <section>
+            <widgets>
+                <platform-specific>
+                    <html>
+                        <html-template location="component://product/webapp/catalog/promo/batchAddProductPromoCode.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </widgets>
+</section>
+</screen>
+<screen name="UploadProductPromoCodes">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+    </actions>
+    <widgets>
+        <section>
+            <widgets>
+                <platform-specific>
+                    <html>
+                        <html-template location="component://product/webapp/catalog/promo/uploadProductPromoCodes.ftl"/>
+                    </html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </widgets>
+</section>
+</screen>
+
+<screen name="EditProductPromoCode">
+<section>
+    <actions>
+        <property-map resource="ProductUiLabels" map-name="uiLabelMap"/>
+        <property-map resource="CommonUiLabels" map-name="uiLabelMap"/>
+        <entity-one entity-name="ProductPromoCode" value-field="productPromoCode"/>
+        <entity-condition entity-name="ProductPromoCodeParty" list="promoCodeParties">
+            <condition-expr field-name="productPromoCodeId" from-field="parameters.productPromoCodeId"/>
+        </entity-condition>
+        <set field="partyId" from-field="promoCodeParties[0].partyId"/>
+    </actions>
+    <widgets>
+        <section>
+            <widgets>
+                <include-form name="EditProductPromoCode" location="component://product/widget/catalog/PromoForms.xml"/>
+            </widgets>
+        </section>
+    </widgets>
+</section>
+</screen>
+        <!--<screen name="EditProductPromoCode">
+            <section>
+                <actions>
+                    <set field="titleProperty" value="PageTitleEditProductPromotionCode"/>
+                    <set field="headerItem" value="promos"/>
+                    <set field="tabButtonItem" value="FindProductPromoCode"/>
+                    <set field="labelTitleProperty" value="ProductPromotionCode"/>
+
+                    <script location="component://product/webapp/catalog/WEB-INF/actions/promo/EditProductPromoCode.groovy"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="CommonPromoDecorator">
+                        <decorator-section name="body">
+                            <container>
+                                <link target="EditProductPromoCode" text="${uiLabelMap.ProductNewPromotionCode}" style="buttontext"/>
+                            </container>
+
+                            <screenlet title="${uiLabelMap.PageTitleEditProductPromotionCode}">
+                                <include-form name="EditProductPromoCode" location="component://product/widget/catalog/PromoForms.xml"/>
+                            </screenlet>
+                            <platform-specific>
+                                <html>
+                                    <html-template location="component://product/webapp/catalog/promo/EditProductPromoCode.ftl"/>
+                                </html>
+                            </platform-specific>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>-->
+
+<screen name="EditProductPromoContent">
+<section>
+    <actions>
+        <set field="titleProperty" value="PageTitleEditProductPromoContent"/>
+        <set field="headerItem" value="promos"/>
+        <set field="tabButtonItem" value="EditProductPromoContent"/>
+        <set field="labelTitleProperty" value="ProductPromoContents"/>
+        <set field="productPromoId" from-field="parameters.productPromoId"/>
+        <set field="parameters.fromDate" type="Timestamp" from-field="parameters.fromDate"/>
+        <set field="parameters.thruDate" type="Timestamp" from-field="parameters.thruDate"/>
+        <entity-one entity-name="ProductPromo" value-field="productPromo"/>
+        <entity-one entity-name="ProductPromoContent" value-field="productPromoContent"/>
+        <entity-and list="productPromoContents" entity-name="ProductPromoContent">
+            <field-map field-name="productPromoId" from-field="productPromoId"/>
+        </entity-and>
+    </actions>
+    <widgets>
+        <decorator-screen name="CommonPromoDecorator">
+            <decorator-section name="body">
+                <screenlet title="${uiLabelMap.PageTitleEditProductPromoContent}">
+                    <include-form name="EditProductPromoContentImage" location="component://product/widget/catalog/PromoForms.xml"/>
+                </screenlet>
+                <screenlet title="${uiLabelMap.ProductProductPromoContentList}">
+                    <include-form name="ListProductPromoContent" location="component://product/widget/catalog/PromoForms.xml"/>
+                </screenlet>
+            </decorator-section>
+        </decorator-screen>
+    </widgets>
+</section>
+</screen>
+
+
+        </screens>

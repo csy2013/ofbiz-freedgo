@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/component-loader.xsd">
+    <load-components parent-directory="/home/yabiz/framework"/>
+    <load-components parent-directory="/home/yabiz/themes"/>
+    <load-component component-location="/home/yabiz/images"/>
+    <load-components parent-directory="daojia_muti/services"/>
+    <load-components parent-directory="daojia_muti/applications"/>
+    <load-components parent-directory="daojia_muti/daojia"/>
+
+    <load-components parent-directory="/home/daojia/specialpurpose"/>
+    <load-components parent-directory="/home/daojia/hot-deploy"/>
+    <load-components parent-directory="/home/daojia/ecommerce"/>
+
+</component-loader>

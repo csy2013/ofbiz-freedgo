@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ofbiz-component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 name="contentService"
+                 xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-component.xsd">
+    <resource-loader name="main" type="component"/>
+    <classpath type="dir" location="config"/>
+    <classpath type="dir" location="dtd"/>
+    <classpath type="jar" location="lib/*"/>
+    <classpath type="jar" location="lib/uno/*"/>
+    <classpath type="jar" location="build/lib/*"/>
+    <classpath type="jar" location="lib/qiniu/*"/>
+    <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
+    <entity-resource type="eca" reader-name="main" loader="main" location="entitydef/eecas.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentTypeData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentOperationData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/MimeTypeData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/MimeTypeTemplate.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/DataCategoryData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/BlogSeedData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/TemplateData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentSecurityData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/MiscData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentHelpData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentHttpErrorData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentPortletData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ContentAdvertData.xml"/>
+    <!-- these files cannot be loaded in their original component because they are earlier than the content component -->
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/PartyHelpData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/WebtoolsHelpData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/ExampleHelpData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/BirtHelpData.xml"/>
+
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/UsersDemoData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/DemoBlogPubPtData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/DemoBlogUsersData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/DemoBlogEntryData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/WebSitePublishPointData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/CompDocData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/ForumDemoData.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_content.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_contenttypes.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_data.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_output.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_survey.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_commevent.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_website.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_qihua.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_advert.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_article.xml"/>
+    <service-resource type="eca" loader="main" location="servicedef/secas.xml"/>
+    <service-resource type="mca" loader="main" location="servicedef/mca.xml"/>
+
+    <test-suite loader="main" location="testdef/lucenetests.xml"/>
+
+
+</ofbiz-component>

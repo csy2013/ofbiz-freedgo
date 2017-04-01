@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/component-loader.xsd">
+    <!--是否可以不加载webapp-->
+    <load-component component-location="framework/base"/>
+    <load-component component-location="framework/geronimo"/>
+    <load-component component-location="framework/sql"/>
+    <load-component component-location="framework/entity"/>
+    <load-component component-location="framework/catalina"/>
+    <!-- <load-component component-location="framework/jetty"/> -->
+    <load-component component-location="framework/security"/>
+    <load-component component-location="framework/datafile"/>
+    <load-component component-location="framework/minilang"/>
+    <load-component component-location="framework/common"/>
+    <load-component component-location="framework/service"/>
+    <load-component component-location="framework/entityext"/>
+    <!--<load-component component-location="framework/bi"/>-->
+    <!--<load-component component-location="framework/birt"/>-->
+    <load-component component-location="framework/webapp"/>
+    <load-component component-location="framework/widget"/>
+    <load-component component-location="framework/appserver"/>
+    <load-component component-location="framework/testtools"/>
+    <!--<load-component component-location="framework/webtools"/>-->
+
+    <load-component component-location="framework/sso"/>
+
+    <!--对应的应用-->
+
+    <load-component component-location="framework/images" component-name="images" />
+
+</component-loader>

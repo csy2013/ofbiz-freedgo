@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>Party Component Services For App</description>
+    <vendor>OFBiz</vendor>
+    <version>1.0</version>
+
+    <service name="customBaseQuery" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices" invoke="customBaseQuery" auth="true">
+        <description>query customer base info</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="person" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+        <attribute name="party" type="org.ofbiz.entity.GenericValue" mode="OUT"/>
+        <attribute name="partyGroup" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="customAddressQuery" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="customAddressQuery" auth="true">
+        <description>query custome address</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="contactMech" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
+
+
+    <service name="customAddressDetail" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="customAddressDetail" auth="true">
+        <description>query custome address detail</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="contactMechId" type="String" mode="IN"/>
+        <attribute name="contactMech" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+        <attribute name="partyContactMech" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+        <attribute name="telecomNumber" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+        <attribute name="postalAddress" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="customProfileDefault" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="customProfileDefault" auth="true">
+        <description>query custome address detail</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="productStoreId" type="String" mode="IN"/>
+        <attribute name="profiledefs" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="queryCustomMechByPurposeType" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="queryCustomMechByPurposeType" auth="true">
+        <description>query custome mech by PurposeType</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="contactMechPurposeTypeId" type="String" mode="IN" optional="true"/>
+        <attribute name="partyContactMechs" type="java.util.List" mode="OUT"/>
+    </service>
+
+
+    <service name="queryCustomContent" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="queryCustomContent" auth="true">
+        <description>query custome mech by PurposeType</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="partyContentTypeId" type="String" mode="IN" default-value=""/>
+        <attribute name="partyContents" type="java.util.List" mode="OUT"/>
+    </service>
+
+    <service name="queryCustomDefaultPostAddress" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="queryCustomDefaultPostAddress" auth="true">
+        <description>query queryCustomDefaultPostAddress by PurposeType</description>
+        <attribute name="loginId" type="String" mode="IN"/>
+        <attribute name="partyAndContactMech" type="org.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="createOAuthUser" engine="java" location="com.yuaoq.yabiz.service.local.party.CustomServices"
+             invoke="createOAuthUser" auth="false">
+        <attribute name="imageurl" type="String" mode="IN"/>
+        <attribute name="displayname" type="String" mode="IN"/>
+        <attribute name="name" type="String" mode="IN"/>
+        <attribute name="nickname" type="String" mode="IN"/>
+        <attribute name="openid" type="String" mode="IN"/>
+        <attribute name="authtypeid" type="String" mode="IN"/>
+        <attribute name="gender" type="String" mode="IN"/>
+        <attribute name="province" type="String" mode="IN"/>
+        <attribute name="city" type="String" mode="IN"/>
+        <attribute name="birthday" type="String" mode="IN"/>
+        <attribute name="partyId" type="String" mode="OUT"/>
+        <attribute name="userLoginId" type="String" mode="OUT"/>
+        <attribute name="password" type="String" mode="OUT"/>
+    </service>
+    <service name="createPersonAndUserLogin" engine="simple" require-new-transaction="true"
+             location="component://partyService/script/org/ofbiz/party/party/PartySimpleMethods.xml"
+             invoke="createPersonAndUserLogin" auth="false">
+        <description>Create a Person and UserLogin</description>
+        <implements service="createUserLogin"/>
+        <auto-attributes entity-name="Person" mode="IN" include="nonpk" optional="true"/>
+        <auto-attributes entity-name="Party" mode="IN" include="nonpk" optional="true"/>
+        <attribute name="partyId" type="String" mode="INOUT" optional="true" entity-name="Person"/>
+        <attribute name="newUserLogin" type="Map" mode="OUT" optional="false"/>
+    </service>
+</services>

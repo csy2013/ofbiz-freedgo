@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <modelForm>
+        <paginate>
+            <paginateStyle>am-pagination</paginateStyle>
+            <paginateDisableStyle>am-disabled</paginateDisableStyle>
+            <paginateActiveStyle>am-active</paginateActiveStyle>
+        </paginate>
+    </modelForm>
+
+</root>

@@ -1,0 +1,1873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+    <form name="ProductPromosCond" type="inputgroup" target="FindProductPromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="SubtractPromosCond" type="inputgroup" target="FindSubtractPromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="SpecialPriceCond" type="inputgroup" target="FindSpecialPricePromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="SecKillCond" type="inputgroup" target="FindSecKillPromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="GiftPromosCond" type="inputgroup" target="FindGiftPromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="DiscountPromosCond" type="inputgroup" target="FindDiscountPromo" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode"><hidden value="N"/> </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <!--优惠劵-->
+    <form name="CouponCond" type="inputgroup" target="FindCoupon" title=""
+          header-row-style="header-row" default-table-style="basic-table" default-entity-name="ProductPromo">
+
+        <field name="promoName">
+            <text-find/>
+        </field>
+        <field name="promoText">
+            <text-find/>
+        </field>
+        <field name="createdDate">
+            <startDate-find/>
+        </field>
+        <field name="requireCode">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>-->
+        <field name="promoType" title="优惠劵类型">
+            <drop-down allow-empty="true">
+                <entity-options entity-name="Enumeration" description="${description}" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" operator="equals" value="PROMO_COUPON_TYPE"/>
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <!--subtract -->
+    <form name="EditCoupon" type="single" target="updateCoupon" title="" default-map-name="productPromo" validate="true"
+          header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="productPromo==null" target="createCoupon"/>
+        <!--<auto-fields-service service-name="updateCoupon" map-name=""/>-->
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+
+
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <field name="subtractQuantity">
+            <hidden value="1"/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden value="Y"/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+        <field name="promoName" title="${uiLabelMap.ProductPromoText}">
+            <text size="25"/>
+        </field>
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="promoType" title="优惠劵类型">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="Enumeration" description="${description}" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" operator="equals" value="PROMO_COUPON_TYPE"/>
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="couponCount" title="优惠劵数量" required-field="true" field-validate-type="max" field-validate-value="10000" >
+            <text size="25"/>
+        </field>
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="orderAmount" title="用户下单金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$" >
+            <text size="25"/>
+        </field>
+        <field name="subtractAmount"  title="优惠金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$">
+            <text size="25"/>
+        </field>
+
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="ListCouponPromos" list-name="listIt" title="" type="list" paginate-target="ListCouponPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="20">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductCouponPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <field name="promoType" title="优惠劵类型">
+            <display-entity description="${description}" entity-name="Enumeration" key-field-name="enumId"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+
+            <hyperlink target="EditCouponPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListSubtractPromos"/>
+    </form>
+
+    <form name="ListProductPromos" list-name="listIt" title="" type="list" paginate-target="ListProductPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="10">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <set field="parameters.promoType" value="PROMO_OTHER"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListProductPromos"/>
+    </form>
+
+    <form name="ListSubtractPromos" list-name="listIt" title="" type="list" paginate-target="ListSubtractPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductSubtractPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductSubtractPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListSubtractPromos"/>
+    </form>
+
+    <form name="ListSpecialPricePromos" list-name="listIt" title="" type="list" paginate-target="ListSpecialPricePromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductSpecialPricePromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListSubtractPromos"/>
+    </form>
+    <form name="ListSecKillPromos" list-name="listIt" title="" type="list" paginate-target="ListSecKillPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductSecKillPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListSubtractPromos"/>
+    </form>
+
+    <form name="ListSecKillPromos" list-name="listIt" title="" type="list" paginate-target="ListSecKillPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductSecKillPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListSubtractPromos"/>
+    </form>
+    <form name="ListGiftPromos" list-name="listIt" title="" type="list" paginate-target="ListGiftPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductGiftPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductGiftPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListGiftPromos"/>
+    </form>
+    <form name="ListDiscountPromos" list-name="listIt" title="" type="list" paginate-target="ListDiscountPromos" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="25">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductDiscountPromo"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productPromoId" widget-style="buttontext">
+            <hyperlink target="EditProductPromo" description="${productPromoId}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+            </hyperlink>
+        </field>
+        <field name="promoName">
+            <display/>
+        </field>
+        <field name="promoText" encode-output="false">
+            <display size="80"/>
+        </field>
+        <field name="requireCode">
+            <display/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <!--<field name="removeItem" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-message="确定删除该促销" confirm-title="促销删除">
+                <parameter param-name="productPromoId" value="productPromoId"/>
+            </confirm-modal>
+        </field>-->
+        <field name="updatePromo" title="${uiLabelMap.CommonUpdate}">
+            <hyperlink target="EditProductDiscountPromo" description="${uiLabelMap.CommonUpdate}">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </hyperlink>
+            <!-- <modal-page button-type="button" modal-url="EditProductPromo" id="editGroupOrder" confirm-message="修改促销" confirm-title="团购修改"
+                         description="${uiLabelMap.CommonUpdate}" >
+                 <parameter param-name="productPromoId" from-field="productPromoId"/>
+             </modal-page>-->
+        </field>
+        <field name="commonDelete" title="${uiLabelMap.CommonDelete}">
+            <confirm-modal confirm-url="deleteProductPromo" description="${uiLabelMap.CommonDelete}" confirm-title="${uiLabelMap.CommonDelete}"
+                           confirm-message="确定删除该促销吗?">
+                <parameter param-name="productPromoId" from-field="productPromId"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListDiscountPromos"/>
+    </form>
+
+    <form name="ListProductPromoProducts" list-name="listIt" title="" type="list" paginate-target="ListProductPromoProducts" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="3">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-productPromoId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductPromoProduct"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <row-actions>
+            <entity-one entity-name="ProductPromoRule" value-field="productPromoRule">
+                <field-map field-name="productPromoId"/>
+                <field-map field-name="productPromoRuleId"/>
+            </entity-one>
+        </row-actions>
+        <field name="productId" title="${uiLabelMap.FormFieldTitle_productId}">
+            <display/>
+        </field>
+        <field name="productPromoApplEnumId" title="${uiLabelMap.productPromoApplEnumId}">
+            <display-entity description="${description}" entity-name="Enumeration" key-field-name="enumId"/>
+        </field>
+        <field name="productPromoRuleId" title="对应规则名称">
+            <display description="${productPromoRule.ruleName}"/>
+
+        </field>
+        <field name="productPromoCondSeqId" title="对应规则条件">
+            <display description="条件：${productPromoCondSeqId}"/>
+        </field>
+        <field name="productPromoActionSeqId" title="对应规则动作">
+            <display description="动作：${productPromoActionSeqId}"/>
+        </field>
+        <field name="deleteLink" title="${uiLabelMap.CommonEmptyHeader}" widget-style="buttontext">
+            <confirm-modal confirm-url="deleteProductPromoProduct" description="${uiLabelMap.CommonDelete}" confirm-message="确认删除该促销对应产品吗？" confirm-title="删除促销对应产品">
+                <parameter param-name="productPromoRuleId"/>
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productPromoActionSeqId"/>
+                <parameter param-name="productPromoCondSeqId"/>
+                <parameter param-name="productId"/>
+            </confirm-modal>
+        </field>
+        <field name="updateLink" title="${uiLabelMap.CommonUpdate}" widget-style="buttonext">
+            <modal-page modal-url="EditProductPromoProduct" description="${uiLabelMap.CommonUpdate}" confirm-title="修改促销对应产品" confirm-message="修改促销对应产品">
+                <parameter param-name="productPromoRuleId"/>
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productPromoActionSeqId"/>
+                <parameter param-name="productPromoCondSeqId"/>
+                <parameter param-name="productId"/>
+            </modal-page>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results-ppp" area-target="ListProductPromoProducts"/>
+    </form>
+    <form name="ListProductPromoCategories" list-name="listIt" title="" type="list" paginate-target="ListProductPromoCategories" target=""
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="5">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-productPromoId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductPromoCategory"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <row-actions>
+            <entity-one entity-name="ProductPromoRule" value-field="productPromoRule">
+                <field-map field-name="productPromoId"/>
+                <field-map field-name="productPromoRuleId"/>
+            </entity-one>
+        </row-actions>
+        <field name="productCategoryId" title="${uiLabelMap.FormFieldTitle_productCategoryId}">
+            <display/>
+        </field>
+        <field name="productPromoApplEnumId" title="${uiLabelMap.productPromoApplEnumId}">
+            <display-entity description="${description}" entity-name="Enumeration" key-field-name="enumId"/>
+        </field>
+
+        <field name="includeSubCategories" title="${uiLabelMap.includeSubCategories}">
+            <display/>
+        </field>
+        <field name="productPromoRuleId" title="对应规则名称">
+            <display description="${productPromoRule.ruleName}"/>
+
+        </field>
+        <field name="productPromoCondSeqId" title="对应规则条件">
+            <display description="条件：${productPromoCondSeqId}"/>
+        </field>
+        <field name="productPromoActionSeqId" title="对应规则动作">
+            <display description="动作：${productPromoActionSeqId}"/>
+        </field>
+
+        <field name="deleteLink" title="${uiLabelMap.CommonEmptyHeader}" widget-style="buttontext">
+            <confirm-modal confirm-url="deleteProductPromoCategory" description="${uiLabelMap.CommonDelete}" confirm-message="确认删除该促销对应产品分类吗？" confirm-title="删除促销对应产品分类">
+                <parameter param-name="productPromoRuleId"/>
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productPromoActionSeqId"/>
+                <parameter param-name="productPromoCondSeqId"/>
+                <parameter param-name="productCategoryId"/>
+                <parameter param-name="andGroupId"/>
+            </confirm-modal>
+            <!-- <hyperlink target="deleteProductPromoCode" description="${uiLabelMap.CommonDelete}" also-hidden="false">
+                 <parameter param-name="productPromoCodeId"/>
+                 <parameter param-name="productPromoId"/>
+             </hyperlink>-->
+        </field>
+        <field name="updateLink" title="${uiLabelMap.CommonUpdate}" widget-style="buttonext">
+            <modal-page modal-url="EditProductPromoCategory" description="${uiLabelMap.CommonUpdate}" confirm-title="修改促销对应产品分类" confirm-message="修改促销对应产品分类">
+                <parameter param-name="productPromoRuleId"/>
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productPromoActionSeqId"/>
+                <parameter param-name="productPromoCondSeqId"/>
+                <parameter param-name="productCategoryId"/>
+                <parameter param-name="andGroupId"/>
+            </modal-page>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results-ppc" area-target="ListProductPromoCategories"/>
+    </form>
+
+    <form name="GoToProductPromoCode" type="single" target="EditProductPromoCode" title=""
+          header-row-style="header-row" default-table-style="basic-table">
+        <field name="productPromoCodeId">
+            <text/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonEdit}">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="AddProductPromoRule" type="single" target="createProductPromoRule" title="" default-map-name="productPromoRule">
+        <!--<auto-fields-service service-name="updateProductPromoRole" map-name=""/>-->
+        <field name="productPromoRuleId">
+            <hidden/>
+        </field>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="ruleName" title="${uiLabelMap.ProductRuleName}">
+            <text/>
+        </field>
+    </form>
+
+    <form name="EditProductSpecialPricePromo" type="single" target="updateProductSpecialPricePromo" title="" default-map-name="productPromo" validate="true"
+          header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="productPromo==null" target="createProductSpecialPricePromo"/>
+        <auto-fields-service service-name="updateProductPromo" map-name=""/>
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden value="N"/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+        <field name="promoType">
+            <hidden value="${promoType}"/>
+        </field>
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="fromDate">
+            <date-time type="timestamp"/>
+        </field>
+        <field name="thruDate">
+            <date-time type="timestamp"/>
+        </field>
+        <field name="productId" title="选择商品" required-field="true" field-validate-type="number">
+            <lookup target-form-name="LookupProduct"/>
+        </field>
+        <!-- <field name="productAmount" title="秒杀价格" required-field="true" field-validate-type="number">
+             <text size="25"/>
+         </field>-->
+
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="EditProductSecKillPromo" type="single" target="updateProductSecKillPromo" title="" default-map-name="productPromo" validate="true"
+          header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="productPromo==null" target="createProductSecKillPromo"/>
+        <auto-fields-service service-name="updateProductPromo" map-name=""/>
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden value="N"/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+        <field name="promoType">
+            <hidden value="${promoType}"/>
+        </field>
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="fromDate">
+            <date-time type="timestamp"/>
+        </field>
+        <field name="thruDate">
+            <date-time type="timestamp"/>
+        </field>
+        <field name="productId" title="选择商品" required-field="true" field-validate-type="number">
+            <lookup target-form-name="LookupProduct"/>
+        </field>
+       <!-- <field name="productAmount" title="秒杀价格" required-field="true" field-validate-type="number">
+            <text size="25"/>
+        </field>-->
+
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <!--subtract -->
+    <form name="EditProductDiscountPromo" type="single" target="updateProductDiscountPromo" title="" default-map-name="productPromo" validate="true"
+          header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="productPromo==null" target="createProductDiscountPromo"/>
+        <!--<auto-fields-service service-name="updateProductPromo" map-name=""/>-->
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+        <field name="promoName" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="orderAmount" title="用户下单金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$" >
+            <text size="25" default-value="${orderAmount}"/>
+        </field>
+        <field name="discountAmount" title="优惠折扣" required-field="true" field-validate-type="number">
+            <text size="25" default-value="${discountAmount}"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <!--subtract -->
+    <form name="EditProductGiftPromo" type="single" target="updateProductGiftPromo" title="" default-map-name="productPromo" validate="true"
+          header-row-style="header-row" default-table-style="basic-table">
+        <!--<alt-target use-when="productPromo==null" target="createProductGiftPromo"/>-->
+        <!--<auto-fields-service service-name="updateProductPromo" map-name=""/>-->
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+        <field name="promoName" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="orderAmount" title="用户下单金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$" >
+            <text size="25" default-value="${orderAmount}"/>
+        </field>
+        <field name="productId" title="赠送商品" required-field="true" field-validate-type="number">
+            <lookup target-form-name="LookupProduct" default-value="${productId}"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="EditProductPromo" type="single" target="updateProductPromo" title="" default-map-name="productPromo"
+          header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="productPromo==null" target="createProductPromo"/>
+        <auto-fields-service service-name="updateProductPromo" map-name=""/>
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden value="N"/>
+        </field>
+        <field name="promoType">
+            <hidden value="PROMO_OTHER"/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+
+
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="EditProductSubtractPromo" type="single" target="updateProductSubtractPromo" title="" default-map-name="productPromo"
+          header-row-style="header-row" default-table-style="basic-table">
+        <!--<alt-target use-when="productPromo==null" target="createProductPromo"/>-->
+        <auto-fields-service service-name="updateProductPromo" map-name=""/>
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+        <field name="promoName" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="orderAmount" title="用户下单金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$" >
+            <text size="25" default-value="${orderAmount}"/>
+        </field>
+        <field name="subtractAmount" title="优惠金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$">
+            <text size="25" default-value="${subtractAmount}"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="EditProductSubtract1Promo" type="single" target="updateProductSubtract1Promo" title="" default-map-name="productPromo"
+          header-row-style="header-row" default-table-style="basic-table">
+        <!--<alt-target use-when="productPromo==null" target="createProductPromo"/>-->
+        <auto-fields-service service-name="updateProductPromo" map-name=""/>
+
+        <field use-when="productPromo!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}" tooltip="">
+            <display/>
+        </field>
+        <field use-when="productPromo==null&amp;&amp;productPromoId!=null" name="productPromoId" title="${uiLabelMap.ProductPromotion}"
+               tooltip="${uiLabelMap.ProductCouldNotFindProductPromotion} [${productPromoId}]">
+            <display/>
+        </field>
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field use-when="productPromo==null&amp;&amp;productPromoId==null" name="productPromoId" title="${uiLabelMap.ProductPromotion}">
+            <ignored/>
+        </field>
+        <field name="promoName" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="promoText" title="${uiLabelMap.ProductPromoText}">
+            <textarea rows="5"/>
+        </field>
+        <field name="orderAmount">
+            <hidden value="0"/>
+        </field>
+        <field name="subtractAmount" title="优惠金额" required-field="true" field-validate-type="pattern" field-validate-value="^[0-9]+(.[0-9]{2})?$">
+            <text size="25" default-value="${subtractAmount}"/>
+        </field>
+        <!--<field name="userEntered" title="${uiLabelMap.ProductPromoUserEntered}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="userEntered">
+            <hidden value="Y"/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <!--<field name="showToCustomer" title="${uiLabelMap.ProductPromoShowToCustomer}">
+            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+        </field>-->
+        <field name="showToCustomer">
+            <hidden value="Y"/>
+        </field>
+        <!--<field name="requireCode" title="${uiLabelMap.ProductPromotionReqCode}">
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
+        </field>-->
+        <field name="requireCode">
+            <hidden/>
+        </field>
+        <field name="promoType">
+            <hidden/>
+        </field>
+        <field name="useLimitPerOrder">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value=""/>
+        </field>
+        <field name="useLimitPerPromotion">
+            <hidden value=""/>
+        </field>
+        <field name="billbackFactor">
+            <hidden value=""/>
+        </field>
+        <field name="overrideOrgPartyId">
+            <hidden value=""/>
+        </field>
+
+        <!--<field name="overrideOrgPartyId"><lookup target-form-name="LookupPartyName"/></field>-->
+
+        <field use-when="productPromo!=null" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+            <display description="[${productPromo.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.lastModifiedDate}" also-hidden="false"/>
+        </field>
+        <field use-when="productPromo!=null" name="createdByText" title="${uiLabelMap.ProductLastCreatedBy}:">
+            <display description="[${productPromo.createdByUserLogin}] ${uiLabelMap.CommonOn} ${productPromo.createdDate}" also-hidden="false"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="EditProductPromoCond" type="single" default-entity-name="ProductPromoCond" target="updateProductPromoCond">
+        <auto-fields-service service-name="updateProductPromoCond" map-name=""/>
+    </form>
+
+    <form name="EditProductPromoCode" type="single" target="updateProductPromoCode" title="" default-map-name="productPromoCode"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="updateProductPromoCode" map-name=""/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field use-when="productPromoCode!=null" name="productPromoCodeId" tooltip="">
+            <display/>
+        </field>
+        <field name="userEntered">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+        <field name="requireEmailOrParty">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>
+        <field name="useLimitPerCode">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value="1"/>
+        </field>
+        <field name="partyId" title="${uiLabelMap.ProductPromoCodeParties}">
+            <lookup target-form-name="LookupPartyName" default-value="${partyId}"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    <form name="AddProductPromoCode" type="single" target="createProductPromoCode" title="" default-map-name="productPromoCode"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createProductPromoCode" map-name=""/>
+
+        <field name="productPromoId">
+            <display/>
+        </field>
+        <!--<field name="productPromoCodeId"><hidden/></field>-->
+        <!-- this to be taken care of with auto-fields-service as soon as it uses entity field info too -->
+        <field name="productPromoCodeId" title="劵号，不填自动生成" tooltip="${uiLabelMap.ProductPromoCodeBlank}">
+            <text/>
+        </field>
+
+        <field name="userEntered">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+            </drop-down>
+        </field>
+        <field name="useLimitPerCode">
+            <hidden value="1"/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden value="1"/>
+        </field>
+        <field name="requireEmailOrParty">
+            <drop-down allow-empty="false" no-current-selected-key="Y">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="AddProductPromoCategory" type="single" target="createProductPromoCategory" title="" default-map-name="productPromoCategory"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createProductPromoCategory" map-name=""/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="productPromoRuleId" title="规则名称">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则"/>
+                <entity-options entity-name="ProductPromoRule" description="${ruleName}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productPromoCondSeqId" title="规则条件">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则条件"/>
+                <entity-options entity-name="ProductPromoCond" description="条件${productPromoCondSeqId}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productPromoActionSeqId" title="规则动作">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则动作"/>
+                <entity-options entity-name="ProductPromoAction" description="动作${productPromoActionSeqId}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+
+        <field name="productCategoryId">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="productPromoApplEnumId" title="${uiLabelMap.productPromoApplEnumId}">
+            <drop-down allow-empty="false">
+                <entity-options description="${description}" entity-name="Enumeration" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+                <list-options list-name="productPromoApplEnums" key-name="enumId" description="${description}"/>
+            </drop-down>
+        </field>
+        <field name="andGroupId">
+            <hidden value="_NA_"/>
+        </field>
+        <field name="includeSubCategories" title="${uiLabelMap.includeSubCategories}">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>
+
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="EditProductPromoCategory" type="single" target="updateProductPromoCategory" title="" default-map-name="productPromoCategory"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="updateProductPromoCategory" map-name=""/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="productPromoRuleId">
+            <hidden/>
+        </field>
+        <field name="productPromoActionSeqId">
+            <hidden/>
+        </field>
+        <field name="productPromoCondSeqId">
+            <hidden/>
+        </field>
+        <field name="productCategoryId">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="productPromoApplEnumId" title="${uiLabelMap.productPromoApplEnumId}">
+            <drop-down allow-empty="false" no-current-selected-key="${productPromoApplEnumId}">
+                <entity-options description="${description}" entity-name="Enumeration" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+
+        <field name="andGroupId">
+            <hidden value="_NA_"/>
+        </field>
+        <field name="includeSubCategories" title="${uiLabelMap.includeSubCategories}">
+            <drop-down allow-empty="false" no-current-selected-key="${includeSubCategories}">
+                <option key="N" description="${uiLabelMap.CommonN}"/>
+                <option key="Y" description="${uiLabelMap.CommonY}"/>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="AddProductPromoProduct" type="single" target="createProductPromoProduct" title="" default-map-name="productPromoProduct"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createProductPromoProduct" map-name=""/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="productId" title="产品">
+            <lookup target-form-name="LookupProduct"/>
+        </field>
+        <field name="productPromoApplEnumId" title="应用类型">
+            <drop-down allow-empty="false" no-current-selected-key="${productPromoApplEnumId}">
+                <entity-options description="${description}" entity-name="Enumeration" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productPromoRuleId" title="规则名称">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则"/>
+                <entity-options entity-name="ProductPromoRule" description="${ruleName}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productPromoCondSeqId" title="规则条件">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则条件"/>
+                <entity-options entity-name="ProductPromoCond" description="条件${productPromoCondSeqId}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productPromoActionSeqId" title="规则动作">
+            <drop-down allow-empty="false">
+                <option key="_NA_" description="适用所有规则动作"/>
+                <entity-options entity-name="ProductPromoAction" description="动作${productPromoActionSeqId}">
+                    <entity-constraint name="productPromoId" operator="equals" value="${productPromoId}"/>
+                    <entity-order-by field-name="productPromoRuleId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="EditProductPromoProduct" type="single" target="updateProductPromoProduct" title="" default-map-name="productPromoProduct"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createProductPromoProduct" map-name=""/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="productPromoRuleId">
+            <hidden/>
+        </field>
+        <field name="productPromoActionSeqId">
+            <hidden/>
+        </field>
+        <field name="productPromoCondSeqId">
+            <hidden/>
+        </field>
+        <field name="productId">
+            <hidden/>
+        </field>
+        <field name="productPromoApplEnumId" title="应用类型">
+            <drop-down allow-empty="false" no-current-selected-key="${productPromoApplEnumId}">
+                <entity-options description="${description}" entity-name="Enumeration" key-field-name="enumId">
+                    <entity-constraint name="enumTypeId" value="PROD_PROMO_PCAPPL"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="AddProductStorePromoAppl" type="single" target="promo_createProductStorePromoAppl" title="" default-map-name="ProductStorePromoAppl"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createProductStorePromoAppl" map-name=""/>
+        <field name="productPromoId" tooltip="">
+            <hidden/>
+        </field>
+        <field use-when="productStorePromoAppl!=null" name="productStoreId" tooltip="">
+            <drop-down allow-empty="false" no-current-selected-key="N">
+                <list-options list-name="productStores" key-name="productStoreId" description="${storeName}"/>
+            </drop-down>
+        </field>
+        <field name="manualOnly">
+            <hidden value="N"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="EditProductStorePromoAppl" type="single" target="promo_updateProductStorePromoAppl" title="" default-map-name="ProductStorePromoAppl"
+          header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="updateProductStorePromoAppl" map-name="productStorePromoAppl"/>
+        <field name="productPromoId" tooltip="">
+            <hidden/>
+        </field>
+        <field name="fromDate">
+            <display/>
+        </field>
+        <field name="productStoreId">
+            <hidden/>
+        </field>
+        <field name="manualOnly">
+            <hidden value="N"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="ListProductPromoCodesOptions" type="inputgroup" target="FindProductPromoCode">
+        <field name="userEntered" title="">
+            <check>
+                <option key="N" description="仅手工录入或导入"></option>
+            </check>
+        </field>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field name="productPromoCodeId">
+            <text-find/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonView}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="ListProductPromoCodes" type="list" title="" list-name="listIt" paginate-target="ListProductPromoCodes"
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="5">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-createdDate"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductPromoCode"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <auto-fields-entity entity-name="ProductPromoCode" default-field-type="display"/>
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <!--<field name="userEntered"><hidden/></field>-->
+        <field name="useLimitPerCode">
+            <hidden/>
+        </field>
+        <field name="useLimitPerCustomer">
+            <hidden/>
+        </field>
+
+        <field name="fromDate">
+            <display type="date-time"/>
+        </field>
+        <field name="thruDate">
+            <display type="date-time"/>
+        </field>
+        <field name="createdDate">
+            <display type="date-time"/>
+        </field>
+        <field name="lastModifiedDate">
+            <display type="date-time"/>
+        </field>
+        <field name="productPromoCodeId" widget-style="buttontext">
+            <display/>
+            <!--<hyperlink target="EditProductPromoCode" description="${productPromoCodeId}" also-hidden="false">-->
+            <!--<parameter param-name="productPromoCodeId"/>-->
+            <!--</hyperlink>-->
+        </field>
+        <field name="deleteLink" title="${uiLabelMap.CommonEmptyHeader}" widget-style="buttontext">
+            <confirm-modal confirm-url="deleteProductPromoCode" description="${uiLabelMap.CommonDelete}" confirm-message="确认删除该促销代码吗？" confirm-title="删除促销代购">
+                <parameter param-name="productPromoCodeId"/>
+                <parameter param-name="productPromoId"/>
+            </confirm-modal>
+            <!-- <hyperlink target="deleteProductPromoCode" description="${uiLabelMap.CommonDelete}" also-hidden="false">
+                 <parameter param-name="productPromoCodeId"/>
+                 <parameter param-name="productPromoId"/>
+             </hyperlink>-->
+        </field>
+        <field name="updateLink" title="${uiLabelMap.CommonUpdate}" widget-style="buttonext">
+            <modal-page modal-url="EditProductPromoCode" description="${uiLabelMap.CommonUpdate}" confirm-title="修改促销代码" confirm-message="修改促销代码1">
+                <parameter param-name="productPromoCodeId"/>
+            </modal-page>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListProductPromoCodes"/>
+    </form>
+
+    <form name="EditProductPromoContentImage" type="upload" target="addImageContentForProductPromo" default-map-name="productPromoContent">
+        <field name="productPromoId">
+            <hidden/>
+        </field>
+        <field use-when="productPromoContent != null" name="contentId">
+            <display/>
+        </field>
+        <field name="productPromoContentTypeId">
+            <hidden value="ORIGINAL_IMAGE_URL"/>
+        </field>
+        <field name="fromDate" use-when="productPromoContent == null" title="${uiLabelMap.CommonFromDate}">
+            <date-time/>
+        </field>
+        <field name="fromDate" use-when="productPromoContent != null" title="${uiLabelMap.CommonFromDate}">
+            <display/>
+        </field>
+        <field name="thruDate" title="${uiLabelMap.CommonThruDate}">
+            <date-time/>
+        </field>
+        <field name="uploadedFile" title="${uiLabelMap.ProductFile}">
+            <file/>
+        </field>
+        <field use-when="productPromoContent == null" name="submitButton" title="${uiLabelMap.CommonCreate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+        <field use-when="productPromoContent != null" name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="ListProductPromoContent" type="list" list-name="productPromoContents"
+          odd-row-style="alternate-row" default-table-style="basic-table">
+        <field name="editProductPromoContent" title="${uiLabelMap.ProductContent}" widget-style="buttontext">
+            <hyperlink target="EditProductPromoContent" description="${description} [${contentId}]" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="contentId"/>
+                <parameter param-name="productPromoContentTypeId"/>
+                <parameter param-name="fromDate"/>
+            </hyperlink>
+        </field>
+        <field name="productPromoContentTypeId" title="${uiLabelMap.ProductProductPromoContentType}">
+            <display-entity entity-name="ProductContentType" key-field-name="productContentTypeId" also-hidden="false" description="${description}"/>
+        </field>
+        <field name="fromDate">
+            <display/>
+        </field>
+        <field name="thruDate">
+            <display/>
+        </field>
+        <field name="editContent" title="${uiLabelMap.ProductEditContent}" widget-style="buttontext">
+            <hyperlink target="/content/control/EditContent" target-type="inter-app" description="${contentId}" also-hidden="false">
+                <parameter param-name="contentId"/>
+            </hyperlink>
+        </field>
+        <field name="removeContent" title="${uiLabelMap.CommonEmptyHeader}" widget-style="buttontext">
+            <hyperlink target="removeContentFromProductPromo" description="${uiLabelMap.CommonDelete}" also-hidden="false">
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="contentId"/>
+                <parameter param-name="productPromoContentTypeId"/>
+                <parameter param-name="fromDate"/>
+            </hyperlink>
+        </field>
+    </form>
+    <form name="ListProductPromoStores" type="list" list-name="listIt" target="" default-entity-name="" paginate-target="ListProductPromoStoresForm"
+          odd-row-style="alternate-row" default-table-style="basic-table" view-size="10">
+        <actions>
+            <set field="parameters.sortField" from-field="parameters.sortField" default-value="-productPromoId"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="ProductStorePromoAppl"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+            </service>
+        </actions>
+        <field name="productStoreId">
+            <display-entity entity-name="ProductStore" key-field-name="productStoreId" description="${storeName}"/>
+        </field>
+        <field name="fromDate">
+            <display type="date-time"/>
+        </field>
+        <field name="thruDate">
+            <display type="date-time"/>
+        </field>
+        <field name="sequenceNum">
+            <display/>
+        </field>
+        <field name="updateLink" title="更新">
+            <modal-page modal-url="EditProductStorePromoAppl" id="editProductStorePromoAppl" description="修改" confirm-message="" confirm-title="修改促销应用的店铺">
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productStoreId"/>
+                <parameter param-name="fromDate"/>
+            </modal-page>
+        </field>
+        <field name="deleteLink" title="删除">
+            <confirm-modal confirm-url="promo_deleteProductStorePromoAppl" return-url="" description="删除" confirm-message="确定删除促销应用的店铺" confirm-title="删除促销应用的店铺">
+                <parameter param-name="productPromoId"/>
+                <parameter param-name="productStoreId"/>
+                <parameter param-name="fromDate"/>
+            </confirm-modal>
+        </field>
+        <on-event-update-area event-type="paginate" area-id="search-results" area-target="ListProductPromoStores"/>
+    </form>
+
+</forms>

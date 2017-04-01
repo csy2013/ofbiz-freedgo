@@ -1,0 +1,19 @@
+  {
+    "type": "1",
+    "status": "2",
+    "title": "",
+    "desc": "",
+    "addressVo": {
+      "addressId": 10771,
+      "name": "常胜永",
+      "phone": "137****8361",
+      "addressName": "南京市浦口区旭日华庭比华利5栋1单元402",
+      "longitude": 118.72889,
+      "latitude": 32.13012,
+      "cityId": 904
+    },
+    "bindPhoneVO": {
+      "bindType": 1,
+      "bindNewPhone": "137****8361"
+    }
+  }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+  <!-- Party Manager security -->
+  <SecurityPermission name="PARTYMGR_VIEW" parentPermissionId="PARTYMGR_ADMIN" description="团体管理" permissionId="PARTYMGR_VIEW"/>
+  <SecurityPermission name="PARTYMGR_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体创建" permissionId="PARTYMGR_CREATE"/>
+  <SecurityPermission name="PARTYMGR_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="团体修改" permissionId="PARTYMGR_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="团体删除" permissionId="PARTYMGR_DELETE"/>
+  <SecurityPermission name="PARTYMGR_ADMIN" parentPermissionId="-1" description="团体管理" permissionId="PARTYMGR_ADMIN"/>
+  <SecurityPermission name="PARTYMGR_NOTE" parentPermissionId="PARTYMGR_ADMIN" description="团体备注管理" permissionId="PARTYMGR_NOTE"/>
+  <SecurityPermission name="PARTYMGR_STS_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="团体状态管理" permissionId="PARTYMGR_STS_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_GRP_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="团体明细管理" permissionId="PARTYMGR_GRP_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_REL_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体关系创建" permissionId="PARTYMGR_REL_CREATE"/>
+  <SecurityPermission name="PARTYMGR_REL_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="团体关系修改" permissionId="PARTYMGR_REL_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_REL_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="团体关系删除" permissionId="PARTYMGR_REL_DELETE"/>
+  <SecurityPermission name="PARTYMGR_ROLE_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体角色创建" permissionId="PARTYMGR_ROLE_CREATE"/>
+  <SecurityPermission name="PARTYMGR_ROLE_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="团体角色删除" permissionId="PARTYMGR_ROLE_DELETE"/>
+  <SecurityPermission name="PARTYMGR_PCM_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体联系人创建" permissionId="PARTYMGR_PCM_CREATE"/>
+  <SecurityPermission name="PARTYMGR_PCM_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="团体联系人修改" permissionId="PARTYMGR_PCM_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_PCM_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="团体联系人删除" permissionId="PARTYMGR_PCM_DELETE"/>
+  <SecurityPermission name="PARTYMGR_SRC_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体内容管理" permissionId="PARTYMGR_SRC_CREATE"/>
+  <SecurityPermission name="PARTYMGR_QAL_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="会员资格创建" permissionId="PARTYMGR_QAL_CREATE"/>
+  <SecurityPermission name="PARTYMGR_QAL_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="会员资格修改" permissionId="PARTYMGR_QAL_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_QAL_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="会员资格删除" permissionId="PARTYMGR_QAL_DELETE"/>
+  <SecurityPermission name="PARTYMGR_CME_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="沟通创建" permissionId="PARTYMGR_CME_CREATE"/>
+  <SecurityPermission name="PARTYMGR_CME_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="沟通修改" permissionId="PARTYMGR_CME_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_CME_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="沟通删除" permissionId="PARTYMGR_CME_DELETE"/>
+  <SecurityPermission name="PARTYMGR_CME-EMAIL_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="邮件创建" permissionId="PARTYMGR_CME-EMAIL_CREATE"/>
+  <SecurityPermission name="PARTYMGR_CME-EMAIL_UPDATE" parentPermissionId="PARTYMGR_ADMIN" description="邮件修改" permissionId="PARTYMGR_CME-EMAIL_UPDATE"/>
+  <SecurityPermission name="PARTYMGR_CME-EMAIL_DELETE" parentPermissionId="PARTYMGR_ADMIN" description="邮件删除" permissionId="PARTYMGR_CME-EMAIL_DELETE"/>
+  <SecurityPermission name="PARTYMGR_CME-NOTE_CREATE" parentPermissionId="PARTYMGR_ADMIN" description="团体消息创建" permissionId="PARTYMGR_CME-NOTE_CREATE"/>
+
+  <!--<SecurityGroup description="Party Admin group, has all party permissions." groupId="PARTYADMIN"/>
+  <SecurityGroupPermission groupId="PARTYADMIN" permissionId="PARTYMGR_ADMIN"/>
+  <SecurityGroupPermission groupId="PARTYADMIN" permissionId="OFBTOOLS_VIEW"/>
+-->
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="PARTYMGR_ADMIN"/>
+  <!--<SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_NOTE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_VIEW"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_STS_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_GRP_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_REL_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_REL_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_ROLE_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_ROLE_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_PCM_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_PCM_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_PCM_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_SRC_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_CME_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_CME_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="PARTYMGR_CME_DELETE"/>
+
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="PARTYMGR_VIEW"/>
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="PARTYMGR_NOTE"/>
+  <SecurityGroupPermission groupId="BIZADMIN" permissionId="PARTYMGR_ADMIN"/>
+-->
+  <!--Security Management security-->
+  <SecurityPermission name="SECURITY_VIEW" parentPermissionId="SECURITY_ADMIN" description="安全管理查看" permissionId="SECURITY_VIEW"/>
+  <SecurityPermission name="SECURITY_CREATE" parentPermissionId="SECURITY_ADMIN" description="安全创建" permissionId="SECURITY_CREATE"/>
+  <SecurityPermission name="SECURITY_UPDATE" parentPermissionId="SECURITY_ADMIN" description="安全管理修改" permissionId="SECURITY_UPDATE"/>
+  <SecurityPermission name="SECURITY_DELETE" parentPermissionId="SECURITY_ADMIN" description="安全管理删除" permissionId="SECURITY_DELETE"/>
+  <SecurityPermission name="SECURITY_ADMIN" parentPermissionId="PARTYMGR_ADMIN" description="安全管理" permissionId="SECURITY_ADMIN"/>
+  <SecurityGroupPermission groupId="FULLADMIN" permissionId="SECURITY_ADMIN"/>
+  <!-- <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SECURITY_CREATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SECURITY_DELETE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SECURITY_UPDATE"/>
+  <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SECURITY_VIEW"/>
+  <SecurityGroupPermission groupId="VIEWADMIN" permissionId="SECURITY_VIEW"/>
+
+  <SecurityGroup description="Security Admin group, has all permissions to modify security settings in party manager." groupId="SECURITYADMIN"/>
+  <SecurityGroupPermission groupId="SECURITYADMIN" permissionId="SECURITY_ADMIN"/>-->
+
+</entity-engine-xml>

@@ -1,0 +1,1 @@
+java  -Xms128M -Xmx384M -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -jar ofbiz.jar start-party

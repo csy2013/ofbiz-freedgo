@@ -1,0 +1,93 @@
+@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,div,a,pre,code,form,fieldset,button,input,textarea,p,address,em,label,img,th,td,iframe,sub,sup {
+    padding: 0;
+    margin: 0
+}
+*{ padding:0; margin: 0;}
+body {
+    color: #333;
+    font-family:"宋体","Hiragino Sans GB",sans-serif,arial;position:relative;
+    font-size: 12px
+}
+
+h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ol,ul,li {
+    margin: 0;
+    padding: 0
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%
+}
+
+ol,ul {
+    list-style: none
+}
+
+img {
+    border: 0;
+    display: inline-block
+}
+
+input,select,input,textarea {
+    font-size: 12px;
+    outline: 0
+}
+
+select,input {
+    vertical-align: middle
+}
+
+input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="file"]>input[type="button"]::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    resize: none
+}
+
+fieldset {
+    border: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+caption,th {
+    text-align: left
+}
+
+address,caption,th,cite,code,em {
+    font-style: normal;
+    font-weight: normal
+}
+
+a:link,a:visited,a:active {
+    color: #333;
+    text-decoration: none;
+    outline: 0
+}
+
+a:hover {
+    color: #f60;
+    text-decoration: none;
+    outline: 0
+}
+
+
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */

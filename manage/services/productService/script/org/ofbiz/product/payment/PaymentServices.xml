@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+    <simple-method method-name="deletePaymentGatewayConfig" short-description="Delete a Payment Gateway  Setting">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <set field="configMap.paymentGatewayConfigId" from-field="parameters.paymentGatewayConfigId"/>
+        <remove-by-and entity-name="PaymentGatewaySagePay" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayAuthorizeNet" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayEway" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayCyberSource" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayPayflowPro" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayPayPal" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayClearCommerce" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayWorldPay" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayOrbital" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewaySecurePay" map="configMap"/>
+        <remove-by-and entity-name="PaymentGatewayiDEAL" map="configMap"/>
+        <make-value value-field="lookupPKMap" entity-name="PaymentGatewayConfig"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="PaymentGatewayConfig" map="lookupPKMap" value-field="setting"/>
+        <set-nonpk-fields map="parameters" value-field="setting"/>
+        <remove-value value-field="setting"/>
+    </simple-method>
+
+    <simple-method method-name="deletePaymentGatewayConfigType" short-description="Delete a Payment Gateway Type Setting">
+        <check-permission permission="CATALOG" action="_DELETE">
+            <fail-property resource="ProductUiLabels" property="ProductCatalogDeletePermissionError"/>
+        </check-permission>
+        <check-errors/>
+        <set field="configMap.parentTypeId" from-field="parameters.paymentGatewayConfigTypeId"/>
+        <find-by-and entity-name="PaymentGatewayConfigType" map="configMap" list="configMap"/>
+        <if-not-empty field="paymentConfigTypes">
+            <add-error>
+                <fail-message message="该支付网关类型有子类型不能删除"/>
+            </add-error>
+            <check-errors/>
+        </if-not-empty>
+        <set field="configMap1.paymentGatewayConfigTypeId" from-field="parameters.paymentGatewayConfigTypeId"/>
+        <find-by-and entity-name="PaymentGatewayConfig" map="configMap1" list="paymentGatewayConfigs"/>
+        <if-not-empty field="paymentGatewayConfigs">
+            <add-error>
+                <fail-message message="该支付网关类型已经被使用不能删除"/>
+            </add-error>
+            <check-errors/>
+        </if-not-empty>
+
+
+        <make-value value-field="lookupPKMap" entity-name="PaymentGatewayConfigType"/>
+        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+        <find-by-primary-key entity-name="PaymentGatewayConfigType" map="lookupPKMap" value-field="setting"/>
+        <set-nonpk-fields map="parameters" value-field="setting"/>
+        <remove-value value-field="setting"/>
+    </simple-method>
+
+    <simple-method method-name="createPaymentGatewayConfigType" short-description="Update Payment Gateway Config Type">
+        <make-value entity-name="PaymentGatewayConfigType" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <set-pk-fields value-field="lookedUpValue" map="parameters"/>
+        <create-value value-field="lookedUpValue"/>
+
+    </simple-method>
+
+    <simple-method method-name="createPaymentGatewayConfig" short-description="add Payment Gateway Config Type">
+        <make-value entity-name="PaymentGatewayConfig" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <set-pk-fields value-field="lookedUpValue" map="parameters"/>
+        <create-value value-field="lookedUpValue"/>
+        <if-compare field="parameters.paymentGatewayConfigTypeId" operator="equals" value="WEIXIN">
+            <make-value entity-name="PaymentGatewayWeixin" value-field="configWeixin"/>
+            <set-pk-fields value-field="configWeixin" map="parameters"/>
+            <create-value value-field="configWeixin"/>
+        </if-compare>
+        <if-compare field="parameters.paymentGatewayConfigTypeId" operator="equals" value="ALIPAY">
+            <make-value entity-name="PaymentGatewayAlipay" value-field="configAlipay"/>
+            <set-pk-fields value-field="configAlipay" map="parameters"/>
+            <create-value value-field="configAlipay"/>
+        </if-compare>
+
+    </simple-method>
+
+    <simple-method method-name="updatePaymentGatewayConfigAlipay" short-description="Update Payment Gateway Config PayPal">
+        <entity-one entity-name="PaymentGatewayAlipay" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+
+    <simple-method method-name="updatePaymentGatewayConfigWeixin" short-description="Update Payment Gateway Config PayPal">
+        <entity-one entity-name="PaymentGatewayWeixin" value-field="lookedUpValue"/>
+        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+        <store-value value-field="lookedUpValue"/>
+    </simple-method>
+</simple-methods>

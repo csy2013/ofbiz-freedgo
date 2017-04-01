@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <description>mobile category Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+    <service name="DaoJia_TabCateList" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductCategoryService" invoke="DaoJia_TabCateList">
+        <description>产品分类</description>
+        <!--<attribute name="functionId"  type="String" mode="IN"><description>homeSearch/tabCateList</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'longitude':118.72446,'latitude':32.12944,'cityId':904}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473122800924</description></attribute>-->
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+
+    <service name="DaoJia_SearchByStorePostV_230" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductCategoryService" invoke="DaoJia_SearchByStorePostV_230">
+        <description>产品分类搜索</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>homeSearch/searchByStorePostV_230</description></attribute>
+        <attribute name="body"  type="String" mode="IN">
+            <description>{"longitude":118.72402,"latitude":32.12561,"type":2,"key":"","industryTags":[],"catIds":[{"categoryId":"20315","level":"3"},{"categoryId":"20340","level":"3"}],"sortType":1,"page":1,"pageSize":5,"storeIds":[],"promotLabels":"","discountRange":"","serviceNo":1473228317908}</description>
+        </attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473224129830</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_HotWords" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductCategoryService" invoke="DaoJia_HotWords">
+        <description>热门搜索</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>hotWords/list</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'size':12,'type':2,'longitude':118.94482,'latitude':32.10317,'storeIds':[]}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473432103051</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+    <service name="DaoJia_SuggestList" engine="java" location="com.yuaoq.yabiz.daojia.service.product.ProductCategoryService" invoke="DaoJia_SuggestList">
+        <description>搜索联想</description>
+        <attribute name="functionId"  type="String" mode="IN"><description>suggest/list</description></attribute>
+        <attribute name="body"  type="String" mode="IN"><description>{'type':2,'longitude':118.94482,'latitude':32.10317,'storeIds':[],'key':'苹'}</description></attribute>
+        <attribute name="appVersion"  type="String" mode="IN"><description>3.2.0</description></attribute>
+        <attribute name="appName"  type="String" mode="IN"><description>paidaojia</description></attribute>
+        <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
+        <attribute name="rand"  type="String" mode="IN"><description>1473432804152</description></attribute>
+        <attribute name="resultData" type="java.lang.Object" mode="OUT"/>
+    </service>
+
+</services>
