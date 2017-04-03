@@ -41,6 +41,7 @@
 	<li>PostgreSQL</li>
 	<li>SAP database</li>
 	等。
+	</ol>
 <h1>安装步骤</h1>
 
 以Mysql为例：首先创建localmysql、localmysqltenant、localmysqlolap对应的数据库。
