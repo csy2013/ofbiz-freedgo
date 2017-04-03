@@ -57,7 +57,8 @@ cd framework
 
 <pre><code>./ant start</code></pre>
 打开浏览器执行：
-http://youcompuer.com:8080/ofbizsetup,设置对应的运营主体、网站、场所等。
+<pre><code>http://youcompuer.com:8080/ofbizsetup</code></pre>
+设置对应的运营主体、网站、场所等。
 <h1>教程</h1>
 
 <h1>License</h1>
