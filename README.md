@@ -60,6 +60,7 @@ cd framework
 <pre><code>http://youcompuer.com:8080/ofbizsetup</code></pre>
 设置对应的运营主体、网站、场所等。
 <h1>教程</h1>
-
+<h1>联系方式</h1>
+QQ:1934134234
 <h1>License</h1>
 freedgo is released under the MIT license. See LICENSE for details.
