@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<entity-engine-xml>
-    <Tenant tenantId="@tenantId@" tenantName="@tenantName@"/>
-    <TenantDataSource tenantId="@tenantId@" entityGroupName="org.ofbiz"
-        jdbcUri="jdbc:mysql://@db-IP@/@tenantId@?autoReconnect=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull" jdbcUsername="@db-User@" jdbcPassword="@db-Password@"/>
-    <TenantDataSource tenantId="@tenantId@" entityGroupName="org.ofbiz.olap"
-        jdbcUri="jdbc:mysql://@db-IP@/olap_@tenantId@?autoReconnect=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull" jdbcUsername="@db-User@" jdbcPassword="@db-Password@"/>
-</entity-engine-xml>
