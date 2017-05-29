@@ -19,7 +19,7 @@ under the License.
 -->
 
 <project name="OFBiz Applications Build" default="build" basedir=".">
-    <import file="../macros.xml"/>
+    <import file="../../macros.xml"/>
 
     <filelist id="application-builds" dir="."
               files=""/>

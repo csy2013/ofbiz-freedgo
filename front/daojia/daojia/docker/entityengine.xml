@@ -346,7 +346,7 @@ access. For a detailed description see the core/docs/entityconfig.html file.
         <!--hikari pool-minsize ,time-between-eviction-runs-millis 不需要配置-->
         <inline-jdbc
                 jdbc-driver="com.mysql.jdbc.Driver"
-                jdbc-uri="jdbc:mysql://192.168.99.100:9006/yabiz_test?autoReconnect=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
+                jdbc-uri="jdbc:mysql://192.168.99.100:9006/yabiz_dev?autoReconnect=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
                 jdbc-username="root"
                 jdbc-password="root"
                 isolation-level="ReadCommitted"

@@ -1,5 +1,5 @@
 <project name="OFBiz Applications Service Build" default="build" basedir=".">
-    <import file="../manage/macros.xml"/>
+    <import file="../macros.xml"/>
 
     <filelist id="front-builds" dir="."
               files="daojia/services/build.xml"/>

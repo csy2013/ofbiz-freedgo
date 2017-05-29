@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="OFBiz - Mobile DaoJia Component" default="jar" basedir=".">
-    <import file="../../../manage/common.xml"/>
+    <import file="../../../common.xml"/>
 
     <!-- ================================================================== -->
     <!-- Initialization of all property settings                            -->
@@ -20,21 +20,21 @@
     <path id="local.class.path">
 
         <!--<fileset dir="${lib.dir}" includes="*.jar"/>-->
-        <fileset dir="../../../framework/base/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/base/lib/commons" includes="*.jar"/>
-        <fileset dir="../../../framework/base/lib/j2eespecs" includes="*.jar"/>
-        <fileset dir="../../../framework/base/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/entity/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/entity/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/security/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/service/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/service/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/minilang/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/widget/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/webapp/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/common/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/webapp/build/lib" includes="*.jar"/>
-        <fileset dir="../../../framework/dubbo/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/base/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/base/lib/commons" includes="*.jar"/>
+        <fileset dir="../../../../framework/base/lib/j2eespecs" includes="*.jar"/>
+        <fileset dir="../../../../framework/base/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/entity/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/entity/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/security/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/service/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/service/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/minilang/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/widget/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/webapp/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/common/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/webapp/build/lib" includes="*.jar"/>
+        <fileset dir="../../../../framework/dubbo/build/lib" includes="*.jar"/>
         <fileset dir="../../../manage/services/accountService/build/lib" includes="*.jar"/>
         <fileset dir="../../../manage/services/orderService/build/lib" includes="*.jar"/>
         <fileset dir="../../../manage/services/marketService/build/lib" includes="*.jar"/>

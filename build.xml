@@ -29,9 +29,9 @@ under the License.
     <property name="pos.memory.max.param" value="-Xmx512M"/>
     <property name="memory.maxpermsize.param" value="-XX:MaxPermSize=512m"/>
 
-    <available file="applications/build.xml" property="applications.present"/>
-    <available file="services/build.xml" property="services.present"/>
-    <available file="../front/build.xml" property="front.present"/>
+    <available file="manage/applications/build.xml" property="applications.present"/>
+    <available file="manage/services/build.xml" property="services.present"/>
+    <available file="./front/build.xml" property="front.present"/>
 
 
 
@@ -124,17 +124,17 @@ under the License.
     <target name="clean">
         <subant target="clean" failonerror="${applications.present}"
                 description="Use failonerror=false in case the applications directory is not there">
-            <filelist dir="." files="applications/build.xml"/>
+            <filelist dir="." files="manage/applications/build.xml"/>
         </subant>
 
         <subant target="clean" failonerror="${services.present}"
                 description="Use failonerror=false in case the appExts directory is not there">
-            <filelist dir="." files="services/build.xml"/>
+            <filelist dir="." files="manage/services/build.xml"/>
         </subant>
 
         <subant target="clean" failonerror="${front.present}"
                 description="Use failonerror=false in case the appExts directory is not there">
-            <filelist dir="." files="../front/build.xml"/>
+            <filelist dir="." files="./front/build.xml"/>
         </subant>
 
         <echo message="[clean] ========== Done Cleaning =========="/>
@@ -169,14 +169,14 @@ under the License.
         <echo message="[build] ========== Start Building (Compile) =========="/>
 
         <subant inheritall="false" failonerror="${applications.present}">
-            <filelist dir="." files="applications/build.xml"/>
+            <filelist dir="." files="manage/applications/build.xml"/>
         </subant>
         <subant inheritall="false" failonerror="${services.present}">
-            <filelist dir="." files="services/build.xml"/>
+            <filelist dir="." files="manage/services/build.xml"/>
         </subant>
 
         <subant inheritall="false" failonerror="${front.present}">
-            <filelist dir="." files="../front/build.xml"/>
+            <filelist dir="." files="./front/build.xml"/>
         </subant>
         <!-- a check is done, if no build.xml file is present in hot-deploy dir,
             then the build.xml files - if present - in hot-deploy sub-dirs will be used.
@@ -195,14 +195,14 @@ under the License.
         <echo message="[docs] ========== Start Building (JavaDoc) =========="/>
 
         <subant target="docs">
-            <filelist dir="." files="services/build.xml"/>
+            <filelist dir="." files="manage/services/build.xml"/>
         </subant>
         <subant target="docs" failonerror="${applications.present}">
-            <filelist dir="." files="applications/build.xml"/>
+            <filelist dir="." files="manage/applications/build.xml"/>
         </subant>
 
         <subant target="docs" failonerror="${front.present}">
-            <filelist dir="." files="../front/build.xml"/>
+            <filelist dir="." files="./front/build.xml"/>
         </subant>
 
         <subant target="docs">
@@ -259,7 +259,7 @@ under the License.
     <target name="start"
             description="Start OFBiz">
         <java jar="${ofbiz.home.dir}/../framework/ofbiz.jar" fork="true">
-            <arg value="../front/daojia/daojia/docker/base/config/start-mdaojia"/>
+            <arg value="front/daojia/daojia/docker/base/config/start-mdaojia"/>
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <!--<jvmarg value="${memory.maxpermsize.param}"/>-->
