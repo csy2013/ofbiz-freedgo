@@ -40,7 +40,7 @@ under the License.
     <!-- WebSite Forms -->
     <form name="EditWebSite" type="single" target="updateWebSite" title="" default-map-name="webSite" validate="true"
           header-row-style="header-row" default-table-style="basic-table">
-        <!--<alt-target use-when="webSite==null" target="createWebSite"/>-->
+        <alt-target use-when="webSite==null" target="createWebSite"/>
         <alt-target use-when="webSiteId.equals(&quot;daojia&quot;) " target="updateDaoJiaSite"/>
         <alt-target use-when="webSiteId.equals(&quot;eshop&quot;) " target="updateEShopSite"/>
         <alt-target use-when="webSiteId.equals(&quot;app&quot;) " target="updateAppSite"/>
