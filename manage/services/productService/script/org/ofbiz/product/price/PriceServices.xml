@@ -462,13 +462,13 @@ under the License.
                 <field-to-list list="productPriceRulesCondValues" field="option"/>
             </iterate>
         </if-compare> 
-        <if-compare field="parameters.inputParamEnumId" operator="equals" value="PRIP_PROD_SGRP_ID">
+       <!-- <if-compare field="parameters.inputParamEnumId" operator="equals" value="PRIP_PROD_SGRP_ID">
             <entity-condition entity-name="ProductStoreGroup" list="condValues"/>
             <iterate list="condValues" entry="condValue">
                 <set field="option" value="${condValue.productStoreGroupName} (${condValue.description}): ${condValue.productStoreGroupId}"/>
                 <field-to-list list="productPriceRulesCondValues" field="option"/>
             </iterate>
-        </if-compare> 
+        </if-compare> -->
         <if-compare field="parameters.inputParamEnumId" operator="equals" value="PRIP_PROD_CLG_ID">
             <entity-condition entity-name="ProdCatalog" list="condValues"/>
             <iterate list="condValues" entry="condValue">

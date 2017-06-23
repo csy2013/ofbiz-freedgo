@@ -243,7 +243,7 @@ under the License.
             <remove-by-and entity-name="ProductPrice" map="proMap"/>
             <remove-by-and entity-name="GoodIdentification" map="proMap"/>
             <remove-by-and entity-name="ProductAssoc" map="proMap"/>
-            <remove-by-and entity-name="ProductRole" map="proMap"/>
+            <!--<remove-by-and entity-name="ProductRole" map="proMap"/>-->
             <remove-by-and entity-name="ProductAttribute" map="proMap"/>
             <remove-by-and entity-name="ProductCalculatedInfo" map="proMap"/>
             <remove-by-and entity-name="ProductContent" map="proMap"/>
