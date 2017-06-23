@@ -1894,9 +1894,9 @@ under the License.
         <field name="hasTable" type="indicator"></field>
         <field name="description" type="description"></field>
         <prim-key field="advertTypeId"/>
-        <relation type="one" fk-name="AD_TYPE_PARENT" title="Parent" rel-entity-name="AdvertType">
-            <key-map field-name="parentTypeId" rel-field-name="AdvertType"/>
-        </relation>
+        <!--<relation type="one" fk-name="AD_TYPE_PARENT" title="Parent" rel-entity-name="AdvertType">
+            <key-map field-name="parentTypeId" rel-field-name="advertTypeId"/>
+        </relation>-->
     </entity>
 
 
@@ -1944,7 +1944,7 @@ under the License.
         <field name="description" type="description"></field>
         <prim-key field="articleTypeId"/>
         <relation type="one" fk-name="AD_TYPE_PARENT" title="Parent" rel-entity-name="ArticleType">
-            <key-map field-name="parentTypeId" rel-field-name="AcricleType"/>
+            <key-map field-name="parentTypeId" rel-field-name="articleTypeId"/>
         </relation>
     </entity>
 

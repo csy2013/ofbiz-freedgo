@@ -79,21 +79,21 @@ under the License.
         -->
 
         <!-- if the user has the role limited position, add this product to the limit category/ies -->
-        <if-has-permission permission="CATALOG_ROLE" action="_CREATE">
+        <!--<if-has-permission permission="CATALOG_ROLE" action="_CREATE">
             <entity-and entity-name="ProductCategoryRole" list="productCategoryRoles" filter-by-date="true">
                 <field-map field-name="partyId" from-field="userLogin.partyId"/>
                 <field-map field-name="roleTypeId" value="LTD_ADMIN"/>
             </entity-and>
 
             <iterate entry="productCategoryRole" list="productCategoryRoles">
-                <!-- add this new product to the category -->
+                &lt;!&ndash; add this new product to the category &ndash;&gt;
                 <make-value value-field="newLimitMember" entity-name="ProductCategoryMember"/>
                 <set from-field="newEntity.productId" field="newLimitMember.productId"/>
                 <set from-field="productCategoryRole.productCategoryId" field="newLimitMember.productCategoryId"/>
                 <set from-field="nowTimestamp" field="newLimitMember.fromDate"/>
                 <create-value value-field="newLimitMember"/>
             </iterate>
-        </if-has-permission>
+        </if-has-permission>-->
         <!--增加brandId-->
         <if-not-empty field="parameters.brandId">
 
@@ -234,7 +234,6 @@ under the License.
 
             <remove-by-and entity-name="ProductConfig" map="proMap"/>
             <remove-by-and entity-name="ProductConfigProduct" map="proMap"/>
-            <remove-by-and entity-name="ProductConfigStats" map="proMap"/>
             <remove-by-and entity-name="ProductCostComponentCalc" map="proMap"/>
             <remove-by-and entity-name="ProductFacility" map="proMap"/>
             <remove-by-and entity-name="ProductFacilityLocation" map="proMap"/>

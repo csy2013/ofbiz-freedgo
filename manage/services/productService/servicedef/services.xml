@@ -739,7 +739,7 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 
-    <service name="addProdCatalogToParty" default-entity-name="ProdCatalogRole" engine="simple"
+    <!--<service name="addProdCatalogToParty" default-entity-name="ProdCatalogRole" engine="simple"
              location="component://productService/script/org/ofbiz/product/catalog/CatalogServices.xml" invoke="addProdCatalogToParty" auth="true">
         <description>Add ProdCatalog To Party</description>
         <permission-service service-name="prodCatalogToPartyPermissionCheck" main-action="CREATE"/>
@@ -759,7 +759,7 @@ under the License.
         <description>Remove ProdCatalog From Party</description>
         <permission-service service-name="prodCatalogToPartyPermissionCheck" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <service name="productCategoryList" engine="java"
              location="org.ofbiz.product.product.ProductServices" invoke="productCategoryList">

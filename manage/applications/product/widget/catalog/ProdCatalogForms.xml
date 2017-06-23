@@ -208,13 +208,13 @@ under the License.
             <submit button-type="button"/>
         </field>
     </form>
-    <form name="UpdateProdCatalogToParty" type="list" target="updateProdCatalogToParty" title="" list-name="prodCatalogRoleList"
+    <!--<form name="UpdateProdCatalogToParty" type="list" target="updateProdCatalogToParty" title="" list-name="prodCatalogRoleList"
           odd-row-style="alternate-row" default-table-style="basic-table">
         <auto-fields-service service-name="updateProdCatalogToParty"/>
         <field name="prodCatalogId">
             <hidden/>
         </field>
-        <!-- three possibilities for the Party: person, partyGroup, neither... just print everything and if it's empty, no biggie -->
+        &lt;!&ndash; three possibilities for the Party: person, partyGroup, neither... just print everything and if it's empty, no biggie &ndash;&gt;
         <field name="partyId" title="${uiLabelMap.PartyParty}">
             <display-entity entity-name="PartyNameView" description="${personalTitle} ${firstName} ${middleName} ${lastName} ${suffix} ${groupName}" also-hidden="true" cache="false">
                 <sub-hyperlink target-type="inter-app" link-style="buttontext" target="/partymgr/control/viewprofile" description="${partyId}">
@@ -242,7 +242,7 @@ under the License.
             </hyperlink>
 
         </field>
-    </form>
+    </form>-->
     <form name="CreateProductStoreCatalog" type="single" target="createProdCatalogStore" title=""
           header-row-style="header-row" default-table-style="basic-table">
         <auto-fields-service service-name="createProductStoreCatalog"/>

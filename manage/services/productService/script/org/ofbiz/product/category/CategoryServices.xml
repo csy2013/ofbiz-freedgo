@@ -60,20 +60,7 @@ under the License.
         -->
 
         <!-- if the user has the role limited position, add this category to the limit category/ies -->
-        <if-has-permission permission="CATALOG_ROLE" action="_CREATE">
-            <entity-and entity-name="ProductCategoryRole" list="productCategoryRoles" filter-by-date="true">
-                <field-map field-name="partyId" from-field="userLogin.partyId"/>
-                <field-map field-name="roleTypeId" value="LTD_ADMIN"/>
-            </entity-and>
-            <iterate entry="productCategoryRole" list="productCategoryRoles">
-                <!-- add this new product to the category -->
-                <make-value value-field="newLimitRollup" entity-name="ProductCategoryRollup"/>
-                <set field="newLimitRollup.productCategoryId" from-field="newEntity.productCategoryId"/>
-                <set field="newLimitRollup.parentProductCategoryId" from-field="productCategoryRole.productCategoryId"/>
-                <set field="newLimitRollup.fromDate" from-field="nowTimestamp"/>
-                <create-value value-field="newLimitRollup"/>
-            </iterate>
-        </if-has-permission>
+
     </simple-method>
     <simple-method method-name="updateProductCategory" short-description="Update an ProductCategory">
         <set field="callingMethodName" value="updateProductCategory"/>
@@ -274,7 +261,7 @@ under the License.
         <remove-by-and entity-name="ProductCategoryGlAccount" map="categoryContextMap"/>
         <remove-by-and entity-name="ProductCategoryLink" map="categoryContextMap"/>
         <remove-by-and entity-name="ProductCategoryMember" map="categoryContextMap"/>
-        <remove-by-and entity-name="ProductCategoryRole" map="categoryContextMap"/>
+        <!--<remove-by-and entity-name="ProductCategoryRole" map="categoryContextMap"/>-->
         <remove-by-and entity-name="ProductFeatureCategoryAppl" map="categoryContextMap"/>
         <remove-by-and entity-name="ProductFeatureCatGrpAppl" map="categoryContextMap"/>
         <remove-by-and entity-name="ProductPromoCategory" map="categoryContextMap"/>
@@ -405,45 +392,7 @@ under the License.
     <!-- ProductCategoryRole Services -->
     <!-- ================================================================ -->
 
-    <simple-method method-name="addPartyToCategory" short-description="Add Party to Category">
-        <set value="addPartyToCategory" field="callingMethodName"/>
-        <set value="CREATE" field="checkAction"/>
-        <call-simple-method method-name="checkCategoryRelatedPermission"/>
-        <check-errors/>
 
-        <make-value value-field="newEntity" entity-name="ProductCategoryRole"/>
-        <set-pk-fields map="parameters" value-field="newEntity"/>
-        <set-nonpk-fields map="parameters" value-field="newEntity"/>
-
-        <if-empty field="newEntity.fromDate">
-            <now-timestamp field="newEntity.fromDate"/>
-        </if-empty>
-
-        <create-value value-field="newEntity"/>
-    </simple-method>
-    <simple-method method-name="updatePartyToCategory" short-description="Update Party to Category Application">
-        <set value="updatePartyToCategory" field="callingMethodName"/>
-        <set value="UPDATE" field="checkAction"/>
-        <call-simple-method method-name="checkCategoryRelatedPermission"/>
-        <check-errors/>
-
-        <make-value value-field="lookupPKMap" entity-name="ProductCategoryRole"/>
-        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
-        <find-by-primary-key entity-name="ProductCategoryRole" map="lookupPKMap" value-field="lookedUpValue"/>
-        <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
-        <store-value value-field="lookedUpValue"/>
-    </simple-method>
-    <simple-method method-name="removePartyFromCategory" short-description="Remove Party From Category">
-        <set value="removePartyFromCategory" field="callingMethodName"/>
-        <set value="DELETE" field="checkAction"/>
-        <call-simple-method method-name="checkCategoryRelatedPermission"/>
-        <check-errors/>
-
-        <make-value value-field="lookupPKMap" entity-name="ProductCategoryRole"/>
-        <set-pk-fields map="parameters" value-field="lookupPKMap"/>
-        <find-by-primary-key entity-name="ProductCategoryRole" map="lookupPKMap" value-field="lookedUpValue"/>
-        <remove-value value-field="lookedUpValue"/>
-    </simple-method>
 
     <!-- ================================================================ -->
     <!-- ProductCategoryRollup Services -->
@@ -790,10 +739,10 @@ under the License.
             <set field="entityName" value="ProductCategoryContent"/>
             <call-simple-method method-name="copyCategoryEntities"/>
         </if-not-empty>
-        <if-not-empty field="parameters.duplicateRoles">
+        <!--<if-not-empty field="parameters.duplicateRoles">
             <set field="entityName" value="ProductCategoryRole"/>
             <call-simple-method method-name="copyCategoryEntities"/>
-        </if-not-empty>
+        </if-not-empty>-->
         <if-not-empty field="parameters.duplicateAttributes">
             <set field="entityName" value="ProductCategoryAttribute"/>
             <call-simple-method method-name="copyCategoryEntities"/>

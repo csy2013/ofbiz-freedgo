@@ -303,11 +303,11 @@ under the License.
     <target name="load-seed" depends="build"
             description="Load ONLY the seed data (not seed-initial, demo, ext* or anything else); meant for use after an update of the code to reload the seed data as it is generally maintained along with the code and needs to be in sync for operation">
         <java jar="../framework/ofbiz.jar" fork="true">
-            <arg value="front/daojia/daojia/docker/base/config/start-mdaojia"/>
+            <!--<arg value="front/daojia/daojia/docker/base/config/start-mdaojia"/>-->
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=seed"/>
         </java>
     </target>
@@ -333,7 +333,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=seed,seed-initial,ext,ext-test"/>
         </java>
     </target>
@@ -344,7 +344,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=${data-readers}"/>
         </java>
     </target>
@@ -357,7 +357,7 @@ under the License.
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
             <arg value="delegator=${delegator}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=${data-readers}"/>
         </java>
     </target>
@@ -371,7 +371,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=${delegator}"/>
             <arg value="file=${data-file}"/>
             <jvmarg value="-Xnoagent"/>
@@ -393,7 +393,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=tenant"/>
         </java>
         <condition property="hasTenant">
@@ -442,7 +442,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=default#${tenantId}"/>
         </java>
     </target>
@@ -451,7 +451,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="readers=${data-readers}"/>
         </java>
@@ -478,7 +478,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="component=${component}"/>
         </java>
@@ -488,7 +488,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="readers=${data-readers}"/>
             <arg value="component=${component}"/>
@@ -506,7 +506,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=tenant"/>
         </java>
         <condition property="hasReader">
@@ -529,7 +529,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="delegator=${delegator}"/>
         </java>
     </target>
@@ -538,7 +538,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=${data-readers}"/>
             <arg value="delegator=${delegator}"/>
         </java>
@@ -724,7 +724,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install"/>
+            <arg value="install-freedgo"/>
             <arg value="readers=${data-readers}"/>
             <arg value="delegator=default#${tenantId}"/>
         </java>

@@ -75,7 +75,7 @@ under the License.
     passedEntityNames.add("ElectronicText");
     passedEntityNames.add("FacilityLocation");
     passedEntityNames.add("ProdCatalogCategory");
-    passedEntityNames.add("ProdCatalogRole");
+//    passedEntityNames.add("ProdCatalogRole");
     passedEntityNames.add("ProductAssoc");
     passedEntityNames.add("ProductAttribute");
     passedEntityNames.add("ProductCategoryMember");
@@ -91,20 +91,7 @@ under the License.
     passedEntityNames.add("ProductPromoCategory");
     passedEntityNames.add("ProductPromoProduct");
     passedEntityNames.add("ProductPromoRule");
-  } else if ("Product3".equals(preConfiguredSetName)) {
-    passedEntityNames = new LinkedHashSet();
-    passedEntityNames.add("ProdCatalogInvFacility");
-    passedEntityNames.add("ProductContent");
-    passedEntityNames.add("ProductFacilityLocation");
-    passedEntityNames.add("ProductFeatureAppl");
-    passedEntityNames.add("ProductFeatureDataResource");
-    passedEntityNames.add("ProductFeatureGroup");
-    passedEntityNames.add("ProductPriceChange");
-    passedEntityNames.add("ProductPromoAction");
-    passedEntityNames.add("ProductPromoCodeEmail");
-    passedEntityNames.add("ProductPromoCodeParty");
-    passedEntityNames.add("ProductPromoCond");
-  } else if ("Product4".equals(preConfiguredSetName)) {
+  }   else if ("Product4".equals(preConfiguredSetName)) {
     passedEntityNames = new LinkedHashSet();
     passedEntityNames.add("InventoryItem");
     passedEntityNames.add("ProductFeatureCatGrpAppl");

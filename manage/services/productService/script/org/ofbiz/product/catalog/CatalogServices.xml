@@ -134,7 +134,7 @@ under the License.
     </simple-method>
 
     <!-- Party and Catalog services -->
-    <simple-method method-name="addProdCatalogToParty" short-description="Add ProdCatalog To Party">
+    <!--<simple-method method-name="addProdCatalogToParty" short-description="Add ProdCatalog To Party">
         <make-value value-field="newEntity" entity-name="ProdCatalogRole"/>
         <set-pk-fields map="parameters" value-field="newEntity"/>
         <set-nonpk-fields map="parameters" value-field="newEntity"/>
@@ -158,7 +158,7 @@ under the License.
         <set-pk-fields map="parameters" value-field="lookupPKMap"/>
         <find-by-primary-key entity-name="ProdCatalogRole" map="lookupPKMap" value-field="lookedUpValue"/>
         <remove-value value-field="lookedUpValue"/>
-    </simple-method>
+    </simple-method>-->
 
     <simple-method method-name="getAllCategories" short-description="get All categories" login-required="false">
         <if-not-empty field="parameters.topCategory">

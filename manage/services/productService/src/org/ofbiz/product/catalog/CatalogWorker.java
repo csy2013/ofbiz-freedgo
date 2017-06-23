@@ -135,7 +135,7 @@ public class CatalogWorker {
     return getPartyCatalogs(delegator, partyId);
   }
 
-  public static List<GenericValue> getPartyCatalogs(Delegator delegator, String partyId) {
+  /*public static List<GenericValue> getPartyCatalogs(Delegator delegator, String partyId) {
     if (delegator == null || partyId == null) {
       return null;
     }
@@ -146,7 +146,7 @@ public class CatalogWorker {
       Debug.logError(e, "Error looking up ProdCatalog Roles for party with id " + partyId, module);
     }
     return null;
-  }
+  }*/
 
   public static List<GenericValue> getProdCatalogCategories(ServletRequest request, String prodCatalogId, String prodCatalogCategoryTypeId) {
     Delegator delegator = (Delegator) request.getAttribute("delegator");
