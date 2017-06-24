@@ -5230,7 +5230,7 @@ under the License.
         </relation>
     </entity>-->
 
-    <entity entity-name="SupplierPrefOrder"
+    <!--<entity entity-name="SupplierPrefOrder"
             package-name="org.ofbiz.product.supplier"
             title="Preference Type Entity">
         <field name="supplierPrefOrderId" type="id-ne"></field>
@@ -5259,7 +5259,7 @@ under the License.
         <field name="supplierProductName" type="name"></field>
         <field name="supplierProductId" type="id"></field>
         <field name="canDropShip" type="indicator"></field>
-        <!-- field name="supplierCommissionPerc" type="fixed-point"><description>Unused field, better use commission run using agreements in accounting</description></field-->
+        &lt;!&ndash; field name="supplierCommissionPerc" type="fixed-point"><description>Unused field, better use commission run using agreements in accounting</description></field&ndash;&gt;
         <field name="comments" type="comment"></field>
         <prim-key field="productId"/>
         <prim-key field="partyId"/>
@@ -5330,7 +5330,7 @@ under the License.
         <field name="supplierRatingTypeId" type="id-ne"></field>
         <field name="description" type="description"></field>
         <prim-key field="supplierRatingTypeId"/>
-    </entity>
+    </entity>-->
 
     <entity entity-name="ProductPromoContent"
             package-name="org.ofbiz.product.promo"
@@ -5386,7 +5386,7 @@ under the License.
         </view-link>
     </view-entity>
 
-    <view-entity entity-name="ProductSupplier" package-name="org.ofbiz.product.product">
+   <!-- <view-entity entity-name="ProductSupplier" package-name="org.ofbiz.product.product">
         <member-entity entity-alias="PT" entity-name="Product"/>
         <member-entity entity-alias="PS" entity-name="SupplierProduct"/>
         <member-entity entity-alias="PGP" entity-name="PartyGroup"/>
@@ -5399,7 +5399,7 @@ under the License.
         <view-link entity-alias="PS" rel-entity-alias="PGP">
             <key-map field-name="partyId"/>
         </view-link>
-    </view-entity>
+    </view-entity>-->
     <view-entity entity-name="ProdCatalogStore" package-name="org.ofbiz.product.product">
         <member-entity entity-alias="PCG" entity-name="ProdCatalog"></member-entity>
         <member-entity entity-alias="PDSE" entity-name="ProductStoreCatalog"></member-entity>
