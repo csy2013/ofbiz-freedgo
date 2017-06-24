@@ -206,6 +206,19 @@ under the License.
             <check-errors/>
         </if-compare>
 
+
+        <entity-count entity-name="MarketInterest" count-field="categoryCount"  >
+            <condition-expr field-name="productCategoryId" operator="equals" from-field="parameters.productCategoryId" />
+        </entity-count>
+        <if-compare field="categoryCount" operator="greater" value="0">
+            <set field="entityName" value="MarketInterest"/>
+            <add-error>
+                <fail-property resource="ProductUiLabels"   property="ProductCategoryDeleteError" />
+            </add-error>
+            <check-errors/>
+        </if-compare>
+
+
         <entity-count entity-name="SalesForecastDetail" count-field="categoryCount"  >
             <condition-expr field-name="productCategoryId" operator="equals" from-field="parameters.productCategoryId" />
         </entity-count>

@@ -629,8 +629,8 @@
     <VarianceReason varianceReasonId="VAR_MISSHIP_SHIPPED" description="Mis-shipped Item Shipped (-)"/>
 
     <!-- Supplier preference order for SupplierProduct entries -->
-    <!--<SupplierPrefOrder supplierPrefOrderId="10_MAIN_SUPPL" description="Main Supplier"/>-->
-    <!--<SupplierPrefOrder supplierPrefOrderId="90_ALT_SUPPL" description="Alternative Supplier"/>-->
+    <SupplierPrefOrder supplierPrefOrderId="10_MAIN_SUPPL" description="Main Supplier"/>
+    <SupplierPrefOrder supplierPrefOrderId="90_ALT_SUPPL" description="Alternative Supplier"/>
 
     <!-- product subscription type -->
     <SubscriptionType description="Product" hasTable="N" parentTypeId="" subscriptionTypeId="PRODUCT_SUBSCR"/>
