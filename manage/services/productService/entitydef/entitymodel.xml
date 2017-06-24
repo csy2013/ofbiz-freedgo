@@ -5212,7 +5212,7 @@ under the License.
     <!-- org.ofbiz.product.supplier -->
     <!-- ========================================================= -->
 
-    <entity entity-name="MarketInterest"
+    <!--<entity entity-name="MarketInterest"
             package-name="org.ofbiz.product.supplier"
             title="Market Interest Entity">
         <field name="productCategoryId" type="id-ne"></field>
@@ -5228,34 +5228,8 @@ under the License.
         <relation type="one" fk-name="MARKET_INT_PCGRP" rel-entity-name="PartyClassificationGroup">
             <key-map field-name="partyClassificationGroupId"/>
         </relation>
-    </entity>
-    <entity entity-name="ReorderGuideline"
-            package-name="org.ofbiz.product.supplier"
-            title="Reorder Guideline Entity">
-        <field name="reorderGuidelineId" type="id-ne"></field>
-        <field name="productId" type="id-ne"></field>
-        <field name="partyId" type="id"></field>
-        <field name="roleTypeId" type="id"></field>
-        <field name="facilityId" type="id"></field>
-        <field name="geoId" type="id"></field>
-        <field name="fromDate" type="date-time"></field>
-        <field name="thruDate" type="date-time"></field>
-        <field name="reorderQuantity" type="fixed-point"></field>
-        <field name="reorderLevel" type="fixed-point"></field>
-        <prim-key field="reorderGuidelineId"/>
-        <relation type="one" fk-name="REORDER_GD_PROD" rel-entity-name="Product">
-            <key-map field-name="productId"/>
-        </relation>
-        <relation type="one" fk-name="REORDER_GD_PARTY" rel-entity-name="Party">
-            <key-map field-name="partyId"/>
-        </relation>
-        <relation type="one" fk-name="REORDER_GD_FAC" rel-entity-name="Facility">
-            <key-map field-name="facilityId"/>
-        </relation>
-        <relation type="one" fk-name="REORDER_GD_GEO" rel-entity-name="Geo">
-            <key-map field-name="geoId"/>
-        </relation>
-    </entity>
+    </entity>-->
+
     <entity entity-name="SupplierPrefOrder"
             package-name="org.ofbiz.product.supplier"
             title="Preference Type Entity">
