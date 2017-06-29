@@ -2090,7 +2090,7 @@ under the License.
             <actions>
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="postalAddressTemplateSuffix" value=".ftl"/>
-                <set field="addressTemplatePath" value="${sys:getProperty('ofbiz.home')}/freedgo/manage/applications/party/webapp/partymgr/party/contactmechtemplates/"/>
+                <set field="addressTemplatePath" value="${sys:getProperty('ofbiz.home')}/freedgo-shop/manage/applications/party/webapp/partymgr/party/contactmechtemplates/"/>
                 <script location="component://party/webapp/partymgr/WEB-INF/actions/party/GetPostalAddressTemplate.groovy"/>
             </actions>
             <widgets>
@@ -2107,7 +2107,7 @@ under the License.
             <actions>
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="postalAddressTemplateSuffix" value=".fo.ftl"/>
-                <set field="addressTemplatePath" value="${sys:getProperty('ofbiz.home')}/freedgo/manage/applications/party/webapp/partymgr/party/contactmechtemplates/"/>
+                <set field="addressTemplatePath" value="${sys:getProperty('ofbiz.home')}/freedgo-shop/manage/applications/party/webapp/partymgr/party/contactmechtemplates/"/>
                 <script location="component://party/webapp/partymgr/WEB-INF/actions/party/GetPostalAddressTemplate.groovy"/>
             </actions>
             <widgets>

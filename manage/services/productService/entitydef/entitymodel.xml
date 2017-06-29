@@ -336,12 +336,12 @@ under the License.
         <relation type="one" fk-name="PRD_CT_GLACT_PRTY" rel-entity-name="Party">
             <key-map field-name="organizationPartyId" rel-field-name="partyId"/>
         </relation>
-        <relation type="one" fk-name="PRD_CT_GLACT_TYPE" rel-entity-name="GlAccountType">
+        <!--<relation type="one" fk-name="PRD_CT_GLACT_TYPE" rel-entity-name="GlAccountType">
             <key-map field-name="glAccountTypeId"/>
-        </relation>
-        <relation type="one" fk-name="PRD_CT_GLACT_GLACT" rel-entity-name="GlAccount">
+        </relation>-->
+        <!--<relation type="one" fk-name="PRD_CT_GLACT_GLACT" rel-entity-name="GlAccount">
             <key-map field-name="glAccountId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="ProductCategoryLink"
             package-name="org.ofbiz.product.category"
@@ -839,7 +839,7 @@ under the License.
     <!-- org.ofbiz.product.cost -->
     <!-- ========================================================= -->
 
-    <entity entity-name="CostComponent"
+    <!--<entity entity-name="CostComponent"
             package-name="org.ofbiz.product.cost"
             default-resource-name="ProductEntityLabels"
             title="Cost Component Entity">
@@ -877,12 +877,12 @@ under the License.
         <relation type="one" fk-name="COST_COMP_GEO" rel-entity-name="Geo">
             <key-map field-name="geoId"/>
         </relation>
-        <relation type="one" fk-name="COST_COMP_WEFF" rel-entity-name="WorkEffort">
+        &lt;!&ndash;<relation type="one" fk-name="COST_COMP_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
-        <relation type="one" fk-name="COST_COMP_FXADSST" rel-entity-name="FixedAsset">
+        </relation>&ndash;&gt;
+        &lt;!&ndash;<relation type="one" fk-name="COST_COMP_FXADSST" rel-entity-name="FixedAsset">
             <key-map field-name="fixedAssetId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="COST_COMP_CALC" rel-entity-name="CostComponentCalc">
             <key-map field-name="costComponentCalcId"/>
         </relation>
@@ -982,7 +982,7 @@ under the License.
         <relation type="one" fk-name="PR_COS_CCC" rel-entity-name="CostComponentCalc">
             <key-map field-name="costComponentCalcId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.product.facility -->
@@ -1622,9 +1622,9 @@ under the License.
         <relation type="one-nofk" rel-entity-name="ProductFeatureCategory">
             <key-map field-name="productFeatureCategoryId"/>
         </relation>
-        <relation type="many" rel-entity-name="SupplierProductFeature">
+        <!--<relation type="many" rel-entity-name="SupplierProductFeature">
             <key-map field-name="productFeatureId"/>
-        </relation>
+        </relation>-->
     </view-entity>
     <entity entity-name="ProductFeatureAppl"
             package-name="org.ofbiz.product.feature"
@@ -2081,7 +2081,7 @@ under the License.
         <alias entity-alias="II" name="activationNumber"/>
         <alias entity-alias="II" name="activationValidThru"/>
         <alias entity-alias="II" name="currencyUomId"/>
-        <alias entity-alias="II" name="inventoryItemFixedAssetId" field="fixedAssetId"/>
+        <!--<alias entity-alias="II" name="inventoryItemFixedAssetId" field="fixedAssetId"/>-->
         <view-link entity-alias="II" rel-entity-alias="IID">
             <key-map field-name="inventoryItemId"/>
         </view-link>
@@ -2116,30 +2116,30 @@ under the License.
         <relation type="one" fk-name="INV_ITDTL_INVIT" rel-entity-name="InventoryItem">
             <key-map field-name="inventoryItemId"/>
         </relation>
-        <relation type="one" fk-name="INV_ITDTL_WEFF" rel-entity-name="WorkEffort">
+       <!-- <relation type="one" fk-name="INV_ITDTL_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>-->
         <relation type="one-nofk" rel-entity-name="OrderItemShipGrpInvRes">
             <key-map field-name="orderId"/>
             <key-map field-name="orderItemSeqId"/>
             <key-map field-name="shipGroupSeqId"/>
             <key-map field-name="inventoryItemId"/>
         </relation>
-        <relation type="one" fk-name="INV_ITDTL_FAMNT" rel-entity-name="FixedAssetMaint">
+        <!--<relation type="one" fk-name="INV_ITDTL_FAMNT" rel-entity-name="FixedAssetMaint">
             <key-map field-name="fixedAssetId"/>
             <key-map field-name="maintHistSeqId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="INV_ITDTL_ITMIS" rel-entity-name="ItemIssuance">
             <key-map field-name="itemIssuanceId"/>
         </relation>
-        <relation type="one-nofk" rel-entity-name="WorkEffortInventoryAssign">
+        <!--<relation type="one-nofk" rel-entity-name="WorkEffortInventoryAssign">
             <key-map field-name="workEffortId"/>
             <key-map field-name="inventoryItemId"/>
-        </relation>
-        <relation type="one-nofk" rel-entity-name="WorkEffortInventoryProduced">
+        </relation>-->
+        <!--<relation type="one-nofk" rel-entity-name="WorkEffortInventoryProduced">
             <key-map field-name="workEffortId"/>
             <key-map field-name="inventoryItemId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="INV_ITDTL_SHRCT" rel-entity-name="ShipmentReceipt">
             <key-map field-name="receiptId"/>
         </relation>
@@ -2980,9 +2980,9 @@ under the License.
         <relation type="one" fk-name="PROD_ASSOC_APROD" title="Assoc" rel-entity-name="Product">
             <key-map field-name="productIdTo" rel-field-name="productId"/>
         </relation>
-        <relation type="one" fk-name="PROD_ASSOC_RTWE" title="Routing" rel-entity-name="WorkEffort">
+        <!--<relation type="one" fk-name="PROD_ASSOC_RTWE" title="Routing" rel-entity-name="WorkEffort">
             <key-map field-name="routingWorkEffortId" rel-field-name="workEffortId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="PROD_ASSOC_CUSM" rel-entity-name="CustomMethod">
             <key-map field-name="estimateCalcMethod" rel-field-name="customMethodId"/>
         </relation>
@@ -3217,12 +3217,12 @@ under the License.
         <relation type="one" fk-name="PROD_GLACT_PARTY" rel-entity-name="Party">
             <key-map field-name="organizationPartyId" rel-field-name="partyId"/>
         </relation>
-        <relation type="one" fk-name="PROD_GLACT_TYPE" rel-entity-name="GlAccountType">
+        <!--<relation type="one" fk-name="PROD_GLACT_TYPE" rel-entity-name="GlAccountType">
             <key-map field-name="glAccountTypeId"/>
-        </relation>
-        <relation type="one" fk-name="PROD_GLACT_GLACT" rel-entity-name="GlAccount">
+        </relation>-->
+        <!--<relation type="one" fk-name="PROD_GLACT_GLACT" rel-entity-name="GlAccount">
             <key-map field-name="glAccountId"/>
-        </relation>
+        </relation>-->
     </entity>
     <view-entity entity-name="ProductInventoryItem"
                  package-name="org.ofbiz.product.product"
@@ -3312,7 +3312,7 @@ under the License.
         <relation type="one" fk-name="PROD_TAG" rel-entity-name="Product">
             <key-map field-name="productId"/>
         </relation>
-        <index name="PROD_TAG">
+        <index name="PROD_TAG_INX">
             <index-field name="tagName"/>
         </index>
     </entity>
@@ -3384,9 +3384,9 @@ under the License.
         <relation type="one" fk-name="PRODMNT_MNTTYP" rel-entity-name="ProductMaintType">
             <key-map field-name="productMaintTypeId"/>
         </relation>
-        <relation type="one" fk-name="PRODMNT_TPLHWE" title="MaintTemplate" rel-entity-name="WorkEffort">
+       <!-- <relation type="one" fk-name="PRODMNT_TPLHWE" title="MaintTemplate" rel-entity-name="WorkEffort">
             <key-map field-name="maintTemplateWorkEffortId" rel-field-name="workEffortId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="PRODMNT_INTUOM" title="Interval" rel-entity-name="Uom">
             <key-map field-name="intervalUomId" rel-field-name="uomId"/>
         </relation>
@@ -4260,10 +4260,10 @@ under the License.
         <relation type="one" fk-name="PROD_STR_ICNSTS" title="ItemCancel" rel-entity-name="StatusItem">
             <key-map field-name="itemCancelStatus" rel-field-name="statusId"/>
         </relation>
-        <relation type="one" fk-name="PROD_STR_VATTXA" title="Vat" rel-entity-name="TaxAuthority">
+        <!--<relation type="one" fk-name="PROD_STR_VATTXA" title="Vat" rel-entity-name="TaxAuthority">
             <key-map field-name="vatTaxAuthGeoId" rel-field-name="taxAuthGeoId"/>
             <key-map field-name="vatTaxAuthPartyId" rel-field-name="taxAuthPartyId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="PROD_STR_STRCRDACT" title="StoreCreditAccount" rel-entity-name="Enumeration">
             <key-map field-name="storeCreditAccountEnumId" rel-field-name="enumId"/>
         </relation>
@@ -4310,7 +4310,7 @@ under the License.
         <relation type="one" fk-name="STORE_CMPRP_TYPE" rel-entity-name="ContactMechPurposeType">
             <key-map field-name="contactMechPurposeTypeId"/>
         </relation>
-        <relation type="one" fk-name="STORE_CMPRP_FACIL" rel-entity-name="Facility">
+        <relation type="one" fk-name="STORE_CMPRP_FACIL" rel-entity-name="ProductStore">
             <key-map field-name="productStoreId"/>
         </relation>
         <relation type="one" fk-name="STORE_CMPRP_CMECH" rel-entity-name="ContactMech">
@@ -4346,7 +4346,7 @@ under the License.
             <key-map field-name="statusId"/>
         </relation>
         <relation type="one" fk-name="PRSR_REVIEW_ENUM" rel-entity-name="Enumeration">
-            <key-map field-name="reviewTypeId"/>
+            <key-map field-name="reviewTypeId" rel-field-name="enumId"/>
         </relation>
 
     </entity>
@@ -4437,12 +4437,12 @@ under the License.
         <relation rel-entity-name="ProductStore" type="one" fk-name="PRSTFNAC_PRDS">
             <key-map field-name="productStoreId"/>
         </relation>
-        <relation rel-entity-name="FinAccountType" type="one" fk-name="PRSTFNAC_FNACTP">
+       <!-- <relation rel-entity-name="FinAccountType" type="one" fk-name="PRSTFNAC_FNACTP">
             <key-map field-name="finAccountTypeId"/>
-        </relation>
-        <relation rel-entity-name="Survey" type="one" fk-name="PRSTFNAC_SRVY">
+        </relation>-->
+        <!--<relation rel-entity-name="Survey" type="one" fk-name="PRSTFNAC_SRVY">
             <key-map field-name="purchaseSurveyId" rel-field-name="surveyId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="PRSTFNAC_FARPMTD" title="ReplenishMethod" rel-entity-name="Enumeration">
             <key-map field-name="replenishMethodEnumId" rel-field-name="enumId"/>
         </relation>
@@ -4820,12 +4820,12 @@ under the License.
         <relation type="one" fk-name="PRDSTRSVY_PRDS" rel-entity-name="ProductStore">
             <key-map field-name="productStoreId"/>
         </relation>
-        <relation type="one" fk-name="PRDSTRSVY_SRVY" rel-entity-name="Survey">
+        <!--<relation type="one" fk-name="PRDSTRSVY_SRVY" rel-entity-name="Survey">
             <key-map field-name="surveyId"/>
-        </relation>
-        <relation type="one" fk-name="PRDSTRSVY_SATP" rel-entity-name="SurveyApplType">
+        </relation>-->
+        <!--<relation type="one" fk-name="PRDSTRSVY_SATP" rel-entity-name="SurveyApplType">
             <key-map field-name="surveyApplTypeId"/>
-        </relation>
+        </relation>-->
         <relation type="one-nofk" rel-entity-name="Product">
             <key-map field-name="productId"/>
         </relation>
@@ -4938,7 +4938,7 @@ under the License.
     <!-- org.ofbiz.product.subscription -->
     <!-- ========================================================= -->
 
-    <entity entity-name="ProductSubscriptionResource"
+    <!--<entity entity-name="ProductSubscriptionResource"
             package-name="org.ofbiz.product.subscription"
             title="Product Subscription Resource Entity">
         <field name="productId" type="id-ne"></field>
@@ -5018,7 +5018,7 @@ under the License.
         <field name="externalSubscriptionId" type="id"></field>
         <field name="fromDate" type="date-time"></field>
         <field name="thruDate" type="date-time"></field>
-        <!-- this subscription instance resource values -->
+        &lt;!&ndash; this subscription instance resource values &ndash;&gt;
         <field name="purchaseFromDate" type="date-time"></field>
         <field name="purchaseThruDate" type="date-time"></field>
         <field name="maxLifeTime" type="numeric">
@@ -5196,9 +5196,9 @@ under the License.
         <relation type="many" rel-entity-name="Subscription">
             <key-map field-name="subscriptionTypeId"/>
         </relation>
-    </entity>
+    </entity>-->
 
-    <entity entity-name="SubscriptionCommEvent"
+   <!-- <entity entity-name="SubscriptionCommEvent"
             package-name="org.ofbiz.product.subscription"
             title="Subscription Communication Event  Entity">
         <field name="subscriptionId" type="id-ne"></field>
@@ -5222,7 +5222,7 @@ under the License.
         <view-link entity-alias="SC" rel-entity-alias="CE">
             <key-map field-name="communicationEventId"/>
         </view-link>
-    </view-entity>
+    </view-entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.product.supplier -->
@@ -5433,7 +5433,7 @@ under the License.
         <alias-all entity-alias="PCCY"/>
         <alias-all entity-alias="PCY"/>
         <alias name="prodCatalogId" field="prodCatalogId" entity-alias="PCG"/>
-        <alias name="prodCatalogName" field="prodCatalogName" entity-alias="PCG"/>
+        <alias name="prodCatalogName" field="catalogName" entity-alias="PCG"/>
         <view-link entity-alias="PCG" rel-entity-alias="PCCY">
             <key-map field-name="prodCatalogId"/>
         </view-link>
@@ -5466,7 +5466,7 @@ under the License.
         <prim-key field="brandContentTypeId"/>
         <prim-key field="fromDate"/>
         <relation type="one" fk-name="BRAND_CNT_PROD" rel-entity-name="Brand">
-            <key-map field-name="productId"/>
+            <key-map field-name="brandId"/>
         </relation>
         <relation type="one" fk-name="BRAND_CNT_CNT" rel-entity-name="Content">
             <key-map field-name="contentId"/>

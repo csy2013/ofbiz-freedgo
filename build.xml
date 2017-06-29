@@ -307,7 +307,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=seed"/>
         </java>
     </target>
@@ -318,7 +318,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=seed,seed-initial,ext"/>
             <jvmarg value="-Xnoagent"/>
             <jvmarg value="-Djava.compiler=NONE"/>
@@ -329,22 +329,22 @@ under the License.
     <target name="load-exttest" depends="build"
             description="Load seed, seed-initial, ext and ext-test data; meant for automated testing with a derived system based on stock OFBiz">
         <java jar="../framework/ofbiz.jar" fork="true">
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=seed,seed-initial,ext,ext-test"/>
         </java>
     </target>
     <target name="load-readers" depends="build"
             description='Load data using the command line argument data-readers that takes a comma separated list of readers (seed, seed-initial, demo, ext, ext-test, ext-demo). On Windows XP (at least) you need top wrap the parameters in double-quotes. For instance: ant load-readers "-Ddata-readers=seed,seed-initial,ext"'>
         <java jar="../framework/ofbiz.jar" fork="true">
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=${data-readers}"/>
         </java>
     </target>
@@ -352,12 +352,12 @@ under the License.
     <target name="load-readers-ext" depends="build"
             description='Load data using the command line argument data-readers that takes a comma separated list of readers (seed, seed-initial, demo, ext, ext-test, ext-demo). On Windows XP (at least) you need top wrap the parameters in double-quotes. For instance: ant load-readers "-Ddata-readers=seed,seed-initial,ext"'>
         <java jar="../framework/ofbiz.jar" fork="true">
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
             <arg value="delegator=${delegator}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=${data-readers}"/>
         </java>
     </target>
@@ -366,12 +366,12 @@ under the License.
             description="Load data using the command line argument 'data-file' to load data from a given file using the 'default' delegator or a delegator specified in the command line argument 'delegator'">
         <property name="delegator" value="default"/>
         <java jar="../framework/ofbiz.jar" fork="true">
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="${ofbiz.home.dir}/../daojia_muti/daojia/daojia/docker/base/config/install"/>
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=${delegator}"/>
             <arg value="file=${data-file}"/>
             <jvmarg value="-Xnoagent"/>
@@ -393,7 +393,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=tenant"/>
         </java>
         <condition property="hasTenant">
@@ -442,7 +442,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=default#${tenantId}"/>
         </java>
     </target>
@@ -451,7 +451,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="readers=${data-readers}"/>
         </java>
@@ -478,7 +478,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="component=${component}"/>
         </java>
@@ -488,7 +488,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=default#${tenantId}"/>
             <arg value="readers=${data-readers}"/>
             <arg value="component=${component}"/>
@@ -506,7 +506,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=tenant"/>
         </java>
         <condition property="hasReader">
@@ -529,7 +529,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="delegator=${delegator}"/>
         </java>
     </target>
@@ -538,7 +538,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=${data-readers}"/>
             <arg value="delegator=${delegator}"/>
         </java>
@@ -724,7 +724,7 @@ under the License.
             <jvmarg value="${memory.initial.param}"/>
             <jvmarg value="${memory.max.param}"/>
             <jvmarg value="${memory.maxpermsize.param}"/>
-            <arg value="install-freedgo"/>
+            <arg value="install-freedgo-shop"/>
             <arg value="readers=${data-readers}"/>
             <arg value="delegator=default#${tenantId}"/>
         </java>

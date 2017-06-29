@@ -252,9 +252,9 @@ under the License.
       <relation type="one" fk-name="PERS_TRNG_TCTP" rel-entity-name="TrainingClassType">
         <key-map field-name="trainingClassTypeId"/>
       </relation>
-      <relation type="one" fk-name="PERS_TRNG_WREF" rel-entity-name="WorkEffort">
+      <!--<relation type="one" fk-name="PERS_TRNG_WREF" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="PERS_TRNG_TRNRQ" rel-entity-name="TrainingRequest">
           <key-map field-name="trainingRequestId"/>
       </relation>
@@ -678,10 +678,10 @@ under the License.
       <relation type="one" fk-name="EMPL_POS_PRTY" rel-entity-name="Party">
         <key-map field-name="partyId"/>
       </relation>
-      <relation type="one-nofk" fk-name="EMPL_POS_BGTITM" rel-entity-name="BudgetItem">
+      <!--<relation type="one-nofk" fk-name="EMPL_POS_BGTITM" rel-entity-name="BudgetItem">
         <key-map field-name="budgetId"/>
         <key-map field-name="budgetItemSeqId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" fk-name="EMPL_POS_EPSTP" rel-entity-name="EmplPositionType">
         <key-map field-name="emplPositionTypeId"/>
       </relation>

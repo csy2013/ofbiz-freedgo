@@ -12,7 +12,7 @@
     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_common.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_product.xml"/>
-    <service-resource type="model" loader="main" location="servicedef/services_facility.xml"/>
+    <!--<service-resource type="model" loader="main" location="servicedef/services_facility.xml"/>-->
     <service-resource type="model" loader="main" location="servicedef/services_promo.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_store.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_category.xml"/>

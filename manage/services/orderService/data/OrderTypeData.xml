@@ -19,7 +19,7 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <CustRequestType custRequestTypeId="RF_BUGFIX" description="Request For Bug Fix" hasTable="N" parentTypeId=""/>
+   <!-- <CustRequestType custRequestTypeId="RF_BUGFIX" description="Request For Bug Fix" hasTable="N" parentTypeId=""/>
     <CustRequestType custRequestTypeId="RF_CATALOG" description="Request For Catalog" hasTable="N" parentTypeId=""/>
     <CustRequestType custRequestTypeId="RF_FEATURE" description="Request For Feature" hasTable="N" parentTypeId=""/>
     <CustRequestType custRequestTypeId="RF_INFO" description="Request For Information" hasTable="N" parentTypeId=""/>
@@ -33,7 +33,7 @@ under the License.
     <CustRequestResolution custRequestResolutionId="WONTFIX" custRequestTypeId="RF_BUGFIX" description="Won't Fix"/>
     <CustRequestResolution custRequestResolutionId="DUPLICATE" custRequestTypeId="RF_FEATURE" description="Duplicate"/>
     <CustRequestResolution custRequestResolutionId="REJECTED" custRequestTypeId="RF_FEATURE" description="Rejected"/>
-    <CustRequestResolution custRequestResolutionId="IMPLEMENTED" custRequestTypeId="RF_FEATURE" description="Implemented"/>
+    <CustRequestResolution custRequestResolutionId="IMPLEMENTED" custRequestTypeId="RF_FEATURE" description="Implemented"/>-->
 
     <OrderAdjustmentType description="Promotion" hasTable="N" orderAdjustmentTypeId="PROMOTION_ADJUSTMENT" parentTypeId=""/>
     <OrderAdjustmentType description="Replacement" hasTable="N" orderAdjustmentTypeId="REPLACE_ADJUSTMENT" parentTypeId=""/>
@@ -96,15 +96,15 @@ under the License.
     <Enumeration description="Mis-Ordered Item" enumCode="MISORDER" enumId="OICR_MISORDER_ITEM" sequenceId="01" enumTypeId="ODR_ITM_CH_REASON"/>
     <Enumeration description="Changed Mind" enumCode="CHANGE_MIND" enumId="OICR_CHANGE_MIND" sequenceId="02" enumTypeId="ODR_ITM_CH_REASON"/>
 
-    <QuoteType description="Other" hasTable="N" parentTypeId="" quoteTypeId="OTHER_QUOTE"/>
+   <!-- <QuoteType description="Other" hasTable="N" parentTypeId="" quoteTypeId="OTHER_QUOTE"/>
     <QuoteType description="Product" hasTable="N" parentTypeId="" quoteTypeId="PRODUCT_QUOTE"/>
     <QuoteType description="Proposal" hasTable="N" parentTypeId="" quoteTypeId="PROPOSAL"/>
-    <QuoteType description="Product Purchase" hasTable="N" parentTypeId="" quoteTypeId="PURCHASE_QUOTE"/>
+    <QuoteType description="Product Purchase" hasTable="N" parentTypeId="" quoteTypeId="PURCHASE_QUOTE"/>-->
 
-    <RequirementType description="Customer Requirement" hasTable="N" parentTypeId="" requirementTypeId="CUSTOMER_REQUIREMENT"/>
+    <!--<RequirementType description="Customer Requirement" hasTable="N" parentTypeId="" requirementTypeId="CUSTOMER_REQUIREMENT"/>
     <RequirementType description="Internal Requirement" hasTable="N" parentTypeId="" requirementTypeId="INTERNAL_REQUIREMENT"/>
     <RequirementType description="Product Requirement" hasTable="N" parentTypeId="" requirementTypeId="PRODUCT_REQUIREMENT"/>
-    <RequirementType description="Work Requirement" hasTable="N" parentTypeId="" requirementTypeId="WORK_REQUIREMENT"/>
+    <RequirementType description="Work Requirement" hasTable="N" parentTypeId="" requirementTypeId="WORK_REQUIREMENT"/>-->
 
     <ShoppingListType description="Wish List" shoppingListTypeId="SLT_WISH_LIST"/>
     <ShoppingListType description="Gift Registry" shoppingListTypeId="SLT_GIFT_REG"/>
@@ -393,16 +393,16 @@ under the License.
     <ReturnType sequenceId="08" returnTypeId="RTN_REFUND_IMMEDIATE" description="Refund immediately"/>
     <ReturnType sequenceId="09" returnTypeId="RTN_RENTAL" description="Rental"/>
 
-    <WorkReqFulfType description="Implements" workReqFulfTypeId="WRF_IMPLEMENTS"/>
+   <!-- <WorkReqFulfType description="Implements" workReqFulfTypeId="WRF_IMPLEMENTS"/>
     <WorkReqFulfType description="Fixes" workReqFulfTypeId="WRF_FIXES"/>
     <WorkReqFulfType description="Deploys" workReqFulfTypeId="WRF_DEPLOYS"/>
     <WorkReqFulfType description="Tests" workReqFulfTypeId="WRF_TESTS"/>
-    <WorkReqFulfType description="Delivers" workReqFulfTypeId="WRF_DELIVERS"/>
+    <WorkReqFulfType description="Delivers" workReqFulfTypeId="WRF_DELIVERS"/>-->
 
     <!-- Content Types -->
     <OrderContentType description="Image" hasTable="N" parentTypeId="" orderContentTypeId="IMAGE_URL"/>
 
-    <EmailTemplateSetting
+    <!--<EmailTemplateSetting
             emailTemplateSettingId="CUST_REQ_ACCEPTED"
             bodyScreenLocation="component://order/widget/ordermgr/CustRequestScreens.xml#CreateCustRequestNotification"
             subject="OFBiz - Your Request is received: '${custRequestName}' #CR${custRequestId}"/>
@@ -411,6 +411,6 @@ under the License.
                           subject="OFBiz - Your Request is complete: '${custRequestName}' #CR${custRequestId}"/>
     <EmailTemplateSetting emailTemplateSettingId="CUST_REQ_NOTE_ADDED"
                           bodyScreenLocation="component://order/widget/ordermgr/CustRequestScreens.xml#AddNoteCustRequestNotification"
-                          subject="OFBiz - A Note has been added to your request: '${custRequestName}' #CR${custRequestId}"/>
+                          subject="OFBiz - A Note has been added to your request: '${custRequestName}' #CR${custRequestId}"/>-->
 
 </entity-engine-xml>

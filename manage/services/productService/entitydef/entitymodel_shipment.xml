@@ -74,10 +74,10 @@ under the License.
         <key-map field-name="shipmentId"/>
         <key-map field-name="shipmentItemSeqId"/>
       </relation>
-      <relation type="one" fk-name="ITEM_ISS_FAMNT" rel-entity-name="FixedAssetMaint">
+      <!--<relation type="one" fk-name="ITEM_ISS_FAMNT" rel-entity-name="FixedAssetMaint">
         <key-map field-name="fixedAssetId"/>
         <key-map field-name="maintHistSeqId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" rel-entity-name="OrderHeader">
         <key-map field-name="orderId"/>
       </relation>
@@ -120,7 +120,7 @@ under the License.
         <alias entity-alias="IITM" name="activationValidThru"/>
         <alias entity-alias="IITM" name="unitCost"/>
         <alias entity-alias="IITM" name="currencyUomId"/>
-        <alias entity-alias="IITM" name="inventoryItemFixedAssetId" field="fixedAssetId"/>
+        <!--<alias entity-alias="IITM" name="inventoryItemFixedAssetId" field="fixedAssetId"/>-->
         <view-link entity-alias="IISS" rel-entity-alias="IITM">
           <key-map field-name="inventoryItemId"/>
         </view-link>
@@ -513,9 +513,9 @@ under the License.
       <field name="endMileage" type="fixed-point"></field>
       <field name="fuelUsed" type="fixed-point"></field>
       <prim-key field="deliveryId"/>
-      <relation type="one" fk-name="DELIV_FXAS" rel-entity-name="FixedAsset">
+      <!--<relation type="one" fk-name="DELIV_FXAS" rel-entity-name="FixedAsset">
         <key-map field-name="fixedAssetId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="DELIV_OFAC" title="Origin" rel-entity-name="Facility">
         <key-map field-name="originFacilityId" rel-field-name="facilityId"/>
       </relation>
@@ -592,12 +592,12 @@ under the License.
       <relation type="one" fk-name="SHPMNT_STTS" rel-entity-name="StatusItem">
         <key-map field-name="statusId"/>
       </relation>
-      <relation type="one" fk-name="SHPMNT_ESHWEFF" title="EstimatedShip" rel-entity-name="WorkEffort">
+      <!--<relation type="one" fk-name="SHPMNT_ESHWEFF" title="EstimatedShip" rel-entity-name="WorkEffort">
         <key-map field-name="estimatedShipWorkEffId" rel-field-name="workEffortId"/>
-      </relation>
-      <relation type="one" fk-name="SHPMNT_EARRWEFF" title="EstimatedArrival" rel-entity-name="WorkEffort">
+      </relation>-->
+      <!--<relation type="one" fk-name="SHPMNT_EARRWEFF" title="EstimatedArrival" rel-entity-name="WorkEffort">
         <key-map field-name="estimatedArrivalWorkEffId" rel-field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="SHPMNT_CUOM" title="Currency" rel-entity-name="Uom">
         <key-map field-name="currencyUomId" rel-field-name="uomId"/>
       </relation>
@@ -955,7 +955,7 @@ under the License.
         <field name="appId" type="value" encrypt="true"><description>USPS Access User ID</description></field>
         <field name="apiKey" type="value" encrypt="true"><description>USPS Access Password</description></field>
         <prim-key field="shipmentGatewayConfigId"/>
-        <relation type="one" fk-name="SGUSPS_SGC" rel-entity-name="ShipmentGatewayConfig">
+        <relation type="one" fk-name="SGKDNI_SGC" rel-entity-name="ShipmentGatewayConfig">
             <key-map field-name="shipmentGatewayConfigId"/>
         </relation>
     </entity>
@@ -995,13 +995,13 @@ under the License.
         <key-map field-name="shipmentId"/>
         <key-map field-name="shipmentItemSeqId"/>
       </relation>
-      <relation type="one-nofk" rel-entity-name="Invoice">
+      <!--<relation type="one-nofk" rel-entity-name="Invoice">
         <key-map field-name="invoiceId"/>
       </relation>
       <relation type="one" fk-name="SHPMNT_ITBL_INIM" rel-entity-name="InvoiceItem">
         <key-map field-name="invoiceId"/>
         <key-map field-name="invoiceItemSeqId"/>
-      </relation>
+      </relation>-->
     </entity>
     <entity entity-name="ShipmentItemFeature"
             package-name="org.ofbiz.shipment.shipment"
@@ -1461,9 +1461,9 @@ under the License.
       <field name="shipmentPackageSeqId" type="id"></field>
       <field name="description" type="description"></field>
       <prim-key field="documentId"/>
-      <relation type="one" fk-name="SHPNG_DOC_DOC" rel-entity-name="Document">
+      <!--<relation type="one" fk-name="SHPNG_DOC_DOC" rel-entity-name="Document">
         <key-map field-name="documentId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="SHPNG_DOC_SMITM" rel-entity-name="ShipmentItem">
         <key-map field-name="shipmentId"/>
         <key-map field-name="shipmentItemSeqId"/>

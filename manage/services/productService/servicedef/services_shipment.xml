@@ -476,14 +476,14 @@ under the License.
         <attribute name="shipmentItemSeqId" type="String" mode="OUT" optional="false"/>
         <attribute name="itemIssuanceId" type="String" mode="OUT" optional="false"/>
     </service>
-    <service name="issueInventoryItemToFixedAssetMaint" engine="simple"
+   <!-- <service name="issueInventoryItemToFixedAssetMaint" engine="simple"
         location="component://productService/script/org/ofbiz/shipment/issuance/IssuanceServices.xml" invoke="issueInventoryItemToFixedAssetMaint" auth="true">
         <description>Issue an InventoryItem to a FixedAssetMaint - for conversion to use as supples/parts</description>
         <auto-attributes entity-name="InventoryItem" include="pk" mode="IN" optional="false"/>
         <auto-attributes entity-name="FixedAssetMaint" include="pk" mode="IN" optional="false"/>
         <attribute name="quantity" type="BigDecimal" mode="IN" optional="false"/>
         <attribute name="itemIssuanceId" type="String" mode="OUT" optional="false"/>
-    </service>
+    </service>-->
     <service name="returnInventoryItemIssuedToFixedAssetMaint" engine="simple"
         location="component://productService/script/org/ofbiz/shipment/issuance/IssuanceServices.xml" invoke="returnInventoryItemIssuedToFixedAssetMaint" auth="true">
         <description>Return InventoryItem Issued to a FixedAssetMaint - for conversion to use as supples/parts</description>

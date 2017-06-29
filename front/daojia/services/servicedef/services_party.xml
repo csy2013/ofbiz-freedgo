@@ -97,7 +97,7 @@
         <attribute name="platCode"  type="String" mode="IN"><description>H5</description></attribute>
         <attribute name="lng"  type="String" mode="IN" optional="true"><description>116.31956</description></attribute>
         <attribute name="lat"  type="String" mode="IN" optional="true"><description>40.04358</description></attribute>
-        <attribute name="city_id"  type="String" mode="IN" optional="true">><description>1</description></attribute>
+        <attribute name="city_id"  type="String" mode="IN" optional="true"><description>1</description></attribute>
         <attribute name="rand"  type="String" mode="IN"><description>1474788501500</description></attribute>
         <attribute name="resultData" type="java.util.Map" mode="OUT"/>
     </service>

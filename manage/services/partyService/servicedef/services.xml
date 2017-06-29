@@ -25,7 +25,7 @@ under the License.
   <version>1.0</version>
 
   <!-- AddressMatchMap services -->
-  <service name="createAddressMatchMap" engine="simple" default-entity-name="AddressMatchMap" auth="true"
+  <!--<service name="createAddressMatchMap" engine="simple" default-entity-name="AddressMatchMap" auth="true"
            location="component://partyService/script/org/ofbiz/party/party/PartyServices.xml" invoke="createAddressMatchMap">
     <description>Create an AddressMatchMap record</description>
     <permission-service service-name="partyBasePermissionCheck" main-action="CREATE"/>
@@ -50,7 +50,7 @@ under the License.
            location="component://partyService/script/org/ofbiz/party/party/PartyServices.xml" invoke="clearAddressMatchMap">
     <description>Delete an AddressMatchMap record</description>
     <permission-service service-name="partyBasePermissionCheck" main-action="DELETE"/>
-  </service>
+  </service>-->
 
   <!-- Party services -->
   <service name="deleteParty" engine="java"
@@ -153,82 +153,6 @@ under the License.
   </service>
 
 
-  <!-- Add by Wangcy Begin -->
-  <!--<service name="createHotel" engine="java" default-entity-name="PartyAdditions"-->
-  <!--location="org.ofbiz.party.party.PartyServices" invoke="createHotel" auth="false">-->
-  <!--<description>Create a PartyGroup</description>-->
-  <!--<auto-attributes mode="INOUT" include="pk" optional="true"/>-->
-  <!--<auto-attributes mode="IN" include="nonpk" optional="true"/>-->
-  <!--<auto-attributes mode="IN" entity-name="PartyAdditions" optional="true"/>-->
-  <!--<attribute name="partyTypeId" type="String" mode="IN" optional="true"/>-->
-
-  <!--<attribute name="preferredCurrencyUomId" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="externalId" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="statusId" type="String" mode="IN" optional="true"/>-->
-
-  <!--<attribute name="hotelname" type="String" mode="IN" optional="false">-->
-  <!--<type-validate class="org.ofbiz.base.util.UtilValidate" method="isNotEmpty">-->
-  <!--<fail-message message="酒店全称不能为空" />-->
-  <!--</type-validate>-->
-  <!--</attribute>-->
-  <!--<attribute name="businessHours_c_hour" type="String" mode="IN" optional="true"/>-->
-
-
-  <!--<attribute name="businessHours_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="businessHoursend_c_hour" type="String" mode="IN" optional="true"/>-->
-
-  <!--<attribute name="description" type="String" mode="IN" optional="false">-->
-  <!--<type-validate class="org.ofbiz.base.util.UtilValidate" method="isNotEmpty">-->
-  <!--<fail-message message="酒店信息介绍不能为空" />-->
-  <!--</type-validate>-->
-  <!--</attribute>-->
-  <!--<attribute name="businessHoursend_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matime_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matime_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matimeend_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matimeend_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="cuisine" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="banquetTag" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="serviceTag" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="roleTypeId" type="String" mode="IN" optional="false"/>-->
-  <!--<attribute name="partyId" type="String" mode="INOUT" optional="true" entity-name="PartyAdditions"/>-->
-  <!--</service>-->
-  <!--<service name="updateHotel" engine="java" default-entity-name="PartyAdditions"-->
-  <!--location="org.ofbiz.party.party.PartyServices" invoke="updateHotel" auth="false">-->
-  <!--<description>update a PartyGroup</description>-->
-  <!--<auto-attributes mode="INOUT" include="pk" optional="true"/>-->
-  <!--<auto-attributes mode="IN" include="nonpk" optional="true"/>-->
-  <!--<auto-attributes mode="IN" entity-name="PartyAdditions" optional="true"/>-->
-  <!--<attribute name="partyTypeId" type="String" mode="IN" optional="true"/>-->
-
-  <!--<attribute name="preferredCurrencyUomId" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="externalId" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="statusId" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="hotelname" type="String" mode="IN" optional="false">-->
-  <!--<type-validate class="org.ofbiz.base.util.UtilValidate" method="isNotEmpty">-->
-  <!--<fail-message message="酒店全称不能为空" />-->
-  <!--</type-validate>-->
-  <!--</attribute>-->
-
-  <!--<attribute name="businessHours_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="businessHours_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="businessHoursend_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="businessHoursend_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="description" type="String" mode="IN" optional="false">-->
-  <!--<type-validate class="org.ofbiz.base.util.UtilValidate" method="isNotEmpty">-->
-  <!--<fail-message message="酒店信息介绍不能为空" />-->
-  <!--</type-validate>-->
-  <!--</attribute>-->
-  <!--<attribute name="matime_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matime_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matimeend_c_hour" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="matimeend_c_minutes" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="cuisine" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="banquetTag" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="serviceTag" type="String" mode="IN" optional="true"/>-->
-  <!--<attribute name="roleTypeId" type="String" mode="IN" optional="false"/>-->
-  <!--<attribute name="partyId" type="String" mode="INOUT" optional="true" entity-name="PartyAdditions"/>-->
-  <!--</service>-->
 
   <service name="savePartyNameChange" engine="simple"
            location="component://partyService/script/org/ofbiz/party/party/PartyServices.xml" invoke="savePartyNameChange" auth="true">
@@ -257,7 +181,7 @@ under the License.
     <attribute name="gender" type="String" mode="OUT" optional="true"/>
   </service>
 
-  <service name="createAffiliate" engine="java"
+  <!--<service name="createAffiliate" engine="java"
            location="org.ofbiz.party.party.PartyServices" invoke="createAffiliate" auth="false">
     <description>Create an Affiliate</description>
     <attribute name="partyId" type="String" mode="INOUT"/>
@@ -280,7 +204,7 @@ under the License.
     <attribute name="siteType" type="String" mode="IN" optional="true"/>
     <attribute name="sitePageViews" type="String" mode="IN" optional="true"/>
     <attribute name="siteVisitors" type="String" mode="IN" optional="true"/>
-  </service>
+  </service>-->
 
   <service name="createPartyNote" engine="java"
            location="org.ofbiz.party.party.PartyServices" invoke="createPartyNote" auth="true">
@@ -838,7 +762,7 @@ under the License.
   </service>
 
   <!-- Communication Event Services -->
-  <service name="setCommunicationEventStatus" engine="simple" default-entity-name="CommunicationEvent"
+  <!--<service name="setCommunicationEventStatus" engine="simple" default-entity-name="CommunicationEvent"
            location="component://partyService/script/org/ofbiz/party/communication/CommunicationEventServices.xml" invoke="setCommunicationEventStatus" auth="true">
     <description>Set the Communication event Status</description>
     <permission-service service-name="partyCommunicationEventPermissionCheck" main-action="UPDATE"/>
@@ -864,7 +788,7 @@ under the License.
     <attribute name="productId" type="String" mode="IN" optional="true"/>
     <attribute name="orderId" type="String" mode="IN" optional="true"/>
     <attribute name="custRequestId" type="String" mode="IN" optional="true"/>
-    <attribute name="action" type="String" mode="IN" optional="true"/><!-- to indicate any special action like: REPLY, REPLYALL, FORWARD or empty for no special action-->
+    <attribute name="action" type="String" mode="IN" optional="true"/>&lt;!&ndash; to indicate any special action like: REPLY, REPLYALL, FORWARD or empty for no special action&ndash;&gt;
     <override name="headerString" allow-html="any"/>
     <override name="content" allow-html="safe"/>
     <override name="messageId" allow-html="safe"/>
@@ -959,7 +883,7 @@ under the License.
     <description>Remove a Communication Event Role</description>
     <permission-service service-name="partyCommunicationEventPermissionCheck" main-action="DELETE"/>
     <auto-attributes entity-name="CommunicationEventRole" include="pk" mode="IN" optional="false"/>
-    <attribute name="deleteCommEventIfLast" mode="IN" type="String" optional="true"/><!-- "Y" for true -->
+    <attribute name="deleteCommEventIfLast" mode="IN" type="String" optional="true"/>&lt;!&ndash; "Y" for true &ndash;&gt;
     <attribute name="delContentDataResource" type="String" mode="IN" optional="true"/>
   </service>
   <service name="createCommEventWorkEffort" engine="simple" location="component://workeffortService/script/org/ofbiz/workeffort/workeffort/WorkEffortSimpleServices.xml"
@@ -978,14 +902,14 @@ under the License.
   </service>
   <service name="sendCommEventAsEmail" engine="java"
            location="org.ofbiz.party.communication.CommunicationEventServices" invoke="sendCommEventAsEmail" auth="true"
-           transaction-timeout="7200">  <!-- set transaction time out for 2 hours, since this sometimes may run as an async service to send emails to lots of people -->
+           transaction-timeout="7200">  &lt;!&ndash; set transaction time out for 2 hours, since this sometimes may run as an async service to send emails to lots of people &ndash;&gt;
     <description>Sends a communication event as a single-part email using sendMail. All parameters come from CommunicationEvent, which must
       be of type EMAIL_COMMUNICATION. Will look for a contactMechIdTo to send the emails
     </description>
     <attribute name="communicationEventId" type="String" mode="IN" optional="false"/>
   </service>
 
-  <!--  email to communication event ECA services -->
+  &lt;!&ndash;  email to communication event ECA services &ndash;&gt;
   <service name="createCommEventFromEmail" engine="java"
            location="org.ofbiz.party.communication.CommunicationEventServices" invoke="createCommEventFromEmail" auth="true">
     <description>
@@ -1007,7 +931,7 @@ under the License.
     </description>
     <attribute name="communicationEventId" type="String" mode="IN" optional="false"/>
     <attribute name="messageWrapper" type="org.ofbiz.service.mail.MimeMessageWrapper" mode="IN" optional="false"/>
-  </service>
+  </service>-->
 
   <service name="storeIncomingEmail" engine="java"
            location="org.ofbiz.party.communication.CommunicationEventServices" invoke="storeIncomingEmail" auth="true">
@@ -1195,7 +1119,7 @@ under the License.
   </service>
 
   <!-- Party Invitation Services -->
-  <service name="createPartyInvitation" engine="simple"
+  <!--<service name="createPartyInvitation" engine="simple"
            location="component://partyService/script/org/ofbiz/party/party/PartyInvitationServices.xml" invoke="createPartyInvitation">
     <description>Create Party Invitation</description>
     <auto-attributes entity-name="PartyInvitation" include="pk" mode="IN" optional="true"/>
@@ -1248,7 +1172,7 @@ under the License.
            location="component://partyService/script/org/ofbiz/party/party/PartyInvitationServices.xml" invoke="cancelPartyInvitation">
     <permission-service service-name="cancelPartyInvitationPermissionCheck"/>
     <attribute name="partyInvitationId" type="String" mode="IN" optional="false"/>
-  </service>
+  </service>-->
 
   <!-- Permission checking services-->
   <service name="partyBasePermissionCheck" engine="simple"

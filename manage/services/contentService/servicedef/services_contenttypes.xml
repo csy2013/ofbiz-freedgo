@@ -83,7 +83,7 @@ under the License.
     </service>
 
     <!--ContentAssocPredicate services.-->
-    <service name="createContentAssocPredicate" engine="simple" default-entity-name="ContentAssocPredicate" auth="true"
+   <!-- <service name="createContentAssocPredicate" engine="simple" default-entity-name="ContentAssocPredicate" auth="true"
             location="component://contentService/script/org/ofbiz/content/content/ContentServices.xml" invoke="createContentAssocPredicate">
         <description>Create a ContentAssocPredicate</description>
         <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
@@ -102,7 +102,7 @@ under the License.
         <description>Remove ContentAssocPredicate</description>
         <permission-service service-name="contentManagerPermission" main-action="DELETE"/>
         <auto-attributes entity-name="ContentAssocPredicate" include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- ContentPurposeType services -->
     <service name="createContentPurposeType" engine="simple" default-entity-name="ContentPurposeType" auth="true"

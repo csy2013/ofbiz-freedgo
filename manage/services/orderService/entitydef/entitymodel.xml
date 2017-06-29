@@ -151,16 +151,16 @@ under the License.
         <relation type="one" fk-name="ORDER_ADJ_SCGEO" title="Secondary" rel-entity-name="Geo">
             <key-map field-name="secondaryGeoId" rel-field-name="geoId"/>
         </relation>
-        <relation type="one" fk-name="ORDER_ADJ_TXA" rel-entity-name="TaxAuthority">
+       <!-- <relation type="one" fk-name="ORDER_ADJ_TXA" rel-entity-name="TaxAuthority">
             <key-map field-name="taxAuthGeoId"/>
             <key-map field-name="taxAuthPartyId"/>
-        </relation>
-        <relation type="one" fk-name="ORDER_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
+        </relation>-->
+        <!--<relation type="one" fk-name="ORDER_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
             <key-map field-name="overrideGlAccountId" rel-field-name="glAccountId"/>
-        </relation>
-        <relation type="one" fk-name="ORDER_ADJ_TARP" rel-entity-name="TaxAuthorityRateProduct">
+        </relation>-->
+        <!--<relation type="one" fk-name="ORDER_ADJ_TARP" rel-entity-name="TaxAuthorityRateProduct">
             <key-map field-name="taxAuthorityRateSeqId"/>
-        </relation>
+        </relation>-->
         <relation type="one-nofk" fk-name="ORDER_ADJ_OA" rel-entity-name="OrderAdjustment">
             <key-map field-name="originalAdjustmentId" rel-field-name="orderAdjustmentId"/>
         </relation>
@@ -207,13 +207,13 @@ under the License.
         <relation type="one" fk-name="ORDER_ADJBLNG_OA" rel-entity-name="OrderAdjustment">
             <key-map field-name="orderAdjustmentId"/>
         </relation>
-        <relation type="one-nofk" fk-name="ORDER_ADJBLNG_INV" rel-entity-name="Invoice">
+        <!--<relation type="one-nofk" fk-name="ORDER_ADJBLNG_INV" rel-entity-name="Invoice">
             <key-map field-name="invoiceId"/>
-        </relation>
-        <relation type="one" fk-name="ORDER_ADJBLNG_IITM" rel-entity-name="InvoiceItem">
+        </relation>-->
+        <!--<relation type="one" fk-name="ORDER_ADJBLNG_IITM" rel-entity-name="InvoiceItem">
             <key-map field-name="invoiceId"/>
             <key-map field-name="invoiceItemSeqId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="OrderAdjustmentTypeAttr"
             package-name="org.ofbiz.order.order"
@@ -276,9 +276,9 @@ under the License.
         <relation type="one" fk-name="COMEV_ORDER_ORDER" rel-entity-name="OrderHeader">
             <key-map field-name="orderId"/>
         </relation>
-        <relation type="one" fk-name="COMEV_ORDER_CMEV" rel-entity-name="CommunicationEvent">
+        <!--<relation type="one" fk-name="COMEV_ORDER_CMEV" rel-entity-name="CommunicationEvent">
             <key-map field-name="communicationEventId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="OrderContactMech"
             package-name="org.ofbiz.order.order"
@@ -417,9 +417,9 @@ under the License.
         <relation type="many" rel-entity-name="OrderTypeAttr">
             <key-map field-name="orderTypeId"/>
         </relation>
-        <relation type="one" fk-name="ORDER_HDR_BACCT" rel-entity-name="BillingAccount">
+        <!--<relation type="one" fk-name="ORDER_HDR_BACCT" rel-entity-name="BillingAccount">
             <key-map field-name="billingAccountId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="ORDER_HDR_PDSTR" rel-entity-name="ProductStore">
             <key-map field-name="productStoreId"/>
         </relation>
@@ -474,9 +474,9 @@ under the License.
         <relation type="one" fk-name="ORDERHDWE_OH" rel-entity-name="OrderHeader">
             <key-map field-name="orderId"/>
         </relation>
-        <relation type="one" fk-name="ORDERHDWE_WEFF" rel-entity-name="WorkEffort">
+        <!--<relation type="one" fk-name="ORDERHDWE_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="OrderItem"
             package-name="org.ofbiz.order.order"
@@ -572,16 +572,16 @@ under the License.
         <relation type="one" fk-name="ORDER_ITEM_DCUL" title="DontCancelSet" rel-entity-name="UserLogin">
             <key-map field-name="dontCancelSetUserLogin" rel-field-name="userLoginId"/>
         </relation>
-        <relation type="one" fk-name="ORDER_ITEM_QUIT" rel-entity-name="QuoteItem">
+        <!--<relation type="one" fk-name="ORDER_ITEM_QUIT" rel-entity-name="QuoteItem">
             <key-map field-name="quoteId"/>
             <key-map field-name="quoteItemSeqId"/>
-        </relation>
-        <relation type="one" fk-name="ORDER_ITEM_OGLA" title="Override" rel-entity-name="GlAccount">
+        </relation>-->
+        <!--<relation type="one" fk-name="ORDER_ITEM_OGLA" title="Override" rel-entity-name="GlAccount">
             <key-map field-name="overrideGlAccountId" rel-field-name="glAccountId"/>
-        </relation>
-        <relation type="one" fk-name="ORDER_ITEM_SLSOPP" rel-entity-name="SalesOpportunity">
+        </relation>-->
+        <!--<relation type="one" fk-name="ORDER_ITEM_SLSOPP" rel-entity-name="SalesOpportunity">
             <key-map field-name="salesOpportunityId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="ORDER_ITEM_USRLGN" title="ChangeBy" rel-entity-name="UserLogin">
             <key-map field-name="changeByUserLoginId" rel-field-name="userLoginId"/>
         </relation>
@@ -698,13 +698,13 @@ under the License.
             <key-map field-name="orderId"/>
             <key-map field-name="orderItemSeqId"/>
         </relation>
-        <relation type="one-nofk" fk-name="ORDER_ITBLNG_INV" rel-entity-name="Invoice">
+        <!--<relation type="one-nofk" fk-name="ORDER_ITBLNG_INV" rel-entity-name="Invoice">
             <key-map field-name="invoiceId"/>
         </relation>
         <relation type="one" fk-name="ORDER_ITBLNG_IITM" rel-entity-name="InvoiceItem">
             <key-map field-name="invoiceId"/>
             <key-map field-name="invoiceItemSeqId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="ORDER_ITBL_SHIPRCP" rel-entity-name="ShipmentReceipt">
             <key-map field-name="shipmentReceiptId" rel-field-name="receiptId"/>
         </relation>
@@ -1088,24 +1088,24 @@ under the License.
         <relation type="one" fk-name="ORDER_PMPRF_PMETH" rel-entity-name="PaymentMethod">
             <key-map field-name="paymentMethodId"/>
         </relation>
-        <relation type="one" fk-name="ORDER_PMPRF_FINACT" rel-entity-name="FinAccount">
+        <!--<relation type="one" fk-name="ORDER_PMPRF_FINACT" rel-entity-name="FinAccount">
             <key-map field-name="finAccountId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="ORDER_PMPRF_STTS" rel-entity-name="StatusItem">
             <key-map field-name="statusId"/>
         </relation>
         <relation type="one" fk-name="ORDER_PMPRF_USRL" rel-entity-name="UserLogin">
             <key-map field-name="createdByUserLogin" rel-field-name="userLoginId"/>
         </relation>
-        <relation type="one-nofk" rel-entity-name="CreditCard">
+        <!--<relation type="one-nofk" rel-entity-name="CreditCard">
             <key-map field-name="paymentMethodId"/>
-        </relation>
-        <relation type="one-nofk" rel-entity-name="EftAccount">
+        </relation>-->
+        <!--<relation type="one-nofk" rel-entity-name="EftAccount">
             <key-map field-name="paymentMethodId"/>
-        </relation>
-        <relation type="one-nofk" rel-entity-name="GiftCard">
+        </relation>-->
+        <!--<relation type="one-nofk" rel-entity-name="GiftCard">
             <key-map field-name="paymentMethodId"/>
-        </relation>
+        </relation>-->
         <index name="NSF_RETRY_CHECK">
             <index-field name="needsNsfRetry"/>
         </index>
@@ -1283,9 +1283,9 @@ under the License.
             <key-map field-name="orderId"/>
             <key-map field-name="orderItemSeqId"/>
         </relation>
-        <relation type="one" fk-name="ORDER_TERM_TTYPE" rel-entity-name="TermType">
+        <!--<relation type="one" fk-name="ORDER_TERM_TTYPE" rel-entity-name="TermType">
             <key-map field-name="termTypeId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="OrderTermAttribute"
             package-name="org.ofbiz.order.order"
@@ -1365,7 +1365,7 @@ under the License.
             <key-map field-name="engagementItemSeqId" rel-field-name="orderItemSeqId"/>
         </relation>
     </entity>
-    <entity entity-name="WorkOrderItemFulfillment"
+    <!--<entity entity-name="WorkOrderItemFulfillment"
             package-name="org.ofbiz.order.order"
             title="Work Order Item Fulfillment Entity">
         <field name="workEffortId" type="id-ne"></field>
@@ -1382,21 +1382,21 @@ under the License.
             <key-map field-name="orderId"/>
             <key-map field-name="orderItemSeqId"/>
         </relation>
-        <relation type="one" fk-name="WORDER_ITFMT_WEFRT" rel-entity-name="WorkEffort">
+       &lt;!&ndash; <relation type="one" fk-name="WORDER_ITFMT_WEFRT" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one-nofk" rel-entity-name="OrderItemShipGroupAssoc">
             <key-map field-name="orderId"/>
             <key-map field-name="orderItemSeqId"/>
             <key-map field-name="shipGroupSeqId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.order.quote -->
     <!-- ========================================================= -->
 
-    <entity entity-name="Quote"
+    <!--<entity entity-name="Quote"
             package-name="org.ofbiz.order.quote"
             title="Quote Entity">
         <field name="quoteId" type="id-ne"></field>
@@ -1498,18 +1498,18 @@ under the License.
         <relation type="one" fk-name="QUOTE_ITM_PFEAT" rel-entity-name="ProductFeature">
             <key-map field-name="productFeatureId"/>
         </relation>
-        <relation type="one" fk-name="QUOTE_ITM_DELT" rel-entity-name="DeliverableType">
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_ITM_DELT" rel-entity-name="DeliverableType">
             <key-map field-name="deliverableTypeId"/>
-        </relation>
-        <relation type="one" fk-name="QUOTE_ITM_SKLT" rel-entity-name="SkillType">
+        </relation>&ndash;&gt;
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_ITM_SKLT" rel-entity-name="SkillType">
             <key-map field-name="skillTypeId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="QUOTE_ITM_UOM" rel-entity-name="Uom">
             <key-map field-name="uomId"/>
         </relation>
-        <relation type="one" fk-name="QUOTE_ITM_WKEFF" rel-entity-name="WorkEffort">
+       &lt;!&ndash; <relation type="one" fk-name="QUOTE_ITM_WKEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="QUOTE_ITM_CSRQ" rel-entity-name="CustRequest">
             <key-map field-name="custRequestId"/>
         </relation>
@@ -1577,9 +1577,9 @@ under the License.
             <key-map field-name="quoteId"/>
             <key-map field-name="quoteItemSeqId"/>
         </relation>
-        <relation type="one" fk-name="QUOTE_TERM_TTYPE" rel-entity-name="TermType">
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_TERM_TTYPE" rel-entity-name="TermType">
             <key-map field-name="termTypeId"/>
-        </relation>
+        </relation>&ndash;&gt;
     </entity>
     <entity entity-name="QuoteTermAttribute"
             package-name="org.ofbiz.order.quote"
@@ -1639,9 +1639,9 @@ under the License.
         <relation type="one" fk-name="QUOTE_WE_QUOTE" rel-entity-name="Quote">
             <key-map field-name="quoteId"/>
         </relation>
-        <relation type="one" fk-name="QUOTE_WE_WEFF" rel-entity-name="WorkEffort">
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_WE_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
     </entity>
     <entity entity-name="QuoteAdjustment"
             package-name="org.ofbiz.order.quote"
@@ -1664,18 +1664,18 @@ under the License.
         <field name="productFeatureId" type="id"></field>
         <field name="correspondingProductId" type="id"></field>
         <field name="sourceReferenceId" type="id-long"></field>
-        <field name="sourcePercentage" type="fixed-point"><!-- for tax entries this is the tax percentage --></field>
-        <field name="customerReferenceId" type="id-long"><!-- for tax entries this is partyTaxId --></field>
+        <field name="sourcePercentage" type="fixed-point">&lt;!&ndash; for tax entries this is the tax percentage &ndash;&gt;</field>
+        <field name="customerReferenceId" type="id-long">&lt;!&ndash; for tax entries this is partyTaxId &ndash;&gt;</field>
         <field name="primaryGeoId"
-               type="id"><!-- for tax entries this is the primary jurisdiction Geo (the smallest or most local Geo that this tax is for, usually a state/province, perhaps a county or a city) --></field>
-        <field name="secondaryGeoId" type="id"><!-- for tax entries this is the secondary jurisdiction Geo (usually a country, or other Geo that the primary is within) --></field>
+               type="id">&lt;!&ndash; for tax entries this is the primary jurisdiction Geo (the smallest or most local Geo that this tax is for, usually a state/province, perhaps a county or a city) &ndash;&gt;</field>
+        <field name="secondaryGeoId" type="id">&lt;!&ndash; for tax entries this is the secondary jurisdiction Geo (usually a country, or other Geo that the primary is within) &ndash;&gt;</field>
         <field name="exemptAmount"
-               type="currency-amount"><!-- an amount that would normally apply, but not to this order; for tax exemption represents the what the tax would have been --></field>
+               type="currency-amount">&lt;!&ndash; an amount that would normally apply, but not to this order; for tax exemption represents the what the tax would have been &ndash;&gt;</field>
         <field name="taxAuthGeoId"
-               type="id"></field><!-- these taxAuth fields deprecate the primaryGeoId and secondaryGeoId fields and will be used with the newer tax calc stuff -->
+               type="id"></field>&lt;!&ndash; these taxAuth fields deprecate the primaryGeoId and secondaryGeoId fields and will be used with the newer tax calc stuff &ndash;&gt;
         <field name="taxAuthPartyId" type="id"></field>
         <field name="overrideGlAccountId"
-               type="id"><!-- used to specify the override or actual glAccountId used for the adjustment, avoids problems if configuration changes after initial posting, etc --></field>
+               type="id">&lt;!&ndash; used to specify the override or actual glAccountId used for the adjustment, avoids problems if configuration changes after initial posting, etc &ndash;&gt;</field>
         <field name="includeInTax" type="indicator"></field>
         <field name="includeInShipping" type="indicator"></field>
         <field name="createdDate" type="date-time"></field>
@@ -1712,20 +1712,20 @@ under the License.
         <relation type="one" fk-name="QUOTE_ADJ_SCGEO" title="Secondary" rel-entity-name="Geo">
             <key-map field-name="secondaryGeoId" rel-field-name="geoId"/>
         </relation>
-        <relation type="one" fk-name="QUOTE_ADJ_TXA" rel-entity-name="TaxAuthority">
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_ADJ_TXA" rel-entity-name="TaxAuthority">
             <key-map field-name="taxAuthGeoId"/>
             <key-map field-name="taxAuthPartyId"/>
-        </relation>
-        <relation type="one" fk-name="QUOTE_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
+        </relation>&ndash;&gt;
+        &lt;!&ndash;<relation type="one" fk-name="QUOTE_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
             <key-map field-name="overrideGlAccountId" rel-field-name="glAccountId"/>
-        </relation>
-    </entity>
+        </relation>&ndash;&gt;
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.order.request -->
     <!-- ========================================================= -->
 
-    <entity entity-name="CustRequest"
+    <!--<entity entity-name="CustRequest"
             package-name="org.ofbiz.order.request"
             title="Customer Request Entity">
         <field name="custRequestId" type="id-ne"></field>
@@ -1751,7 +1751,7 @@ under the License.
         <field name="salesChannelEnumId" type="id"></field>
         <field name="fulfillContactMechId" type="id">
             <description>
-                Field to support a location of a cust request--ie, product literature sent to an address, service call at a localtion, etc.
+                Field to support a location of a cust request&#45;&#45;ie, product literature sent to an address, service call at a localtion, etc.
             </description>
         </field>
         <field name="currencyUomId" type="id"></field>
@@ -1850,9 +1850,9 @@ under the License.
         <relation type="one" fk-name="CUSTREQ_CEV_CRQ" rel-entity-name="CustRequest">
             <key-map field-name="custRequestId"/>
         </relation>
-        <relation type="one" fk-name="CUSTREQ_CEV_CEV" rel-entity-name="CommunicationEvent">
+        &lt;!&ndash;<relation type="one" fk-name="CUSTREQ_CEV_CEV" rel-entity-name="CommunicationEvent">
             <key-map field-name="communicationEventId"/>
-        </relation>
+        </relation>&ndash;&gt;
     </entity>
     <entity entity-name="CustRequestContent" package-name="org.ofbiz.order.request" title="Customer Request Content Entity">
         <field name="custRequestId" type="id-ne"></field>
@@ -1951,9 +1951,9 @@ under the License.
         <relation type="one-nofk" rel-entity-name="CustRequest">
             <key-map field-name="custRequestId"/>
         </relation>
-        <relation type="one" fk-name="CUST_REQ_WEFF" rel-entity-name="WorkEffort">
+       &lt;!&ndash; <relation type="one" fk-name="CUST_REQ_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
     </entity>
     <entity entity-name="CustRequestResolution"
             package-name="org.ofbiz.order.request"
@@ -2062,9 +2062,9 @@ under the License.
         <relation type="one" fk-name="CSTREQ_WF_CREQ" rel-entity-name="CustRequest">
             <key-map field-name="custRequestId"/>
         </relation>
-        <relation type="one" fk-name="CSTREQ_WF_WEFF" rel-entity-name="WorkEffort">
+       &lt;!&ndash; <relation type="one" fk-name="CSTREQ_WF_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
     </entity>
     <entity entity-name="RespondingParty"
             package-name="org.ofbiz.order.request"
@@ -2086,13 +2086,13 @@ under the License.
         <relation type="one" fk-name="RESP_PTY_CMECH" rel-entity-name="ContactMech">
             <key-map field-name="contactMechId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.order.requirement -->
     <!-- ========================================================= -->
 
-    <entity entity-name="DesiredFeature"
+    <!--<entity entity-name="DesiredFeature"
             package-name="org.ofbiz.order.requirement"
             title="Desired Feature Entity">
         <field name="desiredFeatureId" type="id-ne"></field>
@@ -2160,12 +2160,12 @@ under the License.
         <relation type="one" fk-name="REQ_FACILITY" rel-entity-name="Facility">
             <key-map field-name="facilityId"/>
         </relation>
-        <relation type="one" fk-name="REQ_DELIVERABLE" rel-entity-name="Deliverable">
+        &lt;!&ndash;<relation type="one" fk-name="REQ_DELIVERABLE" rel-entity-name="Deliverable">
             <key-map field-name="deliverableId"/>
-        </relation>
-        <relation type="one" fk-name="REQ_FIXED_ASSET" rel-entity-name="FixedAsset">
+        </relation>&ndash;&gt;
+       &lt;!&ndash; <relation type="one" fk-name="REQ_FIXED_ASSET" rel-entity-name="FixedAsset">
             <key-map field-name="fixedAssetId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="REQ_PRODUCT" rel-entity-name="Product">
             <key-map field-name="productId"/>
         </relation>
@@ -2198,13 +2198,13 @@ under the License.
         <prim-key field="budgetId"/>
         <prim-key field="budgetItemSeqId"/>
         <prim-key field="requirementId"/>
-        <relation type="one-nofk" rel-entity-name="Budget">
+        &lt;!&ndash;<relation type="one-nofk" rel-entity-name="Budget">
             <key-map field-name="budgetId"/>
-        </relation>
-        <relation type="one" fk-name="REQ_BDGTAL_BITM" rel-entity-name="BudgetItem">
+        </relation>&ndash;&gt;
+        &lt;!&ndash;<relation type="one" fk-name="REQ_BDGTAL_BITM" rel-entity-name="BudgetItem">
             <key-map field-name="budgetId"/>
             <key-map field-name="budgetItemSeqId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="REQ_BDGTAL_REQ" rel-entity-name="Requirement">
             <key-map field-name="requirementId"/>
         </relation>
@@ -2316,13 +2316,13 @@ under the License.
         <relation type="one" fk-name="WORK_REQFL_REQ" rel-entity-name="Requirement">
             <key-map field-name="requirementId"/>
         </relation>
-        <relation type="one" fk-name="WORK_REQFL_WEFF" rel-entity-name="WorkEffort">
+       &lt;!&ndash; <relation type="one" fk-name="WORK_REQFL_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>&ndash;&gt;
         <relation type="one" fk-name="WORK_REQFL_WRFT" rel-entity-name="WorkReqFulfType">
             <key-map field-name="workReqFulfTypeId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.order.return -->
@@ -2415,22 +2415,22 @@ under the License.
         <relation type="one" fk-name="RETURN_ADJ_SCGEO" title="Secondary" rel-entity-name="Geo">
             <key-map field-name="secondaryGeoId" rel-field-name="geoId"/>
         </relation>
-        <relation type="one" fk-name="RETURN_ADJ_TXA" rel-entity-name="TaxAuthority">
+        <!--<relation type="one" fk-name="RETURN_ADJ_TXA" rel-entity-name="TaxAuthority">
             <key-map field-name="taxAuthGeoId"/>
             <key-map field-name="taxAuthPartyId"/>
-        </relation>
-        <relation type="one" fk-name="RETURN_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
+        </relation>-->
+        <!--<relation type="one" fk-name="RETURN_ADJ_OGLA" title="Override" rel-entity-name="GlAccount">
             <key-map field-name="overrideGlAccountId" rel-field-name="glAccountId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="RET_ADJ_RTN_TYPE" rel-entity-name="ReturnType">
             <key-map field-name="returnTypeId"/>
         </relation>
         <relation type="one" fk-name="RETURN_ADJ_ORDADJ" rel-entity-name="OrderAdjustment">
             <key-map field-name="orderAdjustmentId"/>
         </relation>
-        <relation type="one" fk-name="RETURN_ADJ_TARP" rel-entity-name="TaxAuthorityRateProduct">
+        <!--<relation type="one" fk-name="RETURN_ADJ_TARP" rel-entity-name="TaxAuthorityRateProduct">
             <key-map field-name="taxAuthorityRateSeqId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="ReturnAdjustmentType"
             package-name="org.ofbiz.order.return"
@@ -2473,12 +2473,12 @@ under the License.
         <relation type="one" fk-name="RTN_TO_PARTY" title="To" rel-entity-name="Party">
             <key-map field-name="toPartyId" rel-field-name="partyId"/>
         </relation>
-        <relation type="one" fk-name="RTN_TO_BACT" rel-entity-name="BillingAccount">
+        <!--<relation type="one" fk-name="RTN_TO_BACT" rel-entity-name="BillingAccount">
             <key-map field-name="billingAccountId"/>
         </relation>
         <relation type="one" fk-name="RTN_TO_FACT" rel-entity-name="FinAccount">
             <key-map field-name="finAccountId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="RTN_TO_PAYMETH" rel-entity-name="PaymentMethod">
             <key-map field-name="paymentMethodId"/>
         </relation>
@@ -2607,12 +2607,12 @@ under the License.
         <relation type="one" fk-name="RTN_PAY_PAYMENT" rel-entity-name="Payment">
             <key-map field-name="paymentId"/>
         </relation>
-        <relation type="one" fk-name="RTN_PAY_BACT" rel-entity-name="BillingAccount">
+        <!--<relation type="one" fk-name="RTN_PAY_BACT" rel-entity-name="BillingAccount">
             <key-map field-name="billingAccountId"/>
         </relation>
         <relation type="one" fk-name="RTN_PAY_FINACTTX" rel-entity-name="FinAccountTrans">
             <key-map field-name="finAccountTransId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="ReturnItemType"
             package-name="org.ofbiz.order.return"
@@ -2711,13 +2711,13 @@ under the License.
             <key-map field-name="returnId"/>
             <key-map field-name="returnItemSeqId"/>
         </relation>
-        <relation type="one-nofk" fk-name="RITBL_INVOICE" rel-entity-name="Invoice">
+        <!--<relation type="one-nofk" fk-name="RITBL_INVOICE" rel-entity-name="Invoice">
             <key-map field-name="invoiceId"/>
         </relation>
         <relation type="one" fk-name="RETURN_ITBLNG_IITM" rel-entity-name="InvoiceItem">
             <key-map field-name="invoiceId"/>
             <key-map field-name="invoiceItemSeqId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="RITBL_SHIPRCPT" rel-entity-name="ShipmentReceipt">
             <key-map field-name="shipmentReceiptId" rel-field-name="receiptId"/>
         </relation>
@@ -2917,9 +2917,9 @@ under the License.
             <key-map field-name="shoppingListId"/>
             <key-map field-name="shoppingListItemSeqId"/>
         </relation>
-        <relation type="one" fk-name="SHLIST_ITSUR_RESP" rel-entity-name="SurveyResponse">
+        <!--<relation type="one" fk-name="SHLIST_ITSUR_RESP" rel-entity-name="SurveyResponse">
             <key-map field-name="surveyResponseId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="ShoppingListType"
             package-name="org.ofbiz.order.shoppinglist"
@@ -2939,9 +2939,47 @@ under the License.
         <relation type="one" fk-name="SHLISTWE_SHLST" rel-entity-name="ShoppingList">
             <key-map field-name="shoppingListId"/>
         </relation>
-        <relation type="one" fk-name="SHLISTWE_WEFF" rel-entity-name="WorkEffort">
+       <!-- <relation type="one" fk-name="SHLISTWE_WEFF" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
+        </relation>-->
+    </entity>
+
+    <entity entity-name="PaymentMethodType"
+            package-name="org.ofbiz.accounting.payment"
+            title="PaymentMethodType Entity" default-resource-name="AccountingEntityLabels">
+        <field name="paymentMethodTypeId" type="id-ne"></field>
+        <field name="description" type="description"></field>
+        <field name="defaultGlAccountId" type="id"></field>
+        <prim-key field="paymentMethodTypeId"/>
+        <!--<relation type="one" fk-name="PAYMENT_MTP_DGLAC" title="Default" rel-entity-name="GlAccount">
+            <key-map field-name="defaultGlAccountId" rel-field-name="glAccountId"/>
+        </relation>-->
+    </entity>
+
+    <entity entity-name="PaymentMethod"
+            package-name="org.ofbiz.accounting.payment"
+            title="Payment Method Entity">
+        <field name="paymentMethodId" type="id-ne"></field>
+        <field name="paymentMethodTypeId" type="id"></field>
+        <field name="partyId" type="id-ne"></field>
+        <field name="glAccountId" type="id-ne"></field>
+        <field name="finAccountId" type="id-ne"></field>
+        <field name="description" type="description"></field>
+        <field name="fromDate" type="date-time"></field>
+        <field name="thruDate" type="date-time"></field>
+        <prim-key field="paymentMethodId"/>
+        <relation type="one" fk-name="PAYMETH_TYPE" rel-entity-name="PaymentMethodType">
+            <key-map field-name="paymentMethodTypeId"/>
         </relation>
+        <relation type="one" fk-name="PAYMETH_PARTY" rel-entity-name="Party">
+            <key-map field-name="partyId"/>
+        </relation>
+        <!--<relation type="one" fk-name="PAYMETH_GLACCT" rel-entity-name="GlAccount">
+            <key-map field-name="glAccountId"/>
+        </relation>
+        <relation type="one" fk-name="PAYMETH_FINACCT" rel-entity-name="FinAccount">
+            <key-map field-name="finAccountId"/>
+        </relation>-->
     </entity>
 
 </entitymodel>

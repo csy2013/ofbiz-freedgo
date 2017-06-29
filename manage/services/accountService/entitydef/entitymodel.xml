@@ -45,7 +45,7 @@ under the License.
   <!-- org.ofbiz.accounting.budget -->
   <!-- ========================================================= -->
 
-  <entity entity-name="Budget"
+  <!--<entity entity-name="Budget"
           package-name="org.ofbiz.accounting.budget"
           title="Budget Entity">
     <field name="budgetId" type="id-ne"></field>
@@ -321,7 +321,7 @@ under the License.
     <relation type="many" rel-entity-name="Budget">
       <key-map field-name="budgetTypeId"/>
     </relation>
-  </entity>
+  </entity>-->
 
   <!-- ========================================================= -->
   <!-- org.ofbiz.accounting.finaccount -->
@@ -627,7 +627,7 @@ under the License.
   <!-- org.ofbiz.accounting.fixedasset -->
   <!-- ========================================================= -->
 
-  <entity entity-name="FixedAsset" package-name="org.ofbiz.accounting.fixedasset" title="Fixed Asset Entity">
+  <!--<entity entity-name="FixedAsset" package-name="org.ofbiz.accounting.fixedasset" title="Fixed Asset Entity">
     <field name="fixedAssetId" type="id-ne"></field>
     <field name="fixedAssetTypeId" type="id"></field>
     <field name="parentFixedAssetId" type="id"></field>
@@ -829,9 +829,9 @@ under the License.
     <relation type="one" fk-name="FXDASTMNT_PMNTP" rel-entity-name="ProductMaintType">
       <key-map field-name="productMaintTypeId"/>
     </relation>
-    <relation type="one" fk-name="FXDASTMNT_SCHWE" title="Schedule" rel-entity-name="WorkEffort">
+    &lt;!&ndash;<relation type="one" fk-name="FXDASTMNT_SCHWE" title="Schedule" rel-entity-name="WorkEffort">
       <key-map field-name="scheduleWorkEffortId" rel-field-name="workEffortId"/>
-    </relation>
+    </relation>&ndash;&gt;
     <relation type="one" fk-name="FXDASTMNT_INTUOM" title="Interval" rel-entity-name="Uom">
       <key-map field-name="intervalUomId" rel-field-name="uomId"/>
     </relation>
@@ -1179,7 +1179,7 @@ under the License.
     <field name="accommodationMapTypeId" type="id-ne"></field>
     <field name="description" type="description"></field>
     <prim-key field="accommodationMapTypeId"/>
-  </entity>
+  </entity>-->
 
   <!-- ========================================================= -->
   <!-- org.ofbiz.accounting.invoice -->
@@ -1248,9 +1248,9 @@ under the License.
     <field name="attrValue" type="value"></field>
     <prim-key field="invoiceId"/>
     <prim-key field="attrName"/>
-    <relation type="one" fk-name="INVOICE_ATTR" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="INVOICE_ATTR" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="InvoiceTypeAttr">
       <key-map field-name="attrName"/>
     </relation>
@@ -1265,9 +1265,9 @@ under the License.
     <prim-key field="invoiceId"/>
     <prim-key field="contactMechPurposeTypeId"/>
     <prim-key field="contactMechId"/>
-    <relation type="one" fk-name="INVOICE_CMECH_HDR" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="INVOICE_CMECH_HDR" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="INVOICE_CMECH_CM" rel-entity-name="ContactMech">
       <key-map field-name="contactMechId"/>
     </relation>
@@ -1309,9 +1309,9 @@ under the License.
     <relation type="many" rel-entity-name="InvoiceItemTypeAttr">
       <key-map field-name="invoiceItemTypeId"/>
     </relation>
-    <relation type="one" fk-name="INVCE_ITM_INVCE" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="INVCE_ITM_INVCE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="INVCE_ITM_INVITM" rel-entity-name="InventoryItem">
       <key-map field-name="inventoryItemId"/>
     </relation>
@@ -1347,9 +1347,9 @@ under the License.
     <relation type="one" fk-name="INVCE_ITM_OVRPTY" title="OverrideOrg" rel-entity-name="Party">
       <key-map field-name="overrideOrgPartyId" rel-field-name="partyId"/>
     </relation>
-    <relation type="one" fk-name="INVCE_ITM_SLSOPP" rel-entity-name="SalesOpportunity">
+    <!--<relation type="one" fk-name="INVCE_ITM_SLSOPP" rel-entity-name="SalesOpportunity">
       <key-map field-name="salesOpportunityId"/>
-    </relation>
+    </relation>-->
   </entity>
 
   <entity entity-name="InvoiceItemAssoc"
@@ -1502,9 +1502,9 @@ under the License.
     <prim-key field="invoiceId"/>
     <prim-key field="partyId"/>
     <prim-key field="roleTypeId"/>
-    <relation type="one" fk-name="INVCE_RLE_INVCE" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="INVCE_RLE_INVCE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="INVCE_RLE_PARTY" rel-entity-name="Party">
       <key-map field-name="partyId"/>
     </relation>
@@ -1528,9 +1528,9 @@ under the License.
     <relation type="one" fk-name="INVCE_STS_STSITM" rel-entity-name="StatusItem">
       <key-map field-name="statusId"/>
     </relation>
-    <relation type="one" fk-name="INVCE_STS_INVCE" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="INVCE_STS_INVCE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
   </entity>
   <entity entity-name="InvoiceTerm"
           package-name="org.ofbiz.accounting.invoice"
@@ -1545,12 +1545,12 @@ under the License.
     <field name="description" type="description"></field>
     <field name="uomId" type="id"></field>
     <prim-key field="invoiceTermId"/>
-    <relation type="one" fk-name="INVCE_TRM_TRM" rel-entity-name="TermType">
+    <!--<relation type="one" fk-name="INVCE_TRM_TRM" rel-entity-name="TermType">
       <key-map field-name="termTypeId"/>
-    </relation>
-    <relation type="one" fk-name="INVCE_TRM_INVCE" rel-entity-name="Invoice">
+    </relation>-->
+    <!--<relation type="one" fk-name="INVCE_TRM_INVCE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one-nofk" rel-entity-name="InvoiceItem">
       <key-map field-name="invoiceId"/>
       <key-map field-name="invoiceItemSeqId"/>
@@ -1596,9 +1596,9 @@ under the License.
     <relation type="many" rel-entity-name="InvoiceAttribute">
       <key-map field-name="attrName"/>
     </relation>
-    <relation type="many" rel-entity-name="Invoice">
+    <!--<relation type="many" rel-entity-name="Invoice">
       <key-map field-name="invoiceTypeId"/>
-    </relation>
+    </relation>-->
   </entity>
 
   <view-entity entity-name="InvoiceAndApplAndPayment" package-name="org.ofbiz.accounting.invoice" title="Invoice and related applications and payments">
@@ -1718,9 +1718,9 @@ under the License.
     <relation type="one" fk-name="ACCTTX_GRPSTTS" rel-entity-name="StatusItem">
       <key-map field-name="groupStatusId" rel-field-name="statusId"/>
     </relation>
-    <relation type="one" fk-name="ACCTTX_FASSET" rel-entity-name="FixedAsset">
+    <!--<relation type="one" fk-name="ACCTTX_FASSET" rel-entity-name="FixedAsset">
       <key-map field-name="fixedAssetId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="ACCTTX_PHS_INV" rel-entity-name="PhysicalInventory">
       <key-map field-name="physicalInventoryId"/>
     </relation>
@@ -1741,9 +1741,9 @@ under the License.
       <key-map field-name="partyId"/>
       <key-map field-name="roleTypeId"/>
     </relation>
-    <relation type="one" fk-name="ACCTTX_INVOICE" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="ACCTTX_INVOICE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="ACCTTX_PAYMENT" rel-entity-name="Payment">
       <key-map field-name="paymentId"/>
     </relation>
@@ -1756,9 +1756,9 @@ under the License.
     <relation type="one" fk-name="ACCTTX_SHIPRCPT" rel-entity-name="ShipmentReceipt">
       <key-map field-name="receiptId"/>
     </relation>
-    <relation type="one" fk-name="ACCTTX_WEFF" rel-entity-name="WorkEffort">
+   <!-- <relation type="one" fk-name="ACCTTX_WEFF" rel-entity-name="WorkEffort">
       <key-map field-name="workEffortId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="AcctgTransTypeAttr">
       <key-map field-name="acctgTransTypeId"/>
     </relation>
@@ -1912,9 +1912,9 @@ under the License.
     <relation type="one" fk-name="ATAE_ATTYPE" rel-entity-name="AcctgTransType">
       <key-map field-name="acctgTransTypeId"/>
     </relation>
-    <relation type="one" fk-name="ATAE_INVOICE" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="ATAE_INVOICE" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="ATAE_PAYMENT" rel-entity-name="Payment">
       <key-map field-name="paymentId"/>
     </relation>
@@ -2250,7 +2250,7 @@ under the License.
       <key-map field-name="glAccountId"/>
     </relation>
   </entity>
-  <entity entity-name="GlBudgetXref"
+ <!-- <entity entity-name="GlBudgetXref"
           package-name="org.ofbiz.accounting.ledger"
           title="General Ledger Budget Cross Reference Entity">
     <field name="glAccountId" type="id-ne"></field>
@@ -2267,7 +2267,7 @@ under the License.
     <relation type="one" fk-name="GL_BDGT_XRF_BIT" rel-entity-name="BudgetItemType">
       <key-map field-name="budgetItemTypeId"/>
     </relation>
-  </entity>
+  </entity>-->
   <entity entity-name="GlFiscalType"
           package-name="org.ofbiz.accounting.ledger"
           default-resource-name="AccountingEntityLabels"
@@ -2540,9 +2540,9 @@ under the License.
     <relation type="many" rel-entity-name="BillingAccountRole">
       <key-map field-name="billingAccountId"/>
     </relation>
-    <relation type="many" rel-entity-name="Invoice">
+   <!-- <relation type="many" rel-entity-name="Invoice">
       <key-map field-name="billingAccountId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="PaymentApplication">
       <key-map field-name="billingAccountId"/>
     </relation>
@@ -2620,9 +2620,9 @@ under the License.
     <relation type="one" fk-name="BILLACCT_TRM_UOM" rel-entity-name="Uom">
       <key-map field-name="uomId"/>
     </relation>
-    <relation type="one" fk-name="BILLACCT_TRM_TRM" rel-entity-name="TermType">
+    <!--<relation type="one" fk-name="BILLACCT_TRM_TRM" rel-entity-name="TermType">
       <key-map field-name="termTypeId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="BILLACCT_TRM_BACT" rel-entity-name="BillingAccount">
       <key-map field-name="billingAccountId"/>
     </relation>
@@ -2784,9 +2784,9 @@ under the License.
       <key-map field-name="orderId"/>
       <key-map field-name="orderItemSeqId"/>
     </relation>
-    <relation type="one" fk-name="GC_FILL_SURVY" rel-entity-name="SurveyResponse">
+    <!--<relation type="one" fk-name="GC_FILL_SURVY" rel-entity-name="SurveyResponse">
       <key-map field-name="surveyResponseId"/>
-    </relation>
+    </relation>-->
   </entity>
 
   <entity entity-name="Payment"
@@ -2997,9 +2997,9 @@ under the License.
     <relation type="one" fk-name="PAYMENT_APP_PMT" rel-entity-name="Payment">
       <key-map field-name="paymentId"/>
     </relation>
-    <relation type="one" fk-name="PAYMENT_APP_INV" rel-entity-name="Invoice">
+    <!--<relation type="one" fk-name="PAYMENT_APP_INV" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
-    </relation>
+    </relation>-->
     <relation type="one-nofk" rel-entity-name="InvoiceItem">
       <key-map field-name="invoiceId"/>
       <key-map field-name="invoiceItemSeqId"/>
@@ -3042,13 +3042,13 @@ under the License.
     <prim-key field="budgetId"/>
     <prim-key field="budgetItemSeqId"/>
     <prim-key field="paymentId"/>
-    <relation type="one" fk-name="PAYMENT_BA_BDGT" rel-entity-name="Budget">
+    <!--<relation type="one" fk-name="PAYMENT_BA_BDGT" rel-entity-name="Budget">
       <key-map field-name="budgetId"/>
-    </relation>
-    <relation type="one-nofk" rel-entity-name="BudgetItem">
+    </relation>-->
+    <!--<relation type="one-nofk" rel-entity-name="BudgetItem">
       <key-map field-name="budgetId"/>
       <key-map field-name="budgetItemSeqId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="PAYMENT_BA_PMT" rel-entity-name="Payment">
       <key-map field-name="paymentId"/>
     </relation>
@@ -3185,17 +3185,7 @@ under the License.
       <key-map field-name="contactMechId"/>
     </relation>
   </view-entity>
-  <entity entity-name="PaymentMethodType"
-          package-name="org.ofbiz.accounting.payment"
-          title="PaymentMethodType Entity" default-resource-name="AccountingEntityLabels">
-    <field name="paymentMethodTypeId" type="id-ne"></field>
-    <field name="description" type="description"></field>
-    <field name="defaultGlAccountId" type="id"></field>
-    <prim-key field="paymentMethodTypeId"/>
-    <relation type="one" fk-name="PAYMENT_MTP_DGLAC" title="Default" rel-entity-name="GlAccount">
-      <key-map field-name="defaultGlAccountId" rel-field-name="glAccountId"/>
-    </relation>
-  </entity>
+
   <entity entity-name="PaymentMethodTypeGlAccount"
           package-name="org.ofbiz.accounting.payment"
           title="Payment Method Type GL Account Entity">
@@ -3287,7 +3277,7 @@ under the License.
       <key-map field-name="paymentGatewayConfigTypeId" rel-field-name="paymentGatewayConfigTypeId"/>
     </relation>
   </entity>
-  <entity entity-name="PaymentGatewaySagePay"
+ <!-- <entity entity-name="PaymentGatewaySagePay"
           package-name="org.ofbiz.accounting.payment"
           title="SagePay Payment Gateway Configuration">
     <field name="paymentGatewayConfigId" type="id-ne"></field>
@@ -3334,8 +3324,8 @@ under the License.
     <relation type="one" fk-name="PGSP_PGC" rel-entity-name="PaymentGatewayConfig">
       <key-map field-name="paymentGatewayConfigId"/>
     </relation>
-  </entity>
-  <entity entity-name="PaymentGatewayAuthorizeNet"
+  </entity>-->
+  <!--<entity entity-name="PaymentGatewayAuthorizeNet"
           package-name="org.ofbiz.accounting.payment"
           title="Authorize Dot Net Payment Gateway Configuration">
     <field name="paymentGatewayConfigId" type="id-ne"></field>
@@ -3455,19 +3445,19 @@ under the License.
       <description>Auto-Bill In Authorization (true|false)</description>
     </field>
     <field name="enableDav" type="indicator">
-      <description>Use DAV In Authorization -- May not be supported any longer</description>
+      <description>Use DAV In Authorization &#45;&#45; May not be supported any longer</description>
     </field>
     <field name="fraudScore" type="indicator">
-      <description>Use Fraud Scoring In Authorization -- May not be supported any longer</description>
+      <description>Use Fraud Scoring In Authorization &#45;&#45; May not be supported any longer</description>
     </field>
     <field name="ignoreAvs" type="short-varchar">
       <description>Ignore AVS results (true|false)</description>
     </field>
     <field name="disableBillAvs" type="indicator">
-      <description>Disable AVS for Capture -- May not be supported any longer</description>
+      <description>Disable AVS for Capture &#45;&#45; May not be supported any longer</description>
     </field>
     <field name="avsDeclineCodes" type="value">
-      <description>AVS Decline Codes -- May not be supported any longer</description>
+      <description>AVS Decline Codes &#45;&#45; May not be supported any longer</description>
     </field>
     <prim-key field="paymentGatewayConfigId"/>
     <relation type="one" fk-name="PGCS_PGC" rel-entity-name="PaymentGatewayConfig">
@@ -3602,7 +3592,7 @@ under the License.
     <relation type="one" fk-name="PGPP_PGC" rel-entity-name="PaymentGatewayConfig">
       <key-map field-name="paymentGatewayConfigId"/>
     </relation>
-  </entity>
+  </entity>-->
 
   <entity entity-name="PaymentGatewayAlipay"
           package-name="org.ofbiz.accounting.payment"
@@ -3690,7 +3680,7 @@ under the License.
     </relation>
   </entity>
 
-  <entity entity-name="PaymentGatewayClearCommerce"
+  <!--<entity entity-name="PaymentGatewayClearCommerce"
           package-name="org.ofbiz.accounting.payment"
           title="Clear Commerce Payment Gateway Config">
     <field name="paymentGatewayConfigId" type="id-ne"></field>
@@ -3889,7 +3879,7 @@ under the License.
     <relation type="one" fk-name="PGID_PGC" rel-entity-name="PaymentGatewayConfig">
       <key-map field-name="paymentGatewayConfigId"/>
     </relation>
-  </entity>
+  </entity>-->
 
   <entity entity-name="PaymentGatewayRespMsg"
           package-name="org.ofbiz.accounting.payment"
@@ -4017,7 +4007,7 @@ under the License.
     </relation>
   </entity>
 
-  <entity entity-name="ValueLinkKey"
+  <!--<entity entity-name="ValueLinkKey"
           package-name="org.ofbiz.accounting.payment"
           title="Value Link Key Store">
     <field name="merchantId" type="id-vlong-ne"></field>
@@ -4031,7 +4021,7 @@ under the License.
     <field name="lastModifiedByTerminal" type="short-varchar"></field>
     <field name="lastModifiedByUserLogin" type="id-vlong"></field>
     <prim-key field="merchantId"/>
-  </entity>
+  </entity>-->
   <!-- ========================================================= -->
   <!-- org.ofbiz.accounting.tax -->
   <!-- ========================================================= -->
@@ -4365,21 +4355,21 @@ under the License.
     <relation type="one" fk-name="RATE_AMOUNT_RCT" rel-entity-name="Uom">
       <key-map field-name="rateCurrencyUomId" rel-field-name="uomId"/>
     </relation>
-    <relation type="one" fk-name="RATE_AMOUNT_WE" rel-entity-name="WorkEffort">
+    <!--<relation type="one" fk-name="RATE_AMOUNT_WE" rel-entity-name="WorkEffort">
       <key-map field-name="workEffortId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="RATE_AMOUNT_PTY" rel-entity-name="Party">
       <key-map field-name="partyId"/>
     </relation>
-    <relation type="one" fk-name="RATE_AMOUNT_EPT" rel-entity-name="EmplPositionType">
+    <!--<relation type="one" fk-name="RATE_AMOUNT_EPT" rel-entity-name="EmplPositionType">
       <key-map field-name="emplPositionTypeId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="RATE_AMOUNT_PT" rel-entity-name="PeriodType">
       <key-map field-name="periodTypeId"/>
     </relation>
   </entity>
 
-  <view-entity entity-name="RateAmountAndRelations" package-name="org.ofbiz.accounting.rate">
+ <!-- <view-entity entity-name="RateAmountAndRelations" package-name="org.ofbiz.accounting.rate">
     <member-entity entity-alias="RA" entity-name="RateAmount"/>
     <member-entity entity-alias="RT" entity-name="RateType"/>
     <member-entity entity-alias="PT" entity-name="PeriodType"/>
@@ -4410,7 +4400,7 @@ under the License.
     <view-link entity-alias="RA" rel-entity-alias="EPT" rel-optional="true">
       <key-map field-name="emplPositionTypeId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
 
   <entity entity-name="PartyRate" package-name="org.ofbiz.accounting.rate"
           title="Party Rate Entity" table-name="PARTY_RATE_NEW">
@@ -4505,10 +4495,10 @@ under the License.
   </view-entity>
 
   <!-- Extend Entity Inventory Item for relation Fix Asset -->
-  <extend-entity entity-name="InventoryItem">
+  <!--<extend-entity entity-name="InventoryItem">
     <field name="fixedAssetId" type="id"></field>
     <relation type="one" fk-name="IYIM_FAST" title="FixedAsset" rel-entity-name="FixedAsset">
       <key-map field-name="fixedAssetId"/>
     </relation>
-  </extend-entity>
+  </extend-entity>-->
 </entitymodel>

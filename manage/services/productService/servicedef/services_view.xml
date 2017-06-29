@@ -103,7 +103,7 @@ under the License.
     <attribute name="distinct" type="String" mode="IN" optional="true"/>
     <attribute name="productFeatures" type="java.util.Collection" mode="OUT"/>
   </service>
-  <service name="getSuppliersForProduct" engine="java"
+  <!--<service name="getSuppliersForProduct" engine="java"
            location="org.ofbiz.product.supplier.SupplierProductServices" invoke="getSuppliersForProduct">
     <description>Finds a list of SupplierProduct entities based on either a product or, if not provided, at least a productId.
       If partyId and currencyUomId are given, they are used to filter the list down. Note that productId is REQUIRED, even if you are passing in a product entity.
@@ -123,7 +123,7 @@ under the License.
     <attribute type="java.util.Collection" mode="IN" name="productFeatures" optional="false"/>
     <attribute type="String" mode="IN" name="partyId" optional="false"/>
     <attribute type="java.util.Collection" mode="OUT" name="convertedProductFeatures"/>
-  </service>
+  </service>-->
 
   <!-- Category View Services -->
   <service name="getProductCategoryMembers" engine="java"

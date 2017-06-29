@@ -127,9 +127,9 @@ under the License.
       <relation type="many" rel-entity-name="WorkEffortStatus">
         <key-map field-name="workEffortId"/>
       </relation>
-      <relation type="many" rel-entity-name="QuoteItem">
+      <!--<relation type="many" rel-entity-name="QuoteItem">
         <key-map field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="many" rel-entity-name="WorkRequirementFulfillment">
         <key-map field-name="workEffortId"/>
       </relation>
@@ -184,9 +184,9 @@ under the License.
       <view-link entity-alias="WEFAA" rel-entity-alias="FA">
         <key-map field-name="fixedAssetId"/>
       </view-link>
-      <relation type="one-nofk" rel-entity-name="FixedAsset">
+      <!--<relation type="one-nofk" rel-entity-name="FixedAsset">
         <key-map field-name="fixedAssetId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" rel-entity-name="StatusItem">
         <key-map field-name="statusId"/>
       </relation>
@@ -384,9 +384,9 @@ under the License.
       <relation type="one-nofk" rel-entity-name="NoteData">
         <key-map field-name="noteId"/>
       </relation>
-      <relation type="one-nofk" rel-entity-name="WorkEffort">
+      <!--<relation type="one-nofk" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" rel-entity-name="Party">
         <key-map field-name="noteParty" rel-field-name="partyId"/>
       </relation>
@@ -426,9 +426,9 @@ under the License.
       <view-link entity-alias="WEPA" rel-entity-alias="PREL">
         <key-map field-name="partyId" rel-field-name="partyIdFrom"/>
       </view-link>
-      <relation type="one-nofk" rel-entity-name="WorkEffort">
+      <!--<relation type="one-nofk" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" rel-entity-name="WorkEffortPartyAssignment">
         <key-map field-name="workEffortId"/>
         <key-map field-name="partyId"/>
@@ -470,9 +470,9 @@ under the License.
       <view-link entity-alias="WEPA" rel-entity-alias="PR">
         <key-map field-name="roleTypeId"/>
       </view-link>
-      <relation type="one-nofk" rel-entity-name="WorkEffort">
+      <!--<relation type="one-nofk" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
-      </relation>
+      </relation>-->
       <relation type="one-nofk" rel-entity-name="WorkEffortPartyAssignment">
         <key-map field-name="workEffortId"/>
         <key-map field-name="partyId"/>
@@ -551,9 +551,9 @@ under the License.
         <relation type="one-nofk" rel-entity-name="ElectronicText">
             <key-map field-name="dataResourceId"/>
         </relation>
-        <relation type="one-nofk" rel-entity-name="WorkEffort">
+        <!--<relation type="one-nofk" rel-entity-name="WorkEffort">
             <key-map field-name="workEffortId"/>
-        </relation>
+        </relation>-->
         <relation type="one-nofk" rel-entity-name="ImageDataResource">
             <key-map field-name="dataResourceId"/>
         </relation>
@@ -672,9 +672,9 @@ under the License.
       <relation type="one-nofk" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
       </relation>
-      <relation type="one-nofk" rel-entity-name="CommunicationEvent">
+      <!--<relation type="one-nofk" rel-entity-name="CommunicationEvent">
         <key-map field-name="communicationEventId"/>
-      </relation>
+      </relation>-->
     </view-entity>
     <view-entity entity-name="WorkEffortShoppingListView"
             package-name="org.ofbiz.workeffort.workeffort"

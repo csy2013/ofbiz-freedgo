@@ -216,9 +216,9 @@ under the License.
     <relation type="many" rel-entity-name="ProductOrderItem">
       <key-map field-name="orderId"/>
     </relation>
-    <relation type="one-nofk" rel-entity-name="BillingAccount">
+    <!--<relation type="one-nofk" rel-entity-name="BillingAccount">
       <key-map field-name="billingAccountId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="OrderPaymentPreference">
       <key-map field-name="orderId"/>
     </relation>
@@ -327,9 +327,9 @@ under the License.
     <relation type="many" rel-entity-name="ProductOrderItem">
       <key-map field-name="orderId"/>
     </relation>
-    <relation type="one-nofk" rel-entity-name="BillingAccount">
+    <!--<relation type="one-nofk" rel-entity-name="BillingAccount">
       <key-map field-name="billingAccountId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="OrderPaymentPreference">
       <key-map field-name="orderId"/>
     </relation>
@@ -444,9 +444,9 @@ under the License.
     <relation type="many" rel-entity-name="ProductOrderItem">
       <key-map field-name="orderId"/>
     </relation>
-    <relation type="one-nofk" rel-entity-name="BillingAccount">
+    <!--<relation type="one-nofk" rel-entity-name="BillingAccount">
       <key-map field-name="billingAccountId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="OrderPaymentPreference">
       <key-map field-name="orderId"/>
     </relation>
@@ -559,9 +559,9 @@ under the License.
     <relation type="many" rel-entity-name="ProductOrderItem">
       <key-map field-name="orderId"/>
     </relation>
-    <relation type="one-nofk" rel-entity-name="BillingAccount">
+    <!--<relation type="one-nofk" rel-entity-name="BillingAccount">
       <key-map field-name="billingAccountId"/>
-    </relation>
+    </relation>-->
     <relation type="many" rel-entity-name="OrderPaymentPreference">
       <key-map field-name="orderId"/>
     </relation>
@@ -896,14 +896,14 @@ under the License.
       <key-map field-name="orderItemSeqId"/>
     </view-link>
   </view-entity>
-  <view-entity entity-name="OrderPurchasePaymentSummary"
+  <!--<view-entity entity-name="OrderPurchasePaymentSummary"
                package-name="org.ofbiz.order.order"
                never-cache="true"
                title="Order Purchase Payment Summary View Entity">
     <member-entity entity-alias="OH" entity-name="OrderHeader"/>
     <member-entity entity-alias="OPP" entity-name="OrderPaymentPreference"/>
     <member-entity entity-alias="PMT" entity-name="PaymentMethodType"/>
-    <!-- only the fields desired should be included in fields-to-select, and can otherwise be used as select critera (or both too) -->
+    &lt;!&ndash; only the fields desired should be included in fields-to-select, and can otherwise be used as select critera (or both too) &ndash;&gt;
     <alias entity-alias="OH" name="webSiteId" group-by="true"/>
     <alias entity-alias="OH" name="productStoreId" group-by="true"/>
     <alias entity-alias="OH" name="originFacilityId" group-by="true"/>
@@ -923,7 +923,7 @@ under the License.
     <view-link entity-alias="OPP" rel-entity-alias="PMT">
       <key-map field-name="paymentMethodTypeId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
   <view-entity entity-name="OrderPurchaseProductSummary"
                package-name="org.ofbiz.order.order"
                never-cache="true"
@@ -1030,7 +1030,7 @@ under the License.
       <key-map field-name="productId"/>
     </relation>
   </view-entity>
-  <view-entity entity-name="OrderTaskList"
+  <!--<view-entity entity-name="OrderTaskList"
                package-name="org.ofbiz.order.order"
                title="Order WorkEffort Task List">
     <member-entity entity-alias="OH" entity-name="OrderHeader"/>
@@ -1069,7 +1069,7 @@ under the License.
     <alias entity-alias="WEPA" name="thruDate"/>
     <alias entity-alias="WEPA" name="statusId"/>
     <alias entity-alias="WEPA" name="statusDateTime"/>
-    <view-link entity-alias="OH" rel-entity-alias="OHR" rel-optional="true">
+    <view-link entity-alias="OH" rel-entity-alias="OHR" rel-optFional="true">
       <key-map field-name="orderId"/>
     </view-link>
     <view-link entity-alias="OHR" rel-entity-alias="PS" rel-optional="true">
@@ -1081,7 +1081,7 @@ under the License.
     <view-link entity-alias="WE" rel-entity-alias="WEPA">
       <key-map field-name="workEffortId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
 
 
   <view-entity entity-name="OrderHeaderAndShipGroups"
@@ -1239,7 +1239,7 @@ under the License.
   <!-- org.ofbiz.order.request -->
   <!-- ========================================================= -->
 
-  <view-entity entity-name="CustRequestAndRole"
+  <!--<view-entity entity-name="CustRequestAndRole"
                package-name="org.ofbiz.order.request"
                title="Customer Request And Role View Entity">
     <description>See CustRequest for descriptions of date fields</description>
@@ -1323,11 +1323,11 @@ under the License.
     <relation type="one-nofk" rel-entity-name="CustRequest">
       <key-map field-name="custRequestId"/>
     </relation>
-    <relation type="one-nofk" rel-entity-name="CommunicationEvent">
+    &lt;!&ndash;<relation type="one-nofk" rel-entity-name="CommunicationEvent">
       <key-map field-name="communicationEventId"/>
-    </relation>
+    </relation>&ndash;&gt;
   </view-entity>
-  <view-entity entity-name="CustRequestAndWorkEffort"
+  &lt;!&ndash;<view-entity entity-name="CustRequestAndWorkEffort"
                package-name="org.ofbiz.order.request"
                title="Customer Request And WorkEffort">
     <member-entity entity-alias="CRW" entity-name="CustRequestWorkEffort"/>
@@ -1345,7 +1345,7 @@ under the License.
     <relation type="one-nofk" rel-entity-name="WorkEffort">
       <key-map field-name="workEffortId"/>
     </relation>
-  </view-entity>
+  </view-entity>&ndash;&gt;
   <view-entity entity-name="CustRequestAndNote"
                package-name="org.ofbiz.order.request"
                title="Customer Request And Note">
@@ -1445,7 +1445,7 @@ under the License.
       <key-map field-name="noteId"/>
     </view-link>
   </view-entity>
-  <view-entity entity-name="QuoteWorkEffortView"
+  &lt;!&ndash;<view-entity entity-name="QuoteWorkEffortView"
                package-name="org.ofbiz.order.quote"
                title="Quote And Workeffort">
     <description>Shows workefforts for a Quote</description>
@@ -1454,7 +1454,7 @@ under the License.
     <member-entity entity-alias="SI" entity-name="StatusItem"/>
     <alias-all entity-alias="QWE"/>
     <alias-all entity-alias="WE"/>
-    <!--alias name="statusId" field="statusId" entity-alias="SI"/-->
+    &lt;!&ndash;alias name="statusId" field="statusId" entity-alias="SI"/&ndash;&gt;
     <alias name="statusItemDescription" field="description" entity-alias="SI"/>
     <view-link entity-alias="QWE" rel-entity-alias="WE">
       <key-map field-name="workEffortId"/>
@@ -1471,7 +1471,7 @@ under the License.
     <relation type="one-nofk" rel-entity-name="StatusItem">
       <key-map field-name="currentStatusId" rel-field-name="statusId"/>
     </relation>
-  </view-entity>
+  </view-entity>&ndash;&gt;
   <view-entity entity-name="RequirementAndRole"
                package-name="org.ofbiz.order.request"
                title="Requirement And Role View Entity">
@@ -1587,13 +1587,13 @@ under the License.
     <view-link entity-alias="CRC" rel-entity-alias="CT">
       <key-map field-name="contentId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
 
   <!-- ========================================================= -->
   <!-- org.ofbiz.order.communication -->
   <!-- ========================================================= -->
 
-  <view-entity entity-name="CommunicationEventAndOrder"
+  <!--<view-entity entity-name="CommunicationEventAndOrder"
                package-name="org.ofbiz.order.communication"
                title="Communication Event And Order View Entity">
     <member-entity entity-alias="CO" entity-name="CommunicationEventOrder"/>
@@ -1614,7 +1614,7 @@ under the License.
     <view-link entity-alias="CR" rel-entity-alias="CE">
       <key-map field-name="communicationEventId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
 
   <view-entity entity-name="OrderItemAndShipGrpInvResAndItemSum"
                package-name="org.ofbiz.order.order"
@@ -1654,7 +1654,7 @@ under the License.
     </relation>
   </view-entity>
 
-  <view-entity entity-name="OrderHeaderAndWorkEffort"
+  <!--<view-entity entity-name="OrderHeaderAndWorkEffort"
                package-name="org.ofbiz.order.order"
                title="Order Header And Work Effort View Entity">
     <member-entity entity-alias="WE" entity-name="WorkEffort"/>
@@ -1671,9 +1671,9 @@ under the License.
     <view-link entity-alias="OHWE" rel-entity-alias="OH">
       <key-map field-name="orderId"/>
     </view-link>
-  </view-entity>
+  </view-entity>-->
 
-  <view-entity entity-name="OrderItemBillingAndInvoiceAndItem"
+  <!--<view-entity entity-name="OrderItemBillingAndInvoiceAndItem"
                package-name="org.ofbiz.order.order"
                title="OrderItemBilling and Invoice and InvoiceItem View Entity">
     <member-entity entity-alias="OIB" entity-name="OrderItemBilling"/>
@@ -1695,7 +1695,7 @@ under the License.
       <key-map field-name="invoiceId"/>
       <key-map field-name="invoiceItemSeqId"/>
     </relation>
-  </view-entity>
+  </view-entity>-->
 
 
 

@@ -33,12 +33,12 @@ under the License.
     <eca entity="Content" operation="store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
-    <eca entity="ContentAttribute" operation="create-store" event="return">
+    <!--<eca entity="ContentAttribute" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
     <eca entity="ContentMetaData" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
-    </eca>
+    </eca>-->
     <eca entity="ContentRole" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
@@ -51,11 +51,11 @@ under the License.
     <eca entity="PartyContent" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
-    <eca entity="WebSiteContent  " operation="create-store" event="return">
+    <eca entity="WebSiteContent" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
-    <eca entity="WorkEffortContent  " operation="create-store" event="return">
+    <!--<eca entity="WorkEffortContent  " operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
-    </eca>
+    </eca>-->
 
 </entity-eca>

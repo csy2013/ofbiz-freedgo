@@ -79,10 +79,10 @@ public class ContentKeywordIndex {
         }
 
         // ContentMetaData
-        List<GenericValue> contentMetaDatas = delegator.findByAnd("ContentMetaData", UtilMisc.toMap("contentId", contentId));
+       /* List<GenericValue> contentMetaDatas = delegator.findByAnd("ContentMetaData", UtilMisc.toMap("contentId", contentId));
         for (GenericValue contentMetaData: contentMetaDatas) {
             addWeightedKeywordSourceString(contentMetaData, "metaDataValue", strings);
-        }
+        }*/
 
         // ContentRole
         List<GenericValue> contentRoles = delegator.findByAnd("ContentRole", UtilMisc.toMap("contentId", contentId));
@@ -159,13 +159,13 @@ public class ContentKeywordIndex {
         }
 
         // WorkEffortContent
-        List<GenericValue> workEffortContents = delegator.findByAnd("WorkEffortContent", UtilMisc.toMap("contentId", contentId));
+       /* List<GenericValue> workEffortContents = delegator.findByAnd("WorkEffortContent", UtilMisc.toMap("contentId", contentId));
         for (GenericValue workEffortContent: workEffortContents) {
             GenericValue workEffort = delegator.findByPrimaryKey("WorkEffort", UtilMisc.toMap("workEffortId", workEffortContent.getString("workEffortId")));
             if (workEffort != null) {
                 addWeightedKeywordSourceString(workEffort, "workEffortName", strings);
             }
-        }
+        }*/
 
         // DataResource
         GenericValue dataResource = delegator.findByPrimaryKey("DataResource", UtilMisc.toMap("dataResourceId", content.getString("dataResourceId")));

@@ -67,9 +67,9 @@ under the License.
       <key-map field-name="orderId"/>
       <key-map field-name="orderItemSeqId"/>
     </relation>
-    <relation type="one" fk-name="VL_FILL_SURVY" rel-entity-name="SurveyResponse">
+    <!--<relation type="one" fk-name="VL_FILL_SURVY" rel-entity-name="SurveyResponse">
       <key-map field-name="surveyResponseId"/>
-    </relation>
+    </relation>-->
   </entity>
   <entity entity-name="OldPartyRate" table-name="PARTY_RATE"
           package-name="org.ofbiz.workeffort.timesheet"

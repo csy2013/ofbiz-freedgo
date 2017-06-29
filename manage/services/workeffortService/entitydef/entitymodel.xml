@@ -66,13 +66,13 @@ under the License.
       <relation type="one" fk-name="TIME_ENT_TSHT" rel-entity-name="Timesheet">
         <key-map field-name="timesheetId"/>
       </relation>
-      <relation type="one-nofk" rel-entity-name="Invoice">
+      <!--<relation type="one-nofk" rel-entity-name="Invoice">
         <key-map field-name="invoiceId"/>
       </relation>
       <relation type="one" fk-name="TIME_ENT_INVIT" rel-entity-name="InvoiceItem">
         <key-map field-name="invoiceId"/>
         <key-map field-name="invoiceItemSeqId"/>
-      </relation>
+      </relation>-->
     </entity>
     <entity entity-name="Timesheet"
             package-name="org.ofbiz.workeffort.timesheet"
@@ -170,9 +170,9 @@ under the License.
       <field name="deliverableName" type="name"></field>
       <field name="description" type="description"></field>
       <prim-key field="deliverableId"/>
-      <relation type="one" fk-name="DELIVERABLE_DLTYP" rel-entity-name="DeliverableType">
+      <!--<relation type="one" fk-name="DELIVERABLE_DLTYP" rel-entity-name="DeliverableType">
         <key-map field-name="deliverableTypeId"/>
-      </relation>
+      </relation>-->
     </entity>
     <entity entity-name="DeliverableType"
             package-name="org.ofbiz.workeffort.workeffort"
@@ -254,9 +254,9 @@ under the License.
       <relation type="one" fk-name="WK_EFFRT_SC_ENUM" title="Scope" rel-entity-name="Enumeration">
         <key-map field-name="scopeEnumId" rel-field-name="enumId"/>
       </relation>
-      <relation type="one" fk-name="WK_EFFRT_FXDASST" rel-entity-name="FixedAsset">
+      <!--<relation type="one" fk-name="WK_EFFRT_FXDASST" rel-entity-name="FixedAsset">
         <key-map field-name="fixedAssetId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="WK_EFFRT_FACILITY" rel-entity-name="Facility">
         <key-map field-name="facilityId"/>
       </relation>
@@ -393,13 +393,13 @@ under the License.
       <relation type="one" fk-name="WK_EFFBLNG_WEFF" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
       </relation>
-      <relation type="one-nofk" rel-entity-name="Invoice">
+      <!--<relation type="one-nofk" rel-entity-name="Invoice">
         <key-map field-name="invoiceId"/>
       </relation>
       <relation type="one" fk-name="WK_EFFBLNG_INVITM" rel-entity-name="InvoiceItem">
         <key-map field-name="invoiceId"/>
         <key-map field-name="invoiceItemSeqId"/>
-      </relation>
+      </relation>-->
     </entity>
     <entity entity-name="WorkEffortContactMech" table-name="WORK_EFFORT_CONTACT_MECH_NEW"
             package-name="org.ofbiz.workeffort.workeffort"
@@ -882,9 +882,9 @@ under the License.
       <prim-key field="workEffortId"/>
       <prim-key field="surveyId"/>
       <prim-key field="fromDate"/>
-      <relation type="one" fk-name="WKEF_SURVAPL_SVY" rel-entity-name="Survey">
+      <!--<relation type="one" fk-name="WKEF_SURVAPL_SVY" rel-entity-name="Survey">
         <key-map field-name="surveyId"/>
-      </relation>
+      </relation>-->
       <relation type="one" fk-name="WKEF_SURVAPL_WKE" rel-entity-name="WorkEffort">
         <key-map field-name="workEffortId"/>
       </relation>

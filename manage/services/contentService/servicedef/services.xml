@@ -153,7 +153,7 @@
     </service>
 
     <!-- ContentPurposeOperation services -->
-    <service name="createContentPurposeOperation" engine="simple" default-entity-name="ContentPurposeOperation" auth="true"
+    <!--<service name="createContentPurposeOperation" engine="simple" default-entity-name="ContentPurposeOperation" auth="true"
             location="component://contentService/script/org/ofbiz/content/content/ContentServices.xml" invoke="createContentPurposeOperation">
         <description>Create a ContentPurposeOperation</description>
         <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
@@ -172,10 +172,10 @@
         <description>Remove ContentPurposeOperation</description>
         <permission-service service-name="contentManagerPermission" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- ContentAttribute services -->
-    <service name="createContentAttribute" engine="simple" default-entity-name="ContentAttribute" auth="true"
+    <!--<service name="createContentAttribute" engine="simple" default-entity-name="ContentAttribute" auth="true"
             location="component://contentService/script/org/ofbiz/content/content/ContentServices.xml" invoke="createContentAttribute">
         <description>Create a ContentAttribute</description>
         <permission-service service-name="genericContentPermission" main-action="UPDATE"/>
@@ -194,10 +194,10 @@
         <description>Remove ContentAttribute</description>
         <permission-service service-name="genericContentPermission" main-action="UPDATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- ContentMetaData services -->
-    <service name="createContentMetaData" engine="simple" default-entity-name="ContentMetaData" auth="true"
+    <!--<service name="createContentMetaData" engine="simple" default-entity-name="ContentMetaData" auth="true"
             location="component://contentService/script/org/ofbiz/content/content/ContentServices.xml" invoke="createContentMetaData">
         <description>Create a ContentMetaData</description>
         <permission-service service-name="genericContentPermission" main-action="UPDATE"/>
@@ -217,7 +217,7 @@
         <permission-service service-name="genericContentPermission" main-action="UPDATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
-
+-->
     <!-- DataResourceAttribute services -->
     <service name="createDataResourceAttribute" engine="simple" default-entity-name="DataResourceAttribute" auth="true"
             location="component://contentService/script/org/ofbiz/content/data/DataServices.xml" invoke="createDataResourceAttribute">
@@ -821,7 +821,7 @@
     </service>
 
     <!-- Content Revision services -->
-    <service name="createContentRevision" engine="simple" default-entity-name="ContentRevision" auth="true"
+    <!--<service name="createContentRevision" engine="simple" default-entity-name="ContentRevision" auth="true"
             location="component://contentService/script/org/ofbiz/content/compdoc/CompDocServices.xml" invoke="createContentRevision">
         <description>Create a ContentRevision</description>
         <auto-attributes include="pk" mode="IN" optional="true"/>
@@ -837,10 +837,10 @@
             location="component://contentService/script/org/ofbiz/content/compdoc/CompDocServices.xml" invoke="removeContentRevision">
         <description>Remove ContentRevision</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- Content Revision Item services -->
-    <service name="createContentRevisionItem" engine="simple"
+    <!--<service name="createContentRevisionItem" engine="simple"
         location="component://contentService/script/org/ofbiz/content/compdoc/CompDocServices.xml"
         invoke="createContentRevisionItem"
         default-entity-name="ContentRevisionItem" auth="true">
@@ -862,7 +862,7 @@
         default-entity-name="ContentRevisionItem" auth="true">
         <description>Remove ContentRevisionItem</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- Content Approval services -->
     <service name="createContentApproval" engine="simple"
@@ -890,7 +890,7 @@
     </service>
 
     <!-- ================ CompDoc Requests ================= -->
-    <service name="persistContentRevisionAndItem" engine="simple"
+    <!--<service name="persistContentRevisionAndItem" engine="simple"
         location="component://contentService/script/org/ofbiz/content/compdoc/CompDocServices.xml"
         invoke="persistContentRevisionAndItem" auth="true">
         <description>Update a ContentRevision and ContentRevisionItem</description>
@@ -993,7 +993,7 @@
         <attribute name="mostRecentRevisionSeqId" type="String" mode="OUT" optional="true"/>
     </service>
 
-    <!-- Open Office Services -->
+    &lt;!&ndash; Open Office Services &ndash;&gt;
     <service name="convertDocumentByteBuffer" auth="false" engine="java" transaction-timeout="7200"
         location="org.ofbiz.content.openoffice.OpenOfficeServices" invoke="convertDocumentByteBuffer">
         <description>Use OpenOffice to convert between document types</description>
@@ -1033,7 +1033,7 @@
         <attribute name="filenameOut" type="String" mode="IN" optional="false"/>
     </service>
 
-    <!-- CompDoc Rendering Services  -->
+    &lt;!&ndash; CompDoc Rendering Services  &ndash;&gt;
     <service name="renderCompDocPdf" engine="java"
         location="org.ofbiz.content.compdoc.CompDocServices"
         invoke="renderCompDocPdf" auth="true">
@@ -1057,7 +1057,7 @@
         <attribute name="rootDir" type="String" mode="IN" optional="true"/>
         <attribute name="locale" type="java.util.Locale" mode="IN" optional="true"/>
         <attribute name="outByteBuffer" type="java.nio.ByteBuffer" mode="OUT" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- blog services -->
     <service name="createBlogEntry" engine="simple" auth="true"

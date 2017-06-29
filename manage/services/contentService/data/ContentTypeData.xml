@@ -52,14 +52,14 @@ under the License.
   <ContentAssocType contentAssocTypeId="INSTANCE" description="Instance Of"/>
   <ContentAssocType contentAssocTypeId="ALTERNATIVE_URL" description="Alternative URL"/>
 
-  <ContentAssocPredicate contentAssocPredicateId="member-of" description="The object is a member of the subject."/>
+ <!-- <ContentAssocPredicate contentAssocPredicateId="member-of" description="The object is a member of the subject."/>
   <ContentAssocPredicate contentAssocPredicateId="defines" description="The object defines the subject."/>
   <ContentAssocPredicate contentAssocPredicateId="extends" description="The object extends the subject."/>
   <ContentAssocPredicate contentAssocPredicateId="related-to" description="The object is related to the subject."/>
   <ContentAssocPredicate contentAssocPredicateId="references" description="The object references the subject."/>
 
   <ContentAssocPredicate contentAssocPredicateId="topifies" description="Topifies"/>
-  <ContentAssocPredicate contentAssocPredicateId="categorizes" description="Categorizes"/>
+  <ContentAssocPredicate contentAssocPredicateId="categorizes" description="Categorizes"/>-->
 
   <MetaDataPredicate metaDataPredicateId="author-name" description="Name of the author or creator of the subject."/>
   <MetaDataPredicate metaDataPredicateId="author-email" description="eMail address of the author or creator of the subject."/>
@@ -144,7 +144,7 @@ under the License.
   <DataTemplateType dataTemplateTypeId="XSLT" description="XSLT" extension="xsl"/>
   <DataTemplateType dataTemplateTypeId="SCREEN_COMBINED" description="Screen widget" extension="xml"/>
 
-  <DocumentType description="Shipping" documentTypeId="SHIPPING_DOCUMENT" hasTable="Y" parentTypeId=""/>
+  <!--<DocumentType description="Shipping" documentTypeId="SHIPPING_DOCUMENT" hasTable="Y" parentTypeId=""/>
   <DocumentType description="Bill Of Lading" documentTypeId="BILL_OF_LADING" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
   <DocumentType description="Export" documentTypeId="EXPORT_DOCUMENTATION" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
   <DocumentType description="Haz Mat" documentTypeId="HAZ_MAT_DOCUMENT" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
@@ -152,7 +152,7 @@ under the License.
   <DocumentType description="Other Shipping" documentTypeId="OTHER_SHIP_DOCUMENT" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
   <DocumentType description="Packing Slip" documentTypeId="PACKAGING_SLIP" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
   <DocumentType description="Port Charge" documentTypeId="PORT_CHARGE_DOCUMENT" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
-  <DocumentType description="Tax Tariff" documentTypeId="TAX_TARIFF_DOCUMENT" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>
+  <DocumentType description="Tax Tariff" documentTypeId="TAX_TARIFF_DOCUMENT" hasTable="N" parentTypeId="SHIPPING_DOCUMENT"/>-->
 
   <StatusType description="Server Hit" hasTable="N" parentTypeId="" statusTypeId="SERVER_HIT_STATUS"/>
   <StatusType description="Web Content" hasTable="N" parentTypeId="" statusTypeId="WEB_CONTENT_STATUS"/>
@@ -177,9 +177,9 @@ under the License.
   <StatusValidChange condition="" statusId="CTNT_PUBLISHED" statusIdTo="CTNT_DEACTIVATED" transitionName="Deactivated"/>
   <StatusValidChange condition="" statusId="CTNT_AVAILABLE" statusIdTo="CTNT_DEACTIVATED" transitionName="Available to Deactivated"/>
 
-  <SubscriptionType description="Newsgroup" hasTable="N" parentTypeId="" subscriptionTypeId="NEWSGROUP_SUBSCR"/>
+  <!--<SubscriptionType description="Newsgroup" hasTable="N" parentTypeId="" subscriptionTypeId="NEWSGROUP_SUBSCR"/>
   <SubscriptionType description="Other" hasTable="N" parentTypeId="" subscriptionTypeId="OTHER_SUBSCR"/>
-  <SubscriptionType description="Product Info" hasTable="N" parentTypeId="" subscriptionTypeId="PRODUCT_INFO_SUBSCR"/>
+  <SubscriptionType description="Product Info" hasTable="N" parentTypeId="" subscriptionTypeId="PRODUCT_INFO_SUBSCR"/>-->
 
   <!-- website data -->
   <WebSiteContentType webSiteContentTypeId="BLOG_ROOT" description="Blog Root" hasTable="N" parentTypeId=""/>
@@ -190,7 +190,7 @@ under the License.
   <WebSiteContentType webSiteContentTypeId="PUBLISH_POINT" description="Publish Point" hasTable="N" parentTypeId=""/>
 
   <!-- survey data -->
-  <SurveyApplType surveyApplTypeId="CART_ADD" description="Add-To Cart"/>
+  <!--<SurveyApplType surveyApplTypeId="CART_ADD" description="Add-To Cart"/>
   <SurveyApplType surveyApplTypeId="CHECK_OUT" description="Check-Out"/>
   <SurveyApplType surveyApplTypeId="GENERAL_POLL" description="General Poll"/>
   <SurveyApplType surveyApplTypeId="RANDOM_POLL" description="Random Poll"/>
@@ -219,7 +219,7 @@ under the License.
   <SurveyQuestionType surveyQuestionTypeId="TEXT_SHORT" description="Short Text (single-line)"/>
   <SurveyQuestionType surveyQuestionTypeId="TEXT_LONG" description="Long Text (single-line)"/>
   <SurveyQuestionType surveyQuestionTypeId="TEXTAREA" description="Text (multi-line)"/>
-  <SurveyQuestionType surveyQuestionTypeId="URL" description="URL"/>
+  <SurveyQuestionType surveyQuestionTypeId="URL" description="URL"/>-->
 
   <DataResource dataResourceId="STDWRAP001" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
   <ElectronicText dataResourceId="STDWRAP001">

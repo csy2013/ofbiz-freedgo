@@ -219,9 +219,9 @@ under the License.
     <relation type="one" fk-name="CNCT_LST_CST_CL" rel-entity-name="ContactList">
       <key-map field-name="contactListId"/>
     </relation>
-    <relation type="one" fk-name="CNCT_LST_CST_CE" rel-entity-name="CommunicationEvent">
+    <!--<relation type="one" fk-name="CNCT_LST_CST_CE" rel-entity-name="CommunicationEvent">
       <key-map field-name="communicationEventId"/>
-    </relation>
+    </relation>-->
     <relation type="one" fk-name="CNCT_LST_CST_CM" rel-entity-name="ContactMech">
       <key-map field-name="contactMechId"/>
     </relation>

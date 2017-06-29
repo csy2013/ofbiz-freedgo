@@ -24,13 +24,13 @@ under the License.
     <load-component component-location="partyService"/>
     <load-component component-location="securityext"/>
     <load-component component-location="contentService"/>
-    <load-component component-location="workeffortService"/>
+    <!--<load-component component-location="workeffortService"/>-->
     <load-component component-location="productService"/>
-    <load-component component-location="manufacturingService"/>
+    <!--<load-component component-location="manufacturingService"/>-->
     <load-component component-location="accountService"/>
     <load-component component-location="orderService"/>
-    <load-component component-location="humanresService"/>
-    <load-component component-location="marketService"/>
+    <!--<load-component component-location="humanresService"/>-->
+    <!--<load-component component-location="marketService"/>-->
     <load-component component-location="commonService"/>
 
     <!-- common component used by most other components last because it uses info from most components-->

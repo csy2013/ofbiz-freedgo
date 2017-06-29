@@ -107,7 +107,7 @@ under the License.
     <ContentAssoc contentIdTo="CDI1201" contentId="CDI1105" contentAssocTypeId="COMPDOC_PART" fromDate="2006-01-12 01:01:01" sequenceNum="0050"/>
 
         <!-- sample revision entries for CDT CDT1201 -->
-    <ContentRevision contentId="CDT1201" contentRevisionSeqId="000002"/>
+    <!--<ContentRevision contentId="CDT1201" contentRevisionSeqId="000002"/>
     <ContentRevisionItem contentId="CDT1201" contentRevisionSeqId="000002" itemContentId="CDT1101"/>
     <ContentRevisionItem contentId="CDT1201" contentRevisionSeqId="000002" itemContentId="CDT1102"/>
     <ContentRevisionItem contentId="CDT1201" contentRevisionSeqId="000002" itemContentId="CDT1103"/>
@@ -144,7 +144,7 @@ under the License.
     <ContentRevision contentId="CDI1201" contentRevisionSeqId="000013"/>
     <ContentRevisionItem contentId="CDI1201" contentRevisionSeqId="000013" itemContentId="CDI1103" oldDataResourceId="DR1103a" newDataResourceId="DR1103b"/>
     <ContentRevision contentId="CDI1201" contentRevisionSeqId="000014"/>
-    <ContentRevisionItem contentId="CDI1201" contentRevisionSeqId="000014" itemContentId="CDI1105" oldDataResourceId="DR1105a" newDataResourceId="DR1105b"/>
+    <ContentRevisionItem contentId="CDI1201" contentRevisionSeqId="000014" itemContentId="CDI1105" oldDataResourceId="DR1105a" newDataResourceId="DR1105b"/>-->
 
 
     <!-- sample approval entries for CDT CD0001 -->

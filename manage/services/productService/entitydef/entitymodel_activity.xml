@@ -59,10 +59,10 @@
         <field name="virtualProductEndDate" type="date-time"></field>
         <prim-key field="activityId"/>
         <prim-key field="productId"/>
-        <relation type="one" rel-entity-name="ProductActivity">
+        <relation type="one" rel-entity-name="ProductActivity" fk-name="PAG_PRA_REL">
             <key-map field-name="activityId"/>
         </relation>
-        <relation type="one" rel-entity-name="Product">
+        <relation type="one" rel-entity-name="Product" fk-name="PAG_PRO_REL">
             <key-map field-name="productId"/>
         </relation>
     </entity>
@@ -84,10 +84,10 @@
         <field name="levelName" type="name"></field>
         <prim-key field="activityId" />
         <prim-key field="levelId"/>
-        <relation type="one" rel-entity-name="ProductActivity">
+        <relation type="one" rel-entity-name="ProductActivity" fk-name="PAPL_PAY_REL">
             <key-map field-name="activityId"/>
         </relation>
-        <relation type="one" rel-entity-name="PartyLevelType">
+        <relation type="one" rel-entity-name="PartyLevelType" fk-name="PAPL_PLT_REL">
             <key-map field-name="levelId"/>
         </relation>
     </entity>

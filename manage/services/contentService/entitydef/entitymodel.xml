@@ -44,7 +44,7 @@ under the License.
     <!-- org.ofbiz.content.compdoc -->
     <!-- ========================================================= -->
 
-    <view-entity entity-name="AssocRevisionItemView"
+    <!--<view-entity entity-name="AssocRevisionItemView"
                  package-name="org.ofbiz.content.compdoc"
                  title="Latest Revision Children">
         <member-entity entity-alias="CRI" entity-name="ContentRevisionItem"/>
@@ -124,7 +124,7 @@ under the License.
         <view-link entity-alias="CA" rel-entity-alias="CO" rel-optional="true">
             <key-map field-name="contentIdTo" rel-field-name="contentId"/>
         </view-link>
-    </view-entity>
+    </view-entity>-->
     <!--
     <view-entity entity-name="ContentRevisionItemAndContentApprovalView"
                 package-name="org.ofbiz.content.content"
@@ -260,10 +260,10 @@ under the License.
         <relation type="one" fk-name="CNTNTAPPR_CNT" rel-entity-name="Content">
             <key-map field-name="contentId"/>
         </relation>
-        <relation type="one-nofk" rel-entity-name="ContentRevision">
+       <!-- <relation type="one-nofk" rel-entity-name="ContentRevision">
             <key-map field-name="contentId"/>
             <key-map field-name="contentRevisionSeqId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="CNTNTAPPR_PTY" rel-entity-name="Party">
             <key-map field-name="partyId"/>
         </relation>
@@ -315,9 +315,9 @@ under the License.
         <relation type="one" fk-name="CONTENTASSC_LMBUR" title="LastModifiedBy" rel-entity-name="UserLogin">
             <key-map field-name="lastModifiedByUserLogin" rel-field-name="userLoginId"/>
         </relation>
-        <relation type="one" fk-name="CONTENTASSC_PRED" rel-entity-name="ContentAssocPredicate">
+        <!--<relation type="one" fk-name="CONTENTASSC_PRED" rel-entity-name="ContentAssocPredicate">
             <key-map field-name="contentAssocPredicateId"/>
-        </relation>
+        </relation>-->
         <relation type="one" fk-name="CONTENTASSC_DTSRC" rel-entity-name="DataSource">
             <key-map field-name="dataSourceId"/>
         </relation>
@@ -415,14 +415,14 @@ under the License.
             <key-map field-name="caContentIdTo" rel-field-name="contentId"/>
         </relation>
     </view-entity>
-    <entity entity-name="ContentAssocPredicate"
+    <!--<entity entity-name="ContentAssocPredicate"
             package-name="org.ofbiz.content.content"
             default-resource-name="ContentEntityLabels"
             title="Content Association Predicate Entity">
         <field name="contentAssocPredicateId" type="id-ne"></field>
         <field name="description" type="description"></field>
         <prim-key field="contentAssocPredicateId"/>
-    </entity>
+    </entity>-->
     <entity entity-name="ContentAssocType"
             package-name="org.ofbiz.content.content"
             default-resource-name="ContentEntityLabels"
@@ -459,7 +459,7 @@ under the License.
             <key-map field-name="contentIdTo" rel-field-name="contentId"/>
         </view-link>
     </view-entity>
-    <entity entity-name="ContentAttribute"
+     <entity entity-name="ContentAttribute"
             package-name="org.ofbiz.content.content"
             title="Content Attribute Entity">
         <field name="contentId" type="id-ne"></field>
@@ -512,7 +512,7 @@ under the License.
             <key-map field-name="contentId"/>
         </relation>
     </view-entity>
-    <entity entity-name="ContentMetaData"
+    <!--<entity entity-name="ContentMetaData"
             package-name="org.ofbiz.content.content"
             title="Content Meta-Data Predicate Entity">
         <field name="contentId" type="id-ne"></field>
@@ -531,7 +531,7 @@ under the License.
         <relation type="one" fk-name="CONTENTMD_DTSRC" rel-entity-name="DataSource">
             <key-map field-name="dataSourceId"/>
         </relation>
-    </entity>
+    </entity>-->
     <entity entity-name="ContentOperation"
             package-name="org.ofbiz.content.content"
             default-resource-name="ContentEntityLabels"
@@ -592,7 +592,7 @@ under the License.
         <field name="description" type="description"></field>
         <prim-key field="contentPurposeTypeId"/>
     </entity>
-    <entity entity-name="ContentRevision"
+    <!--<entity entity-name="ContentRevision"
             package-name="org.ofbiz.content.content"
             title="Content Revision Entity">
         <field name="contentId" type="id-ne"></field>
@@ -607,8 +607,8 @@ under the License.
         <relation type="one" fk-name="CNTNTREV_CBPTY" title="CommittedBy" rel-entity-name="Party">
             <key-map field-name="committedByPartyId" rel-field-name="partyId"/>
         </relation>
-    </entity>
-    <entity entity-name="ContentRevisionItem"
+    </entity>-->
+    <!--<entity entity-name="ContentRevisionItem"
             package-name="org.ofbiz.content.content"
             title="Content Revision Entity">
         <field name="contentId" type="id-ne"></field>
@@ -629,7 +629,7 @@ under the License.
         <relation type="one" fk-name="CNTNTREVIT_NEWDR" title="New" rel-entity-name="DataResource">
             <key-map field-name="newDataResourceId" rel-field-name="dataResourceId"/>
         </relation>
-    </entity>
+    </entity>-->
     <entity entity-name="ContentRole"
             package-name="org.ofbiz.content.content"
             title="Content Role Entity">
@@ -676,9 +676,9 @@ under the License.
         <relation type="one" fk-name="CONTENT_TPAT_TYP" rel-entity-name="ContentType">
             <key-map field-name="contentTypeId"/>
         </relation>
-        <relation type="many" rel-entity-name="ContentAttribute">
+        <!--<relation type="many" rel-entity-name="ContentAttribute">
             <key-map field-name="attrName"/>
-        </relation>
+        </relation>-->
         <relation type="many" rel-entity-name="Content">
             <key-map field-name="contentTypeId"/>
         </relation>
@@ -825,12 +825,12 @@ under the License.
         <relation type="one" fk-name="DATA_REC_LMB_ULGN" title="LastModifiedBy" rel-entity-name="UserLogin">
             <key-map field-name="lastModifiedByUserLogin" rel-field-name="userLoginId"/>
         </relation>
-        <relation type="one" fk-name="DATA_REC_SURVEY" rel-entity-name="Survey">
+        <!--<relation type="one" fk-name="DATA_REC_SURVEY" rel-entity-name="Survey">
             <key-map field-name="surveyId"/>
         </relation>
         <relation type="one" fk-name="DATA_REC_SVRSP" rel-entity-name="SurveyResponse">
             <key-map field-name="surveyResponseId"/>
-        </relation>
+        </relation>-->
     </entity>
     <entity entity-name="DataResourceAttribute"
             package-name="org.ofbiz.content.data"
@@ -897,7 +897,7 @@ under the License.
             <key-map field-name="lastModifiedByUserLogin" rel-field-name="userLoginId"/>
         </relation>
     </view-entity>
-    <entity entity-name="DataResourceMetaData"
+    <!--<entity entity-name="DataResourceMetaData"
             package-name="org.ofbiz.content.data"
             title="Data Resource Meta-Data Predicate Entity">
         <field name="dataResourceId" type="id-ne"></field>
@@ -916,8 +916,8 @@ under the License.
         <relation type="one" fk-name="DATA_MD_DTSRC" rel-entity-name="DataSource">
             <key-map field-name="dataSourceId"/>
         </relation>
-    </entity>
-    <entity entity-name="DataResourcePurpose"
+    </entity>-->
+    <!--<entity entity-name="DataResourcePurpose"
             package-name="org.ofbiz.content.data"
             title="Data Object Purpose Entity">
         <field name="dataResourceId" type="id-ne"></field>
@@ -930,7 +930,7 @@ under the License.
         <relation type="one" fk-name="DATA_REC_PRP_TYPE" rel-entity-name="ContentPurposeType">
             <key-map field-name="contentPurposeTypeId"/>
         </relation>
-    </entity>
+    </entity>-->
     <entity entity-name="DataResourceRole"
             package-name="org.ofbiz.content.data"
             title="DataResource Role Entity">
@@ -1075,7 +1075,7 @@ under the License.
     <!-- org.ofbiz.content.document -->
     <!-- ========================================================= -->
 
-    <entity entity-name="Document"
+    <!--<entity entity-name="Document"
             package-name="org.ofbiz.content.document"
             title="Document Entity">
         <field name="documentId" type="id-ne"></field>
@@ -1140,13 +1140,13 @@ under the License.
         <relation type="many" rel-entity-name="Document">
             <key-map field-name="documentTypeId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.content.preference -->
     <!-- ========================================================= -->
 
-    <entity entity-name="WebPreferenceType"
+    <!--<entity entity-name="WebPreferenceType"
             package-name="org.ofbiz.content.preference"
             title="Web Preference Type Entity">
         <field name="webPreferenceTypeId" type="id-ne"></field>
@@ -1176,13 +1176,13 @@ under the License.
         <relation type="one" fk-name="WEB_PREF_PARTY" rel-entity-name="Party">
             <key-map field-name="partyId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.content.survey -->
     <!-- ========================================================= -->
 
-    <entity entity-name="Survey"
+    <!--<entity entity-name="Survey"
             package-name="org.ofbiz.content.survey"
             title="Survey Entity">
         <field name="surveyId" type="id-ne"/>
@@ -1536,7 +1536,7 @@ under the License.
         <relation type="one" fk-name="SRVYTRG_SRVYAPT" rel-entity-name="SurveyApplType">
             <key-map field-name="surveyApplTypeId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.content.website -->
@@ -1780,7 +1780,7 @@ under the License.
         <field name="createdByUserLogin" type="id-vlong"></field>
         <prim-key field="siteIndexTemplateId"/>
         <relation type="one" fk-name="SIT_TO_SITE" rel-entity-name="WebSite">
-            <key-map field-name="WebSiteId"/>
+            <key-map field-name="webSiteId"/>
         </relation>
     </entity>
 
@@ -1817,8 +1817,8 @@ under the License.
         <field name="createDate" type="date-time"/>
         <field name="createdByUserLogin" type="id-vlong"></field>
         <prim-key field="specialPageId"/>
-        <relation type="one" fk-name="SIT_TO_SITE" rel-entity-name="WebSite">
-            <key-map field-name="WebSiteId"/>
+        <relation type="one" fk-name="SPGE_TO_SITE" rel-entity-name="WebSite">
+            <key-map field-name="webSiteId"/>
         </relation>
     </entity>
 
@@ -1914,7 +1914,7 @@ under the License.
         <relation type="one" fk-name="ARTI_TO_TYPE" rel-entity-name="ArticleType">
             <key-map field-name="articleTypeId"/>
         </relation>
-        <relation type="one" rel-entity-name="WebSite" fk-name="ADVERT_TO_SITE">
+        <relation type="one" rel-entity-name="WebSite" fk-name="ARTICLE_TO_SITE">
             <key-map field-name="webSiteId"/>
         </relation>
     </entity>
@@ -1932,7 +1932,7 @@ under the License.
         <field name="sequenceNum" type="numeric"></field>
         <field name="relationUrl" type="url"></field>
         <prim-key field="articleContentId"/>
-        <relation type="one" rel-entity-name="Article" fk-name="ADV_CON_ADV">
+        <relation type="one" rel-entity-name="Article" fk-name="ART_CON_ADV">
             <key-map field-name="articleId"/>
         </relation>
     </entity>

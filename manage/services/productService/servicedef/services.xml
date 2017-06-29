@@ -553,7 +553,7 @@ under the License.
     </service>
 
     <!-- SupplierProduct Services -->
-    <service name="createSupplierProduct" default-entity-name="SupplierProduct" engine="simple"
+    <!--<service name="createSupplierProduct" default-entity-name="SupplierProduct" engine="simple"
              location="component://productService/script/org/ofbiz/product/supplier/SupplierProductServices.xml" invoke="createSupplierProduct" auth="true">
         <description>Create a new SupplierProduct record</description>
         <required-permissions join-type="AND">
@@ -582,7 +582,7 @@ under the License.
         <auto-attributes mode="IN" include="pk" optional="false"/>
     </service>
 
-    <!-- supplier product feature services -->
+    &lt;!&ndash; supplier product feature services &ndash;&gt;
     <service name="createSupplierProductFeature" default-entity-name="SupplierProductFeature" engine="simple"
              location="component://productService/script/org/ofbiz/product/supplier/SupplierProductServices.xml" invoke="createSupplierProductFeature" auth="true">
         <description>Create a new SupplierProductFeature record</description>
@@ -616,7 +616,7 @@ under the License.
         <attribute name="productFeatureId" type="String" mode="IN" optional="false"/>
         <attribute name="partyId" type="String" mode="IN" optional="true"/>
         <attribute name="supplierProductFeatures" type="java.util.List" mode="OUT" optional="false"/>
-    </service>
+    </service>-->
 
     <service name="createProductMaint" default-entity-name="ProductMaint" engine="simple"
              location="component://productService/script/org/ofbiz/product/product/ProductServices.xml" invoke="createProductMaint" auth="true">
@@ -670,7 +670,7 @@ under the License.
         <description>Delete a ProductGeo</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
-    <service name="createCommunicationEventProduct" engine="simple"
+    <!--<service name="createCommunicationEventProduct" engine="simple"
              location="component://productService/script/org/ofbiz/product/communication/CommunicationEventServices.xml" invoke="createCommunicationEventProduct" auth="true">
         <description>Create a Communication Event Product</description>
         <auto-attributes entity-name="CommunicationEventProduct" include="pk" mode="IN" optional="false"/>
@@ -679,7 +679,7 @@ under the License.
              location="component://productService/script/org/ofbiz/product/communication/CommunicationEventServices.xml" invoke="removeCommunicationEventProduct" auth="true">
         <description>Remove a Communication Event Product</description>
         <auto-attributes entity-name="CommunicationEventProduct" include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- ======================================== -->
     <!-- Product Catalog Services -->
@@ -1774,7 +1774,7 @@ under the License.
         <attribute name="productsUpdated" mode="OUT" type="Integer" optional="true"/>
     </service>
 
-    <service name="createMarketInterest" default-entity-name="MarketInterest" engine="entity-auto" invoke="create" auth="true">
+    <!--<service name="createMarketInterest" default-entity-name="MarketInterest" engine="entity-auto" invoke="create" auth="true">
         <description>Create a Market Interest</description>
         <permission-service service-name="productGenericPermission" main-action="CREATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
@@ -1792,7 +1792,7 @@ under the License.
         <description>Delete a Market Interest</description>
         <permission-service service-name="productGenericPermission" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
-    </service>
+    </service>-->
 
     <!-- Product GroupOrder Services -->
     <service name="createProductGroupOrder" default-entity-name="ProductGroupOrder" engine="simple"

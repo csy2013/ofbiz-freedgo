@@ -19,7 +19,7 @@ under the License.
 -->
 
 <entity-engine-xml>
-  <AgreementItemType agreementItemTypeId="SUBAGREEMENT" description="Sub-Agreement" hasTable="N" parentTypeId=""/>
+  <!--<AgreementItemType agreementItemTypeId="SUBAGREEMENT" description="Sub-Agreement" hasTable="N" parentTypeId=""/>
   <AgreementItemType agreementItemTypeId="AGREEMENT_EXHIBIT" description="Exhibit" hasTable="N" parentTypeId=""/>
   <AgreementItemType agreementItemTypeId="AGREEMENT_PRICING_PR" description="Pricing" hasTable="N" parentTypeId=""/>
   <AgreementItemType agreementItemTypeId="AGREEMENT_SECTION" description="Section" hasTable="N" parentTypeId=""/>
@@ -31,7 +31,7 @@ under the License.
   <AgreementType agreementTypeId="EMPLOYMENT_AGREEMENT" description="Employment" hasTable="N" parentTypeId=""/>
   <AgreementType agreementTypeId="OTHER_AGREEMENT" description="Other" hasTable="N" parentTypeId=""/>
   <AgreementType agreementTypeId="COMMISSION_AGREEMENT" description="Commission" hasTable="N" parentTypeId=""/>
-  <AgreementType agreementTypeId="EULA" description="End User License Agreement" hasTable="N" parentTypeId=""/>
+  <AgreementType agreementTypeId="EULA" description="End User License Agreement" hasTable="N" parentTypeId=""/>-->
 
   <ContactMechPurposeType contactMechPurposeTypeId="SHIPPING_LOCATION" description="Shipping Destination Address"/>
   <ContactMechPurposeType contactMechPurposeTypeId="SHIP_ORIG_LOCATION" description="Shipping Origin Address"/>
@@ -114,7 +114,7 @@ under the License.
   <ContactMechTypePurpose contactMechPurposeTypeId="LINKEDIN_URL" contactMechTypeId="WEB_ADDRESS"/>
 
   <!-- communication events -->
-  <CommunicationEventPrpTyp communicationEventPrpTypId="ACTIVITY_REQUEST" description="Activity Request" hasTable="N" parentTypeId=""/>
+  <!--<CommunicationEventPrpTyp communicationEventPrpTypId="ACTIVITY_REQUEST" description="Activity Request" hasTable="N" parentTypeId=""/>
   <CommunicationEventPrpTyp communicationEventPrpTypId="CONFERENCE" description="Conference" hasTable="N" parentTypeId=""/>
   <CommunicationEventPrpTyp communicationEventPrpTypId="CUSTOMER_SERVICE_CAL" description="Customer Service Call" hasTable="N" parentTypeId=""/>
   <CommunicationEventPrpTyp communicationEventPrpTypId="INQUIRY" description="Inquiry" hasTable="N" parentTypeId=""/>
@@ -130,7 +130,7 @@ under the License.
   <CommunicationEventType communicationEventTypeId="PHONE_COMMUNICATION" description="Phone" hasTable="N" parentTypeId="" contactMechTypeId="TELECOM_NUMBER"/>
   <CommunicationEventType communicationEventTypeId="WEB_SITE_COMMUNICATI" description="Web Site" hasTable="N" parentTypeId="" contactMechTypeId="WEB_ADDRESS"/>
   <CommunicationEventType communicationEventTypeId="COMMENT_NOTE" description="Comment/Note" hasTable="N" parentTypeId="" contactMechTypeId="INTERNAL_PARTYID"/>
-  <CommunicationEventType communicationEventTypeId="AUTO_EMAIL_COMM" description="Auto Email" hasTable="N" parentTypeId="" contactMechTypeId="EMAIL_ADDRESS"/>
+  <CommunicationEventType communicationEventTypeId="AUTO_EMAIL_COMM" description="Auto Email" hasTable="N" parentTypeId="" contactMechTypeId="EMAIL_ADDRESS"/>-->
 
   <!-- party content types -->
   <PartyContentType description="Internal Content" parentTypeId="" partyContentTypeId="INTERNAL"/>
@@ -281,10 +281,10 @@ under the License.
   <PartyClassificationType description="SIC Code" hasTable="N" parentTypeId="" partyClassificationTypeId="SIC_CODE"/>
   <PartyClassificationType description="Ownership" hasTable="N" parentTypeId="" partyClassificationTypeId="OWNERSHIP"/>
 
-  <PartyQualType description="Work experience" hasTable="N" parentTypeId="" partyQualTypeId="EXPERIENCE"/>
+  <!--<PartyQualType description="Work experience" hasTable="N" parentTypeId="" partyQualTypeId="EXPERIENCE"/>
   <PartyQualType description="Certification" hasTable="N" parentTypeId="" partyQualTypeId="CERTIFICATION"/>
   <PartyQualType description="Degree" hasTable="N" parentTypeId="" partyQualTypeId="DEGREE"/>
-
+-->
   <!-- NOTE: The partyRelationshipName describes the TO party, ie A is a customer of B, so A is the partyTo and B is the partyFrom -->
   <PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Agent" partyRelationshipTypeId="AGENT" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
   <PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Child" partyRelationshipTypeId="CHILD" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
@@ -416,7 +416,7 @@ under the License.
   <StatusValidChange condition="" statusId="PARTYINV_PENDING" statusIdTo="PARTYINV_ACCEPTED" transitionName="Accepted"/>
   <StatusValidChange condition="" statusId="PARTYINV_PENDING" statusIdTo="PARTYINV_CANCELLED" transitionName="Cancelled"/>
 
-  <TermType description="Financial" hasTable="N" parentTypeId="" termTypeId="FINANCIAL_TERM"/>
+  <!--<TermType description="Financial" hasTable="N" parentTypeId="" termTypeId="FINANCIAL_TERM"/>
   <TermType description="Payment (net days)" hasTable="N" parentTypeId="FINANCIAL_TERM" termTypeId="FIN_PAYMENT_TERM"/>
   <TermType description="Payment net days, part 1" hasTable="N" parentTypeId="FIN_PAYMENT_TERM" termTypeId="FIN_PAY_NETDAYS_1"/>
   <TermType description="Payment net days, part 2" hasTable="N" parentTypeId="FIN_PAYMENT_TERM" termTypeId="FIN_PAY_NETDAYS_2"/>
@@ -460,7 +460,7 @@ under the License.
   <TermType description="Vendor Customer ID" parentTypeId="PURCHASING" termTypeId="PURCH_VENDOR_ID"/>
   <TermType description="Preferred Freight" parentTypeId="PURCHASING" termTypeId="PURCH_FREIGHT"/>
 
-  <TermType description="Other" hasTable="N" parentTypeId="" termTypeId="OTHER_TERM"/>
+  <TermType description="Other" hasTable="N" parentTypeId="" termTypeId="OTHER_TERM"/>-->
 
   <!-- User preferences data -->
   <UserPrefGroupType userPrefGroupTypeId="GLOBAL_PREFERENCES" description="Global preferences"/>

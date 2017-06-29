@@ -44,10 +44,10 @@
   <StatusItem description="Partly Reconciled" sequenceId="02" statusCode="PARTLY_RECONCILED" statusId="AES_PARTLY_RECON" statusTypeId="ACCTG_ENREC_STATUS"/>
   <StatusItem description="Reconciled" sequenceId="03" statusCode="RECONCILED" statusId="AES_RECONCILED" statusTypeId="ACCTG_ENREC_STATUS"/>
 
-  <BudgetItemType budgetItemTypeId="REQUIREMENT_BUDGET_A" description="Requirement" hasTable="Y" parentTypeId=""/>
+  <!--<BudgetItemType budgetItemTypeId="REQUIREMENT_BUDGET_A" description="Requirement" hasTable="Y" parentTypeId=""/>-->
 
-  <BudgetType budgetTypeId="CAPITAL_BUDGET" description="Capital" hasTable="N" parentTypeId=""/>
-  <BudgetType budgetTypeId="OPERATING_BUDGET" description="Operating" hasTable="N" parentTypeId=""/>
+  <!--<BudgetType budgetTypeId="CAPITAL_BUDGET" description="Capital" hasTable="N" parentTypeId=""/>
+  <BudgetType budgetTypeId="OPERATING_BUDGET" description="Operating" hasTable="N" parentTypeId=""/>-->
 
   <EnumerationType description="Gift Card Fulfillment" enumTypeId="GC_FULFILL" hasTable="N" parentTypeId=""/>
   <Enumeration description="Activate" enumCode="ACTIVATE" enumId="GC_ACTIVATE" sequenceId="01" enumTypeId="GC_FULFILL"/>
@@ -117,7 +117,7 @@
   <Enumeration description="Replenishment" enumId="FATR_REPLENISH" enumCode="REPLENISH" enumTypeId="FINACCT_TRANS_REASON" sequenceId="03"/>
   <Enumeration description="Refund" enumId="FATR_REFUND" enumCode="REFUND" enumTypeId="FINACCT_TRANS_REASON" sequenceId="04"/>
 
-  <FixedAssetType description="Equipment" fixedAssetTypeId="EQUIPMENT" hasTable="N" parentTypeId=""/>
+  <!--<FixedAssetType description="Equipment" fixedAssetTypeId="EQUIPMENT" hasTable="N" parentTypeId=""/>
   <FixedAssetType description="The fixed asset used in the operation-routing definition" fixedAssetTypeId="PRODUCTION_EQUIPMENT" hasTable="N" parentTypeId=""/>
   <FixedAssetType description="Group of machines, used for task and routing definition" fixedAssetTypeId="GROUP_EQUIPMENT" hasTable="N" parentTypeId=""/>
   <FixedAssetType description="Other Fixed Asset" fixedAssetTypeId="OTHER_FIXED_ASSET" hasTable="N" parentTypeId=""/>
@@ -125,7 +125,7 @@
   <FixedAssetType description="Vehicle" fixedAssetTypeId="VEHICLE" hasTable="N" parentTypeId=""/>
   <FixedAssetType description="Real Estate" fixedAssetTypeId="REAL_ESTATE" hasTable="N" parentTypeId=""/>
   <FixedAssetType description="Computer Software" fixedAssetTypeId="COMPUTER_SOFTWARE" hasTable="N" parentTypeId=""/>
-  <FixedAssetType description="Computer Hardware" fixedAssetTypeId="COMPUTER_HARDWARE" hasTable="N" parentTypeId=""/>
+  <FixedAssetType description="Computer Hardware" fixedAssetTypeId="COMPUTER_HARDWARE" hasTable="N" parentTypeId=""/>-->
 
   <EnumerationType description="Fixed Asset Class" enumTypeId="FXAST_CLASS" hasTable="N" parentTypeId=""/>
   <Enumeration description="Boat" enumCode="BOAT" enumId="FAC_BOAT" sequenceId="01" enumTypeId="FXAST_CLASS"/>
@@ -154,13 +154,13 @@
   <Enumeration description="Application Software" enumCode="APP_SOFTWARE" enumId="FAC_APP_SOFTWARE" sequenceId="01" enumTypeId="FXAST_COMPU_SOFTWARE"/>
   <Enumeration description="Utility Software" enumCode="UTIL_SOFTWARE" enumId="FAC_UTIL_SOFTWARE" sequenceId="01" enumTypeId="FXAST_COMPU_SOFTWARE"/>
 
-  <FixedAssetIdentType description="Mfg Serial Number" fixedAssetIdentTypeId="MFG_SERIAL"/>
+  <!--<FixedAssetIdentType description="Mfg Serial Number" fixedAssetIdentTypeId="MFG_SERIAL"/>
   <FixedAssetIdentType description="Vendor Tracking/Inventory Number" fixedAssetIdentTypeId="TRACKING_VENDOR"/>
   <FixedAssetIdentType description="Internal Tracking Label Number" fixedAssetIdentTypeId="TRACKING_LABEL"/>
   <FixedAssetIdentType description="Vehicle Identification Number (VIN)" fixedAssetIdentTypeId="VIN"/>
   <FixedAssetIdentType description="Gas Card Number 1" fixedAssetIdentTypeId="GAS_CARD1"/>
   <FixedAssetIdentType description="Gas Card Number 2" fixedAssetIdentTypeId="GAS_CARD2"/>
-  <FixedAssetIdentType description="Gas Card Number 3" fixedAssetIdentTypeId="GAS_CARD3"/>
+  <FixedAssetIdentType description="Gas Card Number 3" fixedAssetIdentTypeId="GAS_CARD3"/>-->
 
   <StatusType description="Fixed Asset Maintenance" hasTable="N" parentTypeId="" statusTypeId="FIXEDAST_MNT_STATUS"/>
   <StatusItem description="Created" sequenceId="01" statusCode="CREATED" statusId="FAM_CREATED" statusTypeId="FIXEDAST_MNT_STATUS"/>
@@ -181,8 +181,8 @@
   <RoleType description="Maintenance Manager or Supervisor" hasTable="N" parentTypeId="FAM_ASSIGNEE" roleTypeId="FAM_MANAGER"/>
   <RoleType description="Maintenance Worker" hasTable="N" parentTypeId="FAM_ASSIGNEE" roleTypeId="FAM_WORKER"/>
 
-  <FixedAssetProductType description="Use of Asset" fixedAssetProductTypeId="FAPT_USE"/>
-  <FixedAssetProductType description="Sale of Asset" fixedAssetProductTypeId="FAPT_SALE"/>
+  <!--<FixedAssetProductType description="Use of Asset" fixedAssetProductTypeId="FAPT_USE"/>-->
+  <!--<FixedAssetProductType description="Sale of Asset" fixedAssetProductTypeId="FAPT_SALE"/>-->
 
   <!-- These classes are used to classify gl accounts for financial statement purposes: balance sheet, income statement, cash flow statement,
       statement of shareholders' equity.  We could get fancier with different types of accounts: Investments vs PP&E, classes of equity,
@@ -964,8 +964,8 @@
   <Enumeration description="Enforced Sequence (no gaps, per organization)" enumCode="ENF_SEQ" enumId="ODRSQ_ENF_SEQ" sequenceId="02" enumTypeId="ORDER_SEQMD"/>
 
   <!-- Standard Industrial Cost Types -->
-  <FixedAssetStdCostType description="Standard Setup Cost" hasTable="N" parentTypeId="" fixedAssetStdCostTypeId="SETUP_COST"/>
-  <FixedAssetStdCostType description="Standard Usage Cost" hasTable="N" parentTypeId="" fixedAssetStdCostTypeId="USAGE_COST"/>
+  <!--<FixedAssetStdCostType description="Standard Setup Cost" hasTable="N" parentTypeId="" fixedAssetStdCostTypeId="SETUP_COST"/>-->
+  <!--<FixedAssetStdCostType description="Standard Usage Cost" hasTable="N" parentTypeId="" fixedAssetStdCostTypeId="USAGE_COST"/>-->
 
   <!-- Example: California is a tax exemption inheritor of the USA, there is a tax exemption inheritance from USA to CA, taxAuthGeoId=USA toTaxAuthGeoId=CA -->
   <TaxAuthorityAssocType taxAuthorityAssocTypeId="EXEMPT_INHER" description="Exemption Inheritance"/>
@@ -992,8 +992,8 @@
   <PeriodType description="Rate amount per Quarter" periodTypeId="RATE_QUARTER" periodLength="3" uomId="TF_mon"/>
 
   <!-- create 'Not Applicable'  records-->
-  <WorkEffort workEffortId="_NA_"/>
-  <EmplPositionType emplPositionTypeId="_NA_"/>
+  <!--<WorkEffort workEffortId="_NA_"/>-->
+  <!--<EmplPositionType emplPositionTypeId="_NA_"/>-->
 
   <!-- Points of Title Transfer -->
   <EnumerationType description="Points of Title Transfer" enumTypeId="PTSOFTTFR" hasTable="N" parentTypeId=""/>

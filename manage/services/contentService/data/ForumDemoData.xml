@@ -31,15 +31,15 @@ under the License.
     <!-- forums -->
     <Content contentId="ASK" contentTypeId="WEB_SITE_PUB_PT" ownerContentId="WebStoreFORUM" contentName="Ask the Experts" description="Ask the Experts" childBranchCount="0"/>
     <ContentAssoc contentIdTo="ASK" contentId="WebStoreFORUM" contentAssocTypeId="SUBSITE" fromDate="2004-03-01 12:00:00.0" createdDate="2004-03-01 12:00:00.0" createdByUserLogin="admin"/>
-    <ContentAttribute contentId="ASK" attrName="publishOperation" attrValue="HAS_USER_ROLE"/><!-- do we need this? -->
+    <!--<ContentAttribute contentId="ASK" attrName="publishOperation" attrValue="HAS_USER_ROLE"/>&lt;!&ndash; do we need this? &ndash;&gt;-->
 
     <Content contentId="GIZMOS" contentTypeId="WEB_SITE_PUB_PT" ownerContentId="WebStoreFORUM" statusId="CTNT_PUBLISHED" contentName="Gizmos" description="Gizmos" childBranchCount="3" createdDate="2004-03-01 12:00:00.0" createdByUserLogin="admin"/>
     <ContentAssoc contentIdTo="GIZMOS" contentId="WebStoreFORUM" contentAssocTypeId="SUBSITE" fromDate="2004-03-01 12:00:00.0" createdDate="2004-03-01 12:00:00.0" createdByUserLogin="admin"/>
-    <ContentAttribute contentId="GIZMOS" attrName="publishOperation" attrValue="HAS_USER_ROLE"/>
+    <!--<ContentAttribute contentId="GIZMOS" attrName="publishOperation" attrValue="HAS_USER_ROLE"/>-->
 
     <Content contentId="WIDGETS" contentTypeId="WEB_SITE_PUB_PT" ownerContentId="WebStoreFORUM" statusId="CTNT_IN_PROGRESS" contentName="Widgets" description="Widgets" childBranchCount="0" createdDate="2004-03-01 12:00:00.0" createdByUserLogin="admin"/>
     <ContentAssoc contentIdTo="WIDGETS" contentId="WebStoreFORUM" contentAssocTypeId="SUBSITE" fromDate="2004-03-01 12:00:00.0" createdDate="2004-03-01 12:00:00.0" createdByUserLogin="admin"/>
-    <ContentAttribute contentId="WIDGETS" attrName="publishOperation" attrValue="HAS_USER_ROLE"/>
+    <!--<ContentAttribute contentId="WIDGETS" attrName="publishOperation" attrValue="HAS_USER_ROLE"/>-->
 
     <!-- Threads -->
     <Content contentId="thread10021" contentTypeId="DOCUMENT" ownerContentId="GIZMOS" dataResourceId="TEMPLATE_TEXT_ONLY" statusId="CTNT_PUBLISHED" contentName="This is a Thread" description="Gizmo useless?" childBranchCount="2" createdDate="2006-05-02 13:36:31.937" createdByUserLogin="admin"/>

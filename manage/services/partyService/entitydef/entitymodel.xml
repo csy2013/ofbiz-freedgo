@@ -42,7 +42,7 @@ under the License.
     <!-- org.ofbiz.party.agreement -->
     <!-- ========================================================= -->
 
-    <entity entity-name="Addendum"
+    <!--<entity entity-name="Addendum"
             package-name="org.ofbiz.party.agreement"
             title="Addendum Entity">
         <field name="addendumId" type="id-ne"></field>
@@ -563,13 +563,13 @@ under the License.
         <relation type="many" rel-entity-name="AgreementRole">
             <key-map field-name="agreementId"/>
         </relation>
-    </view-entity>
+    </view-entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.party.communication -->
     <!-- ========================================================= -->
 
-    <entity entity-name="CommContentAssocType" package-name="org.ofbiz.party.communication"
+    <!--<entity entity-name="CommContentAssocType" package-name="org.ofbiz.party.communication"
             title="CommunicationEvent Content Association Type Entity">
         <field name="commContentAssocTypeId" type="id-ne"></field>
         <field name="description" type="description"></field>
@@ -904,7 +904,7 @@ under the License.
         <alias entity-alias="CE" name="communicationEventId" function="count"/>
         <alias entity-alias="CE" name="statusId" group-by="false"/>
         <alias entity-alias="CE" name="partyIdTo" group-by="true"/>
-    </view-entity>
+    </view-entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.party.contact -->
@@ -1385,7 +1385,7 @@ under the License.
             <key-map field-name="contactMechId"/>
         </view-link>
     </view-entity>
-    <view-entity entity-name="ContactListPartyAndContactMech"
+   <!-- <view-entity entity-name="ContactListPartyAndContactMech"
                  package-name="org.ofbiz.party.contact">
         <member-entity entity-alias="CLP" entity-name="ContactListParty"/>
         <member-entity entity-alias="CM" entity-name="ContactMech"/>
@@ -1405,13 +1405,13 @@ under the License.
             <key-map field-name="partyId"/>
             <key-map field-name="fromDate"/>
         </relation>
-    </view-entity>
+    </view-entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.party.need -->
     <!-- ========================================================= -->
 
-    <entity entity-name="NeedType"
+    <!--<entity entity-name="NeedType"
             package-name="org.ofbiz.party.need"
             title="Need Type Entity">
         <field name="needTypeId" type="id-ne"></field>
@@ -1463,13 +1463,13 @@ under the License.
         <relation type="one" fk-name="PARTY_NEED_VSIT" rel-entity-name="Visit">
             <key-map field-name="visitId"/>
         </relation>
-    </entity>
+    </entity>-->
 
     <!-- ========================================================= -->
     <!-- org.ofbiz.party.party -->
     <!-- ========================================================= -->
 
-    <entity entity-name="AddressMatchMap"
+    <!--<entity entity-name="AddressMatchMap"
             package-name="org.ofbiz.party.party"
             title="Address Matching Map">
         <field name="mapKey" type="id-vlong"></field>
@@ -1497,7 +1497,7 @@ under the License.
         <relation type="one" fk-name="AFFILIATE_PGRP" rel-entity-name="PartyGroup">
             <key-map field-name="partyId"/>
         </relation>
-    </entity>
+    </entity>-->
     <entity entity-name="Party"
             package-name="org.ofbiz.party.party"
             title="Party Entity">
@@ -1539,7 +1539,7 @@ under the License.
             <index-field name="externalId"/>
         </index>
     </entity>
-    <view-entity entity-name="PartyAcctgPrefAndGroup"
+     <view-entity entity-name="PartyAcctgPrefAndGroup"
                  package-name="org.ofbiz.party.party"
                  title="PartyAcctgPreference and PartyGroup Entity">
         <member-entity entity-alias="PTYACCPREF" entity-name="PartyAcctgPreference"/>
@@ -1627,7 +1627,7 @@ under the License.
             <key-map field-name="userLoginId"/>
         </relation>
     </view-entity>
-    <view-entity entity-name="PartyDetailAndWorkEffortAssign"
+    <!--<view-entity entity-name="PartyDetailAndWorkEffortAssign"
                  package-name="org.ofbiz.party.party"
                  title="View to show the party assignment names for a workeffort with the partyStatus and AssignStatus">
         <member-entity entity-alias="PTY" entity-name="Party"/>
@@ -1660,7 +1660,7 @@ under the License.
         <view-link entity-alias="PTY" rel-entity-alias="PGR" rel-optional="true">
             <key-map field-name="partyId"/>
         </view-link>
-    </view-entity>
+    </view-entity>-->
 
     <entity entity-name="PartyIdentification"
             package-name="org.ofbiz.party.party"
@@ -2011,7 +2011,7 @@ under the License.
             <index-field name="groupName"/>
         </index>
     </entity>
-    <entity entity-name="PartyIcsAvsOverride"
+    <!--<entity entity-name="PartyIcsAvsOverride"
             package-name="org.ofbiz.party.party"
             title="Party ICS AVS Override Entity">
         <field name="partyId" type="id-ne"></field>
@@ -2020,8 +2020,8 @@ under the License.
         <relation type="one" fk-name="PARTY_ICSAVS_PARTY" rel-entity-name="Party">
             <key-map field-name="partyId"/>
         </relation>
-    </entity>
-    <entity entity-name="PartyInvitation"
+    </entity>-->
+    <!--<entity entity-name="PartyInvitation"
             package-name="org.ofbiz.party.party"
             title="Party Invitation Entity">
         <field name="partyInvitationId" type="id-ne"></field>
@@ -2069,7 +2069,7 @@ under the License.
         <relation type="one" fk-name="PTYINVROLE_PTYINV" rel-entity-name="PartyInvitation">
             <key-map field-name="partyInvitationId"/>
         </relation>
-    </entity>
+    </entity>-->
     <view-entity entity-name="PartyNameContactMechView"
                  package-name="org.ofbiz.party.party"
                  title="Party Name Contact Mech View Entity">
@@ -2654,7 +2654,7 @@ under the License.
             <key-map field-name="partyId"/>
         </relation>
     </entity>
-    <entity entity-name="OldPartyTaxInfo" table-name="PARTY_TAX_INFO"
+    <!--<entity entity-name="OldPartyTaxInfo" table-name="PARTY_TAX_INFO"
             package-name="org.ofbiz.party.party"
             title="Party Tax Information Entity">
         <description>NOTE: this entity is deprecated by PartyTaxAuthInfo</description>
@@ -2673,7 +2673,7 @@ under the License.
         <relation type="one" fk-name="PARTY_TXI_GEO" rel-entity-name="Geo">
             <key-map field-name="geoId"/>
         </relation>
-    </entity>
+    </entity>-->
     <entity entity-name="PartyType"
             package-name="org.ofbiz.party.party"
             default-resource-name="PartyEntityLabels"

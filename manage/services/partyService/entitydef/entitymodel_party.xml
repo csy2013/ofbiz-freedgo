@@ -57,7 +57,7 @@
     <field name="partyId" type="id-ne"></field>
     <field name="scoreValue" type="numeric"></field>
     <prim-key field="partyId"></prim-key>
-    <relation type="one" rel-entity-name="Party">
+    <relation type="one" rel-entity-name="Party" fk-name="PRY_SRE_PARTY">
       <key-map field-name="partyId"/>
     </relation>
   </entity>
