@@ -6710,10 +6710,10 @@
         <value xml:lang="zh">查找不到对应文章</value>
     </property>
     <property key="ActivityListPage">
-        <value xml:lang="zh">活动列表</value>
+        <value xml:lang="zh">活动管理</value>
     </property>
     <property key="ChannelListPage">
-        <value xml:lang="zh">频道列表</value>
+        <value xml:lang="zh">专题活动</value>
     </property>
     <property key="DaoJiaSite">
         <value xml:lang="zh">到家站点</value>

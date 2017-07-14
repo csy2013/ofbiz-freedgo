@@ -30,16 +30,16 @@ under the License.
                 <parameter param-name="webSiteId" value="daojia" />
             </link>
         </menu-item>
-        <!--<menu-item name="weixin" title="${uiLabelMap.WeiXinSite}">
+        <menu-item name="weixin" title="${uiLabelMap.WeiXinSite}">
             <link target="EditWeiXinSite">
                 <parameter param-name="webSiteId" value="weixin" />
             </link>
         </menu-item>
-        <menu-item name="app" title="${uiLabelMap.AppSite}">
+       <!-- <menu-item name="app" title="${uiLabelMap.AppSite}">
             <link target="EditAppSite">
                 <parameter param-name="webSiteId" value="app" />
             </link>
-        </menu-item>
+        </menu-item>-->
         <menu-item name="eshop" title="${uiLabelMap.EShopSite}">
             <link target="EditEShopSite">
                 <parameter param-name="webSiteId" value="eshop" />
@@ -49,7 +49,10 @@ under the License.
         <menu-item name="Article" title="${uiLabelMap.ContentArticle}">
             <link target="ArticleMain"/>
         </menu-item>
-        <menu-item name="survey" title="${uiLabelMap.ContentSurvey}">
+        <menu-item name="Publish" title="公告管理">
+            <link target="PublishMain"/>
+        </menu-item>
+        <!--<menu-item name="survey" title="${uiLabelMap.ContentSurvey}">
             <link target="FindSurvey"/>
         </menu-item>
         <menu-item name="Forum" title="${uiLabelMap.ContentForum}">
@@ -60,8 +63,8 @@ under the License.
         </menu-item>
         <menu-item name="Content" title="${uiLabelMap.ContentContent}">
             <link target="findContent"/>
-        </menu-item>
-        <menu-item name="DataResource" title="${uiLabelMap.ContentDataResource}">
+        </menu-item>-->
+        <!--<menu-item name="DataResource" title="${uiLabelMap.ContentDataResource}">
             <link target="findDataResource"/>
         </menu-item>
         <menu-item name="ContentSetupMenu" title="${uiLabelMap.ContentContentSetup}">
@@ -78,13 +81,13 @@ under the License.
         </menu-item>
         <menu-item name="CompDoc" title="${uiLabelMap.ContentCompDoc}">
             <link target="FindCompDoc"/>
-        </menu-item>
+        </menu-item>-->
         <menu-item name="ActivityList" title="${uiLabelMap.ActivityListPage}">
             <link target="FindActivities"/>
         </menu-item>
         <menu-item name="ChannelList" title="${uiLabelMap.ChannelListPage}">
             <link target="FindChannels"/>
-        </menu-item>-->
+        </menu-item>
     </menu>
 
     <menu name="content" menu-container-style="button-bar tab-bar" default-selected-style="selected" default-menu-item-name="content"
