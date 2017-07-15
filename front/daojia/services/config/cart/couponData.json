@@ -1,9 +1,0 @@
-{
-  "voucherVO": {
-    "show": true
-  },
-  "couponVO": {
-    "show": false
-  },
-  "promoteType": true
-}

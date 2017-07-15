@@ -4120,7 +4120,7 @@ public class ShoppingCart implements Iterable<ShoppingCartItem>, Serializable {
         result.put("orderItemContactMechs", this.makeAllOrderItemContactMechs());
         result.put("orderPaymentInfo", this.makeAllOrderPaymentInfos(dispatcher));
         result.put("orderItemShipGroupInfo", this.makeAllShipGroupInfos());
-        result.put("orderItemSurveyResponses", this.makeAllOrderItemSurveyResponses());
+//        result.put("orderItemSurveyResponses", this.makeAllOrderItemSurveyResponses());
         result.put("orderAdditionalPartyRoleMap", this.getAdditionalPartyRoleMap());
         result.put("orderItemAssociations", this.makeAllOrderItemAssociations());
         result.put("orderInternalNotes", this.getInternalOrderNotes());

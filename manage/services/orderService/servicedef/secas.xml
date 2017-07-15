@@ -123,7 +123,7 @@ under the License.
         <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
         <condition-field field-name="statusId" operator="not-equals" to-field-name="oldStatusId"/>
         <action service="updateContentSubscriptionByOrder" mode="sync"/>
-        <action service="processExtendSubscriptionByOrder" mode="sync"/>
+        <!--<action service="processExtendSubscriptionByOrder" mode="sync"/>-->
     </eca>
 
     <!-- order adjustments -->
@@ -171,7 +171,7 @@ under the License.
     </eca>
 
     <!-- order confirmation/notification email ECAs -->
-    <eca service="sendOrderConfirmation" event="commit">
+    <!--<eca service="sendOrderConfirmation" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
     <eca service="sendOrderChangeNotification" event="commit">
@@ -186,14 +186,14 @@ under the License.
     <eca service="sendOrderPayRetryNotification" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
-
+-->
     <!-- Order Delivery Schedule ECAs -->
-    <eca service="createOrderDeliverySchedule" event="commit">
+  <!--  <eca service="createOrderDeliverySchedule" event="commit">
         <action service="sendOrderDeliveryScheduleNotification" mode="async" persist="true"/>
     </eca>
     <eca service="updateOrderDeliverySchedule" event="commit">
         <action service="sendOrderDeliveryScheduleNotification" mode="async" persist="true"/>
-    </eca>
+    </eca>-->
 
     <!-- Return ECAs -->
 
@@ -356,18 +356,18 @@ under the License.
         <condition field-name="quantity" value="0" operator="greater" type="BigDecimal"/>
         <action service="checkCreateStockRequirementQoh" mode="sync" run-as-user="system"/>
     </eca>
-    <eca service="reserveOrderItemInventory" event="commit">
+   <!-- <eca service="reserveOrderItemInventory" event="commit">
         <condition field-name="quantity" value="0" operator="greater" type="BigDecimal"/>
         <action service="checkCreateStockRequirementAtp" mode="sync" run-as-user="system"/>
-    </eca>
+    </eca>-->
     <!-- create the automatic and ATP requirements for sales orders but only if the status changes from created to approved -->
-    <eca service="changeOrderStatus" event="commit" run-on-error="false">
+   <!-- <eca service="changeOrderStatus" event="commit" run-on-error="false">
         <condition field-name="oldStatusId" operator="equals" value="ORDER_CREATED"/>
         <condition field-name="statusId" operator="equals" value="ORDER_APPROVED"/>
         <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
         <action service="createAutoRequirementsForOrder" mode="sync"/>
         <action service="createATPRequirementsForOrder" mode="sync"/>
-    </eca>
+    </eca>-->
 
     <!-- WorkEffort -->
     <eca service="createQuoteWorkEffort" event="in-validate">

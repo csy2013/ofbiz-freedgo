@@ -169,8 +169,8 @@ under the License.
         <!-- TODO: make sure availableToPromiseTotal and quantityOnHandTotal are not changed -->
         <set-nonpk-fields map="parameters" value-field="inventoryItem"/>
 
-        <call-simple-method method-name="inventoryItemCheckSetDefaultValues"/>
-        <check-errors/>
+        <!--<call-simple-method method-name="inventoryItemCheckSetDefaultValues"/>-->
+        <!--<check-errors/>-->
 
         <sequenced-id sequence-name="InventoryItem" field="inventoryItem.inventoryItemId"/>
         <create-value value-field="inventoryItem"/>
