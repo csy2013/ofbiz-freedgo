@@ -4640,6 +4640,7 @@ under the License.
         <alias-all entity-alias="PSPA"/>
         <alias entity-alias="PP" name="promoName"/>
         <alias entity-alias="PP" name="userEntered"/>
+        <alias entity-alias="PP" name="promoType"/>
         <view-link entity-alias="PSPA" rel-entity-alias="PP">
             <key-map field-name="productPromoId"/>
         </view-link>
