@@ -47,6 +47,7 @@ public class OrderServices {
         List cancelOrders = FastList.newInstance();
         List shipOrders = FastList.newInstance();
         List reviewOrders = FastList.newInstance();
+        List allOrders = FastList.newInstance();
 
         try {
             userLogin = delegator.findByPrimaryKey("UserLogin", UtilMisc.toMap("userLoginId", loginId));
@@ -85,7 +86,8 @@ public class OrderServices {
 
                 BigDecimal orderTaxTotal = OrderReadHelper.getAllOrderItemsAdjustmentsTotal(orderItems, orderAdjustments, false, true, false);
                 orderTaxTotal = orderTaxTotal.add(OrderReadHelper.calcOrderAdjustments(orderHeaderAdjustments, orderSubTotal, false, true, false));
-
+                List<GenericValue> orderShippingLocations = orderReadHelper.getShippingLocations();
+               
 
                 List<GenericValue> orderPaymentPreferences = null;
                 try {
@@ -156,6 +158,7 @@ public class OrderServices {
 
                 orderMap.put("orderShippingTotal", orderShippingTotal);
                 orderMap.put("orderTaxTotal", orderTaxTotal);
+                orderMap.put("orderShippingLocations",orderShippingLocations);
                 orderMap.put("orderGrandTotal", OrderReadHelper.getOrderGrandTotal(orderItems, orderAdjustments));
 
                 orderMap.put("orderStatus", orderHeader.get("statusId"));
@@ -208,6 +211,7 @@ public class OrderServices {
                         }
                     }
                 }
+                allOrders.add(orderMap);
 //            orders.add(orderMap);
             }
         }
@@ -219,6 +223,7 @@ public class OrderServices {
         result.put("cancelOrders", cancelOrders);
         result.put("shipOrders", shipOrders);
         result.put("reviewOrders", reviewOrders);
+        result.put("allOrders",allOrders);
         return result;
     }
 }

@@ -584,7 +584,7 @@
                 <if-compare-field field="parameters.partyId" operator="equals" to-field="userLogin.partyId"/>
             </condition>
             <actions>
-                <property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>
+                <!--<property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>-->
                 <service service-name="getWorkEffortAssignedActivities"/>
                 <service service-name="getWorkEffortAssignedActivitiesByRole"/>
                 <service service-name="getWorkEffortAssignedActivitiesByGroup"/>

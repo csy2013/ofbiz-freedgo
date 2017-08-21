@@ -5,6 +5,7 @@
       <#assign linkContentWrapper = Static["org.ofbiz.content.data.OfbizUrlContentWrapper"].makeOfbizUrlContentWrapper(siteIcon.get('contentId'),delegator, request)/>
       <#assign url = linkContentWrapper.get('siteIcon')?if_exists/>
       <#assign fileName = linkContentWrapper.get('fileName')?if_exists/>
+
         <form action="<@ofbizUrl>uploadSiteIcon</@ofbizUrl>" class="dropzone dz-started" id="dropzoneSiteIcon" enctype="multipart/form-data">
             <input type="hidden" name="webSiteId" value="${webSiteId}"/>
             <div class="dz-default dz-message"><span><span class="smaller-80 grey">点击上传图片</span> <br>

@@ -317,7 +317,7 @@ public class CustomServices {
                 if (UtilValidate.isEmpty(userLogin)) {
                     Map<String, Object> newUserLogin = null;
                     try {
-                        newUserLogin = localDispatcher.runSync("createPersonAndUserLogin", UtilMisc.toMap("imageUrl", imageUrl,
+                        newUserLogin = localDispatcher.runSync("createPersonAndUserLogin", UtilMisc.toMap("userLoginId", authtypeid + openid,"imageUrl", imageUrl,
                                 "nickname", nickname, "gender", gender, "name", name, "currentPassword", password, "currentPasswordVerify", password));
                         authUser.set("partyId", newUserLogin.get("partyId"));
                         result.put("partyId", newUserLogin.get("partyId"));
@@ -339,7 +339,7 @@ public class CustomServices {
                 if (UtilValidate.isEmpty(userLogin)) {
                     Map<String, Object> newUserLogin = null;
                     try {
-                        newUserLogin = localDispatcher.runSync("createPersonAndUserLogin", UtilMisc.toMap("imageUrl", imageUrl,
+                        newUserLogin = localDispatcher.runSync("createPersonAndUserLogin", UtilMisc.toMap("userLoginId", authtypeid + openid,"imageUrl", imageUrl,
                                 "nickname", nickname, "gender", gender, "name", name, "currentPassword", password, "currentPasswordVerify", password));
                         partyId = (String) newUserLogin.get("partyId");
                     } catch (GenericServiceException e) {

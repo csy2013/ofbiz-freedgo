@@ -38,7 +38,7 @@
                 <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="USA"/>
             </actions>
             <widgets>
-                <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
                     <decorator-section name="body">
                         <section>
                             <condition>

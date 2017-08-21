@@ -164,7 +164,7 @@ under the License.
           default-table-style="basic-table">
         <auto-fields-service service-name="createDaoJiaIndexTemplate"/>
         <field name="webSiteId">
-            <hidden value="daojia"/>
+            <hidden/>
         </field>
         <field name="createDate">
             <hidden/>
@@ -188,7 +188,7 @@ under the License.
           header-row-style="header-row" default-table-style="basic-table">
         <auto-fields-service service-name="updateDaoJiaIndexTemplate"/>
         <field name="webSiteId">
-            <hidden value="daojia"/>
+            <hidden/>
         </field>
         <field name="createDate">
             <hidden/>

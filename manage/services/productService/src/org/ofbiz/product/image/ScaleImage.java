@@ -82,7 +82,7 @@ public class ScaleImage {
         Map<String, Object> result = FastMap.newInstance();
 
         /* ImageProperties.xml */
-        String baseDir = UtilProperties.getMessage("daojia.properties","daojia.home",locale);
+        String baseDir = UtilProperties.getMessage("catalog.properties","image.config.home",locale);
         String imgPropertyFullPath = System.getProperty("ofbiz.home") +"/" + baseDir + "/services/productService/config/ImageProperties.xml";
         resultXMLMap.putAll(ImageTransform.getXMLValue(imgPropertyFullPath, locale));
         if (resultXMLMap.containsKey("responseMessage") && resultXMLMap.get("responseMessage").equals("success")) {

@@ -37,7 +37,7 @@
         <property-map resource="PartyUiLabels" map-name="uiLabelMap"/>
       </actions>
       <widgets>
-        <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+        <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
           <decorator-section name="body">
             <section>
               <condition>
@@ -112,7 +112,7 @@
         <script location="component://commonext/webapp/ofbizsetup/WEB-INF/actions/FindFacility.groovy"/>
       </actions>
       <widgets>
-        <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+        <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
           <decorator-section name="body">
             <section>
               <condition>
@@ -164,7 +164,7 @@
         <script location="component://commonext/webapp/ofbizsetup/WEB-INF/actions/FindFacility.groovy"/>
       </actions>
       <widgets>
-        <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+        <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
           <decorator-section name="body">
             <section>
               <condition>
@@ -216,7 +216,7 @@
         <script location="component://commonext/webapp/ofbizsetup/WEB-INF/actions/GetProductStoreAndWebSite.groovy"/>
       </actions>
       <widgets>
-        <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+        <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
           <decorator-section name="body">
             <section>
               <condition>
@@ -372,7 +372,7 @@
         <set field="tabButtonItemTop" value="firstproduct"/>
       </actions>
       <widgets>
-        <decorator-screen name="CommonSetupDecorator" location="${parameters.mainDecoratorLocation}">
+        <decorator-screen name="CommonSetupDecorator" location="component://commonext/widget/ofbizsetup/CommonScreens.xml">
           <decorator-section name="body">
             <section>
               <condition>

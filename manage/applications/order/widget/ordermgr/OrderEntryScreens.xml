@@ -43,7 +43,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOrderAgreements"/>
                 <set field="headerItem" value="orderentry"/>
-                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/OrderAgreements.groovy"/>
+                <!--<script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/OrderAgreements.groovy"/>-->
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
@@ -173,7 +173,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleOrderInits"/>
                 <set field="headerItem" value="orderentry"/>
                 <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/CheckInits.groovy"/>
-                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/OrderAgreements.groovy"/>
+                <!--<script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/OrderAgreements.groovy"/>-->
                 <!--show cart-->
                 <set field="productsummaryScreen" value="component://order/widget/ordermgr/OrderEntryCatalogScreens.xml#productsummary"/>
                 <property-to-field resource="order" property="orderPreference.giftEnable" field="giftEnable" default="Y"/>

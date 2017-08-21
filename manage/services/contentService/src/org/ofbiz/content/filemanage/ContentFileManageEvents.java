@@ -10,6 +10,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpHeaders;
 import org.ofbiz.base.util.*;
 import org.ofbiz.content.ContentTypes;
@@ -19,12 +20,12 @@ import org.ofbiz.entity.GenericValue;
 import org.ofbiz.entity.util.EntityUtil;
 import org.ofbiz.service.LocalDispatcher;
 import org.ofbiz.service.ServiceUtil;
-import org.springframework.util.FileCopyUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.*;
@@ -311,7 +312,7 @@ public class ContentFileManageEvents {
                                 }
                                 
                                 File imageFile = new File(baseUploadDir + "/" + imageName);
-                                FileCopyUtils.copy(fileItem.get(),imageFile);
+                                FileUtils.copyInputStreamToFile(new ByteArrayInputStream(fileItem.get()),imageFile);
 //                                UtilIO.writeObject(imageFile, fileItem.get());
                                 
                                 GenericValue extension = EntityUtil.getFirst(fileExtension);

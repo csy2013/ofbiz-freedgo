@@ -20,21 +20,22 @@ under the License.
 
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
-  <description>Order Services</description>
-  <vendor>OFBiz</vendor>
-  <version>1.0</version>
+    <description>Order Services</description>
+    <vendor>OFBiz</vendor>
+    <version>1.0</version>
 
-  <!-- Order processing services -->
-  <service name="queryOrderHistory" engine="java" location="com.yuaoq.yabiz.service.local.order.OrderServices"
-           invoke="queryOrderHistory" auth="false">
-    <description>查询历史3个月的订单</description>
-    <attribute name="loginId" type="String" mode="IN" optional="false"/>
-    <attribute name="payOrders" type="java.util.List" mode="OUT" optional="true"/>
-    <attribute name="finishOrders" type="java.util.List" mode="OUT" optional="true"/>
-    <attribute name="shipOrders" type="java.util.List" mode="OUT" optional="true"/>
-    <attribute name="reviewOrders" type="java.util.List" mode="OUT" optional="true"/>
-    <attribute name="cancelOrders" type="java.util.List" mode="OUT" optional="true"/>
-  </service>
+    <!-- Order processing services -->
+    <service name="queryOrderHistory" engine="java" location="com.yuaoq.yabiz.service.local.order.OrderServices"
+             invoke="queryOrderHistory" auth="false">
+        <description>查询历史3个月的订单</description>
+        <attribute name="loginId" type="String" mode="IN" optional="false"/>
+        <attribute name="payOrders" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="finishOrders" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="shipOrders" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="reviewOrders" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="cancelOrders" type="java.util.List" mode="OUT" optional="true"/>
+        <attribute name="allOrders" type="java.util.List" mode="OUT" optional="true"/>
+    </service>
 
 
 </services>

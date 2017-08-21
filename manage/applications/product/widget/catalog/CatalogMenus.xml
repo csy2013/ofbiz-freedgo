@@ -206,11 +206,11 @@ under the License.
                 <parameter param-name="productCategoryId"/>
             </link>
         </menu-item>
-        <!--<menu-item name="EditCategoryRollup" title="${uiLabelMap.ProductRollup}">
+        <menu-item name="EditCategoryRollup" title="${uiLabelMap.ProductRollup}">
             <link target="EditCategoryRollup">
                 <parameter param-name="productCategoryId"/>
             </link>
-        </menu-item>-->
+        </menu-item>
         <menu-item name="EditCategoryProducts" title="商品管理">
             <link target="EditCategoryProducts">
                 <parameter param-name="productCategoryId"/>

@@ -350,4 +350,301 @@ under the License.
         <field-to-request field="tempMap.partyId" request-name="partyId"/>
 
     </simple-method>
+
+    <!--创建网上商城网用户信息 通过手机 add by changsy 2014、12、2-->
+    <simple-method method-name="createCustomerByPhone" short-description="Create Customer" login-required="false">
+        <call-class-method class-name="org.ofbiz.product.store.ProductStoreWorker" method-name="getProductStore" ret-field="productStore">
+            <field field="request" type="javax.servlet.ServletRequest"/>
+        </call-class-method>
+
+        <set from-field="productStore.allowPassword" field="allowPassword"/>
+        <set from-field="productStore.defaultPassword" field="defaultPassword"/>
+        <if-empty field="allowPassword">
+            <set field="allowPassword" value="Y"/>
+        </if-empty>
+        <if-empty field="defaultPassword">
+            <set field="defaultPassword" value="ungssblepswd"/>
+        </if-empty>
+
+        <property-to-field resource="security" property="username.lowercase" default="false" field="username_lowercase"/>
+        <property-to-field resource="security" property="password.lowercase" default="false" field="password_lowercase"/>
+
+        <now-timestamp field="nowStamp"/>
+        <set value="CUSTOMER" field="parameters.roleTypeId"/>
+
+        <if-compare field="allowPassword" operator="not-equals" value="Y">
+            <set from-field="defaultPassword" field="parameters.PASSWORD"/>
+            <set from-field="defaultPassword" field="parameters.CONFIRM_PASSWORD"/>
+            <set value="No hint set, account not yet enabled" field="parameters.PASSWORD_HINT"/>
+        </if-compare>
+
+        <!--<if-compare field="productStore.usePrimaryEmailUsername" operator="equals" value="Y">-->
+        <set field="parameters.USERNAME" from-field="parameters.CUSTOMER_MOBILE_CONTACT"/>
+        <!--</if-compare>-->
+
+        <!-- if username and/or password should be lowercased, do that now -->
+        <if-compare field="username_lowercase" operator="equals" value="true">
+            <call-object-method obj-field="parameters.USERNAME" method-name="toLowerCase" ret-field="parameters.USERNAME"/>
+        </if-compare>
+        <!--<if-compare field="password_lowercase" operator="equals" value="true">-->
+            <call-object-method obj-field="parameters.PASSWORD" method-name="toLowerCase" ret-field="parameters.PASSWORD"/>
+            <call-object-method obj-field="parameters.CONFIRM_PASSWORD" method-name="toLowerCase" ret-field="parameters.CONFIRM_PASSWORD"/>
+        <!--</if-compare>-->
+        <log level="info" message="parameters.CUSTOMER_MOBILE_CONTACT = ${parameters}"/>
+        <!-- Create the UserLogin Record -->
+        <call-map-processor in-map-name="parameters" out-map-name="userLoginContext">
+            <simple-map-processor name="newUserLogin">
+                <process field="USERNAME">
+                    <copy to-field="userLoginId"/>
+                    <not-empty>
+                        <fail-property resource="PartyUiLabels" property="PartyUserLoginMissingError"/>
+                    </not-empty>
+                </process>
+                <process field="PASSWORD">
+                    <copy to-field="currentPassword"/>
+                    <not-empty>
+                        <fail-property resource="PartyUiLabels" property="PartyPasswordMissing"/>
+                    </not-empty>
+                </process>
+                <process field="CONFIRM_PASSWORD">
+                    <compare-field operator="equals" field="PASSWORD">
+                        <fail-property resource="PartyUiLabels" property="PartyPasswordMatchError"/>
+                    </compare-field>
+                    <copy to-field="currentPasswordVerify"/>
+                </process>
+                <process field="PASSWORD_HINT">
+                    <copy to-field="passwordHint"/>
+                </process>
+            </simple-map-processor>
+        </call-map-processor>
+        <if-not-empty field="userLoginContext.userLoginId">
+            <set from-field="userLoginContext.userLoginId" field="userLoginExistsMap.userLoginId"/>
+            <find-by-primary-key entity-name="UserLogin" map="userLoginExistsMap" value-field="existingUserLogin"/>
+            <if-not-empty field="existingUserLogin">
+                <property-to-field field="tempErrorMessage" resource="PartyUiLabels" property="PartyUserNameInUse"/>
+                <string-to-list string="${tempErrorMessage}" message-field="USERNAME" list="error_list"/>
+            </if-not-empty>
+        </if-not-empty>
+
+        <make-value entity-name="UserLogin" value-field="newUserLogin"/>
+        <set from-field="userLoginContext.userLoginId" field="newUserLogin.userLoginId"/>
+        <set from-field="userLoginContext.currentPassword" field="newUserLogin.currentPassword"/>
+        <set from-field="userLoginContext.passwordHint" field="newUserLogin.passwordHint"/>
+
+        <!-- Check the password, etc for validity -->
+        <call-bsh><![CDATA[
+            String password = (String) userLoginContext.get("currentPassword");
+            String confirmPassword = (String) userLoginContext.get("currentPasswordVerify");
+            String passwordHint = (String) userLoginContext.get("passwordHint");
+            org.ofbiz.common.login.LoginServices.checkNewPassword(newUserLogin, null, password, confirmPassword, passwordHint, error_list, true, locale);
+        ]]></call-bsh>
+
+        <!-- Create the Person -->
+        <call-map-processor in-map-name="parameters" out-map-name="personContext">
+            <simple-map-processor name="newPerson">
+                <process field="USER_FIRST_NAME">
+                    <copy to-field="firstName"/>
+                    <!--<not-empty><fail-property resource="PartyUiLabels" property="PartyFirstNameMissing"/></not-empty>-->
+                </process>
+                <process field="USER_MIDDLE_NAME">
+                    <copy to-field="middleName"/>
+                </process>
+                <process field="USER_LAST_NAME">
+                    <copy to-field="lastName"/>
+                    <!--<not-empty><fail-property resource="PartyUiLabels" property="PartyLastNameMissingError"/></not-empty>-->
+                </process>
+                <process field="USER_TITLE">
+                    <copy to-field="personalTitle"/>
+                </process>
+                <process field="USER_SUFFIX">
+                    <copy to-field="suffix"/>
+                </process>
+                <process field="USER_BIRTHDATE">
+                    <convert type="Date" to-field="birthDate">
+                        <fail-property resource="PartyUiLabels" property="PartyBirthDateMissingError"/>
+                    </convert>
+                </process>
+                <process field="USER_GENDER">
+                    <copy to-field="gender"/>
+                </process>
+                <process field="USERNAME">
+                    <copy to-field="name"/>
+                </process>
+                <process field="USERNAME">
+                    <copy to-field="mobile"/>
+                </process>
+            </simple-map-processor>
+        </call-map-processor>
+
+        <log level="info" message="Creating new customer, newUserLogin=${newUserLogin}"/>
+
+        <!-- Create the PartyRole -->
+        <set from-field="parameters.roleTypeId" field="partyRoleContext.roleTypeId"/>
+
+        <!-- Create the Postal Address -->
+
+
+        <!-- Create the Home Phone -->
+
+
+        <!-- Create the Work Phone -->
+
+
+        <!-- Create the Fax Phone -->
+
+
+        <!-- Create the Mobile Phone -->
+        <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
+            <call-map-processor in-map-name="parameters" out-map-name="mobilePhoneContext">
+                <simple-map-processor name="newTelecomNumber">
+                    <process field="roleTypeId">
+                        <copy/>
+                    </process>
+                    <process field="CUSTOMER_MOBILE_COUNTRY">
+                        <copy to-field="countryCode"/>
+                    </process>
+                    <process field="CUSTOMER_MOBILE_AREA">
+                        <copy to-field="areaCode"/>
+                    </process>
+                    <process field="CUSTOMER_MOBILE_CONTACT">
+                        <copy to-field="contactNumber"/>
+                    </process>
+                    <process field="CUSTOMER_MOBILE_EXT">
+                        <copy to-field="extension"/>
+                    </process>
+                    <process field="CUSTOMER_MOBILE_ALLOW_SOL">
+                        <copy to-field="allowSolicitation"/>
+                    </process>
+                </simple-map-processor>
+            </call-map-processor>
+        </if-not-empty>
+
+        <!-- Check for required Phone -->
+        <if-compare field="parameters.REQUIRE_PHONE" operator="equals" value="true">
+            <if-empty field="parameters.CUSTOMER_HOME_CONTACT">
+                <if-empty field="parameters.CUSTOMER_WORK_CONTACT">
+                    <if-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
+                        <call-map-processor in-map-name="parameters" out-map-name="dummymap">
+                            <simple-map-processor name="checkRequiredPhone">
+                                <process field="REQUIRED_PHONE">
+                                    <not-empty>
+                                        <fail-property resource="PartyUiLabels" property="PartyContactTelephoneMissingError"/>
+                                    </not-empty>
+                                </process>
+                            </simple-map-processor>
+                        </call-map-processor>
+                    </if-empty>
+                </if-empty>
+            </if-empty>
+        </if-compare>
+
+        <!-- Create the email address -->
+
+
+        <!-- create the PartyDataSource entry to track where this info came from... -->
+        <make-value entity-name="PartyDataSource" value-field="partyDataSource"/>
+        <set value="ECOMMERCE_SITE" field="partyDataSource.dataSourceId"/>
+        <set from-field="nowStamp" field="partyDataSource.fromDate"/>
+        <set value="Y" field="partyDataSource.isCreate"/>
+        <!-- get the visit from the session to get the visitId -->
+        <session-to-field field="visit"/>
+        <set from-field="visit.visitId" field="partyDataSource.visitId"/>
+
+        <!-- now that everything is validated & setup, check to see if there are errors, then call the services -->
+        <check-errors/>
+
+        <set-service-fields map="personContext" service-name="createPersonAndUserLogin" to-map="personUserLoginContext"/>
+        <set-service-fields map="newUserLogin" service-name="createPersonAndUserLogin" to-map="personUserLoginContext"/>
+        <set from-field="newUserLogin.currentPassword" field="personUserLoginContext.currentPasswordVerify"/>
+        <!-- the above copy is okay since we checked already that they are the same -->
+        <call-service service-name="createPersonAndUserLogin" in-map-name="personUserLoginContext">
+            <result-to-field result-name="partyId" field="tempMap.partyId"/>
+            <result-to-field field="createdUserLogin" result-name="newUserLogin"/>
+        </call-service>
+        <set-current-user-login value-field="createdUserLogin"/>
+
+        <!-- now that we have the partyId, put it where it needs to go... -->
+        <set from-field="tempMap.partyId" field="partyDataSource.partyId"/>
+        <set from-field="tempMap.partyId" field="userLoginContext.partyId"/>
+        <set from-field="tempMap.partyId" field="personContext.partyId"/>
+        <set from-field="tempMap.partyId" field="partyRoleContext.partyId"/>
+        <set from-field="tempMap.partyId" field="addressContext.partyId"/>
+        <set from-field="tempMap.partyId" field="homePhoneContext.partyId"/>
+        <set from-field="tempMap.partyId" field="workPhoneContext.partyId"/>
+        <set from-field="tempMap.partyId" field="faxPhoneContext.partyId"/>
+        <set from-field="tempMap.partyId" field="mobilePhoneContext.partyId"/>
+        <set from-field="tempMap.partyId" field="emailContext.partyId"/>
+
+        <create-value value-field="partyDataSource"/>
+        <call-service service-name="createPartyRole" in-map-name="partyRoleContext" include-user-login="true"/>
+
+
+        <!-- mobile phone -->
+        <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
+            <call-service service-name="createPartyTelecomNumber" in-map-name="mobilePhoneContext">
+                <result-to-field result-name="contactMechId" field="mobilePhonePurposeContext.contactMechId"/>
+            </call-service>
+            <set from-field="tempMap.partyId" field="mobilePhonePurposeContext.partyId"/>
+            <set value="PHONE_MOBILE" field="mobilePhonePurposeContext.contactMechPurposeTypeId"/>
+            <call-service service-name="createPartyContactMechPurpose" in-map-name="mobilePhonePurposeContext"/>
+        </if-not-empty>
+
+
+        <!--&lt;!&ndash; club number &ndash;&gt; -->
+
+
+        <!-- now finished, log in the user and set the cart's partyId to that of the newly created customer ... -->
+        <if-compare field="allowPassword" operator="equals" value="Y">
+            <call-bsh><![CDATA[
+                org.ofbiz.webapp.control.LoginWorker.doBasicLogin(createdUserLogin, request);
+                org.ofbiz.webapp.control.LoginWorker.autoLoginSet(request, response);
+                session = request.getSession();
+                cart = session.getAttribute("shoppingCart");
+                if (cart != null) {
+                    cart.setOrderPartyId(tempMap.get("partyId"));
+                }
+            ]]></call-bsh>
+        </if-compare>
+
+        <!-- Associated to Product Store -->
+        <entity-one entity-name="UserLogin" value-field="userLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <set field="createProductStoreRoleMap.userLogin" from-field="userLogin"/>
+        <set field="createProductStoreRoleMap.partyId" from-field="tempMap.partyId"/>
+        <set field="createProductStoreRoleMap.roleTypeId" from-field="parameters.roleTypeId"/>
+        <set field="createProductStoreRoleMap.productStoreId" from-field="parameters.emailProductStoreId"/>
+        <call-service service-name="createProductStoreRole" in-map-name="createProductStoreRoleMap"/>
+
+        <!-- send off the registration email 发手机短信验证码 -->
+        <!-- <if-not-empty field="emailContext.emailAddress">
+             <set from-field="parameters.emailProductStoreId" field="storeEmailLookup.productStoreId"/>
+             <set value="PRDS_CUST_REGISTER" field="storeEmailLookup.emailType"/>
+             <find-by-primary-key map="storeEmailLookup" entity-name="ProductStoreEmailSetting"  value-field="storeEmail"/>
+             <if-not-empty field="storeEmail.bodyScreenLocation">
+                 <get-related-one value-field="createdUserLogin" relation-name="Person" to-value-field="person"/>
+                 <set field="bodyParameters.person" from-field="person"/>
+                 <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
+                 <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
+                 <set field="emailParams.subject" from-field="storeEmail.subject"/>
+                 <set field="emailParams.sendFrom" from-field="storeEmail.fromAddress"/>
+                 <set field="emailParams.sendCc" from-field="storeEmail.ccAddress"/>
+                 <set field="emailParams.sendBcc" from-field="storeEmail.bccAddress"/>
+                 <set field="emailParams.contentType" from-field="storeEmail.contentType"/>
+                 <set field="emailParams.bodyScreenUri" from-field="storeEmail.bodyScreenLocation"/>
+                 <set field="emailParams.emailType" from-field="storeEmailLookup.emailType"/>
+                 <call-service-asynch service-name="sendMailFromScreen" in-map-name="emailParams" include-user-login="true"/>
+             </if-not-empty>
+         </if-not-empty>-->
+
+        <!-- security for manage profile  -->
+        <set field="securityParams.userLoginId" from-field="createdUserLogin.userLoginId"/>
+        <set field="securityParams.groupId" value="FULLADMIN"/>
+        <set field="securityParams.userLogin" from-field="userLogin"/>
+        <call-service service-name="addUserLoginToSecurityGroup" in-map-name="securityParams"/>
+
+        <!-- tell the control servlet that we just logged in the user... -->
+        <set value="TRUE" field="_LOGIN_PASSED_"/>
+        <field-to-request field="_LOGIN_PASSED_"/>
+    </simple-method>
 </simple-methods>

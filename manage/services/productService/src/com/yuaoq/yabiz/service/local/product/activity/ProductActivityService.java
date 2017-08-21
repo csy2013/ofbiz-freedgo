@@ -779,7 +779,6 @@ public class ProductActivityService {
                 if (highIndex > listSize) {
                     highIndex = listSize;
                 }
-
                 // close the list iterator
                 pli.close();
             } catch (GenericEntityException e) {

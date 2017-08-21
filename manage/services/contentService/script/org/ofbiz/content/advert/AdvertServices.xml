@@ -132,11 +132,15 @@
         <check-errors/>
 
         <now-timestamp field="nowTimestamp"/>
-
+        <log level="info" message="parameters =============== ${parameters}"/>
         <!--add advert-->
         <entity-condition entity-name="Advert" list="adverts">
-            <condition-expr field-name="advertTypeId" operator="equals" value="siteIcon"/>
+            <condition-list combine="and">
+                <condition-expr field-name="advertTypeId" operator="equals" value="siteIcon"/>
+                <condition-expr field-name="webSiteId" operator="equals" from-field="parameters.webSiteId"/>
+            </condition-list>
         </entity-condition>
+        <log level="info" message="advert =============== ${adverts}"/>
         <if-empty field="adverts">
             <make-value entity-name="Advert" value-field="newEntity"/>
             <sequenced-id sequence-name="Advert" field="advertId"/>
@@ -154,6 +158,7 @@
         <if-not-empty field="adverts">
             <first-from-list entry="advert" list="adverts"/>
             <set field="advertId" from-field="advert.advertId"/>
+            <set field="advert.webSiteId" from-field="parameters.webSiteId"/>
         </if-not-empty>
 
         <set-service-fields service-name="createContentFromUploadedFile" map="parameters" to-map="createContentMap"/>

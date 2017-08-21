@@ -39,6 +39,7 @@ import org.ofbiz.webapp.control.LoginWorker;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -459,6 +460,93 @@ public class LoginEvents {
         // if we logged in okay, do the check store customer role
         return ProductEvents.checkStoreCustomerRole(request, response);
     }
+    /**
+     * 注册时手机获取验证码  Add By Changsy 2015-4-3 09:23:00
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public static String getMobileAuthCode(HttpServletRequest request, HttpServletResponse response) {
 
+//        final char[] availableChars = UtilProperties.getPropertyValue("general.properties", "mobileAuthoCode.characters").toCharArray();
+        final char[] availableChars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
+        String length = request.getParameter("l");
+        if (UtilValidate.isEmpty(length)) length = "4";
+        String validateCode = RandomStringUtils.random(Integer.parseInt(length), availableChars);
+        String type = request.getParameter("type");
+        
+        if (UtilValidate.isEmpty(type)) type = "reg";
+        HttpSession session = request.getSession();
+        Map captchaCodeMap = (Map) session.getAttribute("_PHONE_CODE_");
+        if (captchaCodeMap == null) {
+            captchaCodeMap = new HashMap();
+            //保存到session中
+            session.setAttribute("_PHONE_CODE_", captchaCodeMap);
+        }
+        captchaCodeMap.put(type, validateCode);
+        String phoneId = request.getParameter("phoneId");
+        LocalDispatcher dispatcher = (LocalDispatcher) request.getAttribute("dispatcher");
+        String errMsg;
+        try {
+            Map<String, Object> serviceContext = FastMap.newInstance();
+            serviceContext.put("phoneId", phoneId);
+            Map<String, Object> messageMap = UtilMisc.toMap("message", validateCode);
+            String messageBody = UtilProperties.getMessage(resource, "loginevents.phone_register_phone_auth_code_messageBody", messageMap, UtilHttp.getLocale(request));
+            serviceContext.put("messageBody", messageBody);
+            serviceContext.put("messageType", "PHONE_REGISTER");
+            serviceContext.put("code",validateCode);
+            Map<String, Object> result = dispatcher.runSync("mobileMessageService", serviceContext);
 
+            if (ModelService.RESPOND_ERROR.equals(result.get(ModelService.RESPONSE_MESSAGE))) {
+                messageMap = UtilMisc.toMap("errorMessage", result.get(ModelService.ERROR_MESSAGE));
+                errMsg = UtilProperties.getMessage(resource, "loginevents.error_unable_phone_password_contact_customer_service_errorwas", messageMap, UtilHttp.getLocale(request));
+                request.setAttribute("_ERROR_MESSAGE_", errMsg);
+                return "error";
+            } else {
+                for (Object obj : result.keySet()) {
+                    Object val = result.get(obj);
+                    request.setAttribute(obj.toString(), val);
+                }
+            }
+
+        } catch (GenericServiceException e) {
+            Debug.logWarning(e, "", module);
+            errMsg = UtilProperties.getMessage(resource, "loginevents.error_unable_phone_password_contact_customer_service_errorwas", UtilHttp.getLocale(request));
+            request.setAttribute("_ERROR_MESSAGE_", errMsg);
+            return "error";
+        }
+        return "success";
+        
+    }
+    
+    
+    /**
+     * 检查手机注册验证码是否正确
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public static String checkMobileCheckCode(HttpServletRequest request, HttpServletResponse response) {
+        Boolean _PASSED_ = false;
+        String checkCode = request.getParameter("CHECK_CODE");
+        String type = request.getParameter("type");
+        if (UtilValidate.isEmpty(type)) type = "reg";
+        if (UtilValidate.isNotEmpty(checkCode)) {
+            HttpSession session = request.getSession();
+            Map<String, String> captchaCodeMap = (Map<String, String>) session.getAttribute("_PHONE_CODE_");
+            if (UtilValidate.isNotEmpty(captchaCodeMap)) {
+                String code = captchaCodeMap.get(type);
+                if (code != null && code.equalsIgnoreCase(checkCode)) {
+                    _PASSED_ = true;
+                }
+            }
+            
+        } else {
+            _PASSED_ = false;
+        }
+        request.setAttribute("_PASSED_", _PASSED_);
+        return "success";
+    }
 }

@@ -26,7 +26,7 @@ under the License.
                 <!-- base/top/specific map first, then more common map added for shared labels -->
                 <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-                <property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>
+                <!--<property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>-->
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
 
@@ -403,7 +403,7 @@ under the License.
             <actions>
                 <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-                <property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>
+                <!--<property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>-->
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
                 <script location="component://product/webapp/catalog/WEB-INF/actions/find/miniproductlist.groovy"/>
