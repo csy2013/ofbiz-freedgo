@@ -1,6 +1,8 @@
  freedgo
 ==========
 
+Demo：https://github.com/csy2013/ofbiz-freedgo  用户名:admin 密码：changsy
+
 <h1>A Distributed Deployable Framework base on Ofbiz.</h1>
 
 <p>[Ofibz](http://ofbiz.apache.org/)是一整套完善的企业级，以java为核心，结合很多开源项目，支持使用脚本来编写业务逻辑的开源项目。它也是一整套完整的企业ERP,电子商务业务框架.</p>
