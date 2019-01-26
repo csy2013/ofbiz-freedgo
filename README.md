@@ -1,7 +1,7 @@
  freedgo
 ==========
 
-Demo：https://github.com/csy2013/ofbiz-freedgo  用户名:admin 密码：changsy
+
 
 <h1>A Distributed Deployable Framework base on Ofbiz.</h1>
 
